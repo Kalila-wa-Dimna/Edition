@@ -14,7 +14,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@kalila-edition/common-ui": ["libs/common-ui/src/index.ts"],
+      "@kalila-edition/common-util": ["libs/common-util/src/index.ts"],
+      "@kalila-edition/section-collations": [
+        "libs/section-collations/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

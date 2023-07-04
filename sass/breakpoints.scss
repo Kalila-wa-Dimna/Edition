@@ -1,0 +1,28 @@
+// Define the breakpoints
+$breakpoints: (
+  'xs': 320px,
+  'sm': 480px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+  'xxl': 1440px,
+);
+
+// Mixin for the media query
+@mixin on-larger-than($breakpoint) {
+  // Check if the given breakpoint is in the defined list
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Get the breakpoint value
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query
+    @media only screen and (min-width: $breakpoint-value) {
+      @content;
+    }
+  }
+
+  // If the breakpoint is not in the defined list, throw a warning
+  @else {
+    @warn "Unknown breakpoint: #{$breakpoint}.";
+  }
+}

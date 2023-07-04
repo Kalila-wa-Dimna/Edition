@@ -1,0 +1,19 @@
+@import 'sass/breakpoints.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+kd-navbar {
+  width: 100%;
+}
+
+main {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: map-get($breakpoints, 'xl');
+}

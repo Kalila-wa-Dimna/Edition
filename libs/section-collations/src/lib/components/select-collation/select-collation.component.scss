@@ -1,0 +1,12 @@
+@import 'sass/breakpoints.scss';
+@import 'sass/_dark-theme.scss';
+@import 'sass/page.scss';
+
+.card {
+  width: 95%;
+  margin-top: 5px;
+  @include on-larger-than('sm') {
+    width: 45%;
+  }
+  background-color: map-get($mat-primary, 300);
+}

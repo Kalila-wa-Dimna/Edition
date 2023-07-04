@@ -1,0 +1,88 @@
+$font-sizes: (
+  'xs': (
+    'h1': 24px,
+    'h2': 22px,
+    'h3': 20px,
+    'h4': 18px,
+    'h5': 16px,
+    'h6': 14px,
+    'p': 12px,
+  ),
+  'sm': (
+    'h1': 28px,
+    'h2': 24px,
+    'h3': 22px,
+    'h4': 20px,
+    'h5': 18px,
+    'h6': 16px,
+    'p': 14px,
+  ),
+  'md': (
+    'h1': 32px,
+    'h2': 28px,
+    'h3': 24px,
+    'h4': 22px,
+    'h5': 20px,
+    'h6': 18px,
+    'p': 16px,
+  ),
+  'lg': (
+    'h1': 36px,
+    'h2': 32px,
+    'h3': 28px,
+    'h4': 24px,
+    'h5': 22px,
+    'h6': 20px,
+    'p': 18px,
+  ),
+  'xl': (
+    'h1': 40px,
+    'h2': 36px,
+    'h3': 32px,
+    'h4': 28px,
+    'h5': 24px,
+    'h6': 22px,
+    'p': 20px,
+  ),
+  'xxl': (
+    'h1': 44px,
+    'h2': 40px,
+    'h3': 36px,
+    'h4': 32px,
+    'h5': 28px,
+    'h6': 24px,
+    'p': 22px,
+  ),
+);
+
+@mixin responsive-font-size($breakpoint) {
+  @each $element, $size in map-get($font-sizes, $breakpoint) {
+    #{$element} {
+      font-size: $size;
+    }
+  }
+}
+
+@include on-larger-than('xs') {
+  @include responsive-font-size('xs');
+}
+
+@include on-larger-than('sm') {
+  @include responsive-font-size('sm');
+}
+
+@include on-larger-than('md') {
+  @include responsive-font-size('md');
+}
+
+@include on-larger-than('lg') {
+  @include responsive-font-size('lg');
+}
+
+@include on-larger-than('xl') {
+  @include responsive-font-size('xl');
+}
+
+@include on-larger-than('xxl') {
+  @include responsive-font-size('xxl');
+}

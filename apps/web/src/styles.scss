@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'sass/normalize.css';
+@import 'sass/themes.scss';
+@import 'sass/breakpoints.scss';
+@import 'sass/typography.scss';
+
+kalila-edition-root {
+  margin: 0;
+}
+body {
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

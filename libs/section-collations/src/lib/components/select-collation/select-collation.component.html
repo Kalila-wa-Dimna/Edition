@@ -1,0 +1,26 @@
+<kd-navbar>
+  <span title>Collations</span>
+  <a pageControls [routerLink]="['/']">Home </a>
+</kd-navbar>
+<main>
+  <ng-template ngFor let-item [ngForOf]="data">
+    <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar>{{ item.siglum }}</div>
+        <mat-card-title>{{ item.display }}</mat-card-title>
+        <mat-card-subtitle>Chapter</mat-card-subtitle>
+      </mat-card-header>
+      <img
+        mat-card-image
+        width="100%"
+        height="auto"
+        [src]="'/assets/data/collations/' + item.image"
+        alt="Photo of Chapter"
+      />
+      <mat-card-content> </mat-card-content>
+      <mat-card-actions>
+        <a [routerLink]="[item.siglum]" mat-button>View</a>
+      </mat-card-actions>
+    </mat-card>
+  </ng-template>
+</main>

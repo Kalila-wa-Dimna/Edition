@@ -1,0 +1,32 @@
+[
+  {
+    "display": "Im",
+    "siglum": "Im",
+    "image": "bg.png"
+  },
+  {
+    "display": "Lv",
+    "siglum": "Lv",
+    "image": "bg.png"
+  },
+  {
+    "display": "The Mouse and the Cat",
+    "siglum": "Mc",
+    "image": "bg.png"
+  },
+  {
+    "display": "The Owls and the Crows",
+    "siglum": "Oc",
+    "image": "bg.png"
+  },
+  {
+    "display": "Lj",
+    "siglum": "Lj",
+    "image": "bg.png"
+  },
+  {
+    "display": "Km",
+    "siglum": "Km",
+    "image": "bg.png"
+  }
+]
