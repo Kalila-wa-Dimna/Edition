@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
     <kd-navbar>
       <span title>Kalila-wa-Dimna Edition</span>
       <a pageControls routerLink="/collations">Collations </a>
+      <a pageControls routerLink="/manuscripts">Manuscripts </a>
     </kd-navbar>
     <main>
       <h1>Main Page</h1>

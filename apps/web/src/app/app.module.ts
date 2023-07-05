@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   DataModule,
   NavbarModule,
+  RenderHelpersModule,
   StorageModule,
   ThemeModule,
 } from '@kalila-edition/common-ui';
@@ -26,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     ThemeModule,
     NavbarModule,
     DataModule,
+    RenderHelpersModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

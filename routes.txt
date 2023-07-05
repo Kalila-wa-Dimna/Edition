@@ -1,5 +1,3 @@
 /
 /collations
 /collations/Mc
-/collations/Oc
-/collations/Im

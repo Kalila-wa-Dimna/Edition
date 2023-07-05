@@ -19,6 +19,9 @@
       "@kalila-edition/common-util": ["libs/common-util/src/index.ts"],
       "@kalila-edition/section-collations": [
         "libs/section-collations/src/index.ts"
+      ],
+      "@kalila-edition/section-manuscripts": [
+        "libs/section-manuscripts/src/index.ts"
       ]
     }
   },

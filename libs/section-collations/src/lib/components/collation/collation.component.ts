@@ -9,6 +9,6 @@ import { ActivatedRoute } from '@angular/router';
 export class CollationComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
   ngOnInit() {
-    console.log(this.route.snapshot.data);
+    console.log(this.route.snapshot.data['pageData']);
   }
 }

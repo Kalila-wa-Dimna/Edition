@@ -14,4 +14,11 @@ export const appRoutes: Route[] = [
         (m) => m.SectionCollationsModule
       ),
   },
+  {
+    path: 'manuscripts',
+    loadChildren: () =>
+      import('@kalila-edition/section-manuscripts').then(
+        (m) => m.SectionManuscriptsModule
+      ),
+  },
 ];

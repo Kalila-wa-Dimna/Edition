@@ -12,22 +12,31 @@ export class StorageService {
   async initDb() {
     if (isPlatformBrowser(this.platformId)) {
       try {
-        this.db = await this.openDatabase('themeDB', 1);
+        this.db = await this.openDatabase('kalilaEditionUserSetting', 1, [
+          'theme',
+          'font',
+        ]);
       } catch (error) {
         console.error('Error', error);
       }
     }
   }
 
-  private openDatabase(name: string, version: number): Promise<IDBDatabase> {
+  private openDatabase(
+    name: string,
+    version: number,
+    stores: string[]
+  ): Promise<IDBDatabase> {
     return new Promise((resolve, reject) => {
       const openRequest = indexedDB.open(name, version);
 
       openRequest.onupgradeneeded = () => {
         const db = openRequest.result;
-        if (!db.objectStoreNames.contains('theme')) {
-          db.createObjectStore('theme');
-        }
+        stores.forEach((storeName) => {
+          if (!db.objectStoreNames.contains(storeName)) {
+            db.createObjectStore(storeName);
+          }
+        });
       };
 
       openRequest.onsuccess = () => {
@@ -40,27 +49,27 @@ export class StorageService {
     });
   }
 
-  async setTheme(theme: string) {
+  async setOption<T>(name: string, value: T) {
     if (!this.db) return;
 
-    const transaction = this.db.transaction('theme', 'readwrite');
-    const store = transaction.objectStore('theme');
-    store.put(theme, 'theme');
+    const transaction = this.db.transaction(name, 'readwrite');
+    const store = transaction.objectStore(name);
+    store.put(value, name);
   }
 
-  async getTheme(): Promise<'light' | 'dark' | 'system'> {
+  async getOption<T>(name: string, defaultValue: T): Promise<T> {
     return new Promise((resolve, reject) => {
       if (!this.db) {
-        resolve('system');
+        resolve(defaultValue);
         return;
       }
 
-      const transaction = this.db.transaction('theme', 'readonly');
-      const store = transaction.objectStore('theme');
-      const request = store.get('theme');
+      const transaction = this.db.transaction(name, 'readonly');
+      const store = transaction.objectStore(name);
+      const request = store.get(name);
 
       request.onsuccess = () => {
-        resolve(request.result ?? 'system');
+        resolve(request.result ?? defaultValue);
       };
 
       request.onerror = () => {
