@@ -1,0 +1,119 @@
+@import 'sass/_dark-theme';
+@import 'sass/_light-theme';
+@import 'sass/breakpoints';
+
+:host {
+  width: 100vw;
+  min-height: 100vh;
+  height: fit-content;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.links {
+  display: none;
+  @include on-larger-than('md') {
+    display: block;
+  }
+}
+
+.nav {
+  max-width: 100vw;
+}
+
+.title {
+  font-size: 15px;
+  flex-grow: 1;
+  max-width: 70vw;
+  @include on-larger-than('md') {
+    font-size: 20px;
+  }
+  & nav {
+    height: 70%;
+  }
+  & .mdc-tab-indicator {
+    margin-top: -5px;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.logo {
+  height: 42px;
+  width: auto;
+  min-width: 42px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-right: 8px;
+}
+.mat-toolbar.nav {
+  height: 50px;
+}
+@mixin box-shadow($color) {
+  -webkit-box-shadow: 0px 0px 5px 1px $color;
+  -moz-box-shadow: 0px 0px 5px 1px $color;
+  box-shadow: 0px 0px 5px 1px $color;
+}
+
+:host-context(.light-theme) {
+  .nav {
+    @include box-shadow($light-foreground);
+  }
+  .logo {
+    & path {
+      fill: map-get($mat-primary-light, 900);
+    }
+  }
+}
+
+:host-context(.dark-theme) {
+  .nav {
+    @include box-shadow($dark-foreground);
+  }
+  .logo {
+    & path {
+      fill: $dark-foreground;
+    }
+  }
+}
+
+.site-container {
+  width: 100%;
+  height: fit-content;
+  min-height: 100vh;
+  overflow: visible !important;
+}
+
+.site {
+  width: 100%;
+  height: fit-content;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  overflow: visible !important;
+}
+.sidenav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  @include on-larger-than('md') {
+    width: 50%;
+  }
+}
+
+:host-context(.light-theme) {
+  .sidenav {
+    background: $light-background;
+  }
+}
+
+:host-context(.dark-theme) {
+  .sidenav {
+    background: $dark-background;
+  }
+}

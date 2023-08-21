@@ -1,11 +1,20 @@
+@import '@fontsource-variable/noto-naskh-arabic';
+@import '@fontsource-variable/source-sans-3';
+@import '@material-design-icons/font';
 @import 'sass/normalize.css';
 @import 'sass/themes.scss';
 @import 'sass/breakpoints.scss';
 @import 'sass/typography.scss';
+@import 'sass/utility.scss';
 
 kalila-edition-root {
   margin: 0;
 }
 body {
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-family: 'Source Sans 3 Variable', sans-serif;
+  overflow-x: hidden;
+}
+
+.cdk-virtual-scroll-content-wrapper {
+  width: fit-content;
 }

@@ -11,6 +11,7 @@ export class SelectCollationComponent implements OnInit {
   data: ICollationInfo[] = [];
   constructor(private route: ActivatedRoute) {}
 
+  cols = 2;
   ngOnInit() {
     this.data = this.route.snapshot.data['collationsList'];
   }

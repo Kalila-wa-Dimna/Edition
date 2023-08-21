@@ -3,14 +3,12 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'kd-main-page',
   template: `
-    <kd-navbar>
-      <span title>Kalila-wa-Dimna Edition</span>
-      <a pageControls routerLink="/collations">Collations </a>
-      <a pageControls routerLink="/manuscripts">Manuscripts </a>
-    </kd-navbar>
-    <main>
-      <h1>Main Page</h1>
-    </main>
+    <kd-layout>
+      <span title>Kalīla wa-Dimna Edition</span>
+      <main pageContent>
+        <h1>Main Page</h1>
+      </main>
+    </kd-layout>
   `,
   styleUrls: ['./main-page.component.scss'],
 })

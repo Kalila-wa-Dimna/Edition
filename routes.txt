@@ -1,3 +1,13 @@
 /
+/about
+/imprint
 /collations
 /collations/Mc
+/collations/Im
+/collations/Lv
+/collations/Lj
+/collations/Km
+/collations/Kd
+/collations/Ag
+/collations/Oc
+/guides/dissemination-history

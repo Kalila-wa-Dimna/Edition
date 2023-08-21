@@ -1,0 +1,85 @@
+@import 'sass/_dark-theme.scss';
+@import 'sass/_light-theme.scss';
+
+:host {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.row-header {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  &-content {
+    position: sticky;
+    padding-left: 5px;
+    left: 0;
+    top: 0;
+    width: fit-content;
+    align-self: flex-start;
+    & p {
+      padding: 0;
+      margin: 0;
+    }
+  }
+}
+
+:host-context(.light-theme) {
+  .row-header {
+    color: $light-background;
+    background-color: map-get($mat-primary-light, 700);
+  }
+
+  .row-header.divider {
+    background-color: map-get($mat-primary-light, 900);
+  }
+
+  .collation-cell {
+    &:nth-child(odd) {
+      background-color: $light-background-alt;
+    }
+  }
+}
+
+:host-context(.dark-theme) {
+  .row-header {
+    color: $dark-foreground;
+    background-color: map-get($mat-accent-dark, 700);
+  }
+
+  .row-header.divider {
+    background-color: map-get($mat-accent-dark, 900);
+  }
+
+  .collation-cell {
+    &:nth-child(odd) {
+      background-color: $dark-background-alt;
+    }
+  }
+}
+
+.row-content {
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.rtl {
+  text-align: justify;
+  direction: rtl;
+  white-space: pre-wrap;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  min-height: 100px;
+}

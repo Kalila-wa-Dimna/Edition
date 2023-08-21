@@ -1,5 +1,6 @@
 export * from './lib/common-ui.module';
-export * from './lib/navbar.module';
+export * from './lib/layout.module';
+export * from './lib/footer.module';
 export * from './lib/render-helpers.module';
 export * from './lib/storage.module';
 export * from './lib/theme.module';

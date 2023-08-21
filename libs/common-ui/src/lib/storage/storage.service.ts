@@ -1,6 +1,8 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
+export type SiteOptions = 'theme' | 'font' | 'collationSettings';
+const OPTION_LIST: SiteOptions[] = ['theme', 'font', 'collationSettings'];
 @Injectable({
   providedIn: 'root',
 })
@@ -10,12 +12,13 @@ export class StorageService {
   constructor(@Inject(PLATFORM_ID) private platformId: object) {}
 
   async initDb() {
-    if (isPlatformBrowser(this.platformId)) {
+    if (isPlatformBrowser(this.platformId) && !this.db) {
       try {
-        this.db = await this.openDatabase('kalilaEditionUserSetting', 1, [
-          'theme',
-          'font',
-        ]);
+        this.db = await this.openDatabase(
+          'kalilaEditionUserSetting',
+          1,
+          OPTION_LIST
+        );
       } catch (error) {
         console.error('Error', error);
       }
@@ -49,7 +52,7 @@ export class StorageService {
     });
   }
 
-  async setOption<T>(name: string, value: T) {
+  async setOption<T>(name: SiteOptions, value: T) {
     if (!this.db) return;
 
     const transaction = this.db.transaction(name, 'readwrite');
@@ -57,7 +60,7 @@ export class StorageService {
     store.put(value, name);
   }
 
-  async getOption<T>(name: string, defaultValue: T): Promise<T> {
+  async getOption<T>(name: SiteOptions, defaultValue: T): Promise<T> {
     return new Promise((resolve, reject) => {
       if (!this.db) {
         resolve(defaultValue);

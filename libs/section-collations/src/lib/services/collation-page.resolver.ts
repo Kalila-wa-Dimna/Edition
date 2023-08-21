@@ -1,30 +1,48 @@
 import { inject } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  ResolveFn,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { DataService } from '@kalila-edition/common-ui';
 import { combineLatest, map } from 'rxjs';
+import {
+  ICollationColumn,
+  ICollationPageData,
+  ICollationUnit,
+} from '../models/collation-page-data.model';
+import { ICollationInfo } from '../models/collation-summary.model';
+import { IRowData } from '../models/collation-row-data.model';
 
 export function createCollationDataResolver() {
-  const resolve: ResolveFn<any> = (
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+  const resolve: ResolveFn<ICollationPageData> = (
+    route: ActivatedRouteSnapshot
   ) => {
-    console.log({ route });
-    console.log({ state });
     const api = inject(DataService);
-    const editionSiglum = route.paramMap.get('editionSiglum')!;
+    const editionSiglum = route.paramMap.get('collationSiglum')!;
 
-    const meta = api.load<any>(`collations/${editionSiglum}/meta`, {});
-    const units = api.load<any>(`collations/${editionSiglum}/units`, {});
-    const firstTenRows = api.load<any>(
-      `collations/${editionSiglum}/0_to_9`,
-      {}
+    const columns$ = api.load<ICollationColumn[]>(
+      `collations/${editionSiglum}/columns`,
+      []
     );
-    return combineLatest([meta, units, firstTenRows]).pipe(
-      map(([meta, units, firstTenRows]) => ({ meta, units, firstTenRows }))
+    const units$ = api.load<ICollationUnit[]>(
+      `collations/${editionSiglum}/units`,
+      []
+    );
+
+    const summary$ = api.load<ICollationInfo>(
+      `collations/${editionSiglum}/summary`,
+      { siglum: '', display: '', image: '' }
+    );
+
+    const segmentData$ = api.load<IRowData[]>(
+      `collations/${editionSiglum}/segment_data`,
+      []
+    );
+
+    return combineLatest([columns$, units$, summary$, segmentData$]).pipe(
+      map(([columns, units, summary, segmentData]) => ({
+        columns,
+        units,
+        summary,
+        segmentData,
+      }))
     );
   };
 

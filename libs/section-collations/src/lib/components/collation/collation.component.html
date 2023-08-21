@@ -1,7 +1,41 @@
-<kd-navbar>
-  <span title>Collation Page</span>
-  <kd-collation-command-bar pageControls> </kd-collation-command-bar>
-</kd-navbar>
-<main>
-  <p>collation works!</p>
-</main>
+<kd-layout>
+  <span title>{{ summary.display }}</span>
+
+  <main
+    pageContent
+    [ngClass]="
+      (isMainFullWidth$ | async) ? 'full-width-main' : 'responive-width-main'
+    "
+  >
+    <kd-collation-command-bar
+      (goToRow)="onGoToRow($event)"
+    ></kd-collation-command-bar>
+
+    <div class="collation-container" cdkVirtualScrollingElement>
+      <kd-collation-heading [columns]="columns"></kd-collation-heading>
+      <cdk-virtual-scroll-viewport
+        kdCollationVirtualScroll
+        [units]="units"
+        #collationBody
+        class="collation-body"
+        [ngStyle]="{
+          'width.px':
+            columns.length * ((cellWidth$ | async) ?? 75) +
+            2 * columns.length * cellPadding,
+          'font-size.px': fontSize$ | async
+        }"
+      >
+        <kd-collation-row
+          *cdkVirtualFor="let item of rowData; index as rowIndex"
+          [unit]="units[rowIndex]"
+          [sigla]="sigla"
+          [rowData]="item"
+          [ngStyle]="{
+        'width.px': columns.length * ((cellWidth$ | async) ?? 75) + 2 * columns.length * cellPadding,
+      }"
+        >
+        </kd-collation-row>
+      </cdk-virtual-scroll-viewport>
+    </div>
+  </main>
+</kd-layout>

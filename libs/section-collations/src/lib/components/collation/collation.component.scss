@@ -1,1 +1,37 @@
 @import 'sass/page.scss';
+@import 'sass/_dark-theme.scss';
+@import 'sass/_light-theme.scss';
+
+:host {
+  width: 100vw;
+  min-height: 100vh;
+  height: fit-content;
+}
+
+main {
+  flex-direction: column;
+  align-items: center;
+}
+
+.collation-container {
+  height: calc(100vh - 85px);
+  @include on-larger-than('md') {
+    height: calc(100vh - 110px);
+  }
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.collation-body {
+  height: calc(100vh - 85px);
+  @include on-larger-than('md') {
+    height: calc(100vh - 110px);
+  }
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

@@ -1,0 +1,138 @@
+@import 'sass/_dark-theme.scss';
+@import 'sass/_light-theme.scss';
+
+$primary-main: #549698;
+$primary-light: #afdfdb;
+$primary-lighter: #c9e8ef;
+
+$secondary-main: #f0de39;
+$secondary-light: #eeee7e;
+$secondary-lighter: #faf9bb;
+
+$third-main: #f4846e;
+$third-light: #fabead;
+$third-lighter: #ffddd2;
+
+$fourth-main: #b2ddc5;
+$fourth-light: #d7ece0;
+
+$secondary-color: #6b9e1f;
+$primary-color: #003366;
+
+#map-svg-container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  position: relative;
+}
+
+.light-theme .country {
+  fill: rgba($fourth-light, 1);
+  stroke: rgba($fourth-light, 1);
+  stroke-width: 0.4;
+}
+
+.dark-theme .country {
+  fill: rgba($fourth-light, 0.6);
+  stroke: rgba($fourth-light, 0.6);
+  stroke-width: 0.4;
+}
+
+.d3-highlight {
+  fill: $secondary-color;
+
+  &:hover {
+    fill: white;
+  }
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@mixin arrow-animation {
+  animation-duration: 5s;
+  animation-fill-mode: forwards;
+  animation-name: draw;
+}
+
+.orthodome {
+  &-p2 {
+    fill: none;
+    stroke: rgba(0, 0, 0, 0.4);
+    stroke-width: 8;
+    @include arrow-animation;
+
+    &:hover {
+      stroke: rgba(0, 0, 0, 1);
+    }
+  }
+
+  &-p3 {
+    fill: none;
+    stroke: rgba($third-main, 0.6);
+    stroke-width: 6;
+    @include arrow-animation;
+
+    &:hover {
+      stroke: rgba(0, 0, 0, 1);
+    }
+  }
+
+  &-p4 {
+    fill: none;
+    stroke: rgba($secondary-main, 0.6);
+    stroke-width: 4;
+    @include arrow-animation;
+
+    &:hover {
+      stroke: rgba(0, 0, 0, 1);
+    }
+  }
+
+  &-p5 {
+    fill: none;
+    stroke: rgba($secondary-color, 0.6);
+    stroke-width: 3;
+    @include arrow-animation;
+
+    &:hover {
+      stroke: rgba(0, 0, 0, 1);
+    }
+  }
+
+  &-p6 {
+    fill: none;
+    stroke: rgba($secondary-color, 0.6);
+    stroke-width: 3;
+    @include arrow-animation;
+
+    &:hover {
+      stroke: rgba(0, 0, 0, 1);
+    }
+  }
+}
+
+.arrow-head {
+  &:hover {
+    fill: black;
+  }
+}
+
+.map-svg-blue {
+  background-color: $primary-color;
+}
+
+.hide {
+  display: none;
+}
+
+.full-opacity {
+  opacity: 1 !important;
+}
+
+.null-opacity {
+  opacity: 0;
+}

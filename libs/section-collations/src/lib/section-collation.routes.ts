@@ -4,6 +4,7 @@ import { CollationComponent } from './components/collation/collation.component';
 import { SelectCollationComponent } from './components/select-collation/select-collation.component';
 import { ICollationInfo } from './models/collation-summary.model';
 import { createCollationDataResolver } from './services/collation-page.resolver';
+import { createCollationDataTitleResolver } from './services/collation-page-title.resolver';
 
 export const routes: Route[] = [
   // select
@@ -18,8 +19,9 @@ export const routes: Route[] = [
   },
   // collation page
   {
-    path: ':editionSiglum',
+    path: ':collationSiglum',
     component: CollationComponent,
+    title: createCollationDataTitleResolver(),
     resolve: {
       pageData: createCollationDataResolver(),
     },

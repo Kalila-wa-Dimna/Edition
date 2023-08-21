@@ -1,0 +1,89 @@
+<mat-sidenav-container (backdropClick)="sidenav.close()" class="site-container">
+  <mat-sidenav
+    #sidenav
+    mode="over"
+    class="sidenav"
+    [fixedInViewport]="true"
+    [fixedTopGap]="0"
+    [fixedBottomGap]="0"
+    position="end"
+  >
+    <kd-nav-panel (closeClicked)="sidenav.close()"> </kd-nav-panel>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="site">
+    <mat-toolbar class="nav">
+      <div class="logo">
+        <a [routerLink]="['/']">
+          <svg
+            height="100%"
+            width="100%"
+            x="0px"
+            y="0px"
+            [attr.viewBox]="[logoViewBox]"
+          >
+            <svg x="0" y="0">
+              <g>
+                <path
+                  transform="scale(1)"
+                  id="kalila-logo-dal"
+                  d="M596.64,50.6c-22.21,18.82-33.3,43.05-33.3,72.67v467.94H80.76L6,716.69h610.67
+		c14.64,0,27.19-5.22,37.64-15.67C664.77,690.55,670,678,670,663.36V3.54C645.37,19.23,620.91,34.91,596.64,50.6z"
+                />
+                <path
+                  transform="scale(1)"
+                  id="kalila-logo-kaf"
+                  d="M504.44,469.15c0,14.99-4.79,27.63-14.38,37.9c-9.58,10.29-21.87,15.43-36.85,15.43H80.42V397h317.35V330.6
+		c0-9.75-5.15-18.73-15.45-26.92c-10.31-8.19-20.51-12.29-30.64-12.29H140.54V129.31c8.03,13.95,19.92,26.32,35.62,37.12
+		c17.12,11.85,33,17.78,47.68,17.78h173.93c31.22,0,56.8,9.93,76.75,29.8c19.93,19.87,29.91,44.1,29.91,72.67V469.15z"
+                />
+              </g>
+            </svg>
+          </svg>
+        </a>
+      </div>
+      <div class="title">
+        <ng-content select="[title]"></ng-content>
+      </div>
+
+      <span class="spacer"></span>
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Theme choice context menu"
+      >
+        <ng-container [ngSwitch]="activeTheme$ | async">
+          <mat-icon *ngSwitchCase="'light'">light_mode</mat-icon>
+          <mat-icon *ngSwitchCase="'dark'">dark_mode</mat-icon>
+          <mat-icon *ngSwitchDefault>brightness_medium</mat-icon>
+        </ng-container>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button (click)="onThemeSelect('light')" mat-menu-item>
+          <mat-icon>light_mode</mat-icon>
+          <span>Light</span>
+        </button>
+        <button (click)="onThemeSelect('dark')" mat-menu-item>
+          <mat-icon>dark_mode</mat-icon>
+          <span>Dark</span>
+        </button>
+        <button (click)="onThemeSelect('system')" mat-menu-item>
+          <mat-icon>brightness_medium</mat-icon>
+          <span>System</span>
+        </button>
+      </mat-menu>
+
+      <button
+        mat-icon-button
+        aria-label="Menu toggle"
+        (click)="sidenav.toggle()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <ng-content select="[pageContent]"></ng-content>
+    <kd-footer> </kd-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

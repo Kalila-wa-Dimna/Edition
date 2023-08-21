@@ -1,0 +1,6 @@
+<ng-template ngFor let-item [ngForOf]="(data$ | async) ?? []">
+  <a mat-button [routerLink]="['/', 'collations', item.siglum]">{{
+    item.display
+  }}</a>
+  <mat-divider></mat-divider>
+</ng-template>

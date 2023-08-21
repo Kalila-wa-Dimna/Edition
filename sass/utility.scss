@@ -1,0 +1,20 @@
+@import 'breakpoints';
+
+.font-noto-naskh {
+  font-family: 'Noto Naskh Arabic Variable', sans-serif !important;
+  line-height: 2;
+}
+
+.full-width-main {
+  width: 100%;
+  max-width: 98vw !important;
+}
+
+.responive-width-main {
+  width: 100%;
+}
+
+.responisve-dialog {
+  width: 100% !important;
+  max-width: map-get($breakpoints, 'md') !important;
+}

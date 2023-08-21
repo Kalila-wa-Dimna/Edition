@@ -1,0 +1,28 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field {
+  margin-bottom: 1em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & > mat-button-toggle-group {
+    font-size: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  & > label {
+    padding: 3px;
+  }
+}
+mat-divider {
+  width: 100%;
+}
+
+.field-label {
+  margin-right: 1em;
+}

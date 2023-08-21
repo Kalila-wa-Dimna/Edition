@@ -1,0 +1,48 @@
+@import 'sass/_dark-theme.scss';
+@import 'sass/_light-theme.scss';
+:host {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  z-index: 10;
+  position: sticky;
+  top: 0;
+}
+
+.header-cell {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  & > :last-child {
+    margin-top: 2px;
+  }
+}
+:host-context(.light-theme) {
+  :host {
+    border-bottom: 3px solid $light-foreground;
+  }
+
+  .header-cell {
+    &:nth-child(even) {
+      background-color: $light-background;
+    }
+    &:nth-child(odd) {
+      background-color: $light-background-alt;
+    }
+  }
+}
+
+:host-context(.dark-theme) {
+  :host {
+    border-bottom: 3px solid $dark-foreground;
+  }
+
+  .header-cell {
+    &:nth-child(even) {
+      background-color: $dark-background;
+    }
+    &:nth-child(odd) {
+      background-color: $dark-background-alt;
+    }
+  }
+}

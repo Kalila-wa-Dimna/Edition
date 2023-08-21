@@ -1,0 +1,13 @@
+<div
+  *ngFor="let col of columns; index as i"
+  class="header-cell"
+  [ngStyle]="{
+    'width.px': cellWidth$ | async,
+    'padding.px': cellPadding
+  }"
+>
+  <div>({{ mapNumberToLetter(i) }})</div>
+  <div>
+    {{ col['siglum'] }}
+  </div>
+</div>

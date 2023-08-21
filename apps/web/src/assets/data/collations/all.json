@@ -1,32 +1,42 @@
 [
   {
-    "display": "Im",
+    "display": "The Arabic Introduction",
     "siglum": "Im",
-    "image": "bg.png"
+    "image": "Im.png"
   },
   {
-    "display": "Lv",
+    "display": "Burzoy's Voyage (Long Version)",
     "siglum": "Lv",
-    "image": "bg.png"
+    "image": "Lv.png"
   },
   {
     "display": "The Mouse and the Cat",
     "siglum": "Mc",
-    "image": "bg.png"
+    "image": "Mc.png"
   },
   {
     "display": "The Owls and the Crows",
     "siglum": "Oc",
-    "image": "bg.png"
+    "image": "Oc.png"
   },
   {
-    "display": "Lj",
+    "display": "The Lion and the Jackal",
     "siglum": "Lj",
-    "image": "bg.png"
+    "image": "Lj.png"
   },
   {
-    "display": "Km",
+    "display": "The King of Mice",
     "siglum": "Km",
-    "image": "bg.png"
+    "image": "Km.png"
+  },
+  {
+    "display": "The King and 8 Dreams",
+    "siglum": "Kd",
+    "image": "Kd.png"
+  },
+  {
+    "display": "The Ascetic and the Guest",
+    "siglum": "Ag",
+    "image": "Ag.png"
   }
 ]

@@ -1,1 +1,46 @@
-<p>collation command bar works!</p>
+<mat-toolbar class="command-bar">
+  <div class="view-settings">
+    <button color="primary" mat-flat-button aria-label="page settings">
+      <mat-icon>view_comfy</mat-icon> Map
+    </button>
+
+    <button color="primary" mat-flat-button aria-label="page settings">
+      <mat-icon>preview</mat-icon> Facsimile
+    </button>
+
+    <button
+      (click)="openSettingsDialog()"
+      mat-flat-button
+      aria-label="page settings"
+      color="primary"
+    >
+      <mat-icon>settings</mat-icon> Settings...
+    </button>
+  </div>
+
+  <button (click)="openSettingsDialog()" class="settings-btn" mat-icon-button>
+    <mat-icon>settings</mat-icon>
+  </button>
+
+  <button (click)="openSettingsDialog()" class="search-btn" mat-icon-button>
+    <mat-icon>search</mat-icon>
+  </button>
+
+  <div class="search-controls">
+    <form>
+      <mat-form-field subscriptSizing="dynamic" color="accent">
+        <mat-icon matIconPrefix>search</mat-icon>
+        <input
+          [formControl]="searchControl"
+          autocomplete="off"
+          type="text"
+          matInput
+          placeholder="Search unit numbers, titles, or content"
+        />
+      </mat-form-field>
+    </form>
+    <button mat-icon-button>
+      <mat-icon>info</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

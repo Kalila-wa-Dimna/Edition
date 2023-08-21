@@ -15,5 +15,16 @@ main {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  max-width: map-get($breakpoints, 'xl');
+  max-width: map-get($breakpoints, 'xxl');
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

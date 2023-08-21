@@ -1,0 +1,35 @@
+@import 'sass/_dark-theme';
+@import 'sass/_light-theme';
+@import 'sass/breakpoints.scss';
+@mixin box-shadow($color) {
+  -webkit-box-shadow: 0px -2px 5px 1px $color;
+  -moz-box-shadow: 0px -2px 5px 1px $color;
+  box-shadow: 0px -2px 5px 1px $color;
+}
+
+:host {
+  height: 200px;
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+:host-context(.light-theme) {
+  :host {
+    @include box-shadow($light-foreground);
+  }
+}
+
+:host-context(.dark-theme) {
+  :host {
+    @include box-shadow($dark-foreground);
+  }
+}
+
+.content {
+  width: 100%;
+  max-width: map-get($breakpoints, 'xxl');
+  display: flex;
+  justify-content: center;
+}

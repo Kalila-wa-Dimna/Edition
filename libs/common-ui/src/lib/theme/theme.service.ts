@@ -2,13 +2,14 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { StorageService } from '../storage/storage.service';
 import { isPlatformBrowser } from '@angular/common';
+import { BehaviorSubject } from 'rxjs';
 
 type Theme = 'light' | 'dark' | 'system';
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
-  private active: Theme = 'system';
+  active$: BehaviorSubject<Theme> = new BehaviorSubject<Theme>('system');
   private readonly LIGHT_THEME_CLASS = 'light-theme';
   private readonly DARK_THEME_CLASS = 'dark-theme';
 
@@ -19,23 +20,22 @@ export class ThemeService {
   ) {}
 
   async initTheme() {
+    console.log('init theme');
     if (isPlatformBrowser(this.platformId)) {
       try {
+        const isDarkModePreferred =
+          window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches;
         const theme = await this.storageService.getOption<Theme>(
           'theme',
           'system'
         );
-
-        if (theme) {
-          this.active = theme;
+        if (['dark', 'light'].includes(theme)) {
+          this.active$.next(theme);
           this.updateThemeClass(
             theme === 'dark' ? this.DARK_THEME_CLASS : this.LIGHT_THEME_CLASS
           );
         } else {
-          const isDarkModePreferred =
-            window.matchMedia &&
-            window.matchMedia('(prefers-color-scheme: dark)').matches;
-
           if (isDarkModePreferred) {
             this.setDarkMode();
           } else {
@@ -49,19 +49,19 @@ export class ThemeService {
   }
 
   setLightMode() {
-    this.active = 'light';
+    this.active$.next('light');
     this.updateThemeClass(this.LIGHT_THEME_CLASS);
     this.storageService.setOption<Theme>('theme', 'light');
   }
 
   setDarkMode() {
-    this.active = 'dark';
+    this.active$.next('dark');
     this.updateThemeClass(this.DARK_THEME_CLASS);
     this.storageService.setOption<Theme>('theme', 'dark');
   }
 
   setSystemDefault() {
-    this.active = 'system';
+    this.active$.next('system');
     this.storageService.setOption<Theme>('theme', 'system');
     const isDarkModePreferred =
       window.matchMedia &&
@@ -87,6 +87,6 @@ export class ThemeService {
   }
 
   getActiveTheme() {
-    return this.active;
+    return this.active$.getValue();
   }
 }

@@ -1,84 +1,94 @@
 @use '@angular/material' as mat;
+@use 'theme-helper' as helper;
 
 @include mat.core();
 
-$dark-primary-text: rgba(black, 0.87);
+$dark-contrast-dark-text: rgba(black, 0.87);
 
-$light-primary-text: white;
+$dark-contrast-light-text: white;
 
-$mat-primary: (
-  50: #f9ffe7,
-  100: #f0fec3,
-  200: #e4fd98,
-  300: #d8fc6b,
-  400: #cef942,
-  500: #cafc04,
-  600: #bfe800,
-  700: #b0d100,
-  800: #a1b900,
-  900: #8a9100,
+$mat-primary-dark: (
+  50: #e5ecee,
+  100: #e5ecee,
+  200: #ccdade,
+  300: #b2c7cd,
+  400: #99b5bd,
+  500: #7fa2ac,
+  600: #66909b,
+  700: #4c7d8a,
+  800: #336b7a,
+  900: #004659,
   A100: #8c9eff,
   A200: #536dfe,
   A400: #3d5afe,
   A700: #304ffe,
   contrast: (
-    50: $dark-primary-text,
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $light-primary-text,
-    400: $light-primary-text,
-    500: $light-primary-text,
-    600: $light-primary-text,
-    700: $light-primary-text,
-    800: $light-primary-text,
-    900: $light-primary-text,
-    A100: $dark-primary-text,
-    A200: $light-primary-text,
-    A400: $light-primary-text,
-    A700: $light-primary-text,
+    50: $dark-contrast-dark-text,
+    100: $dark-contrast-dark-text,
+    200: $dark-contrast-dark-text,
+    300: $dark-contrast-light-text,
+    400: $dark-contrast-light-text,
+    500: $dark-contrast-light-text,
+    600: $dark-contrast-light-text,
+    700: $dark-contrast-light-text,
+    800: $dark-contrast-light-text,
+    900: $dark-contrast-light-text,
+    A100: $dark-contrast-dark-text,
+    A200: $dark-contrast-light-text,
+    A400: $dark-contrast-light-text,
+    A700: $dark-contrast-light-text,
   ),
 );
+$mat-accent-dark: mat.define-palette(mat.$blue-grey-palette, 500);
 
-$mat-accent: (
-  50: #fae2ee,
-  100: #f4b6d4,
-  200: #ee85b7,
-  300: #ea509a,
-  400: #e71782,
-  500: #e5006a,
-  600: #d40067,
-  700: #be0062,
-  800: #a9005d,
-  900: #820055,
-  A100: #ff80ab,
-  A200: #ff4081,
-  A400: #f50057,
-  A700: #c51162,
-  contrast: (
-    50: $dark-primary-text,
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $dark-primary-text,
-    400: $dark-primary-text,
-    500: $light-primary-text,
-    600: $light-primary-text,
-    700: $light-primary-text,
-    800: $light-primary-text,
-    900: $light-primary-text,
-    A100: $dark-primary-text,
-    A200: $light-primary-text,
-    A400: $light-primary-text,
-    A700: $light-primary-text,
-  ),
+$dark-background: #004659;
+$dark-background-alt: darken($dark-background, 3%);
+
+$dark-foreground: #cccccc;
+
+$dark-background-palette: (
+  status-bar: darken($dark-background, 20%),
+  app-bar: $dark-background,
+  background: $dark-background,
+  hover: lighten($dark-background, 4%),
+  card: darken($dark-background, 3%),
+  dialog: darken($dark-background, 5%),
+  raised-button: darken($dark-background, 5%),
+  focused-button: darken($dark-background, 12%),
+  selected-button: lighten($dark-background, 15%),
+  selected-disabled-button: lighten($dark-background, 10%),
+  disabled-button: lighten($dark-background, 10%),
+  unselected-chip: lighten($dark-background, 15%),
+  disabled-list-option: lighten($dark-background, 10%),
+);
+
+$dark-foreground-palette: (
+  base: $dark-foreground,
+  divider: rgba($dark-foreground, 0.12),
+  dividers: rgba($dark-foreground, 0.12),
+  disabled: rgba($dark-foreground, 0.38),
+  disabled-button: rgba($dark-foreground, 0.38),
+  disabled-text: rgba($dark-foreground, 0.38),
+  hint-text: rgba($dark-foreground, 0.38),
+  secondary-text: rgba($dark-foreground, 0.54),
+  icon: rgba($dark-foreground, 0.54),
+  icons: rgba($dark-foreground, 0.54),
+  text: rgba($dark-foreground, 0.87),
 );
 
 $dark-theme: mat.define-dark-theme(
   (
     color: (
-      primary: mat.define-palette($mat-primary, 700),
-      accent: mat.define-palette($mat-accent, 500),
+      primary: mat.define-palette($mat-primary-dark, 700),
+      accent: $mat-accent-dark,
     ),
-    typography: mat.define-typography-config(),
+    typography:
+      mat.define-typography-config(
+        $font-family: '"Source Sans 3 Variable", sans-serif',
+      ),
     density: 0,
   )
 );
+
+$dark-theme: helper.modify-background($dark-theme, $dark-background-palette);
+$dark-theme: helper.modify-foreground($dark-theme, $dark-foreground-palette);

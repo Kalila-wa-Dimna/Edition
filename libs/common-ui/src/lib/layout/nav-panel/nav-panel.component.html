@@ -1,0 +1,77 @@
+<div class="panel-top">
+  <button (click)="closeClicked.emit()" mat-icon-button>
+    <mat-icon>close</mat-icon>
+  </button>
+  <mat-divider></mat-divider>
+  <a mat-button [routerLink]="['/']">Home</a>
+  <mat-divider></mat-divider>
+</div>
+
+<div class="panel-content">
+  <a mat-button [routerLink]="['/about']">About the Project</a>
+  <mat-divider></mat-divider>
+
+  <mat-accordion>
+    <mat-expansion-panel
+      (opened)="manuscriptPanelOpen = true"
+      (closed)="manuscriptPanelOpen = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title
+          ><span class="panel-title"><span>Manuscripts</span></span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <a mat-button [routerLink]="['/manuscripts']">Overview</a>
+      <kd-manuscripts-panel *ngIf="manuscriptPanelOpen"></kd-manuscripts-panel>
+      <mat-divider></mat-divider>
+    </mat-expansion-panel>
+    <mat-divider></mat-divider>
+
+    <mat-expansion-panel
+      (opened)="collationPanelOpen = true"
+      (closed)="collationPanelOpen = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title
+          ><span class="panel-title"><span>Collations</span></span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <a mat-button [routerLink]="['/collations']">Overview</a>
+      <mat-divider></mat-divider>
+      <kd-collations-panel *ngIf="collationPanelOpen"></kd-collations-panel>
+    </mat-expansion-panel>
+    <mat-divider></mat-divider>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span class="panel-title"><span>Guides</span></span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <a mat-button [routerLink]="['/guides']">Overview</a>
+      <mat-divider></mat-divider>
+      <a mat-button [routerLink]="['/guides']">Glossary</a>
+      <mat-divider></mat-divider>
+      <a mat-button [routerLink]="['/guides']">Editing Workflow</a>
+      <mat-divider></mat-divider>
+      <a mat-button [routerLink]="['/guides']">Transcription Guidelines</a>
+      <mat-divider></mat-divider>
+      <a mat-button [routerLink]="['/guides']"
+        >Segmentation and Collation Principles</a
+      >
+      <mat-divider></mat-divider>
+      <a mat-button [routerLink]="['/guides']">Middle Arabic Features</a>
+      <mat-divider></mat-divider>
+      <a mat-button [routerLink]="['/', 'guides', 'dissemination-history']"
+        >Kalila wa-Dimna Dissemination History</a
+      >
+      <mat-divider></mat-divider>
+      <a mat-button [routerLink]="['/guides']">Kalila wa-Dimna Research</a>
+      <mat-divider></mat-divider>
+      <a mat-button [routerLink]="['/guides']">Technical Aspects</a>
+      <mat-divider></mat-divider>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-divider></mat-divider>
+  <a mat-button [routerLink]="['/imprint']">Imprint</a>
+</div>

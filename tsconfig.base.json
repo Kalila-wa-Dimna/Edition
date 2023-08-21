@@ -17,9 +17,13 @@
     "paths": {
       "@kalila-edition/common-ui": ["libs/common-ui/src/index.ts"],
       "@kalila-edition/common-util": ["libs/common-util/src/index.ts"],
+      "@kalila-edition/dissemination-history": [
+        "libs/dissemination-history/src/index.ts"
+      ],
       "@kalila-edition/section-collations": [
         "libs/section-collations/src/index.ts"
       ],
+      "@kalila-edition/section-help": ["libs/section-help/src/index.ts"],
       "@kalila-edition/section-manuscripts": [
         "libs/section-manuscripts/src/index.ts"
       ]

@@ -1,0 +1,100 @@
+<h1 mat-dialog-title>View Settings</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="settings" mat-dialog-content>
+    <div class="form-field">
+      <label class="field-label">Cell Width</label>
+      <mat-button-toggle-group
+        formControlName="cellWidth"
+        aria-label="Cell Width"
+      >
+        <mat-button-toggle value="xs">XS</mat-button-toggle>
+        <mat-button-toggle value="sm">SM</mat-button-toggle>
+        <mat-button-toggle value="md">MD</mat-button-toggle>
+        <mat-button-toggle value="lg">LG</mat-button-toggle>
+        <mat-button-toggle value="xl">XL</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="form-field">
+      <label class="field-label">Font Size</label>
+      <mat-button-toggle-group
+        formControlName="fontSize"
+        aria-label="Font Size"
+      >
+        <mat-button-toggle value="xs">XS</mat-button-toggle>
+        <mat-button-toggle value="sm">SM</mat-button-toggle>
+        <mat-button-toggle value="md">MD</mat-button-toggle>
+        <mat-button-toggle value="lg">LG</mat-button-toggle>
+        <mat-button-toggle value="xl">XL</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="form-field">
+      <label class="field-label">Facsimile Preview</label>
+      <mat-button-toggle-group
+        formControlName="facsimilePreviw"
+        aria-label="Facsimile Preview"
+      >
+        <mat-button-toggle value="permanent">Permanent</mat-button-toggle>
+        <mat-button-toggle value="fleeting">Fleeting</mat-button-toggle>
+        <mat-button-toggle value="external">External</mat-button-toggle>
+        <mat-button-toggle value="panel">Panel</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="form-field">
+      <label class="field-label">Show Facsimile Preview</label>
+      <mat-button-toggle-group
+        formControlName="showFacsimilePreview"
+        aria-label="Show Facsimile Preview"
+      >
+        <mat-button-toggle [value]="true">On</mat-button-toggle>
+        <mat-button-toggle [value]="false">Off</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="form-field">
+      <label class="field-label">Map</label>
+      <mat-button-toggle-group formControlName="map" aria-label="Map">
+        <mat-button-toggle value="bottom">Bottom</mat-button-toggle>
+        <mat-button-toggle value="left-compact">Left Compact</mat-button-toggle>
+        <mat-button-toggle value="left-extended"
+          >Left Extended</mat-button-toggle
+        >
+      </mat-button-toggle-group>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="form-field">
+      <label class="field-label">Show Map</label>
+      <mat-button-toggle-group formControlName="showMap" aria-label="Show Map">
+        <mat-button-toggle [value]="true">On</mat-button-toggle>
+        <mat-button-toggle [value]="false">Off</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="form-field">
+      <label class="field-label">Full Width</label>
+      <mat-button-toggle-group
+        formControlName="fullWidth"
+        aria-label="Full Width"
+      >
+        <mat-button-toggle [value]="true">On</mat-button-toggle>
+        <mat-button-toggle [value]="false">Off</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button
+      mat-flat-button
+      color="accent"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Apply
+    </button>
+  </div>
+</form>

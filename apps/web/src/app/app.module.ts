@@ -7,7 +7,7 @@ import { appRoutes } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   DataModule,
-  NavbarModule,
+  LayoutModule,
   RenderHelpersModule,
   StorageModule,
   ThemeModule,
@@ -15,9 +15,16 @@ import {
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { MainPageComponent } from './main-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AboutPageComponent } from './about-page.component';
+import { ImprintPageComponent } from './imprint-page.component';
 
 @NgModule({
-  declarations: [AppComponent, MainPageComponent],
+  declarations: [
+    AppComponent,
+    MainPageComponent,
+    AboutPageComponent,
+    ImprintPageComponent,
+  ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
@@ -25,7 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     StorageModule,
     ThemeModule,
-    NavbarModule,
+    LayoutModule,
     DataModule,
     RenderHelpersModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
