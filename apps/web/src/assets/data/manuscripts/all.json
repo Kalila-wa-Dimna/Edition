@@ -1,0 +1,38 @@
+[
+  {
+    "display": "Pococke 400",
+    "siglum": "P400",
+    "firs_chapter": "lv",
+    "image": "Paris3465.jpg"
+  },
+  {
+    "display": "CCC Parker 578",
+    "siglum": "P578",
+    "firs_chapter": "Im",
+    "image": "Paris3465.jpg"
+  },
+  {
+    "display": "Paris 5881",
+    "siglum": "P5881",
+    "firs_chapter": "lv",
+    "image": "Paris3465.jpg"
+  },
+  {
+    "display": "Paris 3465",
+    "siglum": "P3465",
+    "firs_chapter": "Im",
+    "image": "Paris3465.jpg"
+  },
+  {
+    "display": "Paris 3466",
+    "siglum": "P3466",
+    "firs_chapter": "Lv",
+    "image": "Paris3465.jpg"
+  },
+  {
+    "display": "Ayasofya 4095",
+    "siglum": "A4095",
+    "firs_chapter": "Lv",
+    "image": "Paris3465.jpg"
+  }
+]
