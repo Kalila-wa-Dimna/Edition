@@ -1,0 +1,65 @@
+@import 'sass/_dark-theme';
+@import 'sass/_light-theme';
+@import 'sass/breakpoints';
+@import 'sass/mixins';
+
+:host {
+  //width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+
+//
+//.mat-toolbar.tool {
+//  width: 96%;
+//  margin-right: 2%;
+//  margin-left: 2%;
+//
+//
+//}
+//.example-spacer {
+//  flex: 0 0 auto;
+//}
+//
+//.mat-button{
+//  background-color: #4c7d8a;
+//}
+//
+//
+//.mat-toolbar-row {
+//  display: table-cell;
+//  max-width: 600px;
+//  margin-left: 15%;
+//}
+//
+//.mat-toolbar-row .mat-mdc-button-base {
+//  margin: 8px 8px 8px 0;
+//}
+
+
+:host .tool{
+  justify-items: center;
+  justify-content: center;
+
+
+}
+.mat-button {
+  background-color: #4c7d8a;
+  margin: 5px;
+
+  @include on-larger-than('md') {
+    height: 50px;
+    display: flex;
+  }
+
+  @include on-smaller-than('md') {
+    @include icon-button-sizes(24px, 16px);
+    display: none;
+    font-size: 0px;
+    --mdc-icon-button-state-layer-size: 0px;
+  }
+}
+:host button{
+  color: white;
+}

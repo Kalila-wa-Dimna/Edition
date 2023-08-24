@@ -1,0 +1,7 @@
+
+  <div *ngFor="let image of data" class="image-container">
+    <img [src]="'assets/data/manuscripts/'+image.src" alt="{{ image.caption }}" width="100px"/>
+    <div class="caption">{{ image.caption }}</div>
+  </div>
+
+

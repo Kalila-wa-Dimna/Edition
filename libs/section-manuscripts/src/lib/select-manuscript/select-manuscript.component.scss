@@ -1,0 +1,27 @@
+@import 'sass/breakpoints.scss';
+@import 'sass/_dark-theme.scss';
+@import 'sass/_light-theme.scss';
+@import 'sass/page.scss';
+
+main {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-gap: 1.5rem; // space between the cards
+  grid-template-columns: 1fr;
+
+  @include on-larger-than('md') {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 90%; // optional, if you want to limit the maximum width
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .card {
+    width: 100%;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

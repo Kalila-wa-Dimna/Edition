@@ -1,0 +1,29 @@
+
+@import 'sass/page.scss';
+main {
+  margin-top: 5px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-and-text {
+  height: calc(100vh - 50px - 5px - 64px - 5px ); // - top bar - margin - command bar - margin
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: scroll;
+  @media screen and (min-width: 40px) and (max-width: 896px) {
+    width: 100%;
+    margin-top: 1px;
+    align-items: flex-start;
+    height: calc(150vh - 50px - 5px - 64px - 5px); // Apply the width only for the specified screen range
+    flex-direction: column;
+   // Add any other styles you want for medium screens
+  }
+  @media screen and (min-width: 897px) {
+    width: 100%;
+    margin-top: 5px;
+
+
+  }
+}

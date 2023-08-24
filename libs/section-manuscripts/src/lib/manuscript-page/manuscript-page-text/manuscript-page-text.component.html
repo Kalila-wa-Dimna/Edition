@@ -1,0 +1,22 @@
+<div class="extra-padding">
+<mat-card>
+
+  <mat-card-content class="mat-card-content">
+
+    <div *ngFor="let line of concatenatedDataArray; let i = index" class="list-item font-noto-naskh">
+      <div class="line" [style.font-size]="fontSize">
+        <ng-container *ngFor="let word of line; let j = index">
+          <ng-container *ngFor="let unit of getUnitsInLine(i, j).shortenedUnitNames; let index = index">
+         <span class="f-r"
+               matTooltip="{{ getUnitsInLine(i, j).unitCodes[index] }}"
+               matTooltipPosition='left'>
+         {{ unit }}
+       </span>
+          </ng-container>
+          {{ word }}
+        </ng-container>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+</div>
