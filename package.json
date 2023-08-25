@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nx run web:serve-ssr",
     "data-api": "nx run data-api:serve",
-    "build": "nx run web:prerender"
+    "build": "NX_NO_CLOUD=true  nx run web:prerender"
   },
   "private": true,
   "dependencies": {
