@@ -11,3 +11,5 @@
 /collations/Ag
 /collations/Oc
 /guides/dissemination-history
+/manuscripts
+/manuscripts/P5881/lv/1
