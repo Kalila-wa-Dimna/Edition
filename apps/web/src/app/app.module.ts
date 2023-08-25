@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
+  ConfigModule,
   DataModule,
   LayoutModule,
   RenderHelpersModule,
@@ -17,6 +18,7 @@ import { MainPageComponent } from './main-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutPageComponent } from './about-page.component';
 import { ImprintPageComponent } from './imprint-page.component';
+import { environment } from './environment';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { ImprintPageComponent } from './imprint-page.component';
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
+    ConfigModule.forRoot(environment),
     BrowserAnimationsModule,
     HttpClientModule,
     StorageModule,

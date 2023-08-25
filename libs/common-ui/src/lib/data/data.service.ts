@@ -8,6 +8,7 @@ import {
   makeStateKey,
 } from '@angular/core';
 import { Observable, catchError, of, tap } from 'rxjs';
+import { CONFIG_TOKEN, IConfig } from '../config.module';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,7 @@ export class DataService {
   constructor(
     private transferState: TransferState,
     @Inject(PLATFORM_ID) private platformId: object,
+    @Inject(CONFIG_TOKEN) private config: IConfig,
     private http: HttpClient
   ) {}
 
@@ -47,11 +49,11 @@ export class DataService {
   }
 
   private getJSONDataClient<T>(filePath: string) {
-    return this.http.get<T>(`/assets/data/${filePath}.json`);
+    return this.http.get<T>(`${this.config.dataEndPoint}${filePath}.json`);
   }
 
   private getJSONDataServer<T>(filePath: string): Observable<T> {
-    const url = `http://localhost:3333/${filePath}`;
+    const url = `${this.config.dataApi}${filePath}`;
 
     return new Observable<T>((observer) => {
       fetch(url)
