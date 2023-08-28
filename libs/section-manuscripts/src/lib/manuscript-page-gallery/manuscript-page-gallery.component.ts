@@ -4,7 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 @Component({
   selector: 'kalila-edition-manuscript-page-gallery',
   templateUrl: './manuscript-page-gallery.component.html',
-  styleUrls: ['./manuscript-page-gallery.component.css'],
+  styleUrls: ['./manuscript-page-gallery.component.scss'],
 })
 export class ManuscriptPageGalleryComponent {
 

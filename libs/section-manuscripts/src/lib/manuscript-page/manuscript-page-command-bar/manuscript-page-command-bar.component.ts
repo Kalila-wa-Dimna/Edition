@@ -6,7 +6,7 @@ import { FontSizeService } from "./../../services/font-size.service";
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map} from 'rxjs/operators';
 
-import { Observable ,combineLatest} from 'rxjs';
+import {Observable, combineLatest, Subscription} from 'rxjs';
 import { MatMenuTrigger } from '@angular/material/menu';
 import {IManuscriptInfo} from "../../models/manuscript-summary.model";
 import { ManuscriptPageService } from "./../../services/manuscript-page.resolver";
@@ -15,7 +15,7 @@ import { ManuscriptPageService } from "./../../services/manuscript-page.resolver
   templateUrl: './manuscript-page-command-bar.component.html',
   styleUrls: ['./manuscript-page-command-bar.component.scss'],
 })
-export class ManuscriptPageCommandBarComponent implements OnInit{
+export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
   @ViewChild('subMenu') subMenu: MatMenuTrigger | undefined;
   items!: any[];
   isSmallScreen!: boolean;
@@ -29,11 +29,13 @@ export class ManuscriptPageCommandBarComponent implements OnInit{
   data='';
   commandBarData$! : Observable<any>;
   combinedData$!: Observable<any>;
+  sub?: Subscription;
+  private navigationInProgress = false;
   constructor( private manuscriptPageService: ManuscriptPageService, private cdr: ChangeDetectorRef, private route: ActivatedRoute,private router: Router, private facsimileService: FacsimileService, private fontSizeService:FontSizeService,private breakpointObserver: BreakpointObserver) {
   this.fontSizeService.setFontSize('15px');
   }
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
+    this.sub =this.route.paramMap.subscribe(params => {
       const id = params.get('id') || '';
       const chapter = params.get('chapter') || '';
       const pageNumber = params.get('pageNumber') || '';
@@ -50,6 +52,12 @@ export class ManuscriptPageCommandBarComponent implements OnInit{
         label:this.manuscriptID.toString(), icon: 'book'
 
       },
+      {
+        label:this.manuscriptID.toString(), icon: 'book'
+
+      },
+      { label: 'Prev',  icon:'arrow_back_ios_new' ,command:()=> {this.navigateToThePreviousPage(), this.ngOnDestroy()}},
+
       {
         label: 'Select MS',
         icon: 'book',
@@ -89,6 +97,7 @@ export class ManuscriptPageCommandBarComponent implements OnInit{
       { label: 'Gallery', styleClass: 'menucus', icon: 'photo_library',command:()=> this.openGallery() },
       { label: 'Facsimile', styleClass: 'menucus', icon: 'image' },
       { label: 'MS Description', icon: 'info', styleClass: 'menucus' },
+      { label: 'Next',  icon: 'arrow_forward_ios', command:()=> {this.navigateToTheNextPage(), this.ngOnDestroy()}},
       { label: 'Fullscreen', styleClass: 'menucus', icon: 'fullscreen' }
   ];
     this.breakpointObserver
@@ -98,18 +107,55 @@ export class ManuscriptPageCommandBarComponent implements OnInit{
         this.isSmallScreen = matches; // Set the value of 'isSmallScreen' based on the screen size
       });
   }
-  navigateToTheSelectedManuscript(label: string) {
+  navigateToTheSelectedManuscript(manuscriptId: string) {
     this.route.params.subscribe(params => {
+      //const id = params['id'];
+      const chapter = params['chapter'];
+      const pageNumber = params['pageNumber'];
+      const targetUrlSegments = ['manuscripts', manuscriptId, chapter, pageNumber];
+      this.router.navigateByUrl(`/manuscripts/${manuscriptId}/${chapter}/${pageNumber}`,
+        { relativeTo: this.route.parent } as NavigationExtras );
+    });
+  }
+
+  navigateToTheNextPage() {
+      this.sub = this.route.params.subscribe(params => {
+        const id = params['id'];
+        const chapter = params['chapter'];
+        const pageNumber = params['pageNumber'];
+
+        // Use parseInt to convert the pageNumber to a number
+        const targetPageNumber = parseInt(pageNumber, 10) + 1;
+
+        const targetUrlSegments = ['manuscripts', id, chapter, targetPageNumber.toString()];
+        this.pageNumber = targetPageNumber.toString(); // Update the current pageNumber
+
+        this.router.navigateByUrl(
+          `/manuscripts/${id}/${chapter}/${targetPageNumber.toString()}`,
+          {relativeTo: this.route.parent} as NavigationExtras
+        );
+      });
+  }
+  navigateToThePreviousPage(){
+    this.sub = this.route.params.subscribe(params => {
       const id = params['id'];
       const chapter = params['chapter'];
       const pageNumber = params['pageNumber'];
 
-      const targetUrlSegments = ['manuscripts', label, chapter, pageNumber];
-      this.router.navigateByUrl(`/manuscripts/${label}/${chapter}/${pageNumber}`,
-        { relativeTo: this.route.parent } as NavigationExtras );
-    });
+      // Use parseInt to convert the pageNumber to a number
+      const targetPageNumber = parseInt(pageNumber, 10) - 1;
 
+      const targetUrlSegments = ['manuscripts', id, chapter, targetPageNumber.toString()];
+      this.pageNumber = targetPageNumber.toString(); // Update the current pageNumber
+
+      this.router.navigateByUrl(
+        `/manuscripts/${id}/${chapter}/${targetPageNumber.toString()}`,
+        {relativeTo: this.route.parent} as NavigationExtras
+      );
+    });
   }
+
+
   openGallery() {
     this.router.navigateByUrl(
       `/manuscripts/${this.manuscriptID}/gallery`,
@@ -156,5 +202,9 @@ export class ManuscriptPageCommandBarComponent implements OnInit{
       item.command?.();
     }
   }
-
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
+  }
 }
