@@ -1,7 +1,19 @@
 
-  <div *ngFor="let image of data" class="image-container">
-    <img [src]="'assets/data/manuscripts/'+image.src" alt="{{ image.caption }}" width="100px"/>
-    <div class="caption">{{ image.caption }}</div>
+  <div class="container">
+    <lightgallery [settings]="settings"  [onInit]="onInit">
+      <a *ngFor="let item of data" className="gallery-item" [attr.href]="'assets/data/manuscripts/'+item.src"  [attr.data-sub-html]="item.caption">
+        <span class="image-container">
+          <img class="img-responsive" [src]="'assets/data/manuscripts/' + item.src" />
+           <span class="caption">{{ item.caption }}</span>
+        </span>
+      </a>
+    </lightgallery>
   </div>
+
+
+
+
+
+
 
 

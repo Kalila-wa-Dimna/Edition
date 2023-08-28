@@ -29,7 +29,8 @@ import {
   ManuscriptPageGalleryCommandBarComponent
 } from './manuscript-page-gallery/manuscript-page-gallery-command-bar/manuscript-page-gallery-command-bar.component';
 import {ManuscriptPageService} from "./services/manuscript-page.resolver";
-
+import { FormsModule } from '@angular/forms';
+import { LightgalleryModule } from 'lightgallery/angular';
 @NgModule({
   imports: [
     CommonModule,
@@ -42,6 +43,9 @@ import {ManuscriptPageService} from "./services/manuscript-page.resolver";
     MatTooltipModule,
     MatMenuModule,
     MatDividerModule,
+    FormsModule,
+    LightgalleryModule
+
   ],
   providers: [FontSizeService, ManuscriptPageService],
   declarations: [
