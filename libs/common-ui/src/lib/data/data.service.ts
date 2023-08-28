@@ -53,7 +53,7 @@ export class DataService {
   }
 
   private getJSONDataServer<T>(filePath: string): Observable<T> {
-    const url = `${this.config.dataApi}${filePath}`;
+    const url = `${this.config.dataApi}${filePath}.json`;
     return new Observable<T>((observer) => {
       fetch(url)
         .then((response) => {

@@ -4,6 +4,7 @@ import { FacsimileService } from "./../../services/manuscript-data.service";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import { isPlatformBrowser } from '@angular/common';
+import {CONFIG_TOKEN, IConfig} from "@kalila-edition/common-ui";
 
 @Component({
   selector: 'kalila-edition-manuscript-page-facsimile',
@@ -15,13 +16,14 @@ export class ManuscriptPageFacsimileComponent implements OnInit{
   facsimile: any;
   facsimileSize = '65%';
   pageData$!: Observable<any>;
-
+  pagesEndPoint = this.config.imagesEndPoint + 'pages/';
   // Default size
 
   constructor(
     private route: ActivatedRoute,
     private facsimileService: FacsimileService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(CONFIG_TOKEN) private config: IConfig,
   ) {
   }
 

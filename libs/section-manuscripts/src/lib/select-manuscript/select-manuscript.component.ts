@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import { IManuscriptInfo } from '../models/manuscript-summary.model';
+import {CONFIG_TOKEN, IConfig} from "@kalila-edition/common-ui";
 
 @Component({
   selector: 'kalila-edition-select-manuscript',
@@ -9,7 +10,9 @@ import { IManuscriptInfo } from '../models/manuscript-summary.model';
 })
 export class SelectManuscriptComponent implements OnInit{
   data:IManuscriptInfo[] = [];
-    constructor(private route: ActivatedRoute) {
+
+  imageEndpoint = this.config.imagesEndPoint + "manuscripts/";
+    constructor(private route: ActivatedRoute,  @Inject(CONFIG_TOKEN) private config: IConfig) {
   }
   ngOnInit() {
     this.data = this.route.snapshot.data['manuscriptList'];
