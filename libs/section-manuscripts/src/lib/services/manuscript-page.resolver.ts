@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { DataService } from '@kalila-edition/common-ui';
-import { combineLatest, map } from 'rxjs';
+import { map } from 'rxjs';
 import { Observable, of } from 'rxjs';
 
 export function createManuscriptDataResolver() {
@@ -27,8 +27,7 @@ export function createManuscriptDataResolver() {
   return resolve; // Return the resolver function
 }
 
-export function createUnitsDataResolver()
-{
+export function createUnitsDataResolver() {
   const resolve: ResolveFn<any> = (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -38,16 +37,18 @@ export function createUnitsDataResolver()
     const chapter = route.paramMap.get('chapter');
     const url = api.load<any>(`manuscripts/${id}/${chapter}/allUnit`, {});
     return url;
-  }
+  };
   return resolve;
 }
 
 export class ManuscriptPageService {
-  fetchData(id: string, chapter: string, pageNumber: string): Observable<string> {
+  fetchData(
+    id: string,
+    chapter: string,
+    pageNumber: string
+  ): Observable<string> {
     // Simulate API call or data fetching here
     const data = `Manuscript ID: ${id}, Chapter: ${chapter}, Page Number: ${pageNumber}`;
     return of(data); // Simulate an observable response
   }
 }
-
-
