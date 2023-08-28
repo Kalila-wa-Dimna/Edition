@@ -41,3 +41,5 @@ Thumbs.db
 .angular
 
 dev-deploy.sh
+
+apps/data-api/images

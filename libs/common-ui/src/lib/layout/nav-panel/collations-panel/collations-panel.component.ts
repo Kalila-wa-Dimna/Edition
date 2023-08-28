@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
+import {CONFIG_TOKEN, IConfig} from "@kalila-edition/common-ui";
 
 interface ICollationInfo {
   display: string;
@@ -13,9 +14,9 @@ interface ICollationInfo {
   styleUrls: ['./collations-panel.component.scss'],
 })
 export class CollationsPanelComponent {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient,  @Inject(CONFIG_TOKEN) private config: IConfig) {}
 
   data$ = this.httpClient.get<ICollationInfo[]>(
-    '/assets/data/collations/all.json'
+    `${this.config.dataEndPoint}collations/all.json`
   );
 }
