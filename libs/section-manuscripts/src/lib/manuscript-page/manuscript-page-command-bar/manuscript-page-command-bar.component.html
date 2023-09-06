@@ -1,47 +1,80 @@
-<!--<p-menubar  [model]="items" [autoZIndex]="true" styleClass="toolbar">
 
-  <ng-template pTemplate="start">-->
-<!--<img src="assets/icons/Kalila-logo.png" height="40" class="mr-2" >-->
-<!--<label style="margin-top:1%; float:left;color:black;margin-left: 2px;font-size: 14px; color: rgb(15, 48, 81);" >{{123}} </label>-->
-<!-- <p-inputSwitch id="my-inputswitch" (onChange)="onSwitchChange($event)"></p-inputSwitch>-->
-<!-- </ng-template>-->
 
-<!--<ng-template pTemplate="end">
-  <input type="text" pInputText placeholder="Search">
-</ng-template>-->
-<!--</p-menubar>-->
-
-<mat-toolbar class="tool">
-    <ng-container *ngFor="let item of items; let firstItem = first">
-      <ng-container *ngIf="!hasSubItems(item); else subMenu">
-        <!-- Display the first item as a label without button styling -->
-        <!--<ng-container *ngIf="firstItem">
-          <span [ngClass]="item.styleClass" style="padding:20px ">{{ item.label }}</span>
-        </ng-container>-->
+<mat-toolbar class="tool original-toolbar " >
+  <ng-container *ngFor="let item of items;">
+    <ng-container *ngIf="!hasSubItems(item); else subMenu">
+      <ng-container>
+        <!-- Display the page number as text when the label is ' ' -->
+        <ng-container *ngIf="item.label === ' '">
+          <span [ngClass]="item.styleClass" class="mat-lable">{{ pageNumber }}</span>
+        </ng-container>
         <!-- Display other items as buttons -->
-        <ng-container *ngIf="!firstItem">
-          <button mat-stroked-button class="mat-button"  (click)="item.command?.()">
+        <ng-container *ngIf="item.label !== ' '">
+          <button mat-stroked-button class="mat-button" (click)="item.command?.()">
             <mat-icon>{{ item.icon }}</mat-icon>
             <span [ngClass]="item.styleClass">{{ item.label }}</span>
           </button>
         </ng-container>
       </ng-container>
-      <ng-template #subMenu>
-        <button mat-stroked-button  class="mat-button"  [matMenuTriggerFor]="itemMenu"
-                *ngIf="hasSubItems(item)" >
-          <mat-icon>{{ item.icon }}</mat-icon>
-          <span [ngClass]="item.styleClass">{{ item.label }}</span>
-          <mat-icon>keyboard_arrow_down</mat-icon>
-        </button>
-        <mat-menu #itemMenu="matMenu">
-          <button mat-menu-item *ngFor="let subItem of item.items" (click)="subItem.command?.()">
-            <mat-icon>{{ subItem.icon }}</mat-icon>
-            <span [ngClass]="subItem.styleClass">{{ subItem.label }}</span>
-          </button>
-        </mat-menu>
-      </ng-template>
     </ng-container>
+    <ng-template #subMenu>
+      <button mat-stroked-button class="mat-button" [matMenuTriggerFor]="itemMenu" *ngIf="hasSubItems(item)">
+        <mat-icon>{{ item.icon }}</mat-icon>
+        <span [ngClass]="item.styleClass" >{{ item.label }}</span>
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+      <mat-menu #itemMenu="matMenu">
+        <button mat-menu-item class="sub-item-container" *ngFor="let subItem of item.items" (click)="subItem.command?.()">
+          <mat-icon  class="sub-item-icon">{{ subItem.icon }}</mat-icon>
+          <span [ngClass]="subItem.styleClass"  class="sub-item-label">{{ subItem.label }}</span>
+        </button>
+      </mat-menu>
+
+    </ng-template>
+  </ng-container>
 </mat-toolbar>
 
+<!-- sidebar.component.html -->
 
+<mat-sidenav-container (backdropClick)="sidenav.close()" class="site-container" #sideNavRef>
+  <mat-sidenav
+    #sidenav
+    mode="over"
+    class="sidenav"
+    [fixedInViewport]="true"
+    [fixedTopGap]="0"
+    [fixedBottomGap]="0"
+    position="end"
+  >
+    <button mat-stroked-button class="mat-button" (click)="sidenav.close()"> X </button>
+    <mat-sidenav-content class="site">
+      <mat-accordion class="accordion">
+        <ng-container *ngFor="let chapter of manuscriptChapters">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>{{ chapter.chapter }}</mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-panel-description>
+              Page Range: {{ chapter["first-page"] }} - {{ chapter["last-page"] }}
+            </mat-panel-description>
+            <!-- Add more content for each chapter here -->
+            <div class="page-links">
+              <!-- Loop through pages and create page links -->
+              <ng-container *ngFor="let page of getPages(chapter['first-page'], chapter['last-page'])">
+                <a
+                  mat-button class="panel"
+                  [routerLink]="['/manuscripts', chapter.manuscript, chapter.chapter, page]"
+                  routerLinkActive="active"
+                  [relativeTo]="route.parent"
+                >
+                  Page {{ page }}
+                </a>
+              </ng-container>
+            </div>
+          </mat-expansion-panel>
+        </ng-container>
+      </mat-accordion>
+    </mat-sidenav-content>
+  </mat-sidenav>
+</mat-sidenav-container>
 

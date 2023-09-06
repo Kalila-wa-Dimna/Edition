@@ -1,15 +1,17 @@
 
-img{
-  display: block;
-}
+.image-size{
+  max-width: 150%;
+  height: auto;
 
-:host {
+}
+:host{
   width: 49%;
   background-color: black;
-  display: flex;
   justify-content: center;
   align-items: center;
   overflow: auto;
+  margin: 0;
+  padding: 0;
 
   /* Customize the scrollbar track */
   scrollbar-color: gray white;
@@ -41,5 +43,18 @@ img{
     width: 50%;
 
   }
+}
+
+.image-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  overflow: hidden;
+  margin-top: 2%;
+  margin-bottom: 2%;
+
+
+
 }
 

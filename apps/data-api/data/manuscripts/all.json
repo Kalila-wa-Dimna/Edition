@@ -2,37 +2,43 @@
   {
     "display": "Pococke 400 (P400)",
     "siglum": "P400",
-    "firs_chapter": "Lv",
+    "first_chapter": "Lv",
+    "first_page": "24",
     "image": "covers/P400.jpg"
   },
   {
     "display": "CCC Parker 578 (CCCP578)",
     "siglum": "P578",
-    "firs_chapter": "Im",
+    "first_chapter": "Im",
+    "first_page": "1",
     "image": "covers/CCCP578.jpg"
   },
   {
     "display": "Paris 5881 (P5881)",
     "siglum": "P5881",
-    "firs_chapter": "Lv",
+    "first_chapter": "Lv",
+    "first_page": "6",
     "image": "covers/P5881.jpg"
   },
   {
     "display": "Paris 3465 (P3465)",
     "siglum": "P3465",
-    "firs_chapter": "Im",
+    "first_chapter": "Im",
+    "first_page": "1",
     "image": "covers/P3465.jpg"
   },
   {
     "display": "Paris 3466 (P3466)",
     "siglum": "P3466",
-    "firs_chapter": "Lv",
+    "first_chapter": "Lv",
+    "first_page": "1",
     "image": "covers/P3466.jpg"
   },
   {
     "display": "Ayasofya 4095 (A4095)",
     "siglum": "A4095",
-    "firs_chapter": "Lv",
+    "first_chapter": "Lv",
+    "first_page": "1",
     "image": "covers/Paris3465.jpg"
   }
 ]
