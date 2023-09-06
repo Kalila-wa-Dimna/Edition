@@ -1,0 +1,25 @@
+[
+  { "manuscript": "P5881",
+    "chapter": "Lv",
+    "first-page": "6",
+    "last-page": "19"
+  },
+  {
+    "manuscript": "P5881",
+    "chapter": "Im",
+    "first-page": "19",
+    "last-page": "25"
+  },
+  {
+    "manuscript": "P5881",
+    "chapter": "Mc",
+    "first-page": "120",
+    "last-page": "126"
+  }
+  ,{
+  "manuscript": "P400",
+  "chapter": "Lv",
+  "first-page": "24",
+  "last-page": "30"
+}
+]

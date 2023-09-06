@@ -12,8 +12,11 @@ import {
 } from "./manuscript-page/manuscript-page-facsimile/manuscript-page-facsimile.component";
 // eslint-disable-next-line @nx/enforce-module-boundaries
 
-import {createManuscriptDataResolver, createUnitsDataResolver} from "./services/manuscript-page.resolver";
+import {createAllPagesResolver, createAllChaptersDataResolver,createManuscriptChaptersDataResolver} from "./services/manuscript-page.resolver";
+import {createManuscriptDataResolver, createUnitsDataResolver, } from "./services/manuscript-page.resolver";
+
 import {createGalleryDataResolver} from "./services/manuscript-gallery.resolver";
+
 import {
   ManuscriptPageGalleryComponent
 } from "./manuscript-page-gallery/manuscript-page-gallery.component"
@@ -48,6 +51,7 @@ export const routes: Route[] = [
     pathMatch: 'full',
     resolve: {
       galleryData: createGalleryDataResolver(),
+      manuscriptsInfo: createResolver<any>('manuscripts/all', [])
     },
   children: [
   {
@@ -70,7 +74,10 @@ export const routes: Route[] = [
     pathMatch: 'full',
     resolve: {
       pageData: createManuscriptDataResolver(),
-      unitsData:createUnitsDataResolver()
+      unitsData:createUnitsDataResolver(),
+      allChaptersData:createAllChaptersDataResolver(),
+      manuscriptChaptersData:createManuscriptChaptersDataResolver(),
+      allPagesData:createAllPagesResolver()
     },
     children: [
       {

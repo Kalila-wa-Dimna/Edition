@@ -31,22 +31,27 @@ import {
 import {ManuscriptPageService} from "./services/manuscript-page.resolver";
 import { FormsModule } from '@angular/forms';
 import { LightgalleryModule } from 'lightgallery/angular';
-@NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    LayoutModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatMenuModule,
-    MatDividerModule,
-    FormsModule,
-    LightgalleryModule
+import {MatSidenavModule} from "@angular/material/sidenav";
+import { MatExpansionModule } from '@angular/material/expansion'; // Import MatExpansionModule
 
-  ],
+@NgModule({
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        LayoutModule,
+        MatCardModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatTooltipModule,
+        MatMenuModule,
+        MatDividerModule,
+        FormsModule,
+        LightgalleryModule,
+        MatSidenavModule,
+        MatExpansionModule
+
+    ],
   providers: [FontSizeService, ManuscriptPageService],
   declarations: [
     SelectManuscriptComponent,

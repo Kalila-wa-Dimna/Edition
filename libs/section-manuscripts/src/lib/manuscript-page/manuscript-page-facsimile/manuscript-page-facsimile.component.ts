@@ -1,11 +1,10 @@
-import {Component, OnInit,HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import {Component, OnInit,HostListener, Inject, PLATFORM_ID ,  ElementRef, Renderer2} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import { FacsimileService } from "./../../services/manuscript-data.service";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import { isPlatformBrowser } from '@angular/common';
 import {CONFIG_TOKEN, IConfig} from "@kalila-edition/common-ui";
-
 @Component({
   selector: 'kalila-edition-manuscript-page-facsimile',
   templateUrl: './manuscript-page-facsimile.component.html',
@@ -17,10 +16,13 @@ export class ManuscriptPageFacsimileComponent implements OnInit{
   facsimileSize = '65%';
   pageData$!: Observable<any>;
   pagesEndPoint = this.config.imagesEndPoint + 'pages/';
+  isNewWindow:boolean=false;
   // Default size
 
   constructor(
     private route: ActivatedRoute,
+    private el: ElementRef,
+    private renderer: Renderer2,
     private facsimileService: FacsimileService,
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject(CONFIG_TOKEN) private config: IConfig,
@@ -36,7 +38,7 @@ export class ManuscriptPageFacsimileComponent implements OnInit{
       this.updateFacsimileSize(window.innerWidth);
     }
     this.route.data.subscribe(data => {
-      const { pageData, unitsData } = data;
+      const {pageData, unitsData} = data;
       this.facsimile = pageData.imageUrl;
 
     });
@@ -46,11 +48,10 @@ export class ManuscriptPageFacsimileComponent implements OnInit{
       this.facsimileSize = size;
     });
 
-
   }
   private updateFacsimileSize(innerWidth: number): void {
     if (innerWidth >= 896) {
-      this.facsimileSize = '60%';
+      this.facsimileSize = '65%';
     } else {
       this.facsimileSize = '40%';
     }
@@ -61,4 +62,6 @@ export class ManuscriptPageFacsimileComponent implements OnInit{
     // Update the value when the window is resized
     this.updateFacsimileSize((event.target as Window).innerWidth);
   }
+
+
 }
