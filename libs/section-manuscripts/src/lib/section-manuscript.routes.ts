@@ -10,10 +10,8 @@ import {ManuscriptPageTextComponent} from "./manuscript-page/manuscript-page-tex
 import {
   ManuscriptPageFacsimileComponent
 } from "./manuscript-page/manuscript-page-facsimile/manuscript-page-facsimile.component";
-// eslint-disable-next-line @nx/enforce-module-boundaries
-
-import {createAllPagesResolver, createAllChaptersDataResolver,createManuscriptChaptersDataResolver} from "./services/manuscript-page.resolver";
-import {createManuscriptDataResolver, createUnitsDataResolver, } from "./services/manuscript-page.resolver";
+import {createAllPagesResolver, createChapterToMsDataResolver,createChapterThatAllMsHaveDataResolver,createManuscriptChaptersDataResolver} from "./services/manuscript-page.resolver";
+import {createManuscriptDataResolver } from "./services/manuscript-page.resolver";
 
 import {createGalleryDataResolver} from "./services/manuscript-gallery.resolver";
 
@@ -74,8 +72,8 @@ export const routes: Route[] = [
     pathMatch: 'full',
     resolve: {
       pageData: createManuscriptDataResolver(),
-      unitsData:createUnitsDataResolver(),
-      allChaptersData:createAllChaptersDataResolver(),
+      chapterToMsData:createChapterToMsDataResolver(),
+      chapterThatAllMsHave:createChapterThatAllMsHaveDataResolver(),
       manuscriptChaptersData:createManuscriptChaptersDataResolver(),
       allPagesData:createAllPagesResolver()
     },

@@ -10,7 +10,7 @@ main {
   grid-template-columns: 1fr;
 
   @include on-larger-than('md') {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     max-width: 90%; // optional, if you want to limit the maximum width
     margin-left: auto;
     margin-right: auto;

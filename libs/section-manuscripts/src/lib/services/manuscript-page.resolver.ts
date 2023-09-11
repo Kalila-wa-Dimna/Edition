@@ -13,8 +13,6 @@ export function createManuscriptDataResolver() {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ) => {
-    //console.log('router', { route });
-    //console.log('state', { state });
     const api = inject(DataService);
     const id = route.paramMap.get('id');
     const chapter = route.paramMap.get('chapter');
@@ -27,36 +25,21 @@ export function createManuscriptDataResolver() {
   return resolve; // Return the resolver function
 }
 
-export function createUnitsDataResolver() {
+
+
+
+export function createChapterToMsDataResolver() {
   const resolve: ResolveFn<any> = (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ) => {
     const api = inject(DataService);
-    const id = route.paramMap.get('id');
-    const chapter = route.paramMap.get('chapter');
-    const url = api.load<any>(`manuscripts/${id}/${chapter}/allUnit`, {});
-    return url;
-  };
-  return resolve;
-}
-
-
-export function createAllChaptersDataResolver() {
-  const resolve: ResolveFn<any> = (
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ) => {
-    const api = inject(DataService);
-    const id = route.paramMap.get('id');
-
+    const chapter=route.paramMap.get('chapter')
     // Construct the correct URL string
-    const url = `manuscripts/overview`;
-
+    const url = `manuscripts/chapter_to_ms/${chapter}`;
     // Load data using DataService and return an Observable
     return api.load<any>(url, {}).pipe(
       map((data) => {
-        console.log(data, 'Loaded Data');
         return data;
       })
     );
@@ -72,14 +55,9 @@ export function createManuscriptChaptersDataResolver() {
   ) => {
     const api = inject(DataService);
     const id = route.paramMap.get('id');
-
-    // Construct the correct URL string
-    const url = `manuscripts/${id}/overview`;
-
-    // Load data using DataService and return an Observable
+    const url = `manuscripts/${id}/allChapters`;
     return api.load<any>(url, {}).pipe(
       map((data) => {
-        console.log(data, 'Loaded Data');
         return data;
       })
     );
@@ -114,7 +92,28 @@ export function createAllPagesResolver() {
     // Load data using DataService and return an Observable
     return api.load<any>(url, {}).pipe(
       map((data) => {
-        console.log(data, 'createAllPagesResolve Loaded Data');
+        return data;
+      })
+    );
+  };
+
+  return resolve; // Return the resolver function
+}
+
+
+export function createChapterThatAllMsHaveDataResolver() {
+  const resolve: ResolveFn<any> = (
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ) => {
+    const api = inject(DataService);
+
+    // Construct the correct URL string
+    const url = `manuscripts/chapter_to_ms/Lv`;
+
+    // Load data using DataService and return an Observable
+    return api.load<any>(url, {}).pipe(
+      map((data) => {
         return data;
       })
     );

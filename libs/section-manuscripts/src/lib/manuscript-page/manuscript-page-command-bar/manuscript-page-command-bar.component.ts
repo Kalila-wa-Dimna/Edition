@@ -8,16 +8,16 @@ import {
   ChangeDetectionStrategy,
   ElementRef,
   Renderer2,
-  Output, EventEmitter
+  Output, EventEmitter,
+
 } from '@angular/core';
-import { Router,NavigationExtras,ActivatedRoute } from '@angular/router';
-import { MatMenuModule } from '@angular/material/menu';
+import { Router,NavigationExtras,ActivatedRoute, NavigationEnd } from '@angular/router';
 import { FacsimileService } from "./../../services/manuscript-data.service";
 import { FontSizeService } from "./../../services/font-size.service";
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { map} from 'rxjs/operators';
+import { map, debounceTime,  filter } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
-import {Observable, combineLatest, Subscription} from 'rxjs';
+import {Observable, combineLatest, Subscription,Subject} from 'rxjs';
 import { MatMenuTrigger } from '@angular/material/menu';
 import {IChapterInfo, IManuscriptInfo} from "../../models/manuscript-summary.model";
 import { ManuscriptPageService } from "./../../services/manuscript-page.resolver";
@@ -49,70 +49,80 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
   pageData:any;
   unitsData:any;
   allPagesData:any;
-
+  isSidenavOpen:boolean=false;
+  chapterToMsData:IChapterInfo[]=[];
+  private destroy$ = new Subject<void>();
   private navigationInProgress = false;
   currentPageIndex=0;
   @Output() closeClicked = new EventEmitter();
-  constructor( private manuscriptChapterPageService:ManuscriptChapterPageService,private el: ElementRef,private renderer: Renderer2, private manuscriptPageService: ManuscriptPageService, private cdr: ChangeDetectorRef, public route: ActivatedRoute,private router: Router, private facsimileService: FacsimileService, private fontSizeService:FontSizeService,private breakpointObserver: BreakpointObserver) {
+  constructor( private manuscriptChapterPageService:ManuscriptChapterPageService,private el: ElementRef,private renderer: Renderer2, private manuscriptPageService: ManuscriptPageService, private cdr: ChangeDetectorRef, public route: ActivatedRoute,private router: Router, private facsimileService: FacsimileService, private fontSizeService:FontSizeService,private breakpointObserver: BreakpointObserver  ) {
   this.fontSizeService.setFontSize('15px');
-
-  this.sub = this.route.params.subscribe((params) => {
-      const id = params['id']  || '';
-      const chapter =params['chapter'] || '';
-      const pageNumber = params['pageNumber'] || '';
-
-      console.log(id,chapter,pageNumber,'llxlsklllxlxlxlxlxlxlx')
-      // Update the this.pageNumber property with the current route parameter
-      this.pageNumber = pageNumber;
-
-      // You can also update other properties if needed
-      this.manuscriptID = id;
-      this.chapter = chapter;
-
-      // Rest of your code here
-    },
-    (error) => {
-      console.error('Route params subscription error:', error);
-    }
-    );
+    this.subscribeToRouterEvents();
   }
 
-  ngOnInit() {
-      this.data=this.route.snapshot.data;
-      this.route.data.subscribe(data => {
-        const { pageData, unitsData, allChaptersData, manuscriptChaptersData,allPagesData } = data;
-        // Now you can access each resolved data object
-        this.pageData = pageData;
-        this.unitsData = unitsData;
-        this.allChaptersData= allChaptersData;
-        this.manuscriptChapters=manuscriptChaptersData;
-        this.allPagesData=allPagesData;
-        this.currentPageIndex=this.allPagesData[0].index;
-        console.log(this.pageData, 'Page Data');
-        console.log(this.unitsData, 'Units Data');
-        console.log(this.allChaptersData, 'Chapter Data');
-        console.log(this.allPagesData, 'all pages Data');
-        console.log(this.currentPageIndex,'current Page Index')
-
+  private subscribeToRouterEvents() {
+    this.router.events
+      .pipe(
+        debounceTime(50),
+        filter((event) => event instanceof NavigationEnd)
+      )
+      .subscribe(() => {
+        this.callData(); // Call data initialization when the route changes
       });
+  }
 
+  private initializeData(data: any) {
+    const {
+      pageData,
+      chapterToMsData,
+      chapterThatAllMsHave,
+      manuscriptChaptersData,
+      allPagesData,
+    } = data;
+    // Now you can access each resolved data object
+    this.pageData = pageData;
+    this.allChaptersData = chapterThatAllMsHave;
+    this.chapterToMsData = chapterToMsData;
+    this.manuscriptChapters = manuscriptChaptersData;
+    this.allPagesData = allPagesData;
+    this.currentPageIndex = this.allPagesData[0].index;
+  }
+  callLinkData() {
+    this.router.events.pipe(debounceTime(50)).subscribe(() => {
+      // Extract route parameters
+      const { id, chapter, pageNumber } = this.route.snapshot.params;
+      // Update properties as needed
+      this.pageNumber = pageNumber;
+      this.manuscriptID = id;
+      this.chapter = chapter;
+      this.callData(); // Call data initialization
+      // Rest of your code here
+    });
+  }
 
+  callData() {
+    this.route.data.subscribe((data: any) => {
+      this.initializeData(data); // Call the common data initialization logic
+    });
+  }
+  ngOnInit() {
+    this.callLinkData();
+    this.data=this.route.snapshot.data;
 
-    this.items =   [
+      this.items =   [
       {
         label: 'Select MS',
         icon: 'book',
         styleClass: 'menucus',
         items: [
           { label: 'Pococke 400', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P400'),this.ngOnDestroy()}},
-          { label: 'Parker 578', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P578')}},
+          { label: 'Parker 578', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('CCCP578')}},
           { label: 'Paris 5881', icon: 'book',command: () =>{ this.navigateToTheSelectedManuscript('P5881'),this.ngOnDestroy()} },
           { label: 'Paris 3465', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3465')} },
           { label: 'Paris 3466', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3466')}},
           { label: 'Ayasofya 4095', icon: 'book' ,command: () => {this.navigateToTheSelectedManuscript('A4095')}},
           { label: 'Paris 3471', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3471')}},
           { label: 'Paris 3475', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3475')} },
-          { label: 'Paris 2789', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P2789')}},
           { label: 'Paris 3473', icon: 'book',command: () =>{ this.navigateToTheSelectedManuscript('P3473')} },
         ]
       },
@@ -156,75 +166,72 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
   }
 
   async navigateToTheSelectedManuscript(manuscriptId: string) {
-
-      const chapter = this.chapter // Use snapshot to get the current value
-
-        // Assuming getFirstPageForChapter is an asynchronous function
-        const pageNumber = await this.getFirstPageForChapter(chapter.toString(),manuscriptId.toString());
+      const chapter = this.chapter;
+    const { page: pageNumber, flag } = await this.getFirstPageForChapter(manuscriptId.toString());
+      if(flag===1) {
+        // The chapter exists in the selected manuscript
         await this.router.navigateByUrl(
           `/manuscripts/${manuscriptId}/${chapter}/${pageNumber}`,
-          { relativeTo: this.route.parent } as NavigationExtras
+          {relativeTo: this.route.parent} as NavigationExtras
         );
-
-
+      }
+      else{
+        await this.router.navigateByUrl(
+          `/manuscripts/${manuscriptId}/Lv/${pageNumber}`,
+          {relativeTo: this.route.parent} as NavigationExtras
+        );
+      }
   }
 
 
-  getFirstPageForChapter(chapterName: string, manuscriptId: string): string | null {
-    const chapterEntry = this.allChaptersData.find(entry =>
-      entry.manuscript.toLowerCase() === manuscriptId.toLowerCase() &&
-      entry.chapter.toLowerCase() === chapterName.toLowerCase()
+  getFirstPageForChapter(manuscriptId: string): { page: any, flag: number } {
+    // Reset allChaptersData before using it
+    const chapterEntry = this.chapterToMsData.find(entry =>
+      entry.manuscript.toLowerCase() === manuscriptId.toLowerCase()
     );
 
-    console.log('Searching for:', chapterName, 'in manuscript:', manuscriptId);
-    console.log('Matching entry:', chapterEntry);
-
     if (chapterEntry) {
-      console.log('Found entry. First page:', chapterEntry['first-page']);
-      return chapterEntry['first-page'];
+      return { page: chapterEntry['from'], flag: 1 };
     } else {
-      console.log('Entry not found.');
-      return null; // Chapter not found
+      const chEntry = this.allChaptersData.find(entry =>
+        entry.manuscript.toLowerCase() === manuscriptId.toLowerCase()
+      );
+
+      if (chEntry) {
+        return { page: chEntry['from'], flag: 0 };
+      } else {
+        return { page: null, flag: -1 }; // Return a default value or indicator for not found
+      }
     }
   }
 
 
-  navigateToTheNextPage(): void {
 
-    this.sub = this.route.params.subscribe(params => {
-      //  const id = params['id'];
-      // const chapter = params['chapter'];
-      const pageNumber = params['pageNumber'];
-      console.log(pageNumber)
-      console.log(this.allPagesData,'alllllll');
+  navigateToTheNextPage(): void {
+    if (this.allPagesData && this.pageNumber) {
+      const pageNumber = parseInt(this.pageNumber,10);
       const currentIndex = this.allPagesData.findIndex(
-        (page: { page_number: string }) => page.page_number === pageNumber)
-      console.log(pageNumber, currentIndex,'jjkkppüpüüüü');
+        (page: { page_number: number }) => page.page_number === pageNumber)
       if (currentIndex !== -1 && currentIndex < this.allPagesData.length - 1) {
         const nextIndex = currentIndex + 1;
         const nextPageLink = this.allPagesData[nextIndex].page_link;
-        console.log(nextPageLink);
         this.router.navigateByUrl(
           nextPageLink,
           {relativeTo: this.route.parent} as NavigationExtras
         );
       }
-    });
+    }
+
   }
 
 
 
-  navigateToThePreviousPage(){
+  navigateToThePreviousPage() {
 
-    this.sub = this.route.params.subscribe(params => {
-      //  const id = params['id'];
-      // const chapter = params['chapter'];
-      const pageNumber = params['pageNumber'];
-      console.log(pageNumber)
-      console.log(this.allPagesData, 'alllllll');
+    if (this.allPagesData && this.pageNumber) {
+      const pageNumber = parseInt(this.pageNumber, 10);
       const currentIndex = this.allPagesData.findIndex(
-        (page: { page_number: string }) => page.page_number === pageNumber)
-      console.log(pageNumber, currentIndex, 'jjkkppüpüüüü');
+        (page: { page_number: number }) => page.page_number === pageNumber)
 
       if (currentIndex !== -1 && currentIndex > 0) {
         const previousIndex = currentIndex - 1;
@@ -234,9 +241,8 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
           {relativeTo: this.route.parent} as NavigationExtras
         );
       }
-    });
+    }
   }
-
 
   openGallery() {
 
@@ -283,23 +289,6 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
       item.command?.();
     }
   }
-  /*openNewWindow() {
-    const element = this.el.nativeElement.querySelector('.original-toolbar');
-
-    if (element) {
-      // Set the element's width to 50%
-      this.renderer.setStyle(element, 'width', '50%');
-
-      // Set the element to display as flex container
-      this.renderer.setStyle(element, 'display', 'flex');
-
-      this.renderer.setStyle(element, 'flex-wrap', 'wrap');
-      this.renderer.setStyle(element, 'position', 'relative');
-
-      // You can also specify other flex properties if needed
-    }
-
-  }*/
 
   openNavbar() {
     this.sideNavRef.open();
@@ -317,9 +306,13 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
     return pages;
   }
 
+  toggleSidenav() {
+    this.isSidenavOpen = !this.isSidenavOpen;
+  }
   ngOnDestroy() {
     if (this.sub) {
       this.sub.unsubscribe();
     }
   }
 }
+

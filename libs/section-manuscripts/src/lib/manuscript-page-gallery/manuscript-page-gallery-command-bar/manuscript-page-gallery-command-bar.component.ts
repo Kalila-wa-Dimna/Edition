@@ -1,8 +1,8 @@
 import {Component, OnInit, OnDestroy,ViewChild} from '@angular/core';
-import { Router,NavigationExtras,ActivatedRoute } from '@angular/router';
+import {Router, NavigationExtras, ActivatedRoute, NavigationEnd} from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { map } from 'rxjs/operators';
+import {debounceTime, filter, map} from 'rxjs/operators';
 import { MatMenuTrigger } from '@angular/material/menu';
 import {ManuscriptChapterPageService} from "./../../services/manuscript-chapter-page.service";
 import {Subscription} from "rxjs";
@@ -21,41 +21,51 @@ export class ManuscriptPageGalleryCommandBarComponent implements OnDestroy{
   dataMs:any;
   sub?: Subscription;
   manuscriptsData:any;
-  manuscriptsInfo:any;
+  manuscriptsInfo:IManuscriptInfo[]=[];
+  selecterGallery:string='';
   constructor(private route: ActivatedRoute, private router: Router, private manuscriptChapterPageService:ManuscriptChapterPageService ,) {
     const { manuscript, chapter, page } = manuscriptChapterPageService.getManuscriptChapterPage();
+
     this.manuscriptID = manuscript;
     this.chapter = chapter;
     this.page = page;
-    console.log(this.manuscriptID,this.chapter,this.page,"hi");
-    this.manuscriptsData=this.route.snapshot.data;
-    this.manuscriptsInfo=this.manuscriptsData.manuscriptsInfo
-
-    this.sub =this.route.paramMap.subscribe(params => {
-      const id = params.get('id') || '';
-      this.id=id;
-    });
   }
+
+
 
   ngOnInit() {
 
-    console.log(this.route.snapshot.data)
+    console.log(this.manuscriptsData)
+
+    this.sub = this.router.events
+      .pipe(
+        debounceTime(50)
+      )
+      .subscribe(() => {
+        this.selecterGallery='';
+        const id = this.route.snapshot.paramMap.get('id') || '';
+        // Update your data properties here
+        this.selecterGallery=id;
+        // Check if id is different from the current manuscript
+        // Assuming manuscriptsInfo is resolved from route data
+        const manuscriptsData = this.route.snapshot.data;
+        this.manuscriptsInfo = manuscriptsData['manuscriptsInfo'];
+      });
     this.items = [
       {
         label: 'Select MS',
         icon: 'book',
         styleClass: 'menucus',
         items: [
-          {label: 'Pococke 400', icon: 'book'},
-          {label: 'Parker 578', icon: 'book'},
-          {label: 'Paris 5881', icon: 'book'},
-          {label: 'Paris 3465', icon: 'book'},
-          {label: 'Paris 3466', icon: 'book'},
-          {label: 'Ayasofya 4095', icon: 'book'},
-          {label: 'Paris 3471', icon: 'book'},
-          {label: 'Paris 3475', icon: 'book'},
-          {label: 'Paris 2789', icon: 'book'},
-          {label: 'Paris 3473', icon: 'book'},
+          { label: 'Pococke 400', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P400'),this.ngOnDestroy()}},
+          { label: 'Parker 578', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('CCCP578')}},
+          { label: 'Paris 5881', icon: 'book',command: () =>{ this.navigateToTheSelectedManuscript('P5881'),this.ngOnDestroy()} },
+          { label: 'Paris 3465', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3465')} },
+          { label: 'Paris 3466', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3466')}},
+          { label: 'Ayasofya 4095', icon: 'book' ,command: () => {this.navigateToTheSelectedManuscript('A4095')}},
+          { label: 'Paris 3471', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3471')}},
+          { label: 'Paris 3475', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3475')} },
+          { label: 'Paris 3473', icon: 'book',command: () =>{ this.navigateToTheSelectedManuscript('P3473')} },
         ]
       },
       {label: 'Facsimile-Text', styleClass: 'menucus', icon: 'insert_drive_file',command:()=> this.navigateToFacsimileText()},
@@ -72,9 +82,28 @@ export class ManuscriptPageGalleryCommandBarComponent implements OnDestroy{
     let manuscriptId = this.manuscriptID;
     let chapter = this.chapter;
     let page = this.page;
+    if (this.selecterGallery !== this.manuscriptID) {
+      // Find the manuscript data by matching siglum to id
+      const selectedManuscript = this.manuscriptsInfo.find(manuscript => manuscript.siglum === this.selecterGallery);
 
+      // Check if a matching manuscript was found
+      if (selectedManuscript) {
+        // Set the values in your service
+        this.manuscriptChapterPageService.setManuscriptChapterPage(selectedManuscript.siglum, selectedManuscript.first_chapter, selectedManuscript.first_page);
+        const { manuscript, chapter, page } = this.manuscriptChapterPageService.getManuscriptChapterPage();
+
+        this.manuscriptID = manuscript;
+        this.chapter = chapter;
+        this.page = page;
+      }
+      this.router.navigateByUrl(
+        `/manuscripts/${this.manuscriptID}/${this.chapter}/${this.page}`,
+        { relativeTo: this.route.parent } as NavigationExtras
+      );
+    }
     // Check if any of the values are empty and assign default values if needed
-    if (manuscriptId === '' || chapter === '' || page === '') {
+   /* */
+else if (manuscriptId === '' || chapter === '' || page === '') {
       manuscriptId = this.id;
 
       const idToSearch = "P5881"; // Replace with the ID you want to search for
@@ -83,20 +112,18 @@ export class ManuscriptPageGalleryCommandBarComponent implements OnDestroy{
       if (result) {
         chapter = result.chapter; // Update chapter
         page = result.page; // Update page
-        console.log(`First Chapter: ${chapter}, First Page: ${page}`);
       } else {
-        console.log(`No matching entry found for ID: ${idToSearch}`);
       }
     }
-
-    this.router.navigateByUrl(
+    else{    this.router.navigateByUrl(
       `/manuscripts/${manuscriptId}/${chapter}/${page}`,
       { relativeTo: this.route.parent } as NavigationExtras
     );
+    }
   }
 
+
    getFirstChapterAndPage(id: string, manuscriptsData: any[]): { chapter: string, page: string } | null {
-    console.log(this.manuscriptsData,"2222")
     const entry = manuscriptsData.find((manuscript) => manuscript.siglum.toLowerCase() === id.toLowerCase());
 
     if (entry) {
@@ -108,7 +135,16 @@ export class ManuscriptPageGalleryCommandBarComponent implements OnDestroy{
       return null; // Return null if no matching entry is found
     }
   }
+  async navigateToTheSelectedManuscript(manuscriptId: string) {
+    const chapter = this.chapter;
+    console.log(`/manuscripts/${manuscriptId}/gallery`);
+      // The chapter exists in the selected manuscript
+    this.router.navigateByUrl(
+        `/manuscripts/${manuscriptId}/gallery`,
+        {relativeTo: this.route.parent} as NavigationExtras
+      );
 
+  }
 
   ngOnDestroy() {
     if (this.sub) {

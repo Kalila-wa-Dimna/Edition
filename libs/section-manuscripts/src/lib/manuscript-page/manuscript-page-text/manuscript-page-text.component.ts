@@ -67,7 +67,7 @@ export class ManuscriptPageTextComponent implements OnInit, OnDestroy {
       const [unitLine, unitWordIndex] = this.unitPlaces[i];
 
       if (unitLine === lineIndex && unitWordIndex === wordIndex) {
-        const unitCode = this.unitNames[i][0];
+        const unitCode = this.unitNames[i][0]; console.log(unitCode)
         const unitName = this.unitNames[i][1];
         const shortenedUnitName = unitCode.substr(0, 2) + unitName;
         unitCodes.push(unitCode);

@@ -3,14 +3,14 @@
     "display": "Pococke 400 (P400)",
     "siglum": "P400",
     "first_chapter": "Lv",
-    "first_page": "24",
+    "first_page": "7",
     "image": "covers/P400.jpg"
   },
   {
     "display": "CCC Parker 578 (CCCP578)",
-    "siglum": "P578",
-    "first_chapter": "Im",
-    "first_page": "1",
+    "siglum": "CCCP578",
+    "first_chapter": "Lv",
+    "first_page": "3",
     "image": "covers/CCCP578.jpg"
   },
   {
@@ -23,22 +23,51 @@
   {
     "display": "Paris 3465 (P3465)",
     "siglum": "P3465",
-    "first_chapter": "Im",
-    "first_page": "1",
+    "first_chapter": "Lv",
+    "first_page": "37",
     "image": "covers/P3465.jpg"
   },
   {
     "display": "Paris 3466 (P3466)",
     "siglum": "P3466",
     "first_chapter": "Lv",
-    "first_page": "1",
+    "first_page": "36",
     "image": "covers/P3466.jpg"
   },
   {
     "display": "Ayasofya 4095 (A4095)",
     "siglum": "A4095",
+    "first_chapter": "Im",
+    "first_page": "3",
+    "image": "covers/A4095.jpg"
+  },
+  {
+    "display": "Riyadh 2536 (R2536)",
+    "siglum": "R2536",
+    "first_chapter": "Mc",
+    "first_page": "212",
+    "image": "covers/R2536.jpg"
+  },
+
+  {
+    "display": "Paris 3471 (P3471)",
+    "siglum": "P3471",
     "first_chapter": "Lv",
+    "first_page": "28",
+    "image": "covers/P3471.jpg"
+  },
+  {
+    "display": "Paris 3473 (P3473)",
+    "siglum": "P3473",
+    "first_chapter": "Im",
+    "first_page": "27",
+    "image": "covers/P3473.jpg"
+  },
+  {
+    "display": "Paris 3475 (P3475)",
+    "siglum": "P3475",
+    "first_chapter": "Im",
     "first_page": "1",
-    "image": "covers/Paris3465.jpg"
+    "image": "covers/P3475.jpg"
   }
 ]

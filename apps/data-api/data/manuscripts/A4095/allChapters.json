@@ -1,0 +1,442 @@
+[
+    {
+        "chapter": "Im",
+        "pages": [
+            {
+                "index": 3,
+                "page_number": 3,
+                "page_link": "/manuscripts/A4095/Im/3"
+            },
+            {
+                "index": 4,
+                "page_number": 4,
+                "page_link": "/manuscripts/A4095/Im/4"
+            },
+            {
+                "index": 5,
+                "page_number": 5,
+                "page_link": "/manuscripts/A4095/Im/5"
+            },
+            {
+                "index": 6,
+                "page_number": 6,
+                "page_link": "/manuscripts/A4095/Im/6"
+            },
+            {
+                "index": 7,
+                "page_number": 7,
+                "page_link": "/manuscripts/A4095/Im/7"
+            },
+            {
+                "index": 8,
+                "page_number": 8,
+                "page_link": "/manuscripts/A4095/Im/8"
+            },
+            {
+                "index": 9,
+                "page_number": 9,
+                "page_link": "/manuscripts/A4095/Im/9"
+            },
+            {
+                "index": 10,
+                "page_number": 10,
+                "page_link": "/manuscripts/A4095/Im/10"
+            },
+            {
+                "index": 11,
+                "page_number": 11,
+                "page_link": "/manuscripts/A4095/Im/11"
+            }
+        ]
+    },
+    {
+        "chapter": "Lv",
+        "pages": [
+            {
+                "index": 11,
+                "page_number": 11,
+                "page_link": "/manuscripts/A4095/Lv/11"
+            },
+            {
+                "index": 12,
+                "page_number": 12,
+                "page_link": "/manuscripts/A4095/Lv/12"
+            },
+            {
+                "index": 13,
+                "page_number": 13,
+                "page_link": "/manuscripts/A4095/Lv/13"
+            },
+            {
+                "index": 14,
+                "page_number": 14,
+                "page_link": "/manuscripts/A4095/Lv/14"
+            },
+            {
+                "index": 15,
+                "page_number": 15,
+                "page_link": "/manuscripts/A4095/Lv/15"
+            },
+            {
+                "index": 16,
+                "page_number": 16,
+                "page_link": "/manuscripts/A4095/Lv/16"
+            },
+            {
+                "index": 17,
+                "page_number": 17,
+                "page_link": "/manuscripts/A4095/Lv/17"
+            },
+            {
+                "index": 18,
+                "page_number": 18,
+                "page_link": "/manuscripts/A4095/Lv/18"
+            },
+            {
+                "index": 19,
+                "page_number": 19,
+                "page_link": "/manuscripts/A4095/Lv/19"
+            },
+            {
+                "index": 20,
+                "page_number": 20,
+                "page_link": "/manuscripts/A4095/Lv/20"
+            }
+        ]
+    },
+    {
+        "chapter": "Oc",
+        "pages": [
+            {
+                "index": 109,
+                "page_number": 109,
+                "page_link": "/manuscripts/A4095/Oc/109"
+            },
+            {
+                "index": 110,
+                "page_number": 110,
+                "page_link": "/manuscripts/A4095/Oc/110"
+            },
+            {
+                "index": 111,
+                "page_number": 111,
+                "page_link": "/manuscripts/A4095/Oc/111"
+            },
+            {
+                "index": 112,
+                "page_number": 112,
+                "page_link": "/manuscripts/A4095/Oc/112"
+            },
+            {
+                "index": 113,
+                "page_number": 113,
+                "page_link": "/manuscripts/A4095/Oc/113"
+            },
+            {
+                "index": 114,
+                "page_number": 114,
+                "page_link": "/manuscripts/A4095/Oc/114"
+            },
+            {
+                "index": 115,
+                "page_number": 115,
+                "page_link": "/manuscripts/A4095/Oc/115"
+            },
+            {
+                "index": 116,
+                "page_number": 116,
+                "page_link": "/manuscripts/A4095/Oc/116"
+            },
+            {
+                "index": 117,
+                "page_number": 117,
+                "page_link": "/manuscripts/A4095/Oc/117"
+            },
+            {
+                "index": 118,
+                "page_number": 118,
+                "page_link": "/manuscripts/A4095/Oc/118"
+            },
+            {
+                "index": 119,
+                "page_number": 119,
+                "page_link": "/manuscripts/A4095/Oc/119"
+            },
+            {
+                "index": 120,
+                "page_number": 120,
+                "page_link": "/manuscripts/A4095/Oc/120"
+            },
+            {
+                "index": 121,
+                "page_number": 121,
+                "page_link": "/manuscripts/A4095/Oc/121"
+            },
+            {
+                "index": 122,
+                "page_number": 122,
+                "page_link": "/manuscripts/A4095/Oc/122"
+            },
+            {
+                "index": 123,
+                "page_number": 123,
+                "page_link": "/manuscripts/A4095/Oc/123"
+            },
+            {
+                "index": 124,
+                "page_number": 124,
+                "page_link": "/manuscripts/A4095/Oc/124"
+            },
+            {
+                "index": 125,
+                "page_number": 125,
+                "page_link": "/manuscripts/A4095/Oc/125"
+            }
+        ]
+    },
+    {
+        "chapter": "Kd",
+        "pages": [
+            {
+                "index": 142,
+                "page_number": 142,
+                "page_link": "/manuscripts/A4095/Kd/142"
+            },
+            {
+                "index": 143,
+                "page_number": 143,
+                "page_link": "/manuscripts/A4095/Kd/143"
+            },
+            {
+                "index": 144,
+                "page_number": 144,
+                "page_link": "/manuscripts/A4095/Kd/144"
+            },
+            {
+                "index": 145,
+                "page_number": 145,
+                "page_link": "/manuscripts/A4095/Kd/145"
+            },
+            {
+                "index": 146,
+                "page_number": 146,
+                "page_link": "/manuscripts/A4095/Kd/146"
+            },
+            {
+                "index": 147,
+                "page_number": 147,
+                "page_link": "/manuscripts/A4095/Kd/147"
+            },
+            {
+                "index": 148,
+                "page_number": 148,
+                "page_link": "/manuscripts/A4095/Kd/148"
+            },
+            {
+                "index": 149,
+                "page_number": 149,
+                "page_link": "/manuscripts/A4095/Kd/149"
+            },
+            {
+                "index": 150,
+                "page_number": 150,
+                "page_link": "/manuscripts/A4095/Kd/150"
+            },
+            {
+                "index": 151,
+                "page_number": 151,
+                "page_link": "/manuscripts/A4095/Kd/151"
+            },
+            {
+                "index": 152,
+                "page_number": 152,
+                "page_link": "/manuscripts/A4095/Kd/152"
+            }
+        ]
+    },
+    {
+        "chapter": "Mc",
+        "pages": [
+            {
+                "index": 173,
+                "page_number": 173,
+                "page_link": "/manuscripts/A4095/Mc/173"
+            },
+            {
+                "index": 174,
+                "page_number": 174,
+                "page_link": "/manuscripts/A4095/Mc/174"
+            },
+            {
+                "index": 175,
+                "page_number": 175,
+                "page_link": "/manuscripts/A4095/Mc/175"
+            },
+            {
+                "index": 176,
+                "page_number": 176,
+                "page_link": "/manuscripts/A4095/Mc/176"
+            },
+            {
+                "index": 177,
+                "page_number": 177,
+                "page_link": "/manuscripts/A4095/Mc/177"
+            },
+            {
+                "index": 178,
+                "page_number": 178,
+                "page_link": "/manuscripts/A4095/Mc/178"
+            },
+            {
+                "index": 179,
+                "page_number": 179,
+                "page_link": "/manuscripts/A4095/Mc/179"
+            }
+        ]
+    },
+    {
+        "chapter": "Km",
+        "pages": [
+            {
+                "index": 164,
+                "page_number": 164,
+                "page_link": "/manuscripts/A4095/Km/164"
+            },
+            {
+                "index": 165,
+                "page_number": 165,
+                "page_link": "/manuscripts/A4095/Km/165"
+            },
+            {
+                "index": 166,
+                "page_number": 166,
+                "page_link": "/manuscripts/A4095/Km/166"
+            },
+            {
+                "index": 167,
+                "page_number": 167,
+                "page_link": "/manuscripts/A4095/Km/167"
+            },
+            {
+                "index": 168,
+                "page_number": 168,
+                "page_link": "/manuscripts/A4095/Km/168"
+            },
+            {
+                "index": 169,
+                "page_number": 169,
+                "page_link": "/manuscripts/A4095/Km/169"
+            },
+            {
+                "index": 170,
+                "page_number": 170,
+                "page_link": "/manuscripts/A4095/Km/170"
+            },
+            {
+                "index": 171,
+                "page_number": 171,
+                "page_link": "/manuscripts/A4095/Km/171"
+            },
+            {
+                "index": 172,
+                "page_number": 172,
+                "page_link": "/manuscripts/A4095/Km/172"
+            },
+            {
+                "index": 173,
+                "page_number": 173,
+                "page_link": "/manuscripts/A4095/Km/173"
+            }
+        ]
+    },
+    {
+        "chapter": "Lj",
+        "pages": [
+            {
+                "index": 184,
+                "page_number": 184,
+                "page_link": "/manuscripts/A4095/Lj/184"
+            },
+            {
+                "index": 185,
+                "page_number": 185,
+                "page_link": "/manuscripts/A4095/Lj/185"
+            },
+            {
+                "index": 186,
+                "page_number": 186,
+                "page_link": "/manuscripts/A4095/Lj/186"
+            },
+            {
+                "index": 187,
+                "page_number": 187,
+                "page_link": "/manuscripts/A4095/Lj/187"
+            },
+            {
+                "index": 188,
+                "page_number": 188,
+                "page_link": "/manuscripts/A4095/Lj/188"
+            },
+            {
+                "index": 189,
+                "page_number": 189,
+                "page_link": "/manuscripts/A4095/Lj/189"
+            },
+            {
+                "index": 190,
+                "page_number": 190,
+                "page_link": "/manuscripts/A4095/Lj/190"
+            },
+            {
+                "index": 191,
+                "page_number": 191,
+                "page_link": "/manuscripts/A4095/Lj/191"
+            },
+            {
+                "index": 192,
+                "page_number": 192,
+                "page_link": "/manuscripts/A4095/Lj/192"
+            },
+            {
+                "index": 193,
+                "page_number": 193,
+                "page_link": "/manuscripts/A4095/Lj/193"
+            },
+            {
+                "index": 194,
+                "page_number": 194,
+                "page_link": "/manuscripts/A4095/Lj/194"
+            },
+            {
+                "index": 195,
+                "page_number": 195,
+                "page_link": "/manuscripts/A4095/Lj/195"
+            },
+            {
+                "index": 196,
+                "page_number": 196,
+                "page_link": "/manuscripts/A4095/Lj/196"
+            }
+        ]
+    },
+    {
+        "chapter": "Ag",
+        "pages": [
+            {
+                "index": 207,
+                "page_number": 207,
+                "page_link": "/manuscripts/A4095/Ag/207"
+            },
+            {
+                "index": 208,
+                "page_number": 208,
+                "page_link": "/manuscripts/A4095/Ag/208"
+            },
+            {
+                "index": 209,
+                "page_number": 209,
+                "page_link": "/manuscripts/A4095/Ag/209"
+            }
+        ]
+    }
+]

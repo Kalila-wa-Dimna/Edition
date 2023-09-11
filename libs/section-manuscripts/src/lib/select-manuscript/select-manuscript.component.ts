@@ -16,6 +16,5 @@ export class SelectManuscriptComponent implements OnInit{
   }
   ngOnInit() {
     this.data = this.route.snapshot.data['manuscriptList'];
-    console.log(this.data)
   }
 }
