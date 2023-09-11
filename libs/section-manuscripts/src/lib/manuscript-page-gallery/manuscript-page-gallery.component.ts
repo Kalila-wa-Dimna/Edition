@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import { IGalleryInfo } from '../models/manuscript-summary.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {combineLatest, Observable, Subscription} from "rxjs";
+import { switchMap } from 'rxjs/operators';
 import {ManuscriptPageService} from "../services/manuscript-page.resolver";
 @Component({
   selector: 'kalila-edition-manuscript-page-gallery',
@@ -21,6 +22,8 @@ export class ManuscriptPageGalleryComponent implements OnInit, OnDestroy  {
   }
   ngOnInit(){
     this.data=this.route.snapshot.data;
+    console.log(this.data)
+
     this.sub =this.route.paramMap.subscribe(params => {
       const id = params.get('id') || '';
       const chapter = params.get('chapter') || '';

@@ -35,8 +35,7 @@
 </mat-toolbar>
 
 <!-- sidebar.component.html -->
-
-<mat-sidenav-container (backdropClick)="sidenav.close()" class="site-container" #sideNavRef>
+<mat-sidenav-container (backdropClick)="toggleSidenav()" class="site-container" #sideNavRef>
   <mat-sidenav
     #sidenav
     mode="over"
@@ -45,29 +44,37 @@
     [fixedTopGap]="0"
     [fixedBottomGap]="0"
     position="end"
+    [opened]="isSidenavOpen"
   >
     <button mat-stroked-button class="mat-button" (click)="sidenav.close()"> X </button>
-    <mat-sidenav-content class="site">
+    <mat-sidenav-content class="site" >
       <mat-accordion class="accordion">
-        <ng-container *ngFor="let chapter of manuscriptChapters">
+        <ng-container *ngFor="let chapter of manuscriptChapters; let i = index">
           <mat-expansion-panel>
             <mat-expansion-panel-header>
-              <mat-panel-title>{{ chapter.chapter }}</mat-panel-title>
+              <mat-panel-title>Chapter {{ chapter.chapter }}</mat-panel-title>
             </mat-expansion-panel-header>
             <mat-panel-description>
-              Page Range: {{ chapter["first-page"] }} - {{ chapter["last-page"] }}
+              <ng-container *ngIf="chapter.pages && chapter.pages.length > 0">
+                Page Range: {{ chapter.pages[0].page_number }} - {{ chapter.pages[chapter.pages.length - 1].page_number }}
+              </ng-container>
+              <ng-container *ngIf="!chapter.pages || chapter.pages.length === 0">
+                No Pages Found
+              </ng-container>
             </mat-panel-description>
             <!-- Add more content for each chapter here -->
             <div class="page-links">
               <!-- Loop through pages and create page links -->
-              <ng-container *ngFor="let page of getPages(chapter['first-page'], chapter['last-page'])">
+              <ng-container *ngFor="let page of chapter.pages">
                 <a
-                  mat-button class="panel"
-                  [routerLink]="['/manuscripts', chapter.manuscript, chapter.chapter, page]"
+                  mat-button
+                  class="panel"
+                  [routerLink]="['/manuscripts', manuscriptID, chapter.chapter, page.index]"
                   routerLinkActive="active"
                   [relativeTo]="route.parent"
+                  (click)="sidenav.close()"
                 >
-                  Page {{ page }}
+                  Page {{ page.page_number }}
                 </a>
               </ng-container>
             </div>
@@ -77,4 +84,5 @@
     </mat-sidenav-content>
   </mat-sidenav>
 </mat-sidenav-container>
+
 

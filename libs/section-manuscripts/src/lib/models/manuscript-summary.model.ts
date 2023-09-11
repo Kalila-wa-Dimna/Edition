@@ -8,9 +8,8 @@ export interface IManuscriptInfo {
 
 export interface IChapterInfo{
   "manuscript":string
-  "chapter": string,
-  "first-page": string,
-  "last-page": string
+  "from": number,
+  "to": number
 }
 export interface IGalleryInfo{
   src:string;

@@ -44,11 +44,9 @@ export class ManuscriptPageGalleryViewerComponent implements OnInit, OnDestroy {
 
     this.isBrowser = isPlatformBrowser(platformId);
     this._elementRef = _elementRef;
-    console.log(this.pagesEndPoint);
   }
   ngOnInit() {
     this.data = this.route.snapshot.data['galleryData'];
-    console.log(this.data);
     this.sub = this.route.data.subscribe(data => {
       this.data = data['galleryData'].map((item: IGalleryInfo) => ({
         ...item,
@@ -69,18 +67,10 @@ export class ManuscriptPageGalleryViewerComponent implements OnInit, OnDestroy {
     }
   }
   onInit = (detail:any): void => {
-
-    console.log('detail.instance:', detail.instance);
     this.lightGallery = detail.instance;
     this.lightGallery.plugins.push();
     this.lightGallery.refresh();
-
-    console.log('this.lightGallery.plugins (after push):', this.lightGallery.plugins);
-
-
     // Refresh and open gallery
-
-
   };
 
 

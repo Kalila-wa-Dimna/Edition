@@ -1,0 +1,894 @@
+[
+    {
+        "title": "Chapter Title",
+        "number": 1
+    },
+    {
+        "title": "Chapter Title Explanation",
+        "number": 2
+    },
+    {
+        "title": "Chapter Abstract",
+        "number": 3
+    },
+    {
+        "title": "Chapter Function",
+        "number": 4
+    },
+    {
+        "title": "King Understood Previous Chapter",
+        "number": 5
+    },
+    {
+        "title": "King Asks about Reconciling a Courtier",
+        "number": 6
+    },
+    {
+        "title": "Philosopher Supports Reconciliation of a Courtier",
+        "number": 7
+    },
+    {
+        "title": "King to Consider Value of a Suspect",
+        "number": 8
+    },
+    {
+        "title": "Lion and Jackal",
+        "number": 9
+    },
+    {
+        "title": "King to Reconcile the Reliable",
+        "number": 9
+    },
+    {
+        "title": "Aides Are Essential to Rule",
+        "number": 10
+    },
+    {
+        "title": "Kings' Duties Are Many",
+        "number": 11
+    },
+    {
+        "title": "King Must Know Everyone",
+        "number": 12
+    },
+    {
+        "title": "King Must Choose Suitable People",
+        "number": 13
+    },
+    {
+        "title": "King Must Reward and Punish",
+        "number": 14
+    },
+    {
+        "title": "Lack of Assessment Damages",
+        "number": 15
+    },
+    {
+        "title": "Philosopher Mentions Parable",
+        "number": 16
+    },
+    {
+        "title": "Lion and Jackal Parable",
+        "number": 17
+    },
+    {
+        "title": "Philosopher Tells of Pious Jackal",
+        "number": 18
+    },
+    {
+        "title": "Pack Denounces Jackal",
+        "number": 19
+    },
+    {
+        "title": "Jackal Is not Accountable for Pack's Actions",
+        "number": 20
+    },
+    {
+        "title": "Sins Depend only on One's Actions",
+        "number": 21
+    },
+    {
+        "title": "Sin Is Independent from Place",
+        "number": 22
+    },
+    {
+        "title": "Jackal's Heart Is Distant from Others",
+        "number": 23
+    },
+    {
+        "title": "Lion Meets with Jackal",
+        "number": 24
+    },
+    {
+        "title": "Lion Hears of Jackal",
+        "number": 25
+    },
+    {
+        "title": "Lion Verifies Jackal's Qualities",
+        "number": 26
+    },
+    {
+        "title": "Lion Offers Viziership",
+        "number": 27
+    },
+    {
+        "title": "King Must not Impose Service",
+        "number": 28
+    },
+    {
+        "title": "Jackal Declines Position",
+        "number": 29
+    },
+    {
+        "title": "Lion Has Eager Candidates",
+        "number": 30
+    },
+    {
+        "title": "Lion Does not Excuse Jackal",
+        "number": 31
+    },
+    {
+        "title": "Two Kinds Serve Kings",
+        "number": 32
+    },
+    {
+        "title": "Good Advisor Is Hated",
+        "number": 33
+    },
+    {
+        "title": "Threats against Good Advisor",
+        "number": 34
+    },
+    {
+        "title": "Good Advisor Cannot Last",
+        "number": 35
+    },
+    {
+        "title": "Lion Promises Jackal Protection",
+        "number": 36
+    },
+    {
+        "title": "Jackal Wants to Remain Carefree",
+        "number": 37
+    },
+    {
+        "title": "Kings' Advisors Suffer",
+        "number": 38
+    },
+    {
+        "title": "Peace over Wealth",
+        "number": 39
+    },
+    {
+        "title": "Lion Reassures Jackal",
+        "number": 40
+    },
+    {
+        "title": "Jackal Gives Conditions for Service",
+        "number": 41
+    },
+    {
+        "title": "Jackal Vows Devotion on His Terms",
+        "number": 42
+    },
+    {
+        "title": "Lion Commits to Conditions",
+        "number": 43
+    },
+    {
+        "title": "Jackal Excels in Position",
+        "number": 44
+    },
+    {
+        "title": "Conspiracy against Jackal",
+        "number": 45
+    },
+    {
+        "title": "Jackal's Status Stirs Jealousy",
+        "number": 46
+    },
+    {
+        "title": "Schemers Frame Jackal",
+        "number": 47
+    },
+    {
+        "title": "Scheme Triggers Lion's Rage",
+        "number": 48
+    },
+    {
+        "title": "Schemers to Impart Difficult News",
+        "number": 49
+    },
+    {
+        "title": "Schemers Accuse Jackal",
+        "number": 50
+    },
+    {
+        "title": "Schemers Say Jackal Is Unlikely to Steal",
+        "number": 51
+    },
+    {
+        "title": "Schemers Demand Harshest Punishment",
+        "number": 52
+    },
+    {
+        "title": "Character Is Difficult to Know",
+        "number": 53
+    },
+    {
+        "title": "Schemers Suggest Searching Jackal's House",
+        "number": 54
+    },
+    {
+        "title": "Schemers Say Trickery Is always Exposed",
+        "number": 55
+    },
+    {
+        "title": "Schemers Claim that Suspicions Are Confirmed",
+        "number": 56
+    },
+    {
+        "title": "Schemers Find False Piety Damning",
+        "number": 57
+    },
+    {
+        "title": "Schemers Say Jackal Is an Ungrateful Traitor",
+        "number": 58
+    },
+    {
+        "title": "Schemer Feigns Objectivity",
+        "number": 59
+    },
+    {
+        "title": "Schemers Urge Quick Investigation",
+        "number": 60
+    },
+    {
+        "title": "Schemers Say Jackal Will Manipulate Lion",
+        "number": 61
+    },
+    {
+        "title": "Schemers Incite Lion's Suspicion",
+        "number": 62
+    },
+    {
+        "title": "Lion Asks Jackal about Meat",
+        "number": 63
+    },
+    {
+        "title": "Lion Asks Steward about Meat",
+        "number": 64
+    },
+    {
+        "title": "Meat Is Found in Jackal's House",
+        "number": 65
+    },
+    {
+        "title": "Wolf Steps In",
+        "number": 66
+    },
+    {
+        "title": "Jackal Pleads Innocence",
+        "number": 67
+    },
+    {
+        "title": "Lion Must Punish Jackal",
+        "number": 68
+    },
+    {
+        "title": "Lion Has Jackal Arrested",
+        "number": 69
+    },
+    {
+        "title": "Courtiers Are Amazed at Lion's Unawareness",
+        "number": 70
+    },
+    {
+        "title": "Courtiers Expect Jackal's Pardon",
+        "number": 71
+    },
+    {
+        "title": "False Message and Death Sentence",
+        "number": 72
+    },
+    {
+        "title": "Mother\u2019s First Speech",
+        "number": 73
+    },
+    {
+        "title": "Lion's Mother Delays Execution",
+        "number": 74
+    },
+    {
+        "title": "Mother Questions Lion",
+        "number": 75
+    },
+    {
+        "title": "The Intelligent Deliberates",
+        "number": 76
+    },
+    {
+        "title": "Haste Causes Regret",
+        "number": 77
+    },
+    {
+        "title": "Kings Need Deliberateness Most",
+        "number": 78
+    },
+    {
+        "title": "Chain of Dependence up to King's Virtues",
+        "number": 79
+    },
+    {
+        "title": "King to Consider People's Ranks",
+        "number": 80
+    },
+    {
+        "title": "People Scheme against Each Other",
+        "number": 81
+    },
+    {
+        "title": "King to Be Aware of Schemes",
+        "number": 82
+    },
+    {
+        "title": "Mother Finds Accusation Absurd",
+        "number": 83
+    },
+    {
+        "title": "Lion Tested and Praised Jackal",
+        "number": 84
+    },
+    {
+        "title": "Lion Tested and Approved Jackal",
+        "number": 85
+    },
+    {
+        "title": "Jackal Has Shown Integrity",
+        "number": 86
+    },
+    {
+        "title": "Mother Warns of Conspiracy",
+        "number": 87
+    },
+    {
+        "title": "Kings Must not Delegate Their Own Duties",
+        "number": 88
+    },
+    {
+        "title": "Kings' Inattention Is Harmful",
+        "number": 89
+    },
+    {
+        "title": "Kings Should Investigate in Various Ways",
+        "number": 90
+    },
+    {
+        "title": "Courtiers Must Avoid Mistakes",
+        "number": 91
+    },
+    {
+        "title": "Deliberateness Prevents Regret",
+        "number": 92
+    },
+    {
+        "title": "Vision Alone May Deceive",
+        "number": 93
+    },
+    {
+        "title": "King Must Investigate Thoroughly",
+        "number": 94
+    },
+    {
+        "title": "Meat Is Tested with Three Senses",
+        "number": 95
+    },
+    {
+        "title": "Wine Is Tested with Three Senses",
+        "number": 96
+    },
+    {
+        "title": "Imaginary Hair in Eye Taken for Real",
+        "number": 97
+    },
+    {
+        "title": "Firefly Is Mistaken for Fire",
+        "number": 98
+    },
+    {
+        "title": "King Should Have Investigated",
+        "number": 99
+    },
+    {
+        "title": "Jackal Eats no Meat",
+        "number": 100
+    },
+    {
+        "title": "Jackal Gave Back Meat",
+        "number": 101
+    },
+    {
+        "title": "Accusing Jackal after Testing Him Is Absurd",
+        "number": 102
+    },
+    {
+        "title": "Jackal Is Unlikely to Steal Meat",
+        "number": 103
+    },
+    {
+        "title": "Jackal Is Least Likely to Steal",
+        "number": 104
+    },
+    {
+        "title": "King Must Investigate Now",
+        "number": 105
+    },
+    {
+        "title": "The Inferior always Envy the Superior",
+        "number": 106
+    },
+    {
+        "title": "Jackal's Superiority Causes Envy",
+        "number": 107
+    },
+    {
+        "title": "Investigation Would Clear Jackal",
+        "number": 108
+    },
+    {
+        "title": "Jackal Has Many Enviers",
+        "number": 109
+    },
+    {
+        "title": "Jackal's Foes Perhaps Hid Meat",
+        "number": 110
+    },
+    {
+        "title": "Competition and Envy Are Universal",
+        "number": 111
+    },
+    {
+        "title": "Kite's Booty Attracts Competitors",
+        "number": 112
+    },
+    {
+        "title": "Dog's Bone Attracts Competitors",
+        "number": 113
+    },
+    {
+        "title": "Schemers Pursue Only Own Benefit",
+        "number": 114
+    },
+    {
+        "title": "King Must Protect Himself",
+        "number": 115
+    },
+    {
+        "title": "Lack of Good Advisors Is Damaging",
+        "number": 116
+    },
+    {
+        "title": "King Must not Forsake Good People",
+        "number": 117
+    },
+    {
+        "title": "Jackal does not Need Lion",
+        "number": 118
+    },
+    {
+        "title": "Lion Benefited from Jackal",
+        "number": 119
+    },
+    {
+        "title": "King's Kindness Is Scholar's Merit",
+        "number": 120
+    },
+    {
+        "title": "Jackal Toiled for Lion",
+        "number": 121
+    },
+    {
+        "title": "Jackal Hid no Secrets from Lion",
+        "number": 122
+    },
+    {
+        "title": "Jackal Is Unmatched",
+        "number": 123
+    },
+    {
+        "title": "Such Advisors Are Like Family",
+        "number": 124
+    },
+    {
+        "title": "Courtier Exonerates Jackal",
+        "number": 125
+    },
+    {
+        "title": "Lion Is Convinced",
+        "number": 126
+    },
+    {
+        "title": "Jackal Begins Defense",
+        "number": 127
+    },
+    {
+        "title": "Jackal Requests Investigation",
+        "number": 128
+    },
+    {
+        "title": "Lion Investigates Plotters",
+        "number": 129
+    },
+    {
+        "title": "Mother's Second Speech",
+        "number": 130
+    },
+    {
+        "title": "Mother Reaffirms Intrigue",
+        "number": 131
+    },
+    {
+        "title": "Lion Must not Tolerate Misdeeds",
+        "number": 132
+    },
+    {
+        "title": "Lion Must Reject Slander without Evidence",
+        "number": 133
+    },
+    {
+        "title": "Lion Must Punish Plotters",
+        "number": 134
+    },
+    {
+        "title": "Punishment Shall Deter Further Misdeeds",
+        "number": 135
+    },
+    {
+        "title": "Lion Must not Underestimate Wrongdoers",
+        "number": 136
+    },
+    {
+        "title": "People Who Are Not to Be Brought Back",
+        "number": 137
+    },
+    {
+        "title": "Grass Rope Ties Elephant",
+        "number": 138
+    },
+    {
+        "title": "Lion Should Trust Jackal",
+        "number": 139
+    },
+    {
+        "title": "Lion Should Reinstate Jackal",
+        "number": 140
+    },
+    {
+        "title": "The Wronged Person Need not Be Feared",
+        "number": 141
+    },
+    {
+        "title": "The Intelligent Must Rank People by Character",
+        "number": 142
+    },
+    {
+        "title": "Whom not to Reinstate",
+        "number": 143
+    },
+    {
+        "title": "The Faithless Should Be Given Up",
+        "number": 144
+    },
+    {
+        "title": "The Irascible Should Be Given Up",
+        "number": 145
+    },
+    {
+        "title": "The Irreconcilable Should Be Given Up",
+        "number": 146
+    },
+    {
+        "title": "The Hedonistic Should Be Given Up",
+        "number": 147
+    },
+    {
+        "title": "Cutting off Some People Is Gain",
+        "number": 148
+    },
+    {
+        "title": "Some People Should Never Be Cut Off",
+        "number": 149
+    },
+    {
+        "title": "The Vile To Be Cut Off",
+        "number": 150
+    },
+    {
+        "title": "People Who Should Be Kept",
+        "number": 151
+    },
+    {
+        "title": "Whom to Reinstate",
+        "number": 152
+    },
+    {
+        "title": "The Faithful Should Be Kept",
+        "number": 153
+    },
+    {
+        "title": "Keeping the Virtuous Is Beneficial",
+        "number": 154
+    },
+    {
+        "title": "The Pious Should Be Kept",
+        "number": 155
+    },
+    {
+        "title": "Jackal Has Been Tested",
+        "number": 156
+    },
+    {
+        "title": "Lion Apologizes to Jackal",
+        "number": 157
+    },
+    {
+        "title": "Lion Values Jackal More",
+        "number": 158
+    },
+    {
+        "title": "Jackal Laments Mistreatment",
+        "number": 159
+    },
+    {
+        "title": "Lion Wants to Reinstate Jackal",
+        "number": 160
+    },
+    {
+        "title": "Critical Friend Is Rare",
+        "number": 161
+    },
+    {
+        "title": "Forgiving Friend Is Rare",
+        "number": 162
+    },
+    {
+        "title": "Jackal's Speech",
+        "number": 163
+    },
+    {
+        "title": "Jackal Fears Future Plots",
+        "number": 164
+    },
+    {
+        "title": "Untrue Friends Seek Only Their Own Benefit",
+        "number": 165
+    },
+    {
+        "title": "Whom One Must Trust",
+        "number": 166
+    },
+    {
+        "title": "Jackal Announces Criticism",
+        "number": 167
+    },
+    {
+        "title": "Lion Must Accept Refusal",
+        "number": 168
+    },
+    {
+        "title": "Jackal is Disappointed at Lion",
+        "number": 169
+    },
+    {
+        "title": "Lion Believed the Accusation",
+        "number": 170
+    },
+    {
+        "title": "The Mistreated Cannot Be Trusted",
+        "number": 171
+    },
+    {
+        "title": "Jackal Is Reluctant to Trust Lion Again",
+        "number": 172
+    },
+    {
+        "title": "King Must not Trust the Wrongfully Punished ",
+        "number": 173
+    },
+    {
+        "title": "King Must not Trust the Deposed",
+        "number": 174
+    },
+    {
+        "title": "King Must not Trust the Extorted",
+        "number": 175
+    },
+    {
+        "title": "King Must not Trust Someone Denied Honor",
+        "number": 176
+    },
+    {
+        "title": "King Must not Trust the Unrewarded",
+        "number": 177
+    },
+    {
+        "title": "King Must not Trust One Singled out for Punishment",
+        "number": 178
+    },
+    {
+        "title": "King Must not Trust One Passed Over in Favors",
+        "number": 179
+    },
+    {
+        "title": "King Must not Trust Someone Denied Justice",
+        "number": 180
+    },
+    {
+        "title": "King Must not Trust the Humiliated",
+        "number": 181
+    },
+    {
+        "title": "King Must not Trust Someone Denied Pardon",
+        "number": 182
+    },
+    {
+        "title": "King Must not Trust the Greedy and Unsatisfied",
+        "number": 183
+    },
+    {
+        "title": "Kind Must not Trust the Adversarial",
+        "number": 184
+    },
+    {
+        "title": "King Must Consider the Untrustworthy as Foes",
+        "number": 185
+    },
+    {
+        "title": "Lion's Foes Were Able to Attack Jackal",
+        "number": 186
+    },
+    {
+        "title": "Jackal Was Accused despite His Loyalty",
+        "number": 187
+    },
+    {
+        "title": "Lion Deserves Harangue for Bad Judgment",
+        "number": 188
+    },
+    {
+        "title": "Jackal Justifies Harangue",
+        "number": 189
+    },
+    {
+        "title": "Jackal Credits King's Mother",
+        "number": 190
+    },
+    {
+        "title": "Lion Expects Credit for Admitting Error",
+        "number": 191
+    },
+    {
+        "title": "Jackal Fears a Vulnerable Relationship with Lion",
+        "number": 192
+    },
+    {
+        "title": "Jackal Fears Accusation of Holding Grudge",
+        "number": 193
+    },
+    {
+        "title": "Jackal States Gist of Chapter",
+        "number": 194
+    },
+    {
+        "title": "Jackal Expects Lion's Mistrust",
+        "number": 195
+    },
+    {
+        "title": "Jackal Expects Follow Up Schemes",
+        "number": 196
+    },
+    {
+        "title": "Jackal's Inner Struggle about Return",
+        "number": 197
+    },
+    {
+        "title": "Lion Must Accept Jackal's Mistrust of Courtiers",
+        "number": 198
+    },
+    {
+        "title": "Jackal Fears Renewed Schemes",
+        "number": 199
+    },
+    {
+        "title": "Jackal Fears Lion's Renewed Wavering",
+        "number": 200
+    },
+    {
+        "title": "Schemers Will Attempt to Cover Up Their Plot",
+        "number": 201
+    },
+    {
+        "title": "Jackal Fears Lion's Gullibility",
+        "number": 202
+    },
+    {
+        "title": "Jackal Gives Lion the Choice",
+        "number": 203
+    },
+    {
+        "title": "Jackal Gives Conditions for Return",
+        "number": 204
+    },
+    {
+        "title": "Jackal Renounces Lion's Service",
+        "number": 205
+    },
+    {
+        "title": "If Unsure, Lion Must Excuse Jackal",
+        "number": 206
+    },
+    {
+        "title": "Lion Says He Tested Jackal",
+        "number": 207
+    },
+    {
+        "title": "Lion Confirms Jackal's Status",
+        "number": 208
+    },
+    {
+        "title": "Lion Vows to Disregard Future Slander",
+        "number": 209
+    },
+    {
+        "title": "The Noble Forgives Misdeeds for One Good Deed",
+        "number": 210
+    },
+    {
+        "title": "Lion Repents and Reconciles Jackal",
+        "number": 211
+    },
+    {
+        "title": "Lion Keeps His Promise",
+        "number": 212
+    },
+    {
+        "title": "Lion Hopes for Renewed Mutual Trust",
+        "number": 213
+    },
+    {
+        "title": "Jackal Quits",
+        "number": 214
+    },
+    {
+        "title": "Jackal Insists on Refusal",
+        "number": 215
+    },
+    {
+        "title": "Lion Reinstates Jackal",
+        "number": 216
+    },
+    {
+        "title": "Lion Punishes Schemers",
+        "number": 217
+    },
+    {
+        "title": "Lion Is Pleased with Jackal",
+        "number": 218
+    },
+    {
+        "title": "Gist Mistreated Is Reinstated",
+        "number": 219
+    },
+    {
+        "title": "Philosopher Comments",
+        "number": 220
+    },
+    {
+        "title": "People Should Learn from Parable",
+        "number": 221
+    },
+    {
+        "title": "End of Chapter",
+        "number": 222
+    }
+]
