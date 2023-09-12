@@ -52,26 +52,25 @@ export class ManuscriptPageGalleryCommandBarComponent implements OnDestroy{
         this.manuscriptsInfo = manuscriptsData['manuscriptsInfo'];
       });
     this.items = [
-      {
-        label: 'Select MS',
-        icon: 'book',
-        styleClass: 'menucus',
-        items: [
-          { label: 'Pococke 400', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P400'),this.ngOnDestroy()}},
-          { label: 'Parker 578', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('CCCP578')}},
-          { label: 'Paris 5881', icon: 'book',command: () =>{ this.navigateToTheSelectedManuscript('P5881'),this.ngOnDestroy()} },
-          { label: 'Paris 3465', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3465')} },
-          { label: 'Paris 3466', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3466')}},
-          { label: 'Ayasofya 4095', icon: 'book' ,command: () => {this.navigateToTheSelectedManuscript('A4095')}},
-          { label: 'Paris 3471', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3471')}},
-          { label: 'Paris 3475', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3475')} },
-          { label: 'Paris 3473', icon: 'book',command: () =>{ this.navigateToTheSelectedManuscript('P3473')} },
-        ]
-      },
-      {label: 'Facsimile-Text', styleClass: 'menucus', icon: 'insert_drive_file',command:()=> this.navigateToFacsimileText()},
-     /* {label: 'MS Description', icon: 'info', styleClass: 'menucus'},
-      {label: 'Fullscreen', styleClass: 'menucus', icon: 'fullscreen'}*/
-    ];
+       /*{
+         label: 'Select MS',
+         icon: 'book',
+         styleClass: 'menucus',
+         items: [
+           { label: 'Pococke 400', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P400'),this.ngOnDestroy()}},
+           { label: 'Parker 578', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('CCCP578')}},
+           { label: 'Paris 5881', icon: 'book',command: () =>{ this.navigateToTheSelectedManuscript('P5881'),this.ngOnDestroy()} },
+           { label: 'Paris 3465', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3465')} },
+           { label: 'Paris 3466', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3466')}},
+           { label: 'Ayasofya 4095', icon: 'book' ,command: () => {this.navigateToTheSelectedManuscript('A4095')}},
+           { label: 'Paris 3471', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3471')}},
+           { label: 'Paris 3475', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3475')} },
+           { label: 'Paris 3473', icon: 'book',command: () =>{ this.navigateToTheSelectedManuscript('P3473')} },
+         ]
+       },
+       {label: 'Facsimile-Transcription', styleClass: 'menucus', icon: 'insert_drive_file',command:()=> this.navigateToFacsimileText()},
+*/
+     ];
   }
 
   hasSubItems(item: any): boolean {

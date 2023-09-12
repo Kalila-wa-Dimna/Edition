@@ -16,6 +16,9 @@ import { ManuscriptsPanelComponent } from './layout/nav-panel/manuscripts-panel/
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   imports: [
@@ -31,6 +34,9 @@ import { MatMenuModule } from '@angular/material/menu';
     HttpClientModule,
     MatCardModule,
     MatMenuModule,
+    MatTabsModule,
+    ReactiveFormsModule,
+    MatInputModule,
   ],
   declarations: [
     LayoutComponent,

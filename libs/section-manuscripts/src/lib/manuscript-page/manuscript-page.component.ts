@@ -1,8 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit, OnDestroy, PLATFORM_ID, Inject} from '@angular/core';
 import {ManuscriptPageService} from "../services/manuscript-page.resolver";
-import {ActivatedRoute, NavigationExtras, Router} from "@angular/router";
+import {ActivatedRoute,  Router} from "@angular/router";
 import {combineLatest, Observable, Subscription} from "rxjs";
-import {map} from "rxjs/operators";
 import { isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'kalila-edition-manuscript-page',
