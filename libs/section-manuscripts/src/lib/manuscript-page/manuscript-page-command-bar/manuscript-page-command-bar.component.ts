@@ -110,8 +110,19 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
     this.data=this.route.snapshot.data;
 
       this.items =   [
+        {
+          label: 'Font resize',
+          icon: 'format_size',
+          styleClass: 'menucus',
+          items: [
+            { label: 'Font size', icon: 'add', command: () => this.increaseFontSize()
+            },
+            { label: 'Font size', icon: 'remove',command:() => this.decreaseFontSize()
+            }
+          ]
+        },
       {
-        label: 'Select MS',
+        /*label: 'Select MS',
         icon: 'book',
         styleClass: 'menucus',
         items: [
@@ -131,27 +142,25 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
         icon: 'description',
         styleClass: 'menucus',
         command:() => this.openNavbar(),
-      },
-      { label: 'Prev',  icon:'arrow_back_ios_new' ,command:()=> {this.navigateToThePreviousPage(), this.ngOnDestroy()}},
+      }, {*/
+
+       label: 'Prev',  icon:'arrow_back_ios_new' ,command:()=> {this.navigateToThePreviousPage(), this.ngOnDestroy()}},
       { label: ' ',  icon:' '},
 
       { label: 'Next',  icon: 'arrow_forward_ios', command:()=> {this.navigateToTheNextPage(), this.ngOnDestroy()}},
 
-      {
-        label: 'Resize',
-        icon: 'format_size',
-        styleClass: 'menucus',
-        items: [
-          { label: 'Font size', icon: 'add', command: () => this.increaseFontSize()
-          },
-          { label: 'Font size', icon: 'remove',command:() => this.decreaseFontSize()
-          },
-          {label:'Facsimile size',icon:'add',command:()=>  this.increaseFacsimileSize()
-          },
-          { label: 'Facsimile size', icon: 'remove',command:()=> this.decreaseFacsimileSize() },
-        ]
-      },
-      { label: 'Gallery', styleClass: 'menucus', icon: 'photo_library',command:()=> {this.openGallery(), this.ngOnDestroy()} },
+        {
+          label: 'Facsimile resize',
+          icon: 'format_size',
+          styleClass: 'menucus',
+          items: [
+            {label:'Facsimile size',icon:'add',command:()=>  this.increaseFacsimileSize()
+            },
+            { label: 'Facsimile size', icon: 'remove',command:()=> this.decreaseFacsimileSize() },
+          ]
+        },
+
+      /*{ label: 'Gallery', styleClass: 'menucus', icon: 'photo_library',command:()=> {this.openGallery(), this.ngOnDestroy()} },
       /* { label: 'New Window', icon: 'info', styleClass: 'menucus'  },
       /* { label: 'MS Description', icon: 'info', styleClass: 'menucus' ,command:()=> this.openNewWindow()},*/
     /*  { label: 'Fullscreen', styleClass: 'menucus', icon: 'fullscreen' }*/
@@ -165,7 +174,7 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
       });
   }
 
-  async navigateToTheSelectedManuscript(manuscriptId: string) {
+  /*async navigateToTheSelectedManuscript(manuscriptId: string) {
       const chapter = this.chapter;
     const { page: pageNumber, flag } = await this.getFirstPageForChapter(manuscriptId.toString());
       if(flag===1) {
@@ -182,8 +191,8 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
         );
       }
   }
-
-
+*/
+/*
   getFirstPageForChapter(manuscriptId: string): { page: any, flag: number } {
     // Reset allChaptersData before using it
     const chapterEntry = this.chapterToMsData.find(entry =>
@@ -205,7 +214,7 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
     }
   }
 
-
+*/
 
   navigateToTheNextPage(): void {
     if (this.allPagesData && this.pageNumber) {

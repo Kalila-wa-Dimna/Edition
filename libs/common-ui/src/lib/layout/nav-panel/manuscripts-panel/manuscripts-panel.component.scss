@@ -1,3 +1,14 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.G-button{
+  width: 100%;
+
+}
+
+.G-button:hover{
+  background-color: white;
 }

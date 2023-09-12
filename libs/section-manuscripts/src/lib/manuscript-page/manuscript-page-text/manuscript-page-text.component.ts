@@ -1,9 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {FontSizeService} from "../../services/font-size.service";
-import {Observable, combineLatest, Subscription} from 'rxjs';
-import {ManuscriptPageService} from "../../services/manuscript-page.resolver";
-import {map} from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FontSizeService } from '../../services/font-size.service';
+import { Observable, combineLatest, Subscription } from 'rxjs';
+import { ManuscriptPageService } from '../../services/manuscript-page.resolver';
+import { map } from 'rxjs/operators';
 
 interface UnitData {
   unitCodes: string[];
@@ -15,10 +15,7 @@ interface UnitData {
   templateUrl: './manuscript-page-text.component.html',
   styleUrls: ['./manuscript-page-text.component.scss'],
 })
-
-
 export class ManuscriptPageTextComponent implements OnInit, OnDestroy {
-
   pageData$!: Observable<any>;
   combinedData$!: Observable<any>;
   text: any;
@@ -32,21 +29,23 @@ export class ManuscriptPageTextComponent implements OnInit, OnDestroy {
   fontSize;
   sub?: Subscription;
 
-  constructor(private manuscriptPageService: ManuscriptPageService, private route: ActivatedRoute, private fontSizeService: FontSizeService) {
-
+  constructor(
+    private manuscriptPageService: ManuscriptPageService,
+    private route: ActivatedRoute,
+    private fontSizeService: FontSizeService
+  ) {
     this.fontSize = this.fontSizeService.getFontSize();
     this.fontSizeService.getFontSizeObservable().subscribe((fontSize) => {
       this.fontSize = fontSize;
-      console.log(this.fontSize,'fontsize');
+      console.log(this.fontSize, 'fontsize');
     });
   }
 
   ngOnInit() {
     this.readData(this.route.snapshot.data);
 
-
-    this.sub = this.route.data.subscribe(data => {
-      const {pageData} = data;
+    this.sub = this.route.data.subscribe((data) => {
+      const { pageData } = data;
       this.readData(pageData);
     });
   }
@@ -67,7 +66,7 @@ export class ManuscriptPageTextComponent implements OnInit, OnDestroy {
       const [unitLine, unitWordIndex] = this.unitPlaces[i];
 
       if (unitLine === lineIndex && unitWordIndex === wordIndex) {
-        const unitCode = this.unitNames[i][0]; console.log(unitCode)
+        const unitCode = this.unitNames[i][0];
         const unitName = this.unitNames[i][1];
         const shortenedUnitName = unitCode.substr(0, 2) + unitName;
         unitCodes.push(unitCode);
@@ -94,5 +93,4 @@ export class ManuscriptPageTextComponent implements OnInit, OnDestroy {
       this.sub.unsubscribe();
     }
   }
-
 }

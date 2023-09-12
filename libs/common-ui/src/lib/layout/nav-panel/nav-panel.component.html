@@ -13,23 +13,27 @@
 
   <mat-accordion>
     <mat-expansion-panel
-      (opened)="manuscriptPanelOpen = true"
-      (closed)="manuscriptPanelOpen = false"
+      [expanded]="expanded.manuscriptPanelOpen"
+      (opened)="expanded.manuscriptPanelOpen = true"
+      (closed)="expanded.manuscriptPanelOpen = false"
     >
       <mat-expansion-panel-header>
         <mat-panel-title
           ><span class="panel-title"><span>Manuscripts</span></span>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <a mat-button [routerLink]="['/manuscripts']">Overview</a>
-      <kd-manuscripts-panel *ngIf="manuscriptPanelOpen"></kd-manuscripts-panel>
+      <a mat-button [routerLink]="['/manuscripts']">Manuscripts library</a>
+      <kd-manuscripts-panel
+        *ngIf="expanded.manuscriptPanelOpen"
+      ></kd-manuscripts-panel>
       <mat-divider></mat-divider>
     </mat-expansion-panel>
     <mat-divider></mat-divider>
 
     <mat-expansion-panel
-      (opened)="collationPanelOpen = true"
-      (closed)="collationPanelOpen = false"
+      [expanded]="expanded.collationPanelOpen"
+      (opened)="expanded.collationPanelOpen = true"
+      (closed)="expanded.collationPanelOpen = false"
     >
       <mat-expansion-panel-header>
         <mat-panel-title
@@ -38,10 +42,16 @@
       </mat-expansion-panel-header>
       <a mat-button [routerLink]="['/collations']">Overview</a>
       <mat-divider></mat-divider>
-      <kd-collations-panel *ngIf="collationPanelOpen"></kd-collations-panel>
+      <kd-collations-panel
+        *ngIf="expanded.collationPanelOpen"
+      ></kd-collations-panel>
     </mat-expansion-panel>
     <mat-divider></mat-divider>
-    <mat-expansion-panel>
+    <mat-expansion-panel
+      [expanded]="expanded.guidesPanelOpen"
+      (opened)="expanded.guidesPanelOpen = true"
+      (closed)="expanded.guidesPanelOpen = false"
+    >
       <mat-expansion-panel-header>
         <mat-panel-title>
           <span class="panel-title"><span>Guides</span></span>
