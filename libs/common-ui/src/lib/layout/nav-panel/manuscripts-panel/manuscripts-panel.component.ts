@@ -52,11 +52,6 @@ export class ManuscriptsPanelComponent  {
     })
   );
 
-
-  // Your existing code
-
-
-
   selectedIndex$ = combineLatest([this.allManuscripts$, this.route.data]).pipe(
     map(([all, data]) => {
       const current =

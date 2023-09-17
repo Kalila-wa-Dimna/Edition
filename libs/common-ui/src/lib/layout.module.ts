@@ -9,7 +9,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { NavPanelComponent } from './layout/nav-panel/nav-panel.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
-
 import { FooterModule } from './footer.module';
 import { CollationsPanelComponent } from './layout/nav-panel/collations-panel/collations-panel.component';
 import { ManuscriptsPanelComponent } from './layout/nav-panel/manuscripts-panel/manuscripts-panel.component';
