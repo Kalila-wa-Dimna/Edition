@@ -1,9 +1,16 @@
 <div class="image-container">
-<img
-  [src]="pagesEndPoint + facsimile"
-  [style.width]="facsimileSize"
-  class="image-size"
-  alt="Image"
-/>
 
+  <!--<div [formGroup]="form">
+    <mat-slider formControlName="facsimileS" min="0" max="150" step="20" showTickMarks discrete>
+      <input matSliderThumb>
+    </mat-slider>
+  </div>-->
+
+  <img
+    [src]="pagesEndPoint + facsimile"
+    [style.width]="facsimileSize"
+    class="image-size"
+    alt="Image"
+  />
 </div>
+

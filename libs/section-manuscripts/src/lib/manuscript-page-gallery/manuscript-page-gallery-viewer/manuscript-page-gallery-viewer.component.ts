@@ -41,7 +41,6 @@ export class ManuscriptPageGalleryViewerComponent implements OnInit, OnDestroy {
   }
 
   constructor( private route: ActivatedRoute, private _elementRef: ElementRef,@Inject(CONFIG_TOKEN) private config: IConfig,  @Inject(PLATFORM_ID) private platformId: Object ) {
-
     this.isBrowser = isPlatformBrowser(platformId);
     this._elementRef = _elementRef;
   }
@@ -53,7 +52,6 @@ export class ManuscriptPageGalleryViewerComponent implements OnInit, OnDestroy {
         src: this.pagesEndPoint + item.src,
         thumb: this.pagesEndPoint + item.thumb
       }));
-
     });
 
 
@@ -63,6 +61,7 @@ export class ManuscriptPageGalleryViewerComponent implements OnInit, OnDestroy {
     if (this.needRefresh) {
       this.lightGallery.refresh(this.data);
       this.lightGallery.openGallery();
+      this.lightGallery.refresh();
       this.needRefresh = false;
     }
   }
@@ -77,6 +76,10 @@ export class ManuscriptPageGalleryViewerComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.sub) {
       this.sub.unsubscribe();
+    }
+    if (this.lightGallery) {
+      // Close the gallery when the component is destroyed
+      this.lightGallery.closeGallery();
     }
   }
 

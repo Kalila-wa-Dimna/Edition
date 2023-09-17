@@ -5,69 +5,55 @@
 </mat-form-field>
 
 <mat-tab-group [selectedIndex]="(selectedIndex$|async)?.[0]">
-  <ng-template ngFor let-item [ngForOf]="(allManuscripts$ | async) ?? []" let-index="index">
+  <ng-template
+    ngFor
+    let-item
+    [ngForOf]="(allManuscripts$ | async) ?? []"
+    let-index="index"
+  >
     <mat-tab [label]="item.siglum">
-      <mat-tab-group>
-        <mat-tab label="Facsimile and Transcription" >
-          <button mat-button class="mat-button G-button"
-            [routerLink]="[
-              '/',
-              'manuscripts',
-              item.siglum,
-              item.first_chapter,
-              item.first_page
-            ]"
-          >Go to beginning...</button
-          >
+      <br />
+      <a
+        [routerLink]="['/', 'manuscripts', item.siglum, 'gallery']"
+        mat-flat-button
+        >Page gallery</a
+      >
+      <mat-divider></mat-divider>
+      <ng-container *ngIf="(manuscriptChapters$ | async)?.[index] as chapters;">
+        <ng-container *ngFor="let chapter of chapters; let i = index">
+          <ng-container *ngIf="chapters">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>Chapter {{ chapter.chapter }}</mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-panel-description>
+                <ng-container *ngIf="chapter.pages && chapter.pages.length > 0">
+                  Page Range: {{ chapter.pages[0].page_number }} -
+                  {{ chapter.pages[chapter.pages.length - 1].page_number }}
+                </ng-container>
+                <ng-container
+                  *ngIf="!chapter.pages || chapter.pages.length === 0"
+                >
+                  No Pages Found
+                </ng-container>
+              </mat-panel-description>
 
-        </mat-tab>
-        <mat-tab label="Manuscript gallery">
-          <button mat-button class="mat-button G-button"
-            [routerLink]="[
-              '/',
-              'manuscripts',
-              item.siglum,
-              'gallery'
-            ]"
-          >View</button>
-        </mat-tab>
-        <mat-tab label="Select page to read" >
-          <ng-container *ngIf="(manuscriptChapters$ | async)?.[index] as chapters;">
-            <ng-container *ngFor="let chapter of chapters; let i = index">
-              <ng-container *ngIf="chapters">
-                <mat-expansion-panel>
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>Chapter {{ chapter.chapter }}</mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <mat-panel-description>
-                    <ng-container *ngIf="chapter.pages && chapter.pages.length > 0">
-                      Page Range: {{ chapter.pages[0].page_number }} - {{ chapter.pages[chapter.pages.length - 1].page_number }}
-                    </ng-container>
-                    <ng-container *ngIf="!chapter.pages || chapter.pages.length === 0">
-                      No Pages Found
-                    </ng-container>
-                  </mat-panel-description>
-
-                  <div class="page-links">
-
-                    <ng-container *ngFor="let page of chapter.pages">
-                      <a
-                        mat-button
-                        class="panel"
-                        [routerLink]="['/'+page.page_link]"
-                        routerLinkActive="active"
-                      >
-                        {{ page.page_number }}
-                      </a>
-                    </ng-container>
-                  </div>
-                </mat-expansion-panel>
-              </ng-container>
-            </ng-container>
+              <div class="page-links">
+                <ng-container *ngFor="let page of chapter.pages">
+                  <a
+                    mat-button
+                    class="panel"
+                    [routerLink]="['/' + page.page_link]"
+                    routerLinkActive="active"
+                  >
+                    {{ page.page_number }}
+                  </a>
+                </ng-container>
+              </div>
+            </mat-expansion-panel>
           </ng-container>
-        </mat-tab>
-
-      </mat-tab-group>
+        </ng-container>
+      </ng-container>
     </mat-tab>
   </ng-template>
 </mat-tab-group>

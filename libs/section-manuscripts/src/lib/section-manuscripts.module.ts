@@ -33,7 +33,8 @@ import { FormsModule } from '@angular/forms';
 import { LightgalleryModule } from 'lightgallery/angular';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import { MatExpansionModule } from '@angular/material/expansion'; // Import MatExpansionModule
-
+import { MatSliderModule } from '@angular/material/slider';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
     imports: [
         CommonModule,
@@ -49,8 +50,9 @@ import { MatExpansionModule } from '@angular/material/expansion'; // Import MatE
         FormsModule,
         LightgalleryModule,
         MatSidenavModule,
-
-        MatExpansionModule
+        MatSliderModule,
+        MatExpansionModule,
+        ReactiveFormsModule
 
     ],
   providers: [FontSizeService, ManuscriptPageService],

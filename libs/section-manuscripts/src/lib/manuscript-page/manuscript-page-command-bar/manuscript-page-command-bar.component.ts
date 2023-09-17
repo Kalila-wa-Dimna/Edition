@@ -111,7 +111,7 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
 
       this.items =   [
         {
-          label: 'Font resize',
+          label: 'Resize font ',
           icon: 'format_size',
           styleClass: 'menucus',
           items: [
@@ -144,13 +144,13 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
         command:() => this.openNavbar(),
       }, {*/
 
-       label: 'Prev',  icon:'arrow_back_ios_new' ,command:()=> {this.navigateToThePreviousPage(), this.ngOnDestroy()}},
+       label: '',  icon:'arrow_back_ios_new' ,command:()=> {this.navigateToThePreviousPage(), this.ngOnDestroy()}},
       { label: ' ',  icon:' '},
 
-      { label: 'Next',  icon: 'arrow_forward_ios', command:()=> {this.navigateToTheNextPage(), this.ngOnDestroy()}},
+      { label: '',  icon: 'arrow_forward_ios', command:()=> {this.navigateToTheNextPage(), this.ngOnDestroy()}},
 
         {
-          label: 'Facsimile resize',
+          label: 'Resize facsimile ',
           icon: 'format_size',
           styleClass: 'menucus',
           items: [
