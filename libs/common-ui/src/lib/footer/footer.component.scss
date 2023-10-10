@@ -19,6 +19,9 @@
   :host {
     @include box-shadow($light-foreground);
   }
+  .content {
+    background-color: $dark-third-background;
+  }
 }
 
 :host-context(.dark-theme) {

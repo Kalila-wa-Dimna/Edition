@@ -76,15 +76,16 @@ $mat-accent-light: (
 
 $light-background: white;
 $light-background-alt: #edece8;
+$light-third-background: #d0cbc2;
 
 $light-foreground: black;
 
 $light-background-palette: (
   status-bar: mat.get-color-from-palette(mat.$grey-palette, 600),
-  app-bar: white,
+  app-bar: $light-background,
   background: $light-background,
   hover: darken($light-background, 4%),
-  card: #d0cbc2,
+  card: $light-third-background,
   dialog: $light-background,
   raised-button: $light-background,
   focused-button: darken($light-background, 12%),
