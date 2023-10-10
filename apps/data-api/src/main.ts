@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import express from 'express';
 import * as util from 'util';
 import * as fs from 'fs';
-import {filePath, imagePath} from "./constants";
+import { filePath, imagePath } from './constants';
 const readFile = util.promisify(fs.readFile);
 
 const app = express();
 
-
 app.use('/images', express.static(imagePath));
 
 app.get('/data/*', async (req, res) => {
+  //@ts-ignore
   const fileName = req.params[0];
   if (!fileName) {
     return res.status(400).json({ error: 'Missing file parameter' });
