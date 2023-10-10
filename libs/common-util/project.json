@@ -11,7 +11,8 @@
         "outputPath": "dist/libs/common-util",
         "main": "libs/common-util/src/index.ts",
         "tsConfig": "libs/common-util/tsconfig.lib.json",
-        "assets": ["libs/common-util/*.md"]
+        "assets": ["libs/common-util/*.md"],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "lint": {
