@@ -44,4 +44,4 @@ dev-deploy.sh
 
 apps/data-api/images
 
-pnpm-lock.yaml
+
