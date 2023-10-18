@@ -31,9 +31,12 @@
       "@kalila-edition/section-collations": [
         "libs/section-collations/src/index.ts"
       ],
-      "@kalila-edition/section-help": ["libs/section-help/src/index.ts"],
+      "@kalila-edition/section-help": [
+        "libs/section-help/src/index.ts"
+      ],
       "@kalila-edition/section-manuscript-description": [
         "libs/section-manuscript-description/src/index.ts"
+      ],
       "@kalila-edition/section-manuscripts": [
         "libs/section-manuscripts/src/index.ts"
       ]
