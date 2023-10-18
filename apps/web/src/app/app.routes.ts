@@ -38,4 +38,5 @@ export const appRoutes: Route[] = [
     loadChildren: () =>
       import('@kalila-edition/section-help').then((m) => m.SectionHelpModule),
   },
+
 ];

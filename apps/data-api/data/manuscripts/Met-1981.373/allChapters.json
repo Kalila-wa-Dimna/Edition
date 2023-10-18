@@ -1,0 +1,80 @@
+[
+    {
+        "chapter": "Lv",
+        "pages": []
+    },
+    {
+        "chapter": "Im",
+        "pages": []
+    },
+    {
+        "chapter": "Oc",
+        "pages": []
+    },
+    {
+        "chapter": "Mc",
+        "pages": []
+    },
+    {
+        "chapter": "Kd",
+        "pages": []
+    },
+    {
+        "chapter": "Km",
+        "pages": []
+    },
+    {
+        "chapter": "Ag",
+        "pages": []
+    },
+    {
+        "chapter": "Lj",
+        "pages": [
+            {
+                "index": 156,
+                "page_number": 156,
+                "page_link": "/manuscripts/Met-1981.373/Lj/156"
+            },
+            {
+                "index": 157,
+                "page_number": 157,
+                "page_link": "/manuscripts/Met-1981.373/Lj/157"
+            },
+            {
+                "index": 158,
+                "page_number": 158,
+                "page_link": "/manuscripts/Met-1981.373/Lj/158"
+            },
+            {
+                "index": 159,
+                "page_number": 159,
+                "page_link": "/manuscripts/Met-1981.373/Lj/159"
+            },
+            {
+                "index": 160,
+                "page_number": 160,
+                "page_link": "/manuscripts/Met-1981.373/Lj/160"
+            },
+            {
+                "index": 161,
+                "page_number": 161,
+                "page_link": "/manuscripts/Met-1981.373/Lj/161"
+            },
+            {
+                "index": 162,
+                "page_number": 162,
+                "page_link": "/manuscripts/Met-1981.373/Lj/162"
+            },
+            {
+                "index": 163,
+                "page_number": 163,
+                "page_link": "/manuscripts/Met-1981.373/Lj/163"
+            },
+            {
+                "index": 164,
+                "page_number": 164,
+                "page_link": "/manuscripts/Met-1981.373/Lj/164"
+            }
+        ]
+    }
+]

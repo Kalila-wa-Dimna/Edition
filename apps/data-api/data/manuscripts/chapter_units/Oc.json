@@ -1,0 +1,694 @@
+[
+    {
+        "title": "Chapter Title",
+        "number": 1
+    },
+    {
+        "title": "Abstract",
+        "number": 2
+    },
+    {
+        "title": "The King Understood Previous Chapter",
+        "number": 3
+    },
+    {
+        "title": "Owls and Crows",
+        "number": 4
+    },
+    {
+        "title": "The King Asks If Foes Can Become a Friends",
+        "number": 4
+    },
+    {
+        "title": "The King Asks about Fawning Foes",
+        "number": 5
+    },
+    {
+        "title": "The Philosopher Answers, Foes Cannot be Trusted",
+        "number": 6
+    },
+    {
+        "title": "Foes May Take Advantage",
+        "number": 7
+    },
+    {
+        "title": "The Parable of the Owls and the Crows",
+        "number": 8
+    },
+    {
+        "title": "The King Requests the Parable",
+        "number": 9
+    },
+    {
+        "title": "The Crow Kingdom and the Owl Kingdom",
+        "number": 10
+    },
+    {
+        "title": "The Owls Attack the Crows",
+        "number": 11
+    },
+    {
+        "title": "The Morning in the Battle Aftermath",
+        "number": 12
+    },
+    {
+        "title": "The Crow King Evaluates the Damage",
+        "number": 13
+    },
+    {
+        "title": "The Crow King Fears Recurring Aggression",
+        "number": 14
+    },
+    {
+        "title": "Input from the Five Wise Crows is Sought",
+        "number": 15
+    },
+    {
+        "title": "The Crow King Asks the First Crow",
+        "number": 16
+    },
+    {
+        "title": "Escape Should Be the Recourse",
+        "number": 17
+    },
+    {
+        "title": "The Crow Kings Asks the Second Crow",
+        "number": 18
+    },
+    {
+        "title": "Escape Is No Recourse",
+        "number": 19
+    },
+    {
+        "title": "The Downsides of Escape Are Explained",
+        "number": 20
+    },
+    {
+        "title": "Recourse Should be Made to Planning and Preparing",
+        "number": 21
+    },
+    {
+        "title": "The Crows Should Fight Back the Owls",
+        "number": 22
+    },
+    {
+        "title": "There Is Hope for Victory",
+        "number": 23
+    },
+    {
+        "title": "Escape Should Not Be the First Choice",
+        "number": 24
+    },
+    {
+        "title": "Escape Is To Be Sought Only at Defeat",
+        "number": 25
+    },
+    {
+        "title": "The Crow King Asks the Third Crow",
+        "number": 26
+    },
+    {
+        "title": "The Crow Rejects Prior Input",
+        "number": 27
+    },
+    {
+        "title": "Recourse Should be Made to Reconnaissance",
+        "number": 28
+    },
+    {
+        "title": "The Information Shall Determine a Truce or Tribute",
+        "number": 29
+    },
+    {
+        "title": "Truce for a Tribute Should Be Sought",
+        "number": 30
+    },
+    {
+        "title": "Peace Is Worth the Tribute",
+        "number": 31
+    },
+    {
+        "title": "Peace Should Come Sooner than Later",
+        "number": 32
+    },
+    {
+        "title": "Recourse Is in Finding Allies and Fighting",
+        "number": 33
+    },
+    {
+        "title": "The Crow King Asks the Fourth Crow",
+        "number": 34
+    },
+    {
+        "title": "Recourse Is in Abandoning Home",
+        "number": 35
+    },
+    {
+        "title": "Paying Tributes Is Debasing",
+        "number": 36
+    },
+    {
+        "title": "Recourse Is in Going to the Desert",
+        "number": 37
+    },
+    {
+        "title": "Accepting Oppression Aids Foes",
+        "number": 38
+    },
+    {
+        "title": "The Owls Would Overdemand",
+        "number": 39
+    },
+    {
+        "title": "Foes Should Be Kept at the Right Distance",
+        "number": 40
+    },
+    {
+        "title": "Gauging Distances Is Like Maximizing Shadows",
+        "number": 41
+    },
+    {
+        "title": "The Owls Will Not Accept the Pact",
+        "number": 42
+    },
+    {
+        "title": "The Crows Should Be Wary and Prepared",
+        "number": 43
+    },
+    {
+        "title": "Recourse Is in Fighting the War and Enduring",
+        "number": 44
+    },
+    {
+        "title": "The Crow King Asks the Fifth Crow, a Spy",
+        "number": 45
+    },
+    {
+        "title": "The Crow Should Scheme",
+        "number": 46
+    },
+    {
+        "title": "The Spy Rejects Fighting",
+        "number": 47
+    },
+    {
+        "title": "The Crows Should Not Overestimate Themselves",
+        "number": 48
+    },
+    {
+        "title": "The Foolish Underestimate Their Foes",
+        "number": 49
+    },
+    {
+        "title": "The Intelligent Never Underestimate Their Foes",
+        "number": 50
+    },
+    {
+        "title": "The Spy Expresses Fear",
+        "number": 51
+    },
+    {
+        "title": "The Crows Should Not Belittle the Enemy",
+        "number": 52
+    },
+    {
+        "title": "The Spy Makes a Suggestion",
+        "number": 53
+    },
+    {
+        "title": "Diplomacy Supersedes Force",
+        "number": 54
+    },
+    {
+        "title": "Fighting the Owls Is Fatal",
+        "number": 55
+    },
+    {
+        "title": "The Crows Should Prepare for War",
+        "number": 56
+    },
+    {
+        "title": "The Intelligent Weighs the Past and Future",
+        "number": 57
+    },
+    {
+        "title": "Ways To Avoid the Battle",
+        "number": 58
+    },
+    {
+        "title": "The Owls Are Expected To Fight",
+        "number": 59
+    },
+    {
+        "title": "The Intelligent Is Never Free from Worry",
+        "number": 60
+    },
+    {
+        "title": "War Shoud be the Last Resort",
+        "number": 61
+    },
+    {
+        "title": "War Brings Loss",
+        "number": 62
+    },
+    {
+        "title": "One Should Never Fight the Stronger",
+        "number": 63
+    },
+    {
+        "title": "An Elephant Should Not Be Kicked",
+        "number": 64
+    },
+    {
+        "title": "The End of the Spy's Speech",
+        "number": 65
+    },
+    {
+        "title": "The Crow King Asks for Alternatives",
+        "number": 66
+    },
+    {
+        "title": "Opinion Counseling",
+        "number": 67
+    },
+    {
+        "title": "Advice Outweighs Armies",
+        "number": 68
+    },
+    {
+        "title": "Advice Empowers King",
+        "number": 69
+    },
+    {
+        "title": "Causes For Losing Good Fortune",
+        "number": 70
+    },
+    {
+        "title": "Advice To King Like Rivers To Sea",
+        "number": 71
+    },
+    {
+        "title": "Resolute King Keeps Reflecting",
+        "number": 72
+    },
+    {
+        "title": "Disinterested Vizier",
+        "number": 73
+    },
+    {
+        "title": "Chance Is Lost Without Advice",
+        "number": 74
+    },
+    {
+        "title": "Chances Favor Intelligent",
+        "number": 75
+    },
+    {
+        "title": "Spy Praises King C",
+        "number": 76
+    },
+    {
+        "title": "Spys Advice Partially Secret",
+        "number": 77
+    },
+    {
+        "title": "Some Matters Need Secrecy",
+        "number": 78
+    },
+    {
+        "title": "Spys Open Advice",
+        "number": 79
+    },
+    {
+        "title": "Spy Advises Resolute Action",
+        "number": 80
+    },
+    {
+        "title": "The Learned Never Defers",
+        "number": 81
+    },
+    {
+        "title": "Dignity Over Life",
+        "number": 82
+    },
+    {
+        "title": "Spy Advises Quick Action",
+        "number": 83
+    },
+    {
+        "title": "Glory Of Life Over Span",
+        "number": 84
+    },
+    {
+        "title": "Indecision Is Impotence",
+        "number": 85
+    },
+    {
+        "title": "Indecision Leads To Evil",
+        "number": 86
+    },
+    {
+        "title": "Head Of Impotence",
+        "number": 87
+    },
+    {
+        "title": "Spy Moves To Secret Advice",
+        "number": 88
+    },
+    {
+        "title": "Only Two Can Keep Secret",
+        "number": 89
+    },
+    {
+        "title": "Victory Requires Guarding Secrets",
+        "number": 90
+    },
+    {
+        "title": "Who May Discover Secret",
+        "number": 91
+    },
+    {
+        "title": "Two Benefits Of Guarding Secret",
+        "number": 92
+    },
+    {
+        "title": "Guarding Secret Beneficial",
+        "number": 93
+    },
+    {
+        "title": "Kind Needs Confidant",
+        "number": 94
+    },
+    {
+        "title": "Advice To King Like Fuel To Fire",
+        "number": 95
+    },
+    {
+        "title": "How To Give Advice",
+        "number": 96
+    },
+    {
+        "title": "Bad Advice Like Misdirected Curse",
+        "number": 97
+    },
+    {
+        "title": "Secritive Wise King Prospers",
+        "number": 98
+    },
+    {
+        "title": "Ranks Of Secrets",
+        "number": 99
+    },
+    {
+        "title": "Only King C And Spy To Know Secret",
+        "number": 100
+    },
+    {
+        "title": "Deliberations Of Good Vizier",
+        "number": 101
+    },
+    {
+        "title": "Question On Origin Of Enemity",
+        "number": 102
+    },
+    {
+        "title": "Words Of Crow Were Cause",
+        "number": 103
+    },
+    {
+        "title": "Mention Old Man Wife And Thief",
+        "number": 104
+    },
+    {
+        "title": "King O Requests Old Man Story",
+        "number": 105
+    },
+    {
+        "title": "Old Man Has Young Wife",
+        "number": 106
+    },
+    {
+        "title": "Wife Hates Husband",
+        "number": 107
+    },
+    {
+        "title": "Old Man Undiscouraged",
+        "number": 108
+    },
+    {
+        "title": "Thief Breaks In",
+        "number": 109
+    },
+    {
+        "title": "Wife Hugs Old Man",
+        "number": 110
+    },
+    {
+        "title": "Old Man Notices Thief",
+        "number": 111
+    },
+    {
+        "title": "Old Man Rewards Thief",
+        "number": 112
+    },
+    {
+        "title": "Vizier Comments Old Man Story",
+        "number": 113
+    },
+    {
+        "title": "King O Asks Third Owl",
+        "number": 114
+    },
+    {
+        "title": "Welcome Estranged Friend Of Foe",
+        "number": 115
+    },
+    {
+        "title": "Spy To Be Kept For Counsel",
+        "number": 116
+    },
+    {
+        "title": "Turn Foes Against Each Other",
+        "number": 117
+    },
+    {
+        "title": "Dispute Between Foes Is Beneficial",
+        "number": 118
+    },
+    {
+        "title": "Win Over Weak Foe",
+        "number": 119
+    },
+    {
+        "title": "Mention Thief Demon Story",
+        "number": 120
+    },
+    {
+        "title": "King Request Thief Demon Story",
+        "number": 121
+    },
+    {
+        "title": "Story Thief Demon Cow",
+        "number": 122
+    },
+    {
+        "title": "Thief And Demon Plot",
+        "number": 123
+    },
+    {
+        "title": "Man Goes To Sleep",
+        "number": 124
+    },
+    {
+        "title": "Thiefs Concerns",
+        "number": 125
+    },
+    {
+        "title": "Thief And Demon Confer",
+        "number": 126
+    },
+    {
+        "title": "Demons Concerns",
+        "number": 127
+    },
+    {
+        "title": "Thief And Demon Shout",
+        "number": 128
+    },
+    {
+        "title": "Thief And Demon Flee",
+        "number": 129
+    },
+    {
+        "title": "Owl Comments On Thief And Demon Story",
+        "number": 130
+    },
+    {
+        "title": "Objectors Deems Owls Misled",
+        "number": 131
+    },
+    {
+        "title": "Objector Asks Reconsideration",
+        "number": 132
+    },
+    {
+        "title": "Objector Advises Death",
+        "number": 133
+    },
+    {
+        "title": "Objector Warns Of Trickery",
+        "number": 134
+    },
+    {
+        "title": "Foes Cant Fool The Wise",
+        "number": 135
+    },
+    {
+        "title": "Dont Be Credulous",
+        "number": 136
+    },
+    {
+        "title": "Story Lion Thorn Man",
+        "number": 137
+    },
+    {
+        "title": "Disbelieve The Foolish",
+        "number": 138
+    },
+    {
+        "title": "Second Vizier Narrates",
+        "number": 139
+    },
+    {
+        "title": "Mention Deceived Carpenter",
+        "number": 140
+    },
+    {
+        "title": "King O Request Story D C",
+        "number": 141
+    },
+    {
+        "title": "Carpenter Learns Of Wifes Affair",
+        "number": 142
+    },
+    {
+        "title": "Carpenter Wants Proof",
+        "number": 143
+    },
+    {
+        "title": "Carpenter Feigns Work Travel",
+        "number": 144
+    },
+    {
+        "title": "Wife Rejoices At Chance",
+        "number": 145
+    },
+    {
+        "title": "Wife Sees Carpenter Off",
+        "number": 146
+    },
+    {
+        "title": "Carpenter Returns To Hide Under Bed",
+        "number": 147
+    },
+    {
+        "title": "Wife Summons Lover",
+        "number": 148
+    },
+    {
+        "title": "Lover Spends The Night",
+        "number": 149
+    },
+    {
+        "title": "Carpenter Falls Asleep",
+        "number": 150
+    },
+    {
+        "title": "Wife Prompts Question From Lover",
+        "number": 151
+    },
+    {
+        "title": "Wife Feigns Surprise",
+        "number": 152
+    },
+    {
+        "title": "Carpenter Hears Wifes Speech",
+        "number": 153
+    },
+    {
+        "title": "Wife Says Lovers Serve Only Pleasure",
+        "number": 154
+    },
+    {
+        "title": "Wife Says Husband Is All To Her",
+        "number": 155
+    },
+    {
+        "title": "Wife Curses Fathless Women",
+        "number": 156
+    },
+    {
+        "title": "Wife Says She Values Husband",
+        "number": 157
+    },
+    {
+        "title": "Wifes Speech Charms Carpenter",
+        "number": 158
+    },
+    {
+        "title": "Carpenter Waits Till Wife Awakens",
+        "number": 159
+    },
+    {
+        "title": "Carpenter Forgives Wife",
+        "number": 160
+    },
+    {
+        "title": "Carpenters Story Comment",
+        "number": 161
+    },
+    {
+        "title": "Carpenters Story Motivation",
+        "number": 162
+    },
+    {
+        "title": "Suspect A Fawning Foe",
+        "number": 163
+    },
+    {
+        "title": "Objector Became Fearful Of Crows",
+        "number": 164
+    },
+    {
+        "title": "Objector Expects Trickery From Crows",
+        "number": 165
+    },
+    {
+        "title": "Objector Advises Death Again",
+        "number": 166
+    },
+    {
+        "title": "King O Ignores Objector",
+        "number": 167
+    },
+    {
+        "title": "Spy Well Accommodated",
+        "number": 168
+    },
+    {
+        "title": "Advice Mistrust Spy",
+        "number": 169
+    },
+    {
+        "title": "Everyone Trusts Spy",
+        "number": 170
+    },
+    {
+        "title": "Spy Charms By Eloquence",
+        "number": 171
+    },
+    {
+        "title": "Objector Outvoted",
+        "number": 172
+    }
+]

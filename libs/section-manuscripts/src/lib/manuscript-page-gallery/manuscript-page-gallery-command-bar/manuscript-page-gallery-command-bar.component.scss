@@ -1,14 +1,36 @@
+@import 'sass/_dark-theme';
+@import 'sass/_light-theme';
+@import 'sass/breakpoints';
+@import 'sass/mixins';
 
-.mat-button{
+.tool {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  height: auto;
+  flex-wrap: wrap; /* Allow buttons to wrap onto the next line */
+}
+.mat-button {
   background-color: #4c7d8a;
   margin: 5px;
+  display: flex;
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  width: 150px; /* Set a fixed width for each button */
+
+
+  @include on-larger-than('md') {
+    height: 50px;
+    display: flex;
+  }
+
+  @include on-smaller-than('md') {
+    @include icon-button-sizes(24px, 16px);
+    display: none;
+    font-size: 0px;
+    --mdc-icon-button-state-layer-size: 0px;
+  }
 }
 :host button{
   color: white;
-}
-
-.tool{
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
 }

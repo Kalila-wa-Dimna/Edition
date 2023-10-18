@@ -8,15 +8,23 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "ES2022",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@kalila-edition/common-ui": ["libs/common-ui/src/index.ts"],
-      "@kalila-edition/common-util": ["libs/common-util/src/index.ts"],
+      "@kalila-edition/common-ui": [
+        "libs/common-ui/src/index.ts"
+      ],
+      "@kalila-edition/common-util": [
+        "libs/common-util/src/index.ts"
+      ],
       "@kalila-edition/dissemination-history": [
         "libs/dissemination-history/src/index.ts"
       ],
@@ -26,11 +34,13 @@
       "@kalila-edition/section-help": ["libs/section-help/src/index.ts"],
       "@kalila-edition/section-manuscript-description": [
         "libs/section-manuscript-description/src/index.ts"
-      ],
       "@kalila-edition/section-manuscripts": [
         "libs/section-manuscripts/src/index.ts"
       ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

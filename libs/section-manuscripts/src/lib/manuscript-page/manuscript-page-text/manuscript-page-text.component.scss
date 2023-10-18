@@ -1,9 +1,6 @@
 @import 'sass/_dark-theme.scss';
 @import 'sass/_light-theme.scss';
 
-
-
-
 .list-item {
   direction: rtl;
   text-align: right;
@@ -66,6 +63,7 @@
 
   .f-r {
     color: #8c221c;
+    font-size: 12px;
   }
 
 }
@@ -74,6 +72,16 @@
 
 :host-context(.dark-theme) {
   .f-r {
-    color: white;
+    color: red;
+    font-size: 12px;
   }
+}
+
+.list-item span {
+  margin: 0;
+  padding: 0;
+  line-height: 1; /* You can experiment with different values, e.g., 1 or 0.5 */
+}
+.font-noto-naskh{
+  line-height: 2.5!important;
 }

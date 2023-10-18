@@ -61,7 +61,9 @@
 :host-context(.light-theme) {
   .nav {
     @include box-shadow($light-foreground);
+    background-color: $light-third-background;
   }
+
   .logo {
     & path {
       fill: map-get($mat-primary-light, 900);

@@ -1,11 +1,13 @@
-
+<!--
   <mat-toolbar class="tool">
     <mat-toolbar-row>
+
       <ng-container *ngFor="let item of items">
         <ng-container *ngIf="!hasSubItems(item); else subMenu">
           <button mat-stroked-button class="mat-button" (click)="item.command?.()" >
             <mat-icon>{{ item.icon }}</mat-icon>
             {{ item.label }}
+
           </button>
         </ng-container>
         <ng-template #subMenu>
@@ -25,4 +27,4 @@
     </mat-toolbar-row>
   </mat-toolbar>
 
-
+-->

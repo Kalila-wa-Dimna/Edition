@@ -9,13 +9,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { NavPanelComponent } from './layout/nav-panel/nav-panel.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
-
 import { FooterModule } from './footer.module';
 import { CollationsPanelComponent } from './layout/nav-panel/collations-panel/collations-panel.component';
 import { ManuscriptsPanelComponent } from './layout/nav-panel/manuscripts-panel/manuscripts-panel.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   imports: [
@@ -31,6 +33,9 @@ import { MatMenuModule } from '@angular/material/menu';
     HttpClientModule,
     MatCardModule,
     MatMenuModule,
+    MatTabsModule,
+    ReactiveFormsModule,
+    MatInputModule,
   ],
   declarations: [
     LayoutComponent,

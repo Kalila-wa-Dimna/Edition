@@ -5,15 +5,17 @@
     <ng-template ngFor let-item [ngForOf]="data">
       <mat-card class="card">
         <mat-card-header>
-          <div mat-card-avatar>{{ item.siglum }}</div>
-          <mat-card-title>{{ item.display }}</mat-card-title>
+          <!-- <div mat-card-avatar>{{ item.siglum }}</div> -->
+          <mat-card-title
+            >{{ item.display }} ({{ item.siglum }})</mat-card-title
+          >
           <mat-card-subtitle>Chapter</mat-card-subtitle>
         </mat-card-header>
         <img
           mat-card-image
           height="auto"
           width="100%"
-          [src]="'/assets/data/collations/' + item.image"
+          [src]="imageEndPoint + item.image"
           class="card-image"
           alt="Photo of Chapter"
         />

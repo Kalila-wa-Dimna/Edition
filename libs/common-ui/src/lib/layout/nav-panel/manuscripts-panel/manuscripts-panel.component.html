@@ -1,1 +1,59 @@
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <mat-icon matPrefix>filter_alt</mat-icon>
+  <input matInput placeholder="filter" [formControl]="filterFormControl" />
+</mat-form-field>
 
+<mat-tab-group [selectedIndex]="(selectedIndex$|async)?.[0]">
+  <ng-template
+    ngFor
+    let-item
+    [ngForOf]="(allManuscripts$ | async) ?? []"
+    let-index="index"
+  >
+    <mat-tab [label]="item.siglum">
+      <br />
+      <a
+        [routerLink]="['/', 'manuscripts', item.siglum, 'gallery']"
+        mat-flat-button
+        >Page gallery</a
+      >
+      <mat-divider></mat-divider>
+      <ng-container *ngIf="(manuscriptChapters$ | async)?.[index] as chapters;">
+        <ng-container *ngFor="let chapter of chapters; let i = index">
+          <ng-container *ngIf="chapters">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>Chapter {{ chapter.chapter }}</mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-panel-description>
+                <ng-container *ngIf="chapter.pages && chapter.pages.length > 0">
+                  Page Range: {{ chapter.pages[0].page_number }} -
+                  {{ chapter.pages[chapter.pages.length - 1].page_number }}
+                </ng-container>
+                <ng-container
+                  *ngIf="!chapter.pages || chapter.pages.length === 0"
+                >
+                  No Pages Found
+                </ng-container>
+              </mat-panel-description>
+
+              <div class="page-links">
+                <ng-container *ngFor="let page of chapter.pages">
+                  <a
+                    mat-button
+                    class="panel"
+                    [routerLink]="['/' + page.page_link]"
+                    routerLinkActive="active"
+                  >
+                    {{ page.page_number }}
+                  </a>
+                </ng-container>
+              </div>
+            </mat-expansion-panel>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </mat-tab>
+  </ng-template>
+</mat-tab-group>

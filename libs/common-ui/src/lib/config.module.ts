@@ -3,7 +3,7 @@ import { NgModule, ModuleWithProviders, InjectionToken } from '@angular/core';
 // Define the configuration interface
 export interface IConfig {
   dataApi: string;
-  pagesEndPoint: string;
+  imagesEndPoint: string;
   dataEndPoint: string;
 }
 

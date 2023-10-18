@@ -13,8 +13,6 @@ export function createManuscriptDataResolver() {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ) => {
-    //console.log('router', { route });
-    //console.log('state', { state });
     const api = inject(DataService);
     const id = route.paramMap.get('id');
     const chapter = route.paramMap.get('chapter');
@@ -27,18 +25,45 @@ export function createManuscriptDataResolver() {
   return resolve; // Return the resolver function
 }
 
-export function createUnitsDataResolver() {
+
+
+
+export function createChapterToMsDataResolver() {
+  const resolve: ResolveFn<any> = (
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ) => {
+    const api = inject(DataService);
+    const chapter=route.paramMap.get('chapter')
+    // Construct the correct URL string
+    const url = `manuscripts/chapter_to_ms/${chapter}`;
+    // Load data using DataService and return an Observable
+    return api.load<any>(url, {}).pipe(
+      map((data) => {
+        return data;
+      })
+    );
+  };
+
+  return resolve; // Return the resolver function
+}
+
+export function createManuscriptChaptersDataResolver() {
   const resolve: ResolveFn<any> = (
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ) => {
     const api = inject(DataService);
     const id = route.paramMap.get('id');
-    const chapter = route.paramMap.get('chapter');
-    const url = api.load<any>(`manuscripts/${id}/${chapter}/allUnit`, {});
-    return url;
+    const url = `manuscripts/${id}/allChapters`;
+    return api.load<any>(url, {}).pipe(
+      map((data) => {
+        return data;
+      })
+    );
   };
-  return resolve;
+
+  return resolve; // Return the resolver function
 }
 
 export class ManuscriptPageService {
@@ -51,4 +76,48 @@ export class ManuscriptPageService {
     const data = `Manuscript ID: ${id}, Chapter: ${chapter}, Page Number: ${pageNumber}`;
     return of(data); // Simulate an observable response
   }
+}
+
+
+export function createAllPagesResolver() {
+  const resolve: ResolveFn<any> = (
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ) => {
+    const api = inject(DataService);
+    const id = route.paramMap.get('id');
+
+    // Construct the correct URL string
+    const url = `manuscripts/${id}/allPages`;
+    // Load data using DataService and return an Observable
+    return api.load<any>(url, {}).pipe(
+      map((data) => {
+        return data;
+      })
+    );
+  };
+
+  return resolve; // Return the resolver function
+}
+
+
+export function createChapterThatAllMsHaveDataResolver() {
+  const resolve: ResolveFn<any> = (
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ) => {
+    const api = inject(DataService);
+
+    // Construct the correct URL string
+    const url = `manuscripts/chapter_to_ms/Lv`;
+
+    // Load data using DataService and return an Observable
+    return api.load<any>(url, {}).pipe(
+      map((data) => {
+        return data;
+      })
+    );
+  };
+
+  return resolve; // Return the resolver function
 }

@@ -1,23 +1,13 @@
 @import 'sass/_dark-theme.scss';
 @import 'sass/_light-theme.scss';
 
-$primary-main: #549698;
-$primary-light: #afdfdb;
-$primary-lighter: #c9e8ef;
+$land-color: #c9c4ba;
 
-$secondary-main: #f0de39;
-$secondary-light: #eeee7e;
-$secondary-lighter: #faf9bb;
+$arrow-color: #c00000;
 
-$third-main: #f4846e;
-$third-light: #fabead;
-$third-lighter: #ffddd2;
+$water-color: #f4f4f4;
 
-$fourth-main: #b2ddc5;
-$fourth-light: #d7ece0;
-
-$secondary-color: #6b9e1f;
-$primary-color: #003366;
+$secondary-color: #00a0e3;
 
 #map-svg-container {
   width: 100%;
@@ -26,15 +16,19 @@ $primary-color: #003366;
   position: relative;
 }
 
+.light-theme #map-svg-container {
+  background-color: $water-color;
+}
+
 .light-theme .country {
-  fill: rgba($fourth-light, 1);
-  stroke: rgba($fourth-light, 1);
+  fill: rgba($land-color, 1);
+  stroke: rgba($land-color, 1);
   stroke-width: 0.4;
 }
 
 .dark-theme .country {
-  fill: rgba($fourth-light, 0.6);
-  stroke: rgba($fourth-light, 0.6);
+  fill: rgba($land-color, 0.6);
+  stroke: rgba($land-color, 0.6);
   stroke-width: 0.4;
 }
 
@@ -61,68 +55,70 @@ $primary-color: #003366;
 .orthodome {
   &-p2 {
     fill: none;
-    stroke: rgba(0, 0, 0, 0.4);
+    stroke: rgba($arrow-color, 0.4);
     stroke-width: 8;
     @include arrow-animation;
 
     &:hover {
-      stroke: rgba(0, 0, 0, 1);
+      stroke: rgba($arrow-color, 1);
     }
   }
 
   &-p3 {
     fill: none;
-    stroke: rgba($third-main, 0.6);
+    stroke: rgba($arrow-color, 0.4);
     stroke-width: 6;
     @include arrow-animation;
 
     &:hover {
-      stroke: rgba(0, 0, 0, 1);
+      stroke: rgba($arrow-color, 1);
     }
   }
 
   &-p4 {
     fill: none;
-    stroke: rgba($secondary-main, 0.6);
+    stroke: rgba($arrow-color, 0.4);
     stroke-width: 4;
     @include arrow-animation;
 
     &:hover {
-      stroke: rgba(0, 0, 0, 1);
+      stroke: rgba($arrow-color, 1);
     }
   }
 
   &-p5 {
     fill: none;
-    stroke: rgba($secondary-color, 0.6);
+    stroke: rgba($arrow-color, 0.4);
     stroke-width: 3;
     @include arrow-animation;
 
     &:hover {
-      stroke: rgba(0, 0, 0, 1);
+      stroke: rgba($arrow-color, 1);
     }
   }
 
   &-p6 {
     fill: none;
-    stroke: rgba($secondary-color, 0.6);
+    stroke: rgba($arrow-color, 0.4);
     stroke-width: 3;
     @include arrow-animation;
 
     &:hover {
-      stroke: rgba(0, 0, 0, 1);
+      stroke: rgba($arrow-color, 1);
     }
   }
 }
 
 .arrow-head {
+  fill: $arrow-color;
+  stroke: $arrow-color;
   &:hover {
-    fill: black;
+    fill: $arrow-color;
   }
 }
 
 .map-svg-blue {
-  background-color: $primary-color;
+  background-color: $water-color;
 }
 
 .hide {

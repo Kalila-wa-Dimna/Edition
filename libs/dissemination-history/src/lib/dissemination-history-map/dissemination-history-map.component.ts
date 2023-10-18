@@ -143,7 +143,7 @@ export class DisseminationHistoryMapComponent implements OnInit, OnDestroy {
       .attr('id', (d: any) => d.city_ascii)
       .attr('font-size', '12pt')
       .attr('font-weight', 'bold')
-      .attr('fill', 'black')
+      .attr('fill', 'white') // todo make dark and light styles
       .attr('visibility', 'hidden');
   }
 

@@ -1,0 +1,562 @@
+[
+    {
+        "title": "Chapter Title",
+        "number": 1
+    },
+    {
+        "title": "The King Asks About Choosing a Vizier",
+        "number": 2
+    },
+    {
+        "title": "The Philosopher Answers",
+        "number": 3
+    },
+    {
+        "title": "The Parable of the King of Rats",
+        "number": 4
+    },
+    {
+        "title": "The Qualities of the Vizier",
+        "number": 5
+    },
+    {
+        "title": "The King Requests the Parable",
+        "number": 6
+    },
+    {
+        "title": "A Prosperous City",
+        "number": 7
+    },
+    {
+        "title": "The City Is Ruled by a Rat King",
+        "number": 8
+    },
+    {
+        "title": "The Rat King Has Three Viziers",
+        "number": 9
+    },
+    {
+        "title": "They Discuss the Threat of the Cats",
+        "number": 10
+    },
+    {
+        "title": "One Should Leave the Past and Act for the Future",
+        "number": 11
+    },
+    {
+        "title": "Cats Are the Only Concern",
+        "number": 12
+    },
+    {
+        "title": "A Strategy Is Needed to Dispel the Fear",
+        "number": 13
+    },
+    {
+        "title": "Fear Spoils Life",
+        "number": 14
+    },
+    {
+        "title": "The King of Mice",
+        "number": 15
+    },
+    {
+        "title": "Exile Is Death",
+        "number": 15
+    },
+    {
+        "title": "Two Viziers Praise the Virtues of the Rat King",
+        "number": 16
+    },
+    {
+        "title": "Praise for the Master Covers the Ignorant Servant",
+        "number": 17
+    },
+    {
+        "title": "Bad Planning Fails",
+        "number": 18
+    },
+    {
+        "title": "Affairs Require a Wise Planner",
+        "number": 19
+    },
+    {
+        "title": "The Viziers Rely on the Wisdom of the King",
+        "number": 20
+    },
+    {
+        "title": "The Viziers Are Eager to Support the King",
+        "number": 21
+    },
+    {
+        "title": "The Rats Must Work Together",
+        "number": 22
+    },
+    {
+        "title": "The Third Vizier Is Silent",
+        "number": 23
+    },
+    {
+        "title": "The Rat King Chides the Silent Vizier",
+        "number": 24
+    },
+    {
+        "title": "The Rat King Has the Third Vizier Respond",
+        "number": 25
+    },
+    {
+        "title": "The Third Vizier Was Listening",
+        "number": 26
+    },
+    {
+        "title": "The Rat King Requests the Third Vizier's Opinion",
+        "number": 27
+    },
+    {
+        "title": "The Third Vizier Has No Solution",
+        "number": 28
+    },
+    {
+        "title": "Affairs Need God and Nature",
+        "number": 29
+    },
+    {
+        "title": "Eyes Need Sunlight",
+        "number": 30
+    },
+    {
+        "title": "Nature Cannot Be Fended Off",
+        "number": 31
+    },
+    {
+        "title": "The Rat King Requests the Tale of King W",
+        "number": 32
+    },
+    {
+        "title": "A Kingdom with a Hole in the Mountain",
+        "number": 33
+    },
+    {
+        "title": "Winds Blow through the Mountain Hole",
+        "number": 34
+    },
+    {
+        "title": "The Palace Is Near the Hole",
+        "number": 35
+    },
+    {
+        "title": "King W Consults with the Vizier On Wind Issue",
+        "number": 36
+    },
+    {
+        "title": "King W Wants to Block the Hole",
+        "number": 37
+    },
+    {
+        "title": "The Vizier Is Willing to Execute",
+        "number": 38
+    },
+    {
+        "title": "King W Is Not Satisfied with the Response",
+        "number": 39
+    },
+    {
+        "title": "The Vizier Defers to the Opinion of King W",
+        "number": 40
+    },
+    {
+        "title": "The Small Have No Path to Large Affairs",
+        "number": 41
+    },
+    {
+        "title": "Divine Fortune Versus Human Effort",
+        "number": 42
+    },
+    {
+        "title": "King W Asks the Vizier for a Plan",
+        "number": 43
+    },
+    {
+        "title": "The Affair Is Simpler for Man",
+        "number": 44
+    },
+    {
+        "title": "The Outcome Is Uncertain",
+        "number": 45
+    },
+    {
+        "title": "A Donkey Loses His Ears",
+        "number": 46
+    },
+    {
+        "title": "King W Requests the Tale of the Donkey",
+        "number": 47
+    },
+    {
+        "title": "The Donkey Becomes Cocky",
+        "number": 48
+    },
+    {
+        "title": "The Donkey Sees a Jenny",
+        "number": 49
+    },
+    {
+        "title": "The Donkey Ponders about Phallus",
+        "number": 50
+    },
+    {
+        "title": "The Donkey Sees It As a Weapon",
+        "number": 51
+    },
+    {
+        "title": "Donkey Imagines Exploits Involving a Spear",
+        "number": 52
+    },
+    {
+        "title": "The Donkey Wants to Escape Misery",
+        "number": 53
+    },
+    {
+        "title": "A Stag Comes to the River",
+        "number": 54
+    },
+    {
+        "title": "The Stag Impresses the Donkey",
+        "number": 55
+    },
+    {
+        "title": "The Donkey Wants to Serve the Stag",
+        "number": 56
+    },
+    {
+        "title": "The Donkey Intrigues the Stag",
+        "number": 57
+    },
+    {
+        "title": "The Donkey is Encouraged by the Stag",
+        "number": 58
+    },
+    {
+        "title": "The Donkey Feels Fortunate",
+        "number": 59
+    },
+    {
+        "title": "The Donkey Watches the Stag Return Home",
+        "number": 60
+    },
+    {
+        "title": "The Donkey's Owner Brings Him Home",
+        "number": 61
+    },
+    {
+        "title": "The Donkey Plans an Escape",
+        "number": 62
+    },
+    {
+        "title": "The Donkey Escapes to the Stag",
+        "number": 63
+    },
+    {
+        "title": "The Donkey Watches the Stag Overnight",
+        "number": 64
+    },
+    {
+        "title": "The Stag Is Returned to the River",
+        "number": 65
+    },
+    {
+        "title": "The Donkey Approaches the Stag",
+        "number": 66
+    },
+    {
+        "title": "The Stag's Owner Chases the Donkey Away",
+        "number": 67
+    },
+    {
+        "title": "The Donkey Approaches Again",
+        "number": 68
+    },
+    {
+        "title": "The Donkey Bites the Stag's Owner",
+        "number": 69
+    },
+    {
+        "title": "The Stag's Owner Cuts the Donkey's Ears",
+        "number": 70
+    },
+    {
+        "title": "The Donkey Is Punished upon Return",
+        "number": 71
+    },
+    {
+        "title": "The Donkey Recognizes His Ancestors' Wisdom",
+        "number": 72
+    },
+    {
+        "title": "The Vizier Summarizes the Donkey's Tale",
+        "number": 73
+    },
+    {
+        "title": "King W Insists on a Solution",
+        "number": 74
+    },
+    {
+        "title": "The Vizier Prays for the King",
+        "number": 75
+    },
+    {
+        "title": "King W Orders Wood to Be Brought",
+        "number": 76
+    },
+    {
+        "title": "King W Knows When the Winds Subside",
+        "number": 77
+    },
+    {
+        "title": "King W Orders the Hole to Be Blocked",
+        "number": 78
+    },
+    {
+        "title": "A Draught Ensues",
+        "number": 79
+    },
+    {
+        "title": "The People Kill the King and His Court",
+        "number": 80
+    },
+    {
+        "title": "The People Burn the Wood Blocking the Hole",
+        "number": 81
+    },
+    {
+        "title": "The People Return Home",
+        "number": 82
+    },
+    {
+        "title": "The Winds Spread Annihilating Fire",
+        "number": 83
+    },
+    {
+        "title": "The Vizier Summarizes King W's Tale",
+        "number": 84
+    },
+    {
+        "title": "King R Deems Fortune Inevitable",
+        "number": 85
+    },
+    {
+        "title": "Fortune Is the Attainment of a Legacy",
+        "number": 86
+    },
+    {
+        "title": "A Millennium of Luck and Fortune Is Short-Lived",
+        "number": 87
+    },
+    {
+        "title": "The Vizier Advises against Causing Disaster",
+        "number": 88
+    },
+    {
+        "title": "Attempting the Impossible Is Unwise",
+        "number": 89
+    },
+    {
+        "title": "King R Insists on Proceeding",
+        "number": 90
+    },
+    {
+        "title": "The Vizier Is in Want of a Solution",
+        "number": 91
+    },
+    {
+        "title": "Many a Shot Is without a Marksman",
+        "number": 92
+    },
+    {
+        "title": "The Wise and the Ignorant Think Differently",
+        "number": 93
+    },
+    {
+        "title": "One Could Consult the Wise or the Ignorant",
+        "number": 94
+    },
+    {
+        "title": "Consulting the Ignorant",
+        "number": 95
+    },
+    {
+        "title": "The Vizier Trusts the King Would Take the Advice",
+        "number": 96
+    },
+    {
+        "title": "King R Appreciates the Vizier's Candor",
+        "number": 97
+    },
+    {
+        "title": "King R Owes the Success of His Rule to the Vizier",
+        "number": 98
+    },
+    {
+        "title": "Fiqh Explains Recitation",
+        "number": 99
+    },
+    {
+        "title": "King R Submits to the Vizier's Judgment",
+        "number": 100
+    },
+    {
+        "title": "The Vizier Values King R's Justice",
+        "number": 101
+    },
+    {
+        "title": "One Is Influenced by One's Company",
+        "number": 102
+    },
+    {
+        "title": "Wind Carries Good and Bad Smells",
+        "number": 103
+    },
+    {
+        "title": "The Third Vizier Concludes",
+        "number": 104
+    },
+    {
+        "title": "King R Consults the Viziers in Reverse Order",
+        "number": 105
+    },
+    {
+        "title": "King R Asks the Youngest Vizier",
+        "number": 106
+    },
+    {
+        "title": "The Youngest Viziers Proposes to Bell the Cats",
+        "number": 107
+    },
+    {
+        "title": "King R Runs the Idea by the Second Vizier",
+        "number": 108
+    },
+    {
+        "title": "The Second Vizier Rejects Belling the Cats",
+        "number": 109
+    },
+    {
+        "title": "The Second Viziers Proposes Self-Imposed Exile",
+        "number": 110
+    },
+    {
+        "title": "King R Runs the Idea by the Third Vizier",
+        "number": 111
+    },
+    {
+        "title": "The Third Vizier Rejects Self-Imposed Exile",
+        "number": 112
+    },
+    {
+        "title": "King R Asks for the Third Vizier's Plan",
+        "number": 113
+    },
+    {
+        "title": "The Vizier's Two Options",
+        "number": 114
+    },
+    {
+        "title": "The First Option Is to Fake a Truce",
+        "number": 115
+    },
+    {
+        "title": "King R Prefers an Indirect Strategy",
+        "number": 116
+    },
+    {
+        "title": "The Second Option It Is",
+        "number": 117
+    },
+    {
+        "title": "The Second Option Is to Make Dens in Houses",
+        "number": 118
+    },
+    {
+        "title": "The Vizier's Aim Is to Damage Household Items",
+        "number": 119
+    },
+    {
+        "title": "The House Owner Gets a Second Cat",
+        "number": 120
+    },
+    {
+        "title": "The Rats Increase the Damage",
+        "number": 121
+    },
+    {
+        "title": "The House Owner Gets a Third Cat",
+        "number": 122
+    },
+    {
+        "title": "The Rats Cause Damage a Third Time",
+        "number": 123
+    },
+    {
+        "title": "The House Owner Notices the Damage Increasing",
+        "number": 124
+    },
+    {
+        "title": "The House Owner Removes One Cat",
+        "number": 125
+    },
+    {
+        "title": "The Rats Reduce the Damage",
+        "number": 126
+    },
+    {
+        "title": "The Second Cat is Removed and the Damage Reduces",
+        "number": 127
+    },
+    {
+        "title": "The House Owner Removes the Third Cat",
+        "number": 128
+    },
+    {
+        "title": "The Plan Is to Be Re-enacted in All Households",
+        "number": 129
+    },
+    {
+        "title": "The People Kill the Cats",
+        "number": 130
+    },
+    {
+        "title": "The Third Vizier Foretells Success",
+        "number": 131
+    },
+    {
+        "title": "The King Agrees",
+        "number": 132
+    },
+    {
+        "title": "The King Enacts the Plan and the Cats Are Killed",
+        "number": 133
+    },
+    {
+        "title": "The Next Generation Hates the Cats",
+        "number": 134
+    },
+    {
+        "title": "The Damage Is Attributed to the Cats",
+        "number": 135
+    },
+    {
+        "title": "Disease Is Attributed to the Cats",
+        "number": 136
+    },
+    {
+        "title": "The Plan Saves the Rats",
+        "number": 137
+    },
+    {
+        "title": "Man Should Heed This Example",
+        "number": 138
+    },
+    {
+        "title": "End of Chapter",
+        "number": 139
+    }
+]

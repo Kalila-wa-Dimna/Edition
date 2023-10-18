@@ -3,51 +3,20 @@
 @import 'sass/breakpoints';
 @import 'sass/mixins';
 
-:host {
-  //width: 100%;
+.tool {
+  display: flex;
+  justify-content: center;
   max-width: 100%;
   height: auto;
-}
-
-
-//
-//.mat-toolbar.tool {
-//  width: 96%;
-//  margin-right: 2%;
-//  margin-left: 2%;
-//
-//
-//}
-//.example-spacer {
-//  flex: 0 0 auto;
-//}
-//
-//.mat-button{
-//  background-color: #4c7d8a;
-//}
-//
-//
-//.mat-toolbar-row {
-//  display: table-cell;
-//  max-width: 600px;
-//  margin-left: 15%;
-//}
-//
-//.mat-toolbar-row .mat-mdc-button-base {
-//  margin: 8px 8px 8px 0;
-//}
-
-
-:host .tool{
-  justify-items: center;
-  justify-content: center;
-
-
+  flex-wrap: wrap; /* Allow buttons to wrap onto the next line */
 }
 .mat-button {
   background-color: #4c7d8a;
   margin: 5px;
-
+  display: flex;
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  width: auto; /* Set a fixed width for each button */
   @include on-larger-than('md') {
     height: 50px;
     display: flex;
@@ -62,4 +31,88 @@
 }
 :host button{
   color: white;
+}
+
+.mat-lable{
+  width: 100px;
+  align-items: center; /* Center content vertically */
+  justify-content: center;
+  border:solid #4c7d8a 2px;
+
+  @include on-larger-than('md') {
+    display: flex;
+  }
+
+  @include on-smaller-than('md') {
+    @include icon-button-sizes(24px, 16px);
+    display: none;
+    font-size: 8px;
+    --mdc-icon-button-state-layer-size: 0px;
+  }
+
+}
+
+::ng-deep.sub-item-container{
+  color: black;
+
+}
+.sub-item-container:hover{
+  background-color: #4c7d8a ;
+  color: white;
+}
+
+
+:host{
+  display: flex;
+  flex-wrap: wrap;
+  justify-items: center;
+  align-items: center;
+}
+
+/* sidebar.component.css */
+
+/* Style the sidebar container */
+.site-container {
+  width: 300px; /* Adjust the width as needed */
+  height: 100%; /* Ensure the sidebar takes the full height */
+  background-color: #f0f0f0; /* Set the background color */
+  position: relative;
+/* Required for nested absolute positioning */
+}
+
+/* Style the close button */
+.sidenav {
+  width: 30%;
+  background-color: #ffffff; /* Set the background color for the sidenav */
+  padding: 16px;
+ /* Add padding to the sidenav to separate it from panels */
+}
+
+/* Style the close button */
+
+/* Style the expansion panels */
+.mat-expansion-panel {
+  margin-bottom: 16px; /* Add spacing between panels */
+  border: 1px solid #ddd; /* Add a border around each panel */
+  box-shadow: none; /* Remove the default box-shadow */
+  width: 90%;
+
+}
+
+/* Style the expansion panel header */
+.mat-expansion-panel-header {
+  background-color: #4c7d8a; /* Set the header background color */
+  color: white; /* Set the header text color */
+  font-weight: bold;
+}
+
+/* Style the expansion panel description */
+.mat-panel-description {
+  font-size: 14px; /* Set the font size for the page range */
+  color: #333; /* Set the text color */
+}
+
+
+.panel{
+  width: 99%;
 }
