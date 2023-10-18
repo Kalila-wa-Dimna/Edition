@@ -41,7 +41,7 @@ export const appRoutes: Route[] = [
   {
     path: 'description',
     loadChildren: () =>
-      import('@kalila-edition/section-manuscript-description').then((m) => m.SectionHelpModule),
+      import('@kalila-edition/section-manuscript-description').then((m) => m.SectionManuscriptDescriptionModule),
   },
 
 ];
