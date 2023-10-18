@@ -5,7 +5,7 @@
     <ng-template ngFor let-item [ngForOf]="data">
       <mat-card class="card">
         <mat-card-header>
-          <div mat-card-avatar></div>
+          <!-- <div mat-card-avatar></div> -->
           <mat-card-title>{{ item.display }}</mat-card-title>
           <mat-card-subtitle>Manuscript</mat-card-subtitle>
         </mat-card-header>
@@ -18,11 +18,22 @@
         />
         <mat-card-content></mat-card-content>
         <mat-card-actions>
-          <a [routerLink]="[item.siglum+'/'+item.first_chapter+'/'+item.first_page]"  mat-button>View</a>
+          <a
+            [routerLink]="[
+              item.siglum + '/' + item.first_chapter + '/' + item.first_page
+            ]"
+            mat-raised-button
+            style="font-size: 1.3rem"
+          >
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="visibility"
+            ></mat-icon>
+            View</a
+          >
         </mat-card-actions>
       </mat-card>
     </ng-template>
   </main>
-
-
 </kd-layout>

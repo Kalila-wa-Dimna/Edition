@@ -18,8 +18,6 @@
 :host-context(.light-theme) {
   :host {
     @include box-shadow($light-foreground);
-  }
-  .content {
     background-color: $light-third-background;
   }
 }
