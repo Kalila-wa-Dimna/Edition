@@ -1,0 +1,59 @@
+{
+    "id": "cffa2358-77e2-4617-a98a-6937ada2665f",
+    "number": 231,
+    "manuscript": "CCCP578",
+    "imageUrl": "08476261-3e64-41d7-983b-eeed3413db4b.jpg",
+    "lines": [["and", "its", "passengers\u2014they", "are", "delivered", "by", "the", "ship,", "which", "in", "turn", "emerges", "from", "the", "sea", "and", "is", "delivered", "by", "them.", "31", "\u201cWhen", "the", "cat", "heard", "his", "talk,", "he", "was", "delighted"], ["and", "knew", "that", "the", "rat", "was", "truthful", "in", "it", "and", "said,", "\u2018I", "see", "that", "your", "words", "are", "akin", "to", "the", "truth,", "and", "I", "desire"], ["this", "truce,", "in", "which", "for", "you", "and", "me,", "I", "hope,", "will", "be", "survival.", "I", "will", "then", "be", "grateful", "and", "grant", "you", "the", "best"], ["reward.", "You", "are", "to", "be", "thanked,", "and", "with", "that,", "I", "will", "be", "safe", "in", "the", "end", "due", "to", "you\u2014I", "will", "neither", "fear"], ["you", "nor", "panic.\u2019\u201d", "32", "\u201cWhen", "the", "cat", "reached", "the", "end", "of", "his", "speech,\u201d", "he", "continued,", "\u201cthe", "rat", "turned", "to", "him"], ["and", "said,", "\u2018When", "I", "approach", "you,", "the", "mongoose", "and", "the", "owl", "should", "see", "us,", "so", "they", "will", "know"], ["of", "our", "truce,", "and", "withdraw,", "giving", "up", "on", "us.\u2019", "\u2018You", "have", "spoken", "truthfully,\u2019", "the", "rat", "said.\u201d"], ["34", "\u201cWhen", "the", "rat", "approached", "the", "cat,", "intending", "to", "do", "what", "the", "cat", "had", "ordered", "35", "and", "the", "owl", "and"], ["the", "mongoose", "saw", "him,", "they", "left", "disappointed.\u201d", "36", "He", "said:", "\u201cThe", "rat", "approached", "him", "and", "took", "to", "gnawing", "at", "the", "cat\u2019s", "ties,"]],
+    "unitPlaces": [
+        [
+            4,
+            3
+        ],
+        [
+            0,
+            8
+        ],
+        [
+            7,
+            11
+        ],
+        [
+            9,
+            0
+        ],
+        [
+            7,
+            0
+        ],
+        [
+            8,
+            3
+        ]
+    ],
+    "unitNames": [
+        [
+            "Mc The Rat Explains the Strategy",
+            35
+        ],
+        [
+            "Mc The Cat Puts His Trust in the Rat",
+            34
+        ],
+        [
+            "Mc The Foes Leave Frustrated",
+            39
+        ],
+        [
+            "Mc The Cat Deems the Rat's Efforts Slow",
+            42
+        ],
+        [
+            "Mc The Cat Fulfills His Part",
+            38
+        ],
+        [
+            "Mc The Rat Approaches to Cut the Rope",
+            40
+        ]
+    ]
+}

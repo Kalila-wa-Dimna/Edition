@@ -25,9 +25,24 @@ export function createManuscriptDataResolver() {
   return resolve; // Return the resolver function
 }
 
+export function createManuscriptEnglishDataResolver() {
+  const resolve: ResolveFn<any> = (
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ) => {
+    const api = inject(DataService);
+    const id = route.paramMap.get('id');
+    const chapter = route.paramMap.get('chapter');
+    const pageNumber = route.paramMap.get('pageNumber');
+    const url = api.load<any>(`manuscripts/${id}/${chapter}English/${pageNumber}`, {});
 
+    return url; // Load data using DataService
+  };
 
+  return resolve; // Return the resolver function
+}
 
+/*
 export function createChapterToMsDataResolver() {
   const resolve: ResolveFn<any> = (
     route: ActivatedRouteSnapshot,
@@ -47,7 +62,7 @@ export function createChapterToMsDataResolver() {
 
   return resolve; // Return the resolver function
 }
-
+*/
 export function createManuscriptChaptersDataResolver() {
   const resolve: ResolveFn<any> = (
     route: ActivatedRouteSnapshot,
@@ -89,6 +104,27 @@ export function createAllPagesResolver() {
 
     // Construct the correct URL string
     const url = `manuscripts/${id}/allPages`;
+    // Load data using DataService and return an Observable
+    return api.load<any>(url, {}).pipe(
+      map((data) => {
+        return data;
+      })
+    );
+  };
+
+  return resolve; // Return the resolver function
+}
+
+export function createAllEnglishPagesResolver() {
+  const resolve: ResolveFn<any> = (
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ) => {
+    const api = inject(DataService);
+    const id = route.paramMap.get('id');
+
+    // Construct the correct URL string
+    const url = `manuscripts/${id}/allEnglishPages`;
     // Load data using DataService and return an Observable
     return api.load<any>(url, {}).pipe(
       map((data) => {

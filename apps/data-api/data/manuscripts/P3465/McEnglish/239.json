@@ -1,0 +1,123 @@
+{
+    "id": "c49096ac-9619-4bd6-89a4-49ae8eacbc5b",
+    "number": 239,
+    "manuscript": "P3465",
+    "imageUrl": "a2921c5f-da98-4ada-8800-6fa59d4bc36e.jpg",
+    "lines": [["If", "you", "have", "attained", "your", "want", "and", "changed", "from", "your", "earlier", "commitment", "concerning", "my", "need,", "39", "the", "noble", "does", "not"], ["tarry", "in", "[fulfilling]", "what", "is", "due", "to", "his", "companion.", "40", "You", "found", "in", "my", "previous", "amity", "gain", "and", "benefit,"], ["as", "you", "have", "seen:", "you", "owe", "me", "reward", "accordingly", "41", "and", "are", "not", "to", "remember", "the", "enmity", "between", "you", "and", "me,"], ["for", "what", "has", "transpired", "between", "us", "erases", "any", "previous", "grudge", "and", "turns", "each", "one", "away", "from", "what", "nested"], ["in", "his", "companion\u2019s", "heart.", "43", "The", "swiftest", "punishment", "[is", "that", "of]", "the", "treacherous", "liar;", "and", "he", "with", "whom", "you", "plead", "with", "and", "ask", "his", "forgiveness"], ["but", "who", "does", "not", "forgive", "has", "acted", "treacherously.\u2019\u201d", "45", "\u201cThe", "rat", "said:", "\u2018A", "Friend", "can", "be", "[one]", "of", "two", "kinds:", "either", "eager", "or", "compelled."], ["Yet", "both", "seek", "benefit", "and", "are", "wary", "of", "harm.", "The", "eager", "[acts]", "openly", "toward", "his", "friend"], ["and", "serves", "him", "in", "all", "situations;", "49", "as", "for", "the", "compelled,", "in", "some", "situations", "he", "acts", "openly,"], ["and", "in", "others", "he", "shows", "pride.", "47", "And", "so,", "[in", "these", "situations],", "the", "sensible", "man", "always", "prioritises", "some", "of", "his", "needs", "over", "others,", "to", "seek", "the", "benefit", "that", "results"], ["from", "[doing]", "that.\u2019\u201d", "53", "\u201cThen", "the", "rat", "took", "to", "cutting", "the", "cat\u2019s", "cords.", "58", "While", "[Far\u012bd\u016bn]", "was", "at", "it,"], ["the", "huntsman", "arrived,", "60", "and", "the", "cat", "said", "to", "him:", "\u2018The", "time", "has", "come", "for", "showing", "seriousness", "in", "cutting", "my", "cords.\u2019", "62", "So", "the", "rat", "exerted"], ["himself", "at", "gnawing.", "When", "he", "was", "through,", "64", "the", "cat", "jumped", "to", "the", "tree\u2014to", "the", "huntsman\u2019s", "amazement\u2014"], ["and", "the", "rat", "entered", "some", "burrow.", "The", "huntsman", "approached", "and", "grabbed", "his", "shredded", "cords,"], ["then", "left", "[feeling]", "disappointed.\u201d", "65", "\u201cThen", "the", "rat", "came", "out,", "after", "that,", "and", "dreaded", "approaching", "the", "cat,", "so", "the", "cat", "cried", "to", "him:"], ["\u2018O", "friend", "who", "advises", "well,", "you", "who", "have", "done", "a", "good", "deed:", "66", "What", "is", "stopping", "you", "from", "approaching", "to", "me,", "so", "that", "I", "can", "endow", "you"]],
+    "unitPlaces": [
+        [
+            4,
+            2
+        ],
+        [
+            14,
+            7
+        ],
+        [
+            5,
+            4
+        ],
+        [
+            7,
+            5
+        ],
+        [
+            1,
+            4
+        ],
+        [
+            2,
+            8
+        ],
+        [
+            0,
+            11
+        ],
+        [
+            10,
+            12
+        ],
+        [
+            11,
+            7
+        ],
+        [
+            9,
+            1
+        ],
+        [
+            8,
+            2
+        ],
+        [
+            9,
+            9
+        ],
+        [
+            10,
+            3
+        ],
+        [
+            13,
+            3
+        ]
+    ],
+    "unitNames": [
+        [
+            "Mc The Punishment of Betrayal Comes Swiftly",
+            47
+        ],
+        [
+            "Mc The Cat Reminds the Rat of their Friendship",
+            74
+        ],
+        [
+            "Mc The Two Kinds of Friends",
+            50
+        ],
+        [
+            "Mc Forced Friendship Does Not Last",
+            54
+        ],
+        [
+            "Mc The Cat States the Rat's Duty of Reciprocation",
+            44
+        ],
+        [
+            "Mc The Rat Should Forget Enmity",
+            45
+        ],
+        [
+            "Mc The Noble Must Help",
+            43
+        ],
+        [
+            "Mc The Rat Fulfills the Pact",
+            69
+        ],
+        [
+            "Mc The Cat and the Rat Escape",
+            71
+        ],
+        [
+            "Mc The Rat Resumes Cutting the Rope",
+            58
+        ],
+        [
+            "Mc The Intelligent Trades Favors",
+            52
+        ],
+        [
+            "Mc The Huntsman Approaches",
+            64
+        ],
+        [
+            "Mc The Cat Requests Fulfillment",
+            66
+        ],
+        [
+            "Mc The Cat Calls Back the Rat",
+            72
+        ]
+    ]
+}

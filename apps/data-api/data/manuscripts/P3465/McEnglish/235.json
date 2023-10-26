@@ -1,0 +1,84 @@
+{
+    "id": "6dd930fa-bb68-4383-b497-1b2beaacc06b",
+    "number": 235,
+    "manuscript": "P3465",
+    "imageUrl": "c087e8c9-dce8-4014-bbfa-122febd36b41.jpg",
+    "lines": 
+    [["in", "his", "business,", "but", "goes", "about", "his", "needs", "with", "utter", "haste."], ["Here", "ends", "the", "chapter", "of", "the", "Ascetic", "and", "the", "Weasel."], ["1The", "Chapter", "of", "the", "Cat", "and", "Rat"], ["3", "\u201cI", "have", "heard", "this", "parable,\u201d", "said", "King", "Dab\u012bshalm", "to", "the", "Philosopher", "Baydab\u0101.", "\u201cPresent", "to", "me", "[now]", "a", "parable", "about", "a", "man"], ["whose", "enemies", "were", "many", "and", "surrounded", "him", "on", "every", "side,", "so", "that", "he", "was", "on", "their", "account", "on", "the", "brink", "of", "perishing;", "[from", "whom]", "he,", "therefore,", "sought", "safety"], ["and", "a", "way", "out", "by", "partnering", "with", "one", "of", "the", "enemies,", "reconciling", "with", "him;", "who", "was", "thus", "saved", "from", "his", "fear", "and", "felt", "secure;", "and", "who", "then", "kept", "his", "promise", "[to", "the", "one", "enemy]", "whom", "he", "had", "reconciled"], ["with.\u201d", "4", "The", "Philosopher", "said:", "\u201cAmity", "and", "enmity", "do", "not", "sustain", "the", "same", "state", "forever:", "amity", "might"], ["become", "enmity", "and", "enmity", "might", "transform", "into", "amity.", "This", "entails", "circumstances,", "causes,", "and", "experiences;"], ["and", "so", "a", "man", "of", "reason", "creates", "for", "whatever", "happens", "a", "new", "judgment:", "for", "that", "which", "comes", "from", "the", "enemy,", "he", "[uses]", "boldness;"], ["and", "for", "that", "which", "comes", "from", "friends,", "he", "[fosters]", "intimacy.", "6", "Enmity", "does", "not", "hinder", "a", "man", "of", "reason", "[from]", "\u2026", "someone", "who", "had", "shown", "him", "hostility", "to", "seek", "his", "aid,"], ["if", "he", "desires", "him", "to", "avert", "a", "scary", "matter", "or", "attract", "a", "desired", "thing;", "9", "for", "he", "who", "acts", "diligently", "with", "regards", "to", "that", "will", "attain", "his", "need."], ["10", "An", "example", "of", "this", "is", "the", "parable", "of", "the", "cat", "and", "the", "rat,", "when", "they", "fell", "into", "trouble,", "yet", "were", "both", "saved,", "upon", "reconciling"], ["with", "one", "another,", "from", "dire", "difficulty.\u201d", "11", "\u201cAnd", "how", "was", "that?\u201d", "said", "the", "King."], ["12", "\u201cThe", "claim", "goes,\u201d", "said", "Baydhab\u0101,", "\u201cthat", "at", "the", "root", "of", "a", "great", "tree", "was", "the", "den", "of", "a", "cat", "called", "R\u016bm\u012b", "and", "close", "by"]],
+    "unitPlaces": [
+        [
+            12,
+            4
+        ],
+        [
+            3,
+            0
+        ],
+        [
+            9,
+            5
+        ],
+        [
+            8,
+            0
+        ],
+        [
+            10,
+            7
+        ],
+        [
+            11,
+            0
+        ],
+        [
+            2,
+            0
+        ],
+        [
+            6,
+            1
+        ],
+        [
+            13,
+            0
+        ]
+    ],
+    "unitNames": [
+        [
+            "Mc The King Requests the Full Parable",
+            11
+        ],
+        [
+            "Mc The King Asks about Escaping Enemies",
+            3
+        ],
+        [
+            "Mc Enmity Must Not Stop One from Requesting Help",
+            6
+        ],
+        [
+            "Mc The Intelligent Adapts to Situations",
+            5
+        ],
+        [
+            "Mc The Resolute Attains His Need",
+            9
+        ],
+        [
+            "Mc  The Parable of the Cat and Rat Is Invoked",
+            10
+        ],
+        [
+            "Mc Chapter Title",
+            1
+        ],
+        [
+            "Mc The Philosopher Responds that Emotions Change",
+            4
+        ],
+        [
+            "Mc The Rat and the Cat Live Next to a Tree",
+            12
+        ]
+    ]
+}

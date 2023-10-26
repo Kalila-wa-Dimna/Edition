@@ -1,0 +1,115 @@
+{
+    "id": "c8a96204-1147-4b7b-aa37-21cfbb3a1fb8",
+    "number": 216,
+    "manuscript": "R2536",
+    "imageUrl": "d156df34-e56c-4263-9616-669f83a02b7a.jpg",
+    "lines": [["against", "grudges;42", "for", "the", "righteous", "do", "not", "hold", "grudges,", "rather,", "they", "are", "people", "of", "gratitude\u2014"], ["one", "good", "deed", "effaces", "many", "of", "their", "wrongs!\u2019", "45", "\u201cThe", "rat", "said,"], ["\u2018Friends", "are", "of", "two", "kinds:", "one", "of", "them", "is", "the", "sincere", "friend,", "and", "the", "other", "is", "the", "one", "who", "[creates", "bonds]", "of", "brotherhood", "with", "someone", "while", "in", "a", "state", "of", "compulsion."], ["The", "sincere", "friend", "must", "prefer."], ["his", "friend", "over", "himself,", "his", "possessions,", "and", "his", "kin.", "49", "As", "for", "the", "friend", "who", "is", "compelled", "into", "amity,"], ["it", "could", "happen", "that", "both", "the", "enmity", "and", "the", "amity", "become", "fulfilled;", "but", "oftentimes,", "they", "disband,", "going", "unfulfilled"], ["and", "stale.", "48", "But", "a", "wise", "man", "should", "watch", "out", "for", "himself.", "[[his", "truce", "is", "like", "him", "who", "eats]]"], ["For", "he", "who", "reconciles", "with", "the", "enemy,", "trusts", "him,", "acts", "in", "his", "interest,", "and", "does", "not", "watch", "out", "for", "himself\u2014", "46", "his", "truce"], ["is", "that", "of", "he", "who", "eats", "the", "food", "which", "fulfills", "his", "fancy,", "and", "whose", "stomach", "cannot", "digest."], ["51", "I", "have", "finished", "my", "work,", "and", "some", "is", "due", "still;", "54", "[but]", "every", "action", "has", "a", "set", "time", "at", "which", "it", "should", "be", "carried", "out,"], ["55", "and", "whoever", "doesn\u2019t", "carry", "out", "a", "work", "at", "its", "set", "time,", "does", "not", "reap", "the", "fruits", "of", "his", "work.", "56", "\u2018I", "will", "cut", "your", "bonds,"], ["leaving", "one", "cord,", "which", "I", "will", "take", "as", "a", "security,", "for", "you", "to", "cut", "yourself,", "so", "that", "you", "could", "not"], ["catch", "me,", "when", "you", "become", "free", "from", "your", "bonds.\u2019", "58", "\u201cWhen", "morning", "came,", "and", "the", "huntsman", "arrived", "at", "the", "place,"], ["59the", "cat", "rose", "(istaqalla)", "63", "and", "pulled", "at", "the", "cord,", "not", "expecting", "it", "to", "be", "cut,", "but", "the", "cord", "did,"], ["64", "and", "both", "survived!", "The", "cat", "climbed", "the", "tree,", "the", "rat", "went", "into", "the", "burrow,", "and", "the", "huntsman", "left"]],
+    "unitPlaces": [
+        [
+            10,
+            0
+        ],
+        [
+            9,
+            6
+        ],
+        [
+            1,
+            6
+        ],
+        [
+            13,
+            2
+        ],
+        [
+            4,
+            5
+        ],
+        [
+            7,
+            11
+        ],
+        [
+            0,
+            2
+        ],
+        [
+            10,
+            10
+        ],
+        [
+            14,
+            0
+        ],
+        [
+            9,
+            0
+        ],
+        [
+            13,
+            0
+        ],
+        [
+            6,
+            1
+        ],
+        [
+            12,
+            5
+        ]
+    ],
+    "unitNames": [
+        [
+            "Mc Bad Timing Brings Failure",
+            61
+        ],
+        [
+            "Mc Everything Has Its Time",
+            60
+        ],
+        [
+            "Mc The Two Kinds of Friends",
+            50
+        ],
+        [
+            "Mc The Cat Breaks from the Last Rope",
+            70
+        ],
+        [
+            "Mc Forced Friendship Does Not Last",
+            54
+        ],
+        [
+            "Mc Trusting a Foe Is Like Eating Bad Food",
+            51
+        ],
+        [
+            "Mc Good Deeds Erase Bad Deeds",
+            46
+        ],
+        [
+            "Mc The Rat Explains Not Cutting the Last Rope",
+            62
+        ],
+        [
+            "Mc The Cat and the Rat Escape",
+            71
+        ],
+        [
+            "Mc The Rat Acknowledges His Remaining Obligation ",
+            56
+        ],
+        [
+            "Mc The Cat Expects to Die",
+            65
+        ],
+        [
+            "Mc The Intelligent Protects Himself",
+            53
+        ],
+        [
+            "Mc The Huntsman Approaches",
+            64
+        ]
+    ]
+}

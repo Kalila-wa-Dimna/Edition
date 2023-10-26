@@ -1,0 +1,145 @@
+{
+    "id": "d71c4815-0ed2-4b4c-88e5-92f3bccc2dc1",
+    "number": 252,
+    "manuscript": "P400",
+    "imageUrl": "842836e9-8a77-4a68-bc75-193770472f4b.jpg",
+    "lines": [
+        [
+    "to", "the", "one", "with", "whom", "he", "had", "reconciled.",
+    "Tell", "me", "about", "the", "nature", "of", "truce—how", "it", "is”",
+    "The", "Philosopher", "said:"
+    ],
+        [
+    "Not", "all", "instances", "of", "enmity", "and", "closeness", "endure", "and", "are", "made", "firm.",
+    "Much", "affection"
+],
+        [
+    "turns", "into", "hatred", "and", "much", "hatred", "turns", "into", "affection,", "as", "motives", "and", "conditions", "change;"
+],
+        [
+            "and", "so", "a", "man", "of", "reason", "adapts", "to", "all", "such", "arising", "changes", "acting", "upon", "the", "character", "of", "the", "enemy", "before", "him."
+
+        ],
+        [
+           "An", "example", "of", "this", "is", "the", "parable", "of", "the", "cat", "and", "the", "rat,", "who", "put", "their", "disagreements", "aside", "when", "they", "fell"
+
+        ],
+        [
+            "into", "trouble", "and", "difficulty", "and,", "owing", "to", "their", "truce,", "kept", "their", "lives."
+
+        ],
+        [
+            "And", "how", "was", "that?", "said", "the", "King.", "12", "The", "claim", "goes,", "said", "the", "Philosopher"
+
+        ],
+        [
+           "that,", "in", "the", "land", "of", "Sirandīb,", "there", "was", "a", "tree", "at", "whose", "foot", "lived", "a", "rat", "named", "Farīdūn", "and"
+
+        ],
+        [
+             "next", "to", "it", "was", "the", "den", "of", "a", "cat", "named", "Rūmī.", "13", "Hunters", "occasionally", "sought", "game"
+
+        ],
+        [
+            "and", "fowl", "there;", "one", "day,", "one", "such", "huntsman", "set", "his", "snares,", "into", "which"
+
+        ],
+        [
+           "the", "cat.", "The", "rat", "came", "out", "creeping,", "seeking", "something", "to", "eat,", "turning", "around,", "surveying;"
+
+        ],
+        [
+             "upon", "seeing", "the", "cat", "in", "the", "snares,", "he", "rejoiced", "at", "it.", "Then", "he", "looked", "behind", "and", "[saw]", "that", "a", "mongoose"
+
+        ],
+        [
+            "had", "tracked", "him", "and", "lay", "in", "wait,", "and", "looking", "toward", "the", "top", "of", "the", "tree,", "[he", "saw]", "an", "owl", "watching", "him.", "And", "so,", "he", "feared—"
+
+        ],
+        [
+            "that", "if", "he", "turned", "back,", "the", "weasel", "would", "jump", "on", "him;", "that", "if", "he", "moved", "left", "and", "right,", "the", "owl", "would", "snatch", "him;"
+
+        ],
+        [
+           "and", "that", "if", "he", "stepped", "forward,", "the", "cat", "would", "take", "him.", "16", "‘These", "are", "troubles", "that", "have", "besieged", "me,’", "he", "said,", "‘and", "evils", "that"
+
+        ]
+    ],
+    "unitPlaces": [
+        [
+            5,
+            11
+        ],
+        [
+            3,
+            0
+        ],
+        [
+            8,
+            11
+        ],
+        [
+            10,
+            2
+        ],
+        [
+            4,
+            0
+        ],
+        [
+            14,
+            11
+        ],
+        [
+            0,
+            9
+        ],
+        [
+            6,
+            7
+        ],
+        [
+            11,
+            11
+        ]
+    ],
+    "unitNames": [
+        [
+            "Mc The King Requests the Full Parable",
+            11
+        ],
+
+        [
+            "Mc The Intelligent Adapts to Situations",
+            5
+        ],
+        [
+            "Mc The Cat Is Caught",
+            13
+        ],
+        [
+            "Mc The Rat Seeks Food",
+            14
+        ],
+        [
+            "Mc  The Parable of the Cat and Rat Is Invoked",
+            10
+        ],
+        [
+            "Mc The Rat Weighs His Predicament ",
+            16
+        ],
+        [
+            "Mc The Philosopher Responds that Emotions Change",
+            4
+        ],
+        [
+            "Mc The Rat and the Cat Live Next to a Tree",
+            12
+        ],
+        [
+            "Mc Foes Surround the Rat",
+            15
+        ]
+    ]
+}

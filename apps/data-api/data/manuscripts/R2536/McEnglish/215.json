@@ -1,0 +1,100 @@
+{
+    "id": "0101a1ef-4c89-43de-a30c-f27dbe39845d",
+    "number": 215,
+    "manuscript": "R2536",
+    "imageUrl": "bfb08fa2-c372-4c9f-aa3c-ebd5f3a30596.jpg",
+    "lines":
+    [["my", "survival", "to", "be", "bound", "to", "your", "survival,", "you,", "too,", "should", "desire", "my", "survival", "to", "be", "bound", "to", "your", "survival", "and", "[desire]", "deliverance", "for", "me"], ["and", "yourself.", "29", "As", "people", "survive", "the", "sea", "with", "a", "ship,", "and", "the", "ship", "survives", "with", "the", "people;"], ["30", "therefore,", "I", "hope", "that", "we", "arrive,", "through", "cooperation,", "at", "survival", "for", "us", "both", "from", "this", "trouble.\u2019", "31", "\u201cWhen"], ["the", "cat", "heard", "this", "from", "the", "rat,", "he", "knew", "that", "he", "was", "truthful", "and", "said,", "\u2018You", "are", "correct", "and", "have", "spoken"], ["the", "truth.", "See", "to", "the", "arrangement", "by", "which", "we", "can", "both", "be", "rid", "of", "this", "trouble,", "and", "I", "will", "act", "on", "it.", "I", "will", "remember"], ["this", "favor", "forever", "and,", "I", "will", "ensure", "that", "I", "properly", "reward", "you", "for", "it.\u2019", "32"], ["\u2018Allow", "me", "to", "approach", "to", "you,\u2019", "said", "the", "rat,", "\u2018for", "if", "the", "owl", "and", "the", "mongoose", "see", "us", "in", "company,"], ["they", "will", "leave", "us,", "and", "when", "I", "am", "in", "safety", "from", "them,", "I", "will", "cut", "your", "bonds", "while", "feeling", "secure.\u2019", "34", "\u201cThe", "cat", "did", "so,"], ["ensuring", "his", "safety,", "and", "the", "rat", "approached", "him.", "35", "\u201cWhen", "the", "owl", "and", "the", "mongoose", "saw", "that,", "they", "left"], ["the", "place,", "36", "and", "the", "rat", "took", "to", "cutting", "the", "net,", "one", "cord"], ["at", "a", "time.", "38", "\u201cWhen", "the", "cat", "noticed", "that", "the", "rat", "was", "not", "diligent", "about", "cutting", "the", "net,", "he", "said,"], ["\u2018What", "stops", "you,", "dear", "friend,", "is", "having", "secured", "your", "need", "for", "safety;", "39", "if", "that", "is"], ["so,", "it", "is", "not", "a", "deed", "the", "righteous", "would", "do!", "44", "As", "I", "made", "haste", "to", "deliver", "you,"], ["you", "should", "act", "likewise", "in", "delivering", "me.", "41[And]", "if", "you", "still", "remember", "that", "old", "enmity,", "you", "should", "not,"], ["especially", "that", "I", "have", "done", "very", "well", "by", "you,", "and", "[a", "deed]", "of", "this", "kind,", "or", "a", "lesser", "one,", "should", "receive", "a", "gratitude", "that", "persists"]],
+    "unitPlaces": [
+        [
+            2,
+            0
+        ],
+        [
+            5,
+            10
+        ],
+        [
+            1,
+            2
+        ],
+        [
+            12,
+            6
+        ],
+        [
+            2,
+            11
+        ],
+        [
+            13,
+            4
+        ],
+        [
+            11,
+            11
+        ],
+        [
+            8,
+            4
+        ],
+        [
+            10,
+            1
+        ],
+        [
+            7,
+            9
+        ],
+        [
+            9,
+            3
+        ]
+    ],
+    "unitNames": [
+        [
+            "Mc Cooperation Ensures Delivery for Both",
+            32
+        ],
+        [
+            "Mc The Rat Explains the Strategy",
+            35
+        ],
+        [
+            "Mc Sailors Depend on Ships and Vice Versa",
+            31
+        ],
+        [
+            "Mc The Rat Must Fulfill the Pact",
+            48
+        ],
+        [
+            "Mc The Cat Puts His Trust in the Rat",
+            34
+        ],
+        [
+            "Mc The Rat Should Forget Enmity",
+            45
+        ],
+        [
+            "Mc The Noble Must Help",
+            43
+        ],
+        [
+            "Mc The Foes Leave Frustrated",
+            39
+        ],
+        [
+            "Mc The Cat Deems the Rat's Efforts Slow",
+            42
+        ],
+        [
+            "Mc The Cat Fulfills His Part",
+            38
+        ],
+        [
+            "Mc The Rat Approaches to Cut the Rope",
+            40
+        ]
+    ]
+}

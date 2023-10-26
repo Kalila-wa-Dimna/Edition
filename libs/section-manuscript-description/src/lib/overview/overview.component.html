@@ -1,0 +1,39 @@
+<kd-layout>
+  <span title style="font-size:large;">Manuscript descriptions/ Codicology</span>
+
+  <main pageContent>
+    <mat-table [dataSource]="dataSource" class="bibliography-cell">
+      <!-- Column definitions -->
+      <ng-container *ngFor="let column of columnsToDisplay; let i = index" [matColumnDef]="column">
+        <mat-header-cell *matHeaderCellDef [ngStyle]="{
+  'min-width.px': columnWidths[column.toLowerCase()] || 50,
+  'color': '#ffffff'
+}" [class.sticky-column]="i === 0">
+          <div [innerHTML]="modifiedColumnsToDisplay[i]"></div>
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element"
+          [ngStyle]="{
+      'min-width.px': columnWidths[column.toLowerCase()] || 50,
+      'background-color': i % 2 === 0 ? '#ffffff' : '#d0cbc2',
+      'color':'#000000'
+    }"
+          [class.sticky-column]="i === 0"
+        >
+          <div [innerHTML]="sanitizeData(element[column])"></div>
+        </mat-cell>
+      </ng-container>
+      <!-- Table header row -->
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+      <!-- Table rows -->
+      <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+    </mat-table>
+
+  </main>
+</kd-layout>
+
+
+
+
+
+

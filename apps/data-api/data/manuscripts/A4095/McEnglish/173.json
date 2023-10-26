@@ -1,0 +1,124 @@
+{
+    "id": "74f42694-c4ed-4b91-93c3-77596ff0ed06",
+    "number": 173,
+    "manuscript": "A4095",
+    "imageUrl": "4f710abe-d907-4ce5-92db-53ca4696e3ca.jpg",
+    "lines":
+    [["a", "little;", "should", "he", "expel", "the", "second,", "we,", "too,", "should", "lessen", "the", "corruption", "further;", "and", "should"],
+      ["he", "expel", "the", "third,", "we", "shall", "leave", "that", "house", "for", "another,", "which", "we", "will", "treat", "the", "same", "way", "we", "treated"],
+      ["the", "first", "house.", "We", "shall", "make", "the", "round,", "going", "from", "one", "house", "to", "the", "next,", "in", "other", "words", "the", "whole", "city,"],
+      ["until", "the", "people", "conclude", "that", "the", "great", "harm", "which", "is", "affecting", "them"],
+      ["arises", "from", "the", "cats.", "If", "they", "conclude", "this,", "they", "will", "not", "restrict", "themselves", "to", "killing", "only", "the", "cats"],
+      ["that", "are", "in", "the", "houses.", "The", "King", "and", "the", "rest", "of", "rats", "did", "what"],
+      ["the", "vizier", "had", "advised.", "Before", "six", "months", "passed,", "all", "the", "cats", "that", "were", "in", "the", "city"],
+      ["and", "its", "vicinities", "had", "perished.", "That", "generation", "of", "people", "went", "by", "and", "after", "them", "another", "group", "grew", "up", "hating"],
+      ["cats:", "every", "time", "they", "discovered", "some", "corruption", "caused", "by", "mice,", "they", "said,"], ["\u2018Look!", "Could", "a", "cat", "have", "gone", "through", "the", "city?\u2019", "Also,", "whenever", "it", "happened"],
+      ["that", "people", "or", "animals", "got", "inflicted", "by", "a", "disease,", "they", "said,", "\u2018It", "almost", "seems", "as", "if", "some", "cat", "passed", "through", "the", "city.\u2019"],
+      ["In", "this", "way", "that", "the", "rats", "rid", "themselves", "of", "the", "horror", "of", "the", "cats", "and", "were", "at", "peace", "from", "them", "..."],
+      ["If", "this", "weak", "and", "lowly", "animal", "could", "conceive", "of", "such", "trickery,", "so", "as", "to"],
+      ["get", "rid", "of", "his", "enemy", "and", "removing", "harm", "from", "himself,", "then", "hope", "must", "not", "be", "lost"],
+      ["in", "man,", "who", "is", "the", "smartest,", "most", "perfect,", "and", "wisest", "living", "being,", "can", "obtain", "from", "his", "enemy"],
+      ["what", "he", "wants", "using", "his", "ingenuity", "and", "good", "planning."],
+      ["1The", "Chapter", "of", "the", "Cat", "and", "Rat"],
+      ["3\u201cI", "have", "heard", "the", "parable", "you", "presented,\u201d", "said", "the", "King", "to", "the", "Philosopher."], ["\u201cPresent", "to", "me", "now,", "if", "you", "will,", "the", "parable", "of", "a", "man", "whose", "enemies", "are", "many", "and", "surround", "him", "on", "every"], ["side;", "who", "is", "on", "the", "brink", "of", "perishing;", "who", "sought", "a", "way", "out", "by", "partnering", "with", "one", "of", "the", "enemies,", "reconciling", "with", "him;"]],
+    "unitPlaces": [
+        [
+            0,
+            1
+        ],
+        [
+            8,
+            1
+        ],
+        [
+            12,
+            0
+        ],
+        [
+            1,
+            2
+        ],
+        [
+            5,
+            4
+        ],
+        [
+            7,
+            0
+        ],
+        [
+            11,
+            1
+        ],
+        [
+            4,
+            4
+        ],
+        [
+            0,
+            9
+        ],
+        [
+            9,
+            6
+        ],
+        [
+            17,
+            0
+        ],
+        [
+            16,
+            0
+        ]
+    ],
+    "unitNames": [
+        [
+            "Km The Second Cat is Removed and the Damage Reduces",
+            127
+        ],
+        [
+            "Km The Damage Is Attributed to the Cats",
+            135
+        ],
+        [
+            "Km Man Should Heed This Example",
+            138
+        ],
+        [
+            "Km The Plan Is to Be Re-enacted in All Households",
+            129
+        ],
+        [
+            "Km The King Enacts the Plan and the Cats Are Killed",
+            133
+        ],
+        [
+            "Km The Next Generation Hates the Cats",
+            134
+        ],
+        [
+            "Km The Plan Saves the Rats",
+            137
+        ],
+        [
+            "Km The People Kill the Cats",
+            130
+        ],
+        [
+            "Km The House Owner Removes the Third Cat",
+            128
+        ],
+        [
+            "Km Disease Is Attributed to the Cats",
+            136
+        ],
+        [
+            "Mc The King Asks about Escaping Enemies",
+            3
+        ],
+        [
+            "Mc Chapter Title",
+            1
+        ]
+    ]
+}

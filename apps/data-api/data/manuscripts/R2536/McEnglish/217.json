@@ -1,0 +1,116 @@
+{
+    "id": "cbd77ea5-22e0-4d36-bf0f-a8f4f116d48b",
+    "number": 217,
+    "manuscript": "R2536",
+    "imageUrl": "5c8dedd6-e0eb-4c1b-beb3-ff1444cacee7.jpg",
+    "lines": 
+    [["the", "place.", "65", "\u201cLater,", "the", "rat", "[[tarried]]", "wanted", "to", "come", "out", "of", "the", "burrow,", "but", "he", "saw", "the", "cat", "and", "did", "not", "come", "close", "to", "him."], ["So", "the", "cat", "cried,", "66", "\u2018Why", "don\u2019t", "you", "approach", "me,", "O", "dear", "friend!", "68", "I", "would", "love", "to", "reward", "you", "for", "your", "beneficence", "toward", "me"], ["and", "let", "you", "taste", "the", "fruits", "of", "your", "deed.", "Approach", "me", "and", "fear", "not:", "69", "for", "my", "self", "is", "not", "dearer", "to", "me", "than", "you,\u2019", "and", "he", "swore"], ["he", "did", "not", "want", "to", "do", "him", "harm.\u201d", "70", "\u2018He", "who", "fails", "to", "appease", "friends", "and", "enemies,\u2019", "said", "the", "rat,"], ["5", "\u2018harms", "himself", "and", "ruins", "it.", "74", "Enmity", "and", "friendship", "are", "of", "such", "a", "nature", "that", "the", "wise", "man", "should", "not"], ["fraternize", "with", "someone", "who", "was", "an", "enemy", "to", "him,", "except", "in", "the", "case", "of", "necessity.", "75", "The", "offspring", "of", "animals"], ["follow", "their", "mothers...", "78", "If", "a", "man", "turns", "from", "enmity", "to", "friendship", "for", "profit,"], ["his", "amity", "ends", "when", "that", "profit", "ends,", "and", "he", "turns", "to", "his", "[previous]", "enmity\u2014", "79", "as", "with", "hot", "water:"], ["when", "it", "is", "separated", "from", "the", "fire,", "it", "reverts", "to", "its", "initial", "state\u2014coldness.", "80", "You", "are", "an", "enemy", "unto", "me,"], ["and", "I", "am,", "likewise,", "an", "enemy", "unto", "you.", "How", "can", "friendship", "and", "amity", "work", "between", "us,"], ["83", "while", "I", "know", "that", "you", "have", "no", "need", "except", "that", "of", "eating", "me?", "93", "There", "is", "no", "way", "for", "us", "to", "reunite.\u2019", "94", "\u201cThen", "the", "rat", "went", "into", "his", "burrow"], ["and", "stood", "firm", "in", "his", "stance,", "remaining", "wary", "of", "the", "cat.\u201d"], ["The", "Chapter", "of", "the", "King", "and", "the", "Bird,"], ["Fatra"], ["The", "King", "said", "to", "the", "Philosopher,", "\u201cPresent", "to", "me", "the", "parable", "of", "the", "man", "who", "suffered", "harm,", "and", "how", "should"]],
+    "unitPlaces": [
+        [
+            1,
+            3
+        ],
+        [
+            8,
+            10
+        ],
+        [
+            5,
+            10
+        ],
+        [
+            2,
+            5
+        ],
+        [
+            10,
+            0
+        ],
+        [
+            10,
+            12
+        ],
+        [
+            1,
+            8
+        ],
+        [
+            3,
+            5
+        ],
+        [
+            6,
+            2
+        ],
+        [
+            7,
+            8
+        ],
+        [
+            10,
+            8
+        ],
+        [
+            0,
+            2
+        ],
+        [
+            4,
+            3
+        ]
+    ],
+    "unitNames": [
+        [
+            "Mc The Cat Reminds the Rat of their Friendship",
+            74
+        ],
+        [
+            "Mc The Cat Is the Rat's Worst Enemy",
+            91
+        ],
+        [
+            "Mc Young Cattle Only Nurse for a While",
+            84
+        ],
+        [
+            "Mc The Cat Reassures the Rat",
+            77
+        ],
+        [
+            "Mc The Cat Desires the Rat for Food",
+            94
+        ],
+        [
+            "Mc The Rat Departs to Safety",
+            106
+        ],
+        [
+            "Mc The Cat Suggests a Reward",
+            76
+        ],
+        [
+            "Mc The Treatment of Friends or Foes",
+            78
+        ],
+        [
+            "Mc Enmity Turns into Friendship in Times of Need",
+            87
+        ],
+        [
+            "Mc Heated Water Cools Down",
+            88
+        ],
+        [
+            "Mc The Last Verdict Is No Reunion",
+            105
+        ],
+        [
+            "Mc The Cat Calls Back the Rat",
+            72
+        ],
+        [
+            "Mc One Should Not Befriend an Enemy Indefinitely",
+            83
+        ]
+    ]
+}

@@ -1,0 +1,75 @@
+{
+    "id": "b277111f-edd6-4fd4-b066-a67e8be04013",
+    "number": 235,
+    "manuscript": "CCCP578",
+    "imageUrl": "043a91c5-ca3b-43ed-9642-42f13fdb6f9a.jpg",
+    "lines": [["86", "The", "sensible", "man", "makes", "peace", "with", "his", "enemy,", "if", "he", "is", "compelled", "to", "that:", "he", "treats", "him", "well,", "displays", "friendliness,", "and", "shows", "him"], ["trust", "on", "his", "part\u2014if", "he", "can\u2019t", "manage", "otherwise\u2014but", "he", "makes", "haste", "to", "get", "away", "from", "him", "when", "he", "finds"], ["a", "way", "for", "that.", "87", "He", "also", "knows", "that", "he", "who", "is", "felled", "by", "his", "own", "candor", "can", "hardly", "be", "excused", "for", "his", "misstep;", "88", "he", "should", "keep", "his", "promise"], ["to", "whom", "he", "enters", "into", "a", "truce", "with,", "while", "trusting", "himself", "with", "this", "in", "ways", "in", "which", "he", "doesn\u2019t", "trust", "others", "89", "and", "preferring", "nothing", "to", "distance", "from", "his", "enemy"], ["as", "much", "as", "he", "can.", "90", "Staying", "away", "from", "the", "huntsman", "is", "prudent", "for", "you;", "and", "staying", "away", "from", "you", "is", "prudent", "for", "me.", "91", "My", "judgment", "is", "to", "like", "you"], ["from", "afar,", "92", "and", "there\u2019s", "no", "duty", "for", "you", "to", "honor", "me", "likewise.", "93", "There", "is", "no", "way", "for", "us", "to", "ever", "reunite.\u2019\u201d"], ["The", "Chapter", "of", "the", "King", "and", "the", "Bird", "Qanbara."], ["It", "is", "the", "chapter", "of", "the", "people", "of", "requital", "and", "those", "wary", "of", "one", "another,", "which", "is", "the", "parable", "of", "someone", "who", "is", "mistrustful", "and", "not", "open", "toward"], ["another", "after", "that", "which", "[the", "other]", "had", "done", "to", "him", "before.", "It", "includes", "[the", "importance]", "of", "developing", "trust", "and", "avoiding", "to", "be", "misled"], ["by", "someone\u2019s", "agreeableness", "and", "kindness.", "It", "calls", "for", "being", "wary,", "guarded,", "and", "cautious."], ["The", "King", "said", "to", "the", "Philosopher:", "\u201cI", "have", "heard", "the", "parable", "of", "the", "man", "who", "is", "surrounded", "by", "his", "enemies;", "who", "seeks", "help", "from", "one", "of", "them"], ["and", "reconciles", "with", "him,", "so", "that", "he", "can", "be", "delivered,", "through", "it,", "from", "that", "he", "had", "feared;", "who", "meanwhile", "keeps", "his", "promise", "and", "is", "saved.", "Present", "to", "me", "this", "[next]", "parable"], ["of", "[the", "people]", "who", "should", "be", "wary", "from", "one", "another.", "The", "Philosopher", "said:", "\u201cThey", "claim", "that", "some", "grand", "king"], ["called", "Ibn", "Madyar", "had", "a", "bird", "called", "Qatra,", "who", "could", "talk,", "was", "smart,", "and", "had", "a", "nestling."], ["The", "King", "ordered", "the", "bird,", "Qatra,", "and", "his", "nestling", "be", "taken", "to", "a", "woman", "who", "was", "the", "lady", "over", "all", "the", "women"], ["in", "his", "palace", "and", "ordered", "her", "to", "take", "good", "care", "of", "him.", "Then", "the", "woman", "gave", "birth", "to", "a", "male", "child,", "who", "grew", "accustomed", "to", "the", "nestling"]],
+    "unitPlaces": [
+        [
+            2,
+            1
+        ],
+        [
+            4,
+            2
+        ],
+        [
+            3,
+            12
+        ],
+        [
+            0,
+            1
+        ],
+        [
+            4,
+            11
+        ],
+        [
+            5,
+            2
+        ],
+        [
+            5,
+            7
+        ],
+        [
+            2,
+            10
+        ]
+    ],
+    "unitNames": [
+        [
+            "Mc Trusting Quickly Is Risky",
+            98
+        ],
+        [
+            "Mc Staying Away from the Enemy is the Best Judgment",
+            102
+        ],
+        [
+            "Mc The Best Thing Is Distance From the Enemy",
+            101
+        ],
+        [
+            "Mc The Intelligent Escapes Forced Friendship",
+            97
+        ],
+        [
+            "Mc The Rat Will Love the Cat from Afar",
+            103
+        ],
+        [
+            "Mc The Rat Does Not Need a Reward",
+            104
+        ],
+        [
+            "Mc The Last Verdict Is No Reunion",
+            105
+        ],
+        [
+            "Mc The Intelligent Distrusts Forced Friendship",
+            99
+        ]
+    ]
+}

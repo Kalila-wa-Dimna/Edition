@@ -1,0 +1,43 @@
+{
+    "id": "5a6e3050-c1f1-40e7-b7dd-65d37d0522d9",
+    "number": 229,
+    "manuscript": "CCCP578",
+    "imageUrl": "6bc006e3-9c00-4b1e-bf20-d0313cc8faf0.jpg",
+    "lines": [["the", "den", "of", "a", "cat", "named", "R\u016bm\u012b.", "13", "The", "hunters", "of", "that", "land", "went", "every", "day", "to", "valleys", "and", "other", "sites"], ["to", "find", "game", "from", "which", "to", "benefit.", "One", "day", "they", "passed", "that", "very", "tree", "and", "noticed", "that"], ["fowl", "and", "wild", "animals", "took", "shelter", "there;", "and", "so", "they", "started", "to", "that", "place", "at", "all", "times", "[[and", "every", "time]].\u201d"], ["\u201cOne", "day,\u201d", "he", "continued,", "\u201cone", "of", "them", "came", "and", "set", "his", "snares,", "into", "which", "fell"], ["the", "cat", "whose", "name", "was", "R\u016bm\u012b!\u201dHe", "said:", "\u201cAs", "the", "cat", "fell", "into", "the", "snares,", "14", "the", "rat", "was", "coming", "out"], ["to", "seek", "some", "nourishment.", "Upon", "seeing", "the", "cat", "in", "the", "snares,", "he", "became", "afraid", "for"], ["himself,", "turning", "left", "and", "right.", "Then", "saw", "the", "cat", "in", "the", "snares", "and", "rejoiced"], ["greatly", "at", "that,", "as", "if", "he", "fell", "upon", "an", "opportunity.", "15", "While", "joyful,", "he", "happened", "to", "look", "behind", "and", "suddenly", "[saw]", "a", "mongoose;"], ["he", "then", "raised", "his", "eye", "toward", "the", "tree", "and", "[saw]", "an", "owl", "on", "the", "tree.", "And", "so,", "he", "feared", "for", "himself:", "if", "he", "turned", "back,"]],
+    "unitPlaces": [
+        [
+            0,
+            3
+        ],
+        [
+            4,
+            11
+        ],
+        [
+            9,
+            9
+        ],
+        [
+            7,
+            5
+        ]
+    ],
+    "unitNames": [
+        [
+            "Mc The Cat Is Caught",
+            13
+        ],
+        [
+            "Mc The Rat Seeks Food",
+            14
+        ],
+        [
+            "Mc The Rat Weighs His Predicament ",
+            16
+        ],
+        [
+            "Mc Foes Surround the Rat",
+            15
+        ]
+    ]
+}

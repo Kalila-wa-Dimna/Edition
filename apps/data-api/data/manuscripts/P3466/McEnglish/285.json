@@ -1,0 +1,76 @@
+{
+    "id": "938681e6-3d0c-4fc8-89ce-92a58d527bf5",
+    "number": 285,
+    "manuscript": "P3466",
+    "imageUrl": "fbf1e874-547d-4699-8057-019d5a7fbbd8.jpg",
+    "lines":
+    [["59", "When", "the", "cat", "saw", "him,", "he", "sensed", "perdition.", "61", "So", "the", "rat", "said", "to", "the", "cat,"], ["\u2018now", "is", "the", "place", "for", "diligence", "in", "cutting", "what", "remains", "of", "your", "cords.\u2019\u201d", "62", "\u201cBefore", "the", "huntsman", "came", "close,"], ["the", "rat", "had", "finished", "cutting", "the", "cords,", "despite", "the", "cat\u2019s", "mistrust", "and", "his", "perplexity.\u201d"], ["64", "\u201cWhen", "he", "finished,", "the", "cat", "ran", "to", "the", "tree", "and", "climbed", "it,", "the", "rat", "dived", "into"], ["[his", "burrow],", "and", "the", "huntsman", "grabbed", "his", "shredded", "cords", "and", "net", "and", "left", "[feeling]", "disappointed.\u201d", "65The", "rat", "came", "out"], ["of", "his", "burrow", "after", "that,", "saw", "the", "cat", "from", "afar", "and", "dreaded", "approaching", "him."], ["\u2018O,", "friend,\u2019", "therefore", "cried", "the", "cat,", "\u2018you", "who", "have", "done", "me", "a", "good", "deed!", "66", "What"], ["is", "stopping", "you", "from", "approaching", "me,", "so", "that", "I", "can", "endow", "you", "with", "the", "best", "for", "[the", "favor]", "you", "have", "done", "me?", "Do", "come", "to", "me"], ["and", "don\u2019t", "sever", "my", "brotherly", "ties;", "67", "for", "he", "who", "takes", "a", "friend", "and", "cuts", "off", "[any]", "brotherly", "connections"], ["will", "be", "prevented", "from", "reaping", "the", "fruits", "of", "friendship", "and", "brotherhood,", "and", "brethren", "and", "friends", "will", "despair", "from", "[obtaining]", "benefits", "from", "him."], ["68", "Your", "favor", "to", "me", "cannot", "be", "forgotten,", "and", "you", "are", "entitled", "to", "seek", "the", "reward"]],
+    "unitPlaces": [
+        [
+            6,
+            8
+        ],
+        [
+            1,
+            8
+        ],
+        [
+            3,
+            0
+        ],
+        [
+            10,
+            0
+        ],
+        [
+            0,
+            5
+        ],
+        [
+            0,
+            0
+        ],
+        [
+            4,
+            6
+        ],
+        [
+            8,
+            3
+        ]
+    ],
+    "unitNames": [
+        [
+            "Mc The Cat Reminds the Rat of their Friendship",
+            74
+        ],
+        [
+            "Mc The Rat Fulfills the Pact",
+            69
+        ],
+        [
+            "Mc The Cat and the Rat Escape",
+            71
+        ],
+        [
+            "Mc The Cat Suggests a Reward",
+            76
+        ],
+        [
+            "Mc The Rat Resolves to Cut the Last Rope",
+            67
+        ],
+        [
+            "Mc The Cat Expects to Die",
+            65
+        ],
+        [
+            "Mc The Cat Calls Back the Rat",
+            72
+        ],
+        [
+            "Mc If One Gives Up a Friend One Loses Out",
+            75
+        ]
+    ]
+}

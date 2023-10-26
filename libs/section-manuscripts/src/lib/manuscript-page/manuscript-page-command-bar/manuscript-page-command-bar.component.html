@@ -1,6 +1,13 @@
 
 
 <mat-toolbar class="tool original-toolbar " >
+  <ng-container *ngIf="chapter==='Mc'||chapter==='McEnglish'">
+    <button mat-stroked-button class="mat-button" (click)="changeToArabic()">
+      <mat-icon>book</mat-icon>
+      Arabic
+    </button>
+
+  </ng-container>
   <ng-container *ngFor="let item of items;">
     <ng-container *ngIf="!hasSubItems(item); else subMenu">
       <ng-container>
@@ -31,6 +38,14 @@
       </mat-menu>
 
     </ng-template>
+
+  </ng-container>
+  <ng-container *ngIf="chapter==='Mc'||chapter==='McEnglish'">
+    <button mat-stroked-button class="mat-button" (click)="changeToEnglish()">
+      <mat-icon>book</mat-icon>
+      English
+    </button>
+
   </ng-container>
 </mat-toolbar>
 

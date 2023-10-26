@@ -1,0 +1,53 @@
+{
+    "id": "29ba913c-776c-41f6-9364-f62c6d853d96",
+    "number": 179,
+    "manuscript": "A4095",
+    "imageUrl": "9cbf3937-f466-4983-8d7b-f55f302d286e.jpg",
+    "lines": 
+
+    [["anyone", "to", "do", "the", "same,", "89", "and", "he", "prefers", "nothing", "over", "distancing", "himself", "from", "his", "enemy", "as", "much", "as", "he", "can.", "90", "For", "you", "to", "stay", "away"], ["from", "the", "huntsman", "and", "for", "me", "to", "stay", "away", "from", "you", "is", "the", "most", "prudent", "judgment.", "91", "I", "shall", "like", "you", "from"], ["afar,", "92", "and", "you", "need", "not", "reward", "me", "likewise\u2014if", "you", "so", "judge.", "93", "Otherwise,", "there", "is", "no", "way"], ["for", "us", "to", "ever", "reunite.", "Peace!\u2019\u201d"], ["The", "Chapter", "of", "the", "King", "and", "the", "Bird", "Qubbara,"], ["The", "King", "said", "to", "the", "Philosopher:", "\u201cI", "have", "heard", "the", "parable", "of", "the", "man", "who", "is", "surrounded", "by", "his", "enemies;"], ["who", "seeks", "the", "help", "of", "one", "against", "the", "other", "and", "reconciles", "with", "him,", "so", "that", "he", "can", "be", "delivered,", "through", "it,", "from", "what", "he", "had", "feared;", "and", "who"], ["keeps", "his", "promise", "and", "is", "saved.", "Present", "to", "me,", "if", "you", "will,", "the", "parable", "about", "harm", "inflicted,", "and", "those"], ["who", "need", "to", "be", "wary", "of", "one", "another.", "The", "Philosopher", "said:", "\u201cThey", "claim", "that", "some", "King"], ["called", "Barham\u016bd", "had", "a", "bird", "called", "Qubbara,", "who"], ["could", "talk,", "was", "smart,", "and", "had", "a", "nestling.", "The", "King", "ordered", "that", "Qubbara", "and", "his", "nestling", "be", "taken", "to"], ["a", "place", "where", "a", "woman", "who", "was", "the", "lady", "over", "all", "the", "women,", "was,", "and", "ordered", "her", "to", "take", "good", "care", "of", "him."], ["The", "King\u2019s", "wife", "gave", "birth", "to", "a", "male", "child,", "and", "as", "he", "grew", "up,", "the", "nestling", "accustomed", "to", "the", "child."], ["They", "played", "together", "and", "ate", "with", "one", "another.", "Qubbara", "used", "to", "go", "to", "the", "mountain", "every", "day", "and", "bring"], ["two", "items", "of", "an", "unknown", "fruit.", "He", "fed", "one", "to", "his", "nesting", "and", "one", "to", "the", "King\u2019s", "child."], ["This", "accelerated", "their", "growth", "and", "[increased]", "their", "strength.", "The", "King", "noticed", "this,", "and", "it", "made", "Qubbarah,", "to", "him,", "more"], ["distinguished\u2014until", "a", "day", "came", "when", "Qubbara", "was", "away,", "getting", "the", "two", "items", "of", "that", "fruit:"], ["the", "nestling", "jumped", "into", "the", "child\u2019s", "lap.", "This", "angered", "the", "child,", "and", "he", "threw", "the", "nestling", "to"], ["the", "ground,", "killing", "him.", "When", "Qubbara", "came", "and", "saw", "that", "his", "nestling", "had", "been", "killed,", "he", "was", "grieved", "and", "cried", "out,", "saying,"], ["\u2018Shame", "on", "Kings", "who", "cannot", "be", "trusted", "and", "do", "not", "keep", "their", "promises;", "and", "woe", "to", "him", "who", "is", "put", "to", "test", "with", "their", "company!\u2019"]] ,
+    "unitPlaces": [
+        [
+            0,
+            13
+        ],
+        [
+            0,
+            4
+        ],
+        [
+            1,
+            9
+        ],
+        [
+            2,
+            1
+        ],
+        [
+            2,
+            9
+        ]
+    ],
+    "unitNames": [
+        [
+            "Mc Staying Away from the Enemy is the Best Judgment",
+            102
+        ],
+        [
+            "Mc The Best Thing Is Distance From the Enemy",
+            101
+        ],
+        [
+            "Mc The Rat Will Love the Cat from Afar",
+            103
+        ],
+        [
+            "Mc The Rat Does Not Need a Reward",
+            104
+        ],
+        [
+            "Mc The Last Verdict Is No Reunion",
+            105
+        ]
+    ]
+}

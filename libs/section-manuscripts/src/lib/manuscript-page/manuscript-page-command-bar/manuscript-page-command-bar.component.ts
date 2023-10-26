@@ -22,6 +22,7 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import {IChapterInfo, IManuscriptInfo} from "../../models/manuscript-summary.model";
 import { ManuscriptPageService } from "./../../services/manuscript-page.resolver";
 import {ManuscriptChapterPageService} from "./../../services/manuscript-chapter-page.service";
+import {ManuscriptSetPageDataService} from"./../../services/manuscript-set-page-data.service"
 
 @Component({
   selector: 'kalila-edition-manuscript-page-command-bar',
@@ -39,7 +40,7 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
   chapter='';
   pageNumber='';
   activeSubMenu: any;
-
+  englishMod=false;
   data:any;
   commandBarData$! : Observable<any>;
   combinedData$!: Observable<any>;
@@ -47,15 +48,16 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
   allChaptersData:IChapterInfo[]=[];
   manuscriptChapters:any;
   pageData:any;
+  pageEnglishData:any;
   unitsData:any;
   allPagesData:any;
   isSidenavOpen:boolean=false;
-  chapterToMsData:IChapterInfo[]=[];
+  allEnglishPagesData:any;
   private destroy$ = new Subject<void>();
   private navigationInProgress = false;
   currentPageIndex=0;
   @Output() closeClicked = new EventEmitter();
-  constructor( private manuscriptChapterPageService:ManuscriptChapterPageService,private el: ElementRef,private renderer: Renderer2, private manuscriptPageService: ManuscriptPageService, private cdr: ChangeDetectorRef, public route: ActivatedRoute,private router: Router, private facsimileService: FacsimileService, private fontSizeService:FontSizeService,private breakpointObserver: BreakpointObserver  ) {
+  constructor( private manuscriptChapterPageService:ManuscriptChapterPageService, private el: ElementRef,private renderer: Renderer2, private manuscriptPageService: ManuscriptPageService, private cdr: ChangeDetectorRef, public route: ActivatedRoute,private router: Router, private facsimileService: FacsimileService, private fontSizeService:FontSizeService,private breakpointObserver: BreakpointObserver  ) {
   this.fontSizeService.setFontSize('15px');
     this.subscribeToRouterEvents();
   }
@@ -74,18 +76,20 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
   private initializeData(data: any) {
     const {
       pageData,
-      chapterToMsData,
-      chapterThatAllMsHave,
       manuscriptChaptersData,
       allPagesData,
+      allEnglishPagesData
     } = data;
     // Now you can access each resolved data object
     this.pageData = pageData;
-    this.allChaptersData = chapterThatAllMsHave;
-    this.chapterToMsData = chapterToMsData;
     this.manuscriptChapters = manuscriptChaptersData;
     this.allPagesData = allPagesData;
+    this.allEnglishPagesData=allEnglishPagesData;
     this.currentPageIndex = this.allPagesData[0].index;
+    if(this.chapter=='McEnglish')
+      this.englishMod=true;
+    else this.englishMod=false;
+    //this.manuscriptSetPageDataService.setManuscriptPageData(this.pageData);
   }
   callLinkData() {
     this.router.events.pipe(debounceTime(50)).subscribe(() => {
@@ -95,6 +99,9 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
       this.pageNumber = pageNumber;
       this.manuscriptID = id;
       this.chapter = chapter;
+      if(chapter=='McEnglish')
+        this.englishMod=true;
+      else this.englishMod=false;
       this.callData(); // Call data initialization
       // Rest of your code here
     });
@@ -108,7 +115,6 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
   ngOnInit() {
     this.callLinkData();
     this.data=this.route.snapshot.data;
-
       this.items =   [
         {
           label: 'Resize font ',
@@ -166,12 +172,14 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
     /*  { label: 'Fullscreen', styleClass: 'menucus', icon: 'fullscreen' }*/
   ];
 
+
     this.breakpointObserver
       .observe([Breakpoints.Small, Breakpoints.XSmall]) // Define the breakpoints for small screens
       .pipe(map((result) => result.matches))
       .subscribe((matches) => {
         this.isSmallScreen = matches; // Set the value of 'isSmallScreen' based on the screen size
       });
+
   }
 
   /*async navigateToTheSelectedManuscript(manuscriptId: string) {
@@ -216,8 +224,10 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
 
 */
 
+
   navigateToTheNextPage(): void {
-    if (this.allPagesData && this.pageNumber) {
+
+    if (this.allPagesData && this.pageNumber && this.englishMod==false) {
       const pageNumber = parseInt(this.pageNumber,10);
       const currentIndex = this.allPagesData.findIndex(
         (page: { page_number: number }) => page.page_number === pageNumber)
@@ -230,14 +240,71 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
         );
       }
     }
-
+    if (this.chapter !== 'Mc' && this.chapter !== 'McEnglish') {
+      this.englishMod = false;
+    }
+//English next page
+    if (this.allPagesData && this.pageNumber && this.englishMod ) {
+      const pageNumber = parseInt(this.pageNumber,10);
+      const currentIndex = this.allEnglishPagesData.findIndex(
+        (page: { page_number: number }) => page.page_number === pageNumber)
+      if (currentIndex !== -1 && currentIndex < this.allEnglishPagesData.length - 1) {
+        const nextIndex = currentIndex + 1;
+        const nextPageLink = this.allEnglishPagesData[nextIndex].page_link;
+        this.router.navigateByUrl(
+          nextPageLink,
+          {relativeTo: this.route.parent} as NavigationExtras
+        );
+      }
+    }
   }
 
 
+  changeToEnglish() {
+    // this.manuscriptSetPageDataService.setManuscriptPageData(this.pageEnglishData);
+    this.englishMod = true;
+
+    // Check if this.chapter ends with "English"
+    if (this.chapter.endsWith("English")) {
+      // If it ends with "English," remove it
+      this.chapter = this.chapter;
+    } else {
+      // If it doesn't end with "English," add "English" to it
+      this.chapter = this.chapter + "English";
+    }
+
+    this.manuscriptChapterPageService.setManuscriptChapterPage(
+      this.manuscriptID,
+      this.chapter,
+      this.pageNumber
+    );
+
+    this.router.navigateByUrl(
+      `/manuscripts/${this.manuscriptID}/${this.chapter}/${this.pageNumber}`,
+      { relativeTo: this.route.parent } as NavigationExtras
+    );
+  }
+  changeToArabic(){
+    // this.manuscriptSetPageDataService.setManuscriptPageData(this.pageData);
+    this.englishMod = false;
+
+    // Remove the "english" part from this.chapter
+    this.chapter = this.chapter.replace("English", "");
+
+    this.manuscriptChapterPageService.setManuscriptChapterPage(
+      this.manuscriptID,
+      this.chapter, // Now it's "Mc" instead of "Mc-english"
+      this.pageNumber
+    );
+
+    this.router.navigateByUrl(
+      `/manuscripts/${this.manuscriptID}/${this.chapter}/${this.pageNumber}`,
+      { relativeTo: this.route.parent } as NavigationExtras
+    );  }
 
   navigateToThePreviousPage() {
 
-    if (this.allPagesData && this.pageNumber) {
+    if (this.allPagesData && this.pageNumber && this.englishMod==false) {
       const pageNumber = parseInt(this.pageNumber, 10);
       const currentIndex = this.allPagesData.findIndex(
         (page: { page_number: number }) => page.page_number === pageNumber)
@@ -245,6 +312,23 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
       if (currentIndex !== -1 && currentIndex > 0) {
         const previousIndex = currentIndex - 1;
         const previousPageLink = this.allPagesData[previousIndex].page_link;
+        this.router.navigateByUrl(
+          previousPageLink,
+          {relativeTo: this.route.parent} as NavigationExtras
+        );
+      }
+    }
+    if (this.chapter !== 'Mc' && this.chapter !== 'McEnglish') {
+      this.englishMod = false;
+    }
+    if (this.allPagesData && this.pageNumber && this.englishMod) {
+      const pageNumber = parseInt(this.pageNumber, 10);
+      const currentIndex = this.allEnglishPagesData.findIndex(
+        (page: { page_number: number }) => page.page_number === pageNumber)
+
+      if (currentIndex !== -1 && currentIndex > 0) {
+        const previousIndex = currentIndex - 1;
+        const previousPageLink = this.allEnglishPagesData[previousIndex].page_link;
         this.router.navigateByUrl(
           previousPageLink,
           {relativeTo: this.route.parent} as NavigationExtras

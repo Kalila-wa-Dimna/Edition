@@ -277,16 +277,6 @@
             "قد"
         ]
     ],
-    "unitPlaces": [
-        [
-            20,
-            5
-        ]
-    ],
-    "unitNames": [
-        [
-            "Kd Vizier Might Execute Order",
-            80
-        ]
-    ]
+    "unitPlaces": [],
+    "unitNames": []
 }

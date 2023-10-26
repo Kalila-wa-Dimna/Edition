@@ -1,14 +1,14 @@
 <div class="extra-padding">
   <mat-card>
     <mat-card-content class="mat-card-content">
-      <div *ngFor="let line of concatenatedDataArray; let i = index" class="list-item font-noto-naskh">
+      <div *ngFor="let line of concatenatedDataArray; let i = index"  [ngClass]="{'list-item font-noto-naskh': isArabicLine(line), 'list-english-item': !isArabicLine(line)}">
 
         <div class="line" [style.font-size]="fontSize">
           <span class="line-number" *ngIf="((i+1) % 5 === 0) && (i !== 0);then numbering; else noNumbering;">
             <ng-container *ngTemplateOutlet="numbering; context: { index: (i+1) }"></ng-container>
           </span>
           <ng-template #numbering let-index="index">
-            <span class="f-r" style="margin-right: -5%; padding-left: 3%" [ngStyle]="{'font-size': 14 - 6 + 'px'}">{{i+1}}</span>
+            <span class="f-r" [ngClass]="{'numbering-arabic': isArabicLine(line), 'numbering-english': !isArabicLine(line)}"  [ngStyle]="{'font-size': 14 - 6 + 'px'}">{{i+1}}</span>
           </ng-template>
           <ng-container *ngFor="let word of line; let j = index">
             <ng-container *ngFor="let unit of getUnitsInLine(i, j).shortenedUnitNames; let index = index">

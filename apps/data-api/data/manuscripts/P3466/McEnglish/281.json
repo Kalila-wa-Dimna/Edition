@@ -1,0 +1,35 @@
+{
+    "id": "5721dec8-531a-4c70-ad3f-54b9c2ee5bb8",
+    "number": 281,
+    "manuscript": "P3466",
+    "imageUrl": "6d1680a9-bee1-4518-b6d1-6f8b2a5aca5c.jpg",
+    "lines": [["situation.", "I", "must", "use", "my", "intelligence!\u2019\u201d", "20", "\u201cThen", "he", "said,", "\u2018I", "see", "no", "more", "excellent", "strategy", "than", "to", "seek", "reconciliation", "with", "the", "cat,"], ["for", "the", "cat", "has", "been", "beset", "by", "[the", "kind]", "of", "trouble", "that", "no", "one", "can", "rid", "him", "[of],", "except", "me."], ["Perhaps,", "if", "he", "listens", "to"], ["what", "I\u2019m", "going", "to", "address", "him", "with\u2014truthful", "words", "that", "bear", "no", "deceit\u2014he", "would", "understand", "me", "and", "would", "desire"], ["my", "help,", "reconciling", "with", "me", "for", "his", "own", "benefit,", "wherewith", "[bringing],", "for", "me", "and", "him,", "salvation.\u2019\u201d"], ["22", "\u201cSo", "he", "said", "to", "him,", "\u2018How", "are", "you?\u2019", "He", "said,", "\u2018As", "you", "would", "fancy", "\u2014", "in", "dire", "straits!\u2019", "23", "The", "Rat", "said:"], ["\u2018{I", "shall", "tell", "you", "something}", "in", "which", "I", "will", "not", "lie:", "I", "swear", "that", "before", "I", "found", "delight", "in", "everything", "that", "saddened", "you,", "and", "I", "viewed", "that", "which", "constrained"], ["you", "as", "comforting", "to", "me.", "Today,", "however,", "I", "have", "joined", "you", "in", "trouble"], ["and", "have", "been", "so", "beset", "by", "dire", "straits", "that", "your", "death", "cannot", "delight", "me\u2014I", "am", "your", "partner", "in", "[misfortune],", "and", "I", "can", "only", "hope", "to", "be", "delivered"]],
+    "unitPlaces": [
+        [
+            0,
+            6
+        ],
+        [
+            5,
+            10
+        ],
+        [
+            5,
+            0
+        ]
+    ],
+    "unitNames": [
+        [
+            "Mc The Rat Decides on a Pact with the Cat",
+            21
+        ],
+        [
+            "Mc The Rat Points Out their Common Problem",
+            25
+        ],
+        [
+            "Mc The Cat Acknowledges Being Trapped ",
+            23
+        ]
+    ]
+}

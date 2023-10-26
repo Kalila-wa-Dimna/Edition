@@ -1,0 +1,99 @@
+{
+    "id": "573636b1-0749-4b4f-9edf-b1062f64ff1a",
+    "number": 174,
+    "manuscript": "A4095",
+    "imageUrl": "53ae1ebb-aaaa-4eba-a29d-e63e60ff0488.jpg",
+    "lines": [["who", "was", "saved", "from", "that", "he", "feared;", "and", "who", "kept", "his", "promise", "to", "the", "one", "enemy", "with", "whom", "he", "had", "reconciled.", "Tell", "me", "about", "the", "nature", "of", "truce"], ["and", "how", "that", "is", "sought.", "4", "The", "Philosopher", "said:", "\u201cNot", "all", "instances", "of", "enmity,", "amity,"], ["and", "hatred", "become", "firm", "and", "endure.", "Much", "affection", "turns", "into", "hatred"], ["and", "much", "hatred", "turns", "into", "love", "and", "affection,", "as", "motives", "and", "conditions", "change;"], ["5", "and", "so", "a", "man", "of", "reason", "and", "intelligence", "prepares", "for", "all", "such", "arising", "events", "a", "natural", "judgment"], ["regarding", "that", "which", "ensues", "with", "an", "enemy\u2014and", "there", "is", "no", "issue", "with", "the", "feelings", "of", "a", "friend.", "6", "A", "man", "of", "reason", "is", "not"], ["hindered", "by", "an", "enmity", "toward", "his", "enemy", "from", "approaching", "him", "and", "soliciting"], ["aid,", "if", "he", "desires", "him", "to", "avert", "a", "scary", "matter,", "and", "so", "he", "applies", "judgment", "in", "creating", "connection"], ["and", "reconciliation;", "9", "for", "he", "who", "sees", "[a", "fitting]", "judgment", "for", "that", "and", "acts", "upon", "it", "to", "attain", "his", "need", "...", "10", "An"], ["example", "of", "this", "is", "the", "parable", "of", "the", "rat", "and", "the", "cat,", "who", "put", "their", "disagreements", "aside,", "when", "such", "judgment", "proved", "sensible", "to", "them,"], ["and", "in", "their", "agreement", "was", "the", "wellbeing", "of", "them", "both", "and", "rescue", "from"], ["dire", "difficulty.\u201d", "11", "\u201cAnd", "how", "was", "that?\u201d", "said", "the", "King.", "12", "\u201cThe", "claim", "goes,\u201d", "said", "the", "Philosopher,"], ["\u201cthat,", "in", "the", "land", "of", "Sarand\u012bb,", "there", "was", "a", "tall", "tree,", "and", "at", "its", "foot", "there", "was"], ["the", "burrow", "of", "a", "rat", "called", "Far\u012bd\u016bn", "and", "the", "den", "of", "a", "cat", "named", "R\u016bm\u012b.", "13", "Hunters,"], ["at", "times,", "passed", "by", "that", "place,", "seeking", "to", "hunt", "wild", "game.", "One", "such", "huntsman"], ["came", "by,", "one", "day,", "set", "his", "snares,", "and", "R\u016bm\u012b", "fell", "into", "them.", "14", "\u201cThe", "rat", "came", "out"], ["wanting", "to", "eat", "something,", "yet", "all", "the", "while", "cautious,", "turning", "around,", "surveying;", "upon", "seeing"], ["the", "cat", "trapped", "in", "the", "snares,", "he", "rejoiced.", "15", "He", "then", "turned", "behind", "him", "and", "saw", "that", "a", "mongoose"], ["had", "tracked", "him;", "and", "looking", "over", "his", "head,", "[he", "saw]", "an", "owl,", "atop", "a", "tree,", "watching", "him.", "And", "so,", "he", "feared\u2014that", "if", "he", "turned"], ["back,", "the", "weasel", "would", "jump", "on", "him;", "that", "if", "he", "moved", "left", "or", "right,", "the", "owl", "would", "take", "him;"], ["and", "that", "if", "he", "stepped", "forward,", "the", "cat", "was", "right", "in", "front", "of", "him.", "16", "\u201c\u2018This", "is", "trouble", "which", "has", "besieged", "me\u2019", "said", "the", "rat"]],
+    "unitPlaces": [
+        [
+            11,
+            1
+        ],
+        [
+            5,
+            11
+        ],
+        [
+            4,
+            0
+        ],
+        [
+            13,
+            9
+        ],
+        [
+            15,
+            8
+        ],
+        [
+            8,
+            1
+        ],
+        [
+            8,
+            10
+        ],
+        [
+            20,
+            5
+        ],
+        [
+            1,
+            3
+        ],
+        [
+            11,
+            8
+        ],
+        [
+            17,
+            5
+        ]
+    ],
+    "unitNames": [
+        [
+            "Mc The King Requests the Full Parable",
+            11
+        ],
+        [
+            "Mc Enmity Must Not Stop One from Requesting Help",
+            6
+        ],
+        [
+            "Mc The Intelligent Adapts to Situations",
+            5
+        ],
+        [
+            "Mc The Cat Is Caught",
+            13
+        ],
+        [
+            "Mc The Rat Seeks Food",
+            14
+        ],
+        [
+            "Mc The Resolute Attains His Need",
+            9
+        ],
+        [
+            "Mc  The Parable of the Cat and Rat Is Invoked",
+            10
+        ],
+        [
+            "Mc The Rat Weighs His Predicament ",
+            16
+        ],
+        [
+            "Mc The Philosopher Responds that Emotions Change",
+            4
+        ],
+        [
+            "Mc The Rat and the Cat Live Next to a Tree",
+            12
+        ],
+        [
+            "Mc Foes Surround the Rat",
+            15
+        ]
+    ]
+}

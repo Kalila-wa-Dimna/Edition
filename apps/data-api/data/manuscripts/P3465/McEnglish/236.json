@@ -1,0 +1,35 @@
+{
+    "id": "b6e77308-06d3-41f0-ab9d-9e0d779edef3",
+    "number": 236,
+    "manuscript": "P3465",
+    "imageUrl": "1c68d14c-c741-4fff-9f91-9790c1813dd9.jpg",
+    "lines": [["the", "burrow", "of", "a", "rat", "called", "Far\u012bd\u016bn.", "13", "Hunters", "frequented", "that"], ["place,", "hunting", "game", "and", "fowl", "there.", "One", "day,", "a", "huntsman", "arrived", "and", "set", "his", "snares", "near"], ["R\u016bm\u012b\u2019s", "place\u2014it", "wasn\u2019t", "long", "before", "he", "fell", "into", "them.\u201d", "14", "\u201cThe", "rat", "came", "out", "creeping,", "wanting", "something", "to", "eat,", "yet"], ["cautious", "of", "R\u016bm\u012b.", "As", "he", "was", "pursuing", "[his", "search],", "he", "noticed", "him", "in", "the", "net;", "so", "he", "was", "pleased,", "welcoming", "[the", "sight].", "15", "He", "then", "turned"], ["and", "saw", "behind", "him", "a", "mongoose", "who", "wanted", "to", "take", "him,", "and", "in", "the", "tree", "an", "owl", "who", "wanted", "to", "snatch", "him.", "And", "so", "he", "became", "perplexed", "about", "his", "situation.", "He", "feared\u2014"], ["that", "if", "he", "stepped", "back,", "the", "mongoose", "would", "take", "him;", "that", "if", "he", "moved", "right", "or", "left,", "the", "owl", "would", "snatch", "him;", "and", "that"]],
+    "unitPlaces": [
+        [
+            0,
+            6
+        ],
+        [
+            2,
+            8
+        ],
+        [
+            3,
+            13
+        ]
+    ],
+    "unitNames": [
+        [
+            "Mc The Cat Is Caught",
+            13
+        ],
+        [
+            "Mc The Rat Seeks Food",
+            14
+        ],
+        [
+            "Mc Foes Surround the Rat",
+            15
+        ]
+    ]
+}

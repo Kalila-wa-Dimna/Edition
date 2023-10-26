@@ -7,6 +7,12 @@
 
 }
 
+.list-english-item{
+  direction: ltr;
+  text-align: left;
+  line-height: 2.5!important;
+}
+
 .mat-card-content{
   height: calc(100vh - 50px - 5px - 64px - 5px - 33px - 69px );
     overflow: auto;
@@ -77,11 +83,22 @@
   }
 }
 
-.list-item span {
+.list-item .list-english-item span {
   margin: 0;
   padding: 0;
   line-height: 1; /* You can experiment with different values, e.g., 1 or 0.5 */
 }
 .font-noto-naskh{
   line-height: 2.5!important;
+}
+
+
+.numbering-arabic{
+  margin-right: -5%;
+  padding-left: 3%
+}
+
+.numbering-english{
+  margin-left: -5%;
+  padding-right:4% ;
 }

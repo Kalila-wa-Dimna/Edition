@@ -1,0 +1,52 @@
+{
+    "id": "62fec1cd-312d-4e40-a537-8989356e7320",
+    "number": 279,
+    "manuscript": "P3466",
+    "imageUrl": "51954f81-42fa-4b89-ac61-eb3f8a97f6d3.jpg",
+    "lines": 
+    [["4", "The", "Philosopher", "said:", "\u201cNot", "all", "instances", "of", "enmity,", "closeness,", "amity,", "and", "hatred", "endure", "and", "become", "firm."], ["Much", "affection", "might", "turn", "into", "hatred,", "and", "much", "hatred", "does", "turn", "into", "into", "affection,"], ["at", "[any]", "change", "of", "motives", "and", "[upon]", "the", "arrival", "of", "[new]", "of", "circumstances;"], ["5", "and", "so", "a", "man", "of", "reason", "creates", "for", "every", "such", "instance", "a", "judgment", "and", "prepares"], ["resources", "for", "that", "accordingly,", "when", "he", "covets", "that", "which", "the", "enemy", "has", "[to", "offer]", "[after]", "being", "disappointed", "at", "what", "the", "friend", "[couldn\u2019t", "offer]."], ["6", "A", "man", "of", "reason", "is", "not", "hindered", "by", "an", "enmity", "in", "his", "soul", "toward", "his", "enemy", "from", "approaching", "him,", "soliciting"], ["aid,", "if", "he", "desires", "him", "to", "[help]", "avert", "a", "scary", "matter", "or", "draw", "benefit;", "so", "he", "applies", "judgment", "in", "bringing"], ["connection", "and", "reconciliation.", "9", "He", "who", "employs", "his", "judgment", "on", "this", "and", "acts", "with", "diligence", "will", "thereby", "attain"], ["his", "need", "and", "emerge", "from", "his", "predicament.", "10", "An", "example", "of", "this", "is"], ["the", "parable", "of", "the", "rat", "and", "the", "cat,", "who", "put", "their", "disagreements", "aside", "when", "they", "fell", "into", "trouble", "and", "difficulty,", "and", "wherewith"], ["came", "deliverance", "for", "them", "both", "from", "what", "they", "had", "fallen", "into.\u201d"]],
+    "unitPlaces": [
+        [
+            5,
+            0
+        ],
+        [
+            3,
+            0
+        ],
+        [
+            7,
+            4
+        ],
+        [
+            8,
+            7
+        ],
+        [
+            0,
+            0
+        ]
+    ],
+    "unitNames": [
+        [
+            "Mc Enmity Must Not Stop One from Requesting Help",
+            6
+        ],
+        [
+            "Mc The Intelligent Adapts to Situations",
+            5
+        ],
+        [
+            "Mc The Resolute Attains His Need",
+            9
+        ],
+        [
+            "Mc  The Parable of the Cat and Rat Is Invoked",
+            10
+        ],
+        [
+            "Mc The Philosopher Responds that Emotions Change",
+            4
+        ]
+    ]
+}

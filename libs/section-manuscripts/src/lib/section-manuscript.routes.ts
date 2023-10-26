@@ -10,7 +10,13 @@ import {ManuscriptPageTextComponent} from "./manuscript-page/manuscript-page-tex
 import {
   ManuscriptPageFacsimileComponent
 } from "./manuscript-page/manuscript-page-facsimile/manuscript-page-facsimile.component";
-import {createAllPagesResolver, createChapterToMsDataResolver,createChapterThatAllMsHaveDataResolver,createManuscriptChaptersDataResolver} from "./services/manuscript-page.resolver";
+import {
+  createAllPagesResolver,
+  createChapterThatAllMsHaveDataResolver,
+  createManuscriptChaptersDataResolver,
+  createManuscriptEnglishDataResolver,
+  createAllEnglishPagesResolver
+} from "./services/manuscript-page.resolver";
 import {createManuscriptDataResolver } from "./services/manuscript-page.resolver";
 
 import {createGalleryDataResolver} from "./services/manuscript-gallery.resolver";
@@ -24,6 +30,7 @@ import {
 import {
   ManuscriptPageGalleryCommandBarComponent
 } from "./manuscript-page-gallery/manuscript-page-gallery-command-bar/manuscript-page-gallery-command-bar.component"
+
 export const routes: Route[] = [
     // select
     {
@@ -72,10 +79,9 @@ export const routes: Route[] = [
     pathMatch: 'full',
     resolve: {
       pageData: createManuscriptDataResolver(),
-      chapterToMsData:createChapterToMsDataResolver(),
-      chapterThatAllMsHave:createChapterThatAllMsHaveDataResolver(),
       manuscriptChaptersData:createManuscriptChaptersDataResolver(),
-      allPagesData:createAllPagesResolver()
+      allPagesData:createAllPagesResolver(),
+      allEnglishPagesData:createAllEnglishPagesResolver()
     },
     children: [
       {

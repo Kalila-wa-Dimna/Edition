@@ -1,0 +1,75 @@
+{
+    "id": "7b165ad8-e2b4-4f94-85d9-efb775dcc7c5",
+    "number": 212,
+    "manuscript": "R2536",
+    "imageUrl": "ea88e810-e6f4-4705-8b36-9ef4fa8e4967.jpg",
+    "lines": [["cut", "into", "pieces?\u201d", "So", "he", "told", "her", "what", "happened", "and", "said:", "\u201cThis", "is", "the", "fruit", "of", "haste!\u201d"], ["1The", "Chapter", "of", "the", "Cat", "and", "Rat"], ["3", "\u201cI", "have", "heard", "this", "parable,\u201d", "said", "the", "King", "to", "the", "Philosopher.", "\u201cPresent", "to", "me", "the", "parable", "of", "the", "man"], ["whose", "enemies", "are", "going", "to", "vanquish", "him\u2014how", "can", "he", "get", "rid", "of", "them?", "4", "The", "Philosopher"], ["said:", "\u201cHe", "who", "has", "been", "vanquished", "by", "his", "enemies", "and", "fallen", "victim", "to", "them", "should", "seek", "the", "friendship"], ["of", "one", "of", "the", "enemies,", "make", "him", "a", "dear", "friend,", "and", "enter", "into", "a", "pact", "with", "him,", "so", "as", "he", "can", "defeat,", "with", "his", "[aid],", "the", "rest", "of", "his", "enemies.", "For"], ["a", "friend", "is", "not", "always", "a", "friend", "nor", "an", "enemy", "[always]", "an", "enemy:", "if", "a", "friend", "sees"], ["in", "his", "friend", "that", "which", "he", "abhors,", "he", "turns", "to", "enmity,", "and", "if", "the", "enemy", "sees", "profit", "[to", "be", "had]", "from", "his", "enemy,"], ["he", "doesn\u2019t", "hold", "on", "to", "his", "enmity;", "rather,", "he", "changes", "to", "friendship", "and", "loyalty.", "5", "The", "man", "of", "knowledge"], ["proceeds,", "when", "compelled,", "to", "befriend", "his", "enemies.", "And", "he", "who", "doesn\u2019t", "know", "looses", "his", "way"], ["of", "things;", "and", "he", "recognizes", "neither", "motive", "nor", "direction", "until", "he", "perishes", "in", "blindness.", "10", "A", "example", "of", "this", "is", "the", "parable", "of"], ["the", "cat", "and", "the", "rat,", "who", "escaped", "from", "a", "trap", "with", "either", "one", "doing", "the", "other", "a", "favor."], ["11", "\u201cAnd", "how", "was", "that,\u201d", "said", "the", "King.", "12", "\u201cThey", "mentioned", "that"], ["in", "some", "region", "there", "[was]", "a", "great", "tree", "at", "whose", "bottom", "[lived]", "many", "wild", "animals", "and", "on", "whose", "branches"], ["were", "nests", "of", "birds;", "that", "at", "the", "root", "of", "that", "tree,", "there", "was", "a", "cat;13", "that", "huntsmen", "at", "times"]],
+    "unitPlaces": [
+        [
+            12,
+            0
+        ],
+        [
+            2,
+            0
+        ],
+        [
+            8,
+            9
+        ],
+        [
+            14,
+            8
+        ],
+        [
+            10,
+            12
+        ],
+        [
+            1,
+            0
+        ],
+        [
+            3,
+            11
+        ],
+        [
+            12,
+            7
+        ]
+    ],
+    "unitNames": [
+        [
+            "Mc The King Requests the Full Parable",
+            11
+        ],
+        [
+            "Mc The King Asks about Escaping Enemies",
+            3
+        ],
+        [
+            "Mc The Intelligent Adapts to Situations",
+            5
+        ],
+        [
+            "Mc The Cat Is Caught",
+            13
+        ],
+        [
+            "Mc  The Parable of the Cat and Rat Is Invoked",
+            10
+        ],
+        [
+            "Mc Chapter Title",
+            1
+        ],
+        [
+            "Mc The Philosopher Responds that Emotions Change",
+            4
+        ],
+        [
+            "Mc The Rat and the Cat Live Next to a Tree",
+            12
+        ]
+    ]
+}

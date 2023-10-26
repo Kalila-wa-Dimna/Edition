@@ -1,0 +1,91 @@
+{
+    "id": "440a5ce1-1316-4a6e-9a29-a5dfb8e10cfa",
+    "number": 237,
+    "manuscript": "P3465",
+    "imageUrl": "0a39e00b-b20c-411d-bb45-dad7ce8f7863.jpg",
+    "lines": [["if", "he", "stepped", "straight", "ahead", "of", "him,", "the", "cat", "would", "kill", "him", "as", "prey.\u201d", "16", "\u201cThese", "are", "troubles", "that", "have", "besieged", "me,\u2019", "he", "therefore", "said", "to", "himself.", "\u2018Evils"], ["have", "come", "upon", "me", "in", "succession,", "and", "trials", "have", "surrounded", "me.", "Yet", "I", "still", "have", "my", "intelligence:", "my", "situation", "should", "not", "frighten", "me,", "nor"], ["my", "affair", "should", "terrify", "me,", "perplexity", "overtake", "me,", "nor", "should", "I", "be", "disheartened.", "17", "The", "sensible", "man", "does", "not", "lose"], ["his", "judgement,", "and", "his", "mind", "does", "not", "abandon", "him,", "whatever", "the", "circumstance;", "18", "for", "intelligence", "resembles", "the", "sea", "whose", "deeps", "cannot", "be", "reached."], ["19", "The", "level-headed", "man", "does", "not", "remain", "exhausted;", "and", "one", "should", "not", "[allow]", "one\u2019s", "disposition", "to", "reach", "the", "point", "where", "one", "becomes", "blind"], ["to", "one\u2019s", "situation.", "20", "I", "see", "no", "way", "out", "for", "me", "from", "this", "trouble", "except", "reconciliation", "with", "the", "cat,", "for", "he"], ["has", "been", "beset", "by", "the", "same", "trouble", "that", "has", "beset", "me\u2014or", "part", "thereof.", "Perhaps,", "if", "he", "listens", "to", "my", "words,", "which", "I", "shall", "address", "him"], ["with,", "and", "heed", "my", "eloquent", "address", "and", "pure", "sincerity,", "about", "which", "there", "is", "no", "disagreement", "and", "with", "which", "[comes]", "no", "deceit,"], ["he", "will", "understand", "it", "and", "desiremy", "help", "to", "him,", "thus", "delivering", "us", "together.\u2019\u201d", "21", "\u201cAnd", "so", "the", "rat", "approached", "the", "cat"], ["and", "said,", "\u2018How", "are", "you?\u201922", "\u2018As", "you", "would", "like,\u2019", "he", "said,", "\u2018in", "dire", "straits!\u2019", "23", "\u2018And", "today,", "I\u2019m", "your", "partner", "in", "trouble,\u2019", "he", "said."], ["\u2018I", "can", "only", "hope", "to", "be", "delivered", "through", "hoping", "that", "you", "similarly", "be", "delivered."], ["These", "words", "of", "mine", "contain", "no", "lie", "or", "deceitfulness.", "24", "The", "mongoose,", "here,", "is", "lying", "in", "ambush", "for", "me,"], ["and", "the", "owl", "is", "watching", "me,", "and", "both,", "to", "you", "and", "me,", "are", "enemies.", "So", "if", "you", "provide", "me", "with", "safety,", "I", "shall", "cut"], ["your", "bonds", "and", "deliver", "you", "from", "this", "trouble.", "If", "that", "happens,", "either", "one", "shall", "be", "delivered"], ["by", "the", "other\u2014", "29", "as", "with", "a", "ship", "and", "[its]", "passengers", "at", "sea:", "by", "the", "ship", "they", "are", "delivered", "and", "by", "them"]],
+    "unitPlaces": [
+        [
+            5,
+            2
+        ],
+        [
+            8,
+            8
+        ],
+        [
+            11,
+            7
+        ],
+        [
+            2,
+            9
+        ],
+        [
+            14,
+            3
+        ],
+        [
+            9,
+            10
+        ],
+        [
+            9,
+            4
+        ],
+        [
+            0,
+            4
+        ],
+        [
+            3,
+            8
+        ],
+        [
+            4,
+            2
+        ]
+    ],
+    "unitNames": [
+        [
+            "Mc The Rat Decides on a Pact with the Cat",
+            21
+        ],
+        [
+            "Mc The Rat Comes Up to the Cat",
+            22
+        ],
+        [
+            "Mc The Rat Proves His Sincerity",
+            26
+        ],
+        [
+            "Mc The Intelligent Always Keeps Alert",
+            18
+        ],
+        [
+            "Mc Sailors Depend on Ships and Vice Versa",
+            31
+        ],
+        [
+            "Mc The Rat Points Out their Common Problem",
+            25
+        ],
+        [
+            "Mc The Cat Acknowledges Being Trapped ",
+            23
+        ],
+        [
+            "Mc The Rat Weighs His Predicament ",
+            16
+        ],
+        [
+            "Mc Intelligence Is Like the Sea",
+            19
+        ],
+        [
+            "Mc Situations Do Not Blind the Intelligent",
+            20
+        ]
+    ]
+}

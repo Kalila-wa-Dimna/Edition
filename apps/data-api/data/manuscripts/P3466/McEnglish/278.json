@@ -1,0 +1,84 @@
+{
+    "id": "a5babe71-e452-4701-a900-0606956827eb",
+    "number": 278,
+    "manuscript": "P3466",
+    "imageUrl": "46c8519f-d772-48d5-91de-664872d6f750.jpg",
+    "lines": 
+    [["any", "cat,", "without", "inflicting", "upon", "him", "every", "pain.", "This", "is", "the", "way", "to", "rid", "ourselves", "of", "the", "horror", "of", "the", "cats."], ["The", "King", "did", "what", "the", "vizier", "had", "advised,", "and", "before", "six", "months", "had", "passed,", "all", "the", "cats"], ["that", "were", "in", "that", "city", "had", "perished.", "That", "group", "of", "people", "went", "by"], ["and", "after", "them", "another", "grew", "up", "hating", "cats:", "every", "time"], ["they", "noticed", "a", "slight", "corruption", "caused", "by", "mice,", "in", "some", "garment,", "furniture,", "or", "food,"], ["they", "said,", "\u2018Look!", "Could", "a", "cat", "have", "gone", "through", "the", "city?\u2019Also,"], ["whenever", "it", "so", "happened", "that", "people", "or", "animals", "got", "inflicted", "by", "a", "disease,", "they", "said,"], ["\u2018It", "almost", "seems", "as", "if", "some", "cat", "passed", "through", "the", "city.\u2019", "With", "this", "trick"], ["the", "rats", "rid", "themselves", "of", "the", "horror", "of", "the", "cats", "and", "were", "at", "peace", "from", "them.", "And", "if", "this"], ["weak", "and", "lowly", "living", "being", "could", "conceive", "of", "such", "trickery,", "so", "as", "to"], ["get", "rid", "of", "his", "enemy,", "then", "hope", "must", "not", "be", "lost", "in", "man,", "who", "is"], ["the", "smartest", "and", "wisest", "living", "being,", "can", "obtain", "from", "his", "enemy", "what", "he", "wants", "using", "his", "ingenuity."], ["1The", "Chapter", "of", "the", "Rat", "and", "Cat"], ["3", "\u201cI", "have", "understood", "this", "parable,\u201d", "said", "King", "Dayshal\u012bm", "to", "the", "Philosopher", "Baydan\u0101.", "\u201cNow", "tell"], ["me", "a", "parable", "about", "a", "man", "who", "was", "weak", "and", "his", "enemies", "were", "many", "and,", "blocking", "him", "from", "every", "side,", "put", "him", "on", "the", "brink"], ["of", "perishing,", "so", "he", "sought", "reconciliation", "with", "one", "of", "his", "enemies,", "thereby", "becoming", "safe,", "then", "kept", "his", "promise", "to", "the", "one", "with", "whom"], ["he", "had", "reconciled.", "So", "tell", "me", "about", "the", "nature", "of", "truce\u2014how", "it", "should", "be", "sought.\u201d"]],
+    "unitPlaces": [
+        [
+            3,
+            9
+        ],
+        [
+            8,
+            7
+        ],
+        [
+            0,
+            6
+        ],
+        [
+            1,
+            0
+        ],
+        [
+            2,
+            7
+        ],
+        [
+            7,
+            9
+        ],
+        [
+            5,
+            8
+        ],
+        [
+            13,
+            0
+        ],
+        [
+            12,
+            0
+        ]
+    ],
+    "unitNames": [
+        [
+            "Km The Damage Is Attributed to the Cats",
+            135
+        ],
+        [
+            "Km Man Should Heed This Example",
+            138
+        ],
+        [
+            "Km The Third Vizier Foretells Success",
+            131
+        ],
+        [
+            "Km The King Enacts the Plan and the Cats Are Killed",
+            133
+        ],
+        [
+            "Km The Next Generation Hates the Cats",
+            134
+        ],
+        [
+            "Km The Plan Saves the Rats",
+            137
+        ],
+        [
+            "Km Disease Is Attributed to the Cats",
+            136
+        ],
+        [
+            "Mc The King Asks about Escaping Enemies",
+            3
+        ],
+        [
+            "Mc Chapter Title",
+            1
+        ]
+    ]
+}
