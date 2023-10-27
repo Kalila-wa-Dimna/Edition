@@ -80,9 +80,9 @@ import {FacsimileService} from "../../../../libs/section-manuscripts/src/lib/ser
                 <br><br>
               </div>
               <div class="text-image-container">
-                <div class="img-container">
+                <!--<div class="img-container">
                   <img [src]="manuscriptEndPoint + 'about/about1.jpg'" alt="Image Description" class="img-sty">
-                </div>
+                </div>-->
                 <div class="text-container">
                   <br >
 
