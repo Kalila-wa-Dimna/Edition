@@ -145,18 +145,13 @@ export class OverviewComponent implements OnInit
     this.dataSource = new MatTableDataSource(this.data.manuscriptList);
   }
   ngOnInit() {
-
-
-    console.log( this.dataSource);
     const totalMinimumWidth = this.columnsToDisplay.reduce((total, column) => {
       return total + (this.columnWidths[column.toLowerCase()] || 130);
     }, 0);
-    console.log(`Total Minimum Width: ${totalMinimumWidth}px`);
+    //console.log(`Total Minimum Width: ${totalMinimumWidth}px`);
     this.groupedColumns = Object.entries(this.groupColumns(this.columnsToDisplay))
       .map(([key, value]) => ({ key, value }));
-    console.log(this.groupedColumns);
 
     this.groupedColumnsKeys= this.groupedColumns.map(group => group.key);
-  console.log(this.groupedColumnsKeys,"hjhjhjhj");
   }
 }
