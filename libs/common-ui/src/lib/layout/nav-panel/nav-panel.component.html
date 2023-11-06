@@ -41,12 +41,30 @@
           ><span class="panel-title"><span>Collations</span></span>
         </mat-panel-title>
       </mat-expansion-panel-header>
+
       <a mat-button [routerLink]="['/collations']">Overview</a>
       <mat-divider></mat-divider>
       <kd-collations-panel
         *ngIf="expanded.collationPanelOpen"
       ></kd-collations-panel>
     </mat-expansion-panel>
+    <mat-divider></mat-divider>
+    <!-- adding the English collations-->
+    <mat-expansion-panel
+      [expanded]="expanded.englishCollationPanelOpen"
+      (opened)="expanded.englishCollationPanelOpen = true"
+      (closed)="expanded.englishCollationPanelOpen = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title
+        ><span class="panel-title"><span>English translation</span></span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <kalila-edition-english-collation-panel></kalila-edition-english-collation-panel>
+
+      <mat-divider></mat-divider>
+    </mat-expansion-panel>
+
     <mat-divider></mat-divider>
     <mat-expansion-panel
       [expanded]="expanded.guidesPanelOpen"

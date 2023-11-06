@@ -3,8 +3,8 @@
 @import 'sass/_light-theme.scss';
 
 :host {
-  width: 100vw;
-  min-height: 100vh;
+ // width: 100vw;
+ // min-height: 100vh;
   height: fit-content;
 }
 
@@ -12,7 +12,7 @@ main {
   margin-top: 1.5rem;
   @include on-larger-than('md') {
     grid-template-columns: repeat(4, 1fr);
-    max-width: 90%; // optional, if you want to limit the maximum width
+    max-width: 90%;
     margin-left: auto;
     margin-right: auto;
   }
@@ -34,7 +34,7 @@ main {
 }
 
 .mat-mdc-header-row, .mat-mdc-footer-row, .mat-mdc-row {
-  min-width:  10720px;
+  min-width:   10218px;
   /* 24 columns, 80px each */
 }
 .bibliography-cell{
@@ -54,7 +54,7 @@ main {
 .commentary-column .mat-mdc-header-cell,
 .commentary-column .mat-mdc-footer-cell,
 .commentary-column .mat-mdc-cell {
-  min-width: 700px;
+  //min-width: 700px;
   padding: 20px;
   overflow: auto;
   box-sizing: border-box;
@@ -62,7 +62,7 @@ main {
 ::ng-deep .location-commentary-header .mat-mdc-header-cell,
 .location-commentary-header .mat-mdc-footer-cell,
 .location-commentary-header .mat-mdc-cell ,{
-  min-width: 600px;
+ // min-width: 600px;
   /* Other styling properties here */
 }
 
@@ -73,15 +73,24 @@ main {
   /* display: flex;*/
 }
 
-::ng-deep  .light-theme .mat-mdc-table .mdc-data-table__header-row {
-  height: 56px;
+
+
+.sticky-row {
+  display: flex;
   position: sticky;
-  top: 0;
   z-index: 2;
-  background-color: #003a4a!important;
-  color: #ffffff!important;
+  background-color:#003a4a!important;
+  color: white!important;
+  /* Make sure both rows are displayed as a flex container */
 }
 
+.row-first-header{
+  top:0
+}
+
+.row-second-header{
+  top:40px
+}
 .sticky-column  {
   position: sticky;
   left: 0;
@@ -103,12 +112,33 @@ main {
    background-color: #003a4a!important;
   }
   ::ng-deep  .mat-mdc-table .mdc-data-table__header-row {
-    height: 56px;
+    height: 40px;
     position: sticky;
     top: 0;
     z-index: 2;
     color: black!important;
   }
+  .sticky-row {
+    display: flex;
+    position: sticky;
+    z-index: 2;
+    background-color:#003a4a!important;
+    color: white!important;
+    /* Make sure both rows are displayed as a flex container */
+  }
 
+  .row-first-header{
+    top:0
+  }
 
+  .row-second-header{
+    top:40px
+  }
+  .siglumColor{
+    color: #003a4a!important;
+  }
+
+}
+.siglumColor{
+  color: #003a4a!important;
 }

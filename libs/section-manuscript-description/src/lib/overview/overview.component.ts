@@ -14,10 +14,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class OverviewComponent implements OnInit
 {
    data: any;
-
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   columnsToDisplay: string[] = [
-    'siglum',
+    'siglum__siglum',
     'catalogue__title',
     'catalogue__commentary',
     'location__city',
@@ -25,11 +24,11 @@ export class OverviewComponent implements OnInit
     'location__manuscript_id',
     'location__commentary',
     'dating__accuracy',
-    'dating__georgian_century',
-    'dating__georgian_year',
+    'dating__gregorian_century',
+    'dating__gregorian_year',
     'dating__hijri_century',
     'dating__hijri_year',
-    'dating__georgian_date',
+    'dating__gregorian_date',
     'dating__hijri_date',
     'dating__commentary',
     'preservation__status',
@@ -66,17 +65,18 @@ export class OverviewComponent implements OnInit
     'script__vowel_markers',
     'script__present_additional_writing_signs',
     'script__commentary',
-    'orthography__d_dh_shifts',
-    'orthography__za_dad_shifts',
-    'orthography__sin_sad_shifts',
     'orthography__tha_ta_shifts',
+    'orthography__d_dh_shifts',
+    'orthography__sin_sad_shifts',
+    'orthography__za_dad_shifts',
     'orthography__use_of_hamza',
     'orthography__commentary',
-    'nouthing',
+
   ];
 
   columnWidths: { [key: string]: number } = {
-    'location__commentary': 400,
+   'location__commentary': 400,
+    'location__city': 120,
     'catalogue__commentary': 400,
     'dating__commentary': 400,
     'preservation__commentary': 400,
@@ -94,29 +94,41 @@ export class OverviewComponent implements OnInit
     'preservation__restored_parts':200,
     'binding__additional_features':200,
     'script__present_additional_writing_signs':250,
-    'siglum':50,
+    'siglum__siglum':120
+
   };
+
+
 
   groupedColumns: { key: string, value: string[] }[] = [];
   groupedColumnsKeys: string[]=[] ;
-  modifiedColumnsToDisplay = this.columnsToDisplay.map(column => column.replace(/__+/g, '<br>').replace(/_/g, ' '));  groupColumns(columns: string[]): Record<string, string[]> {
-  const groupedColumns: Record<string, string[]> = {};
+  modifiedColumnsToDisplay = this.columnsToDisplay.map((column) =>
+    column
+      .replace(/tha_ta_shifts/g, 'Thāʾ/tāʾ shifts')
+      .replace(/sin_sad_shifts/g, 'Sīn/ṣād shifts')
+      .replace(/za_dad_shifts/g,'Ḍād/ẓā shifts')
+      .replace(/d_dh_shifts/g,'Dhāl/dāl shifts')
+      .replace(/^(\w+)__/g, '')
+      .replace(/(\w)([^\s]*)/, (match, p1, p2) => p1.toUpperCase() + p2)
+      .replace(/__(\w)/g, (match, firstLetter) => `<br>${firstLetter.toUpperCase()}`)
+      .replace(/__+/g, '<br>')
+      .replace(/_/g, ' ')
+        );
 
-  columns.forEach(column => {
-    // Extract the group name by splitting the column name at "__" and taking the first part
-    const groupName = column.split('__')[0];
+  groupColumns(columns: string[]): Record<string, string[]> {
+    const groupedColumns: Record<string, string[]> = {};
+    columns.forEach(column => {
+      const categoryName = column.split('__')[0];
+      if (!groupedColumns[categoryName]) {
+        groupedColumns[categoryName] = [];
+      }
+      groupedColumns[categoryName].push(column);
+    });
 
-    // If the group doesn't exist in the groupedColumns object, create it
-    if (!groupedColumns[groupName]) {
-      groupedColumns[groupName] = [];
-    }
+    return groupedColumns;
+  }
 
-    // Push the column to its respective group
-    groupedColumns[groupName].push(column);
-  });
-
-  return groupedColumns;
-}
+  modifiedColumnWidths = { ...this.columnWidths };
 
   sanitizeDataInDataSource(data: any[]): any[] {
     return data.map(row => {
@@ -134,7 +146,11 @@ export class OverviewComponent implements OnInit
     // Ensure that input is a string
     const inputString = (input || '').toString();
 
-    const sanitizedInput = inputString.replace(/\n/g, '<br>');
+    // Replace commas with a dash symbol
+    const sanitizedInput = inputString.replace(/,(?![ ])/g, ', ');
+
+    // Replace newline characters with line breaks
+    const sanitizedInputWithLineBreaks = sanitizedInput.replace(/\n/g, '<br>');
     return this.domSanitizer.bypassSecurityTrustHtml(sanitizedInput);
   }
 
@@ -144,6 +160,43 @@ export class OverviewComponent implements OnInit
     this.data =this.route.snapshot.data;
     this.dataSource = new MatTableDataSource(this.data.manuscriptList);
   }
+  groupColspans: { [key: string]: number } = {};
+
+  groupWidths:{ [key: string]: number } = {};
+  calculateGroupWidths(  groupedColumns: { key: string; value: string[] }[],
+                         columnWidths: { [key: string]: number },
+                         defaultWidth: number,
+                         groupWidths: { [key: string]: number }
+  ): { [key: string]: number } {
+
+    // Loop through groupedColumns
+    for (const group of groupedColumns) {
+      const key = group.key;
+      const groupColumns = group.value;
+
+      // Initialize the width for this group
+      let groupWidth = 0;
+
+      // Loop through columns in the group and sum their widths
+      for (const column of groupColumns) {
+        groupWidth += columnWidths[column] || defaultWidth;
+      }
+
+      // Store the total width for this group
+      groupWidths[key] = groupWidth;
+    }
+
+    return groupWidths;
+  }
+
+
+  getColspan(group: string): number {
+    return this.groupColspans[group] || 1; // Set a default value if needed
+  }
+  getGroupColWidth(group:string):number{
+    return this.groupWidths[group] || 1;
+  }
+  defaultWidth = 120;
   ngOnInit() {
     const totalMinimumWidth = this.columnsToDisplay.reduce((total, column) => {
       return total + (this.columnWidths[column.toLowerCase()] || 130);
@@ -153,5 +206,27 @@ export class OverviewComponent implements OnInit
       .map(([key, value]) => ({ key, value }));
 
     this.groupedColumnsKeys= this.groupedColumns.map(group => group.key);
+    this.groupedColumns.forEach((group) => {
+      this.groupColspans[group.key] = group.value.length;
+    });
+
+
+    for (const column of this.columnsToDisplay) {
+      if (this.modifiedColumnWidths[column] === undefined) {
+       this.modifiedColumnWidths[column] = this.defaultWidth;
+      }
+    }
+
+
+    this.groupWidths = this.calculateGroupWidths(this.groupedColumns, this.columnWidths, this.defaultWidth, {});
+
+
+    let totalWidth = Object.values(this.groupWidths).reduce((total, width) => total + width, 0);
+    //console.log("Total Width of All Groups:", totalWidth);
+
+  }
+
+  capitalizeFirstLetter(text: string): string {
+    return text.charAt(0).toUpperCase() + text.slice(1);
   }
 }
