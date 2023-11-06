@@ -1,0 +1,30 @@
+<mat-tab-group>
+  <ng-container *ngFor="let manuscript of (allManuscripts$ | async); let i = index">
+    <mat-tab [label]="manuscript.siglum">
+      <!-- Replace mat-expansion-panel with mat-card -->
+      <mat-card>
+        <!-- mat-card content -->
+        <mat-card-content>
+          <mat-card-title style="font-size: 13px">Chapter Mc English translation</mat-card-title>
+
+          <div class="page-links">
+            <ng-container *ngFor="let page of (englishPagesInMcChapter$ | async)?.[i]">
+              <a
+                mat-button
+                class="panel"
+                [routerLink]="['/' + page.page_link]"
+                routerLinkActive="active"
+              >
+                {{ page.page_number }}
+              </a>
+            </ng-container>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+  </ng-container>
+</mat-tab-group>
+
+
+
+

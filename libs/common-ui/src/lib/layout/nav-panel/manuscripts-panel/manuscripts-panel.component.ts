@@ -22,8 +22,6 @@ import {
   styleUrls: ['./manuscripts-panel.component.scss'],
 })
 export class ManuscriptsPanelComponent  {
-
-
   filterFormControl = new FormControl('');
   siglumSubject = new Subject<string>();
   allManuscripts$: Observable<any[]> = combineLatest([
@@ -65,9 +63,7 @@ export class ManuscriptsPanelComponent  {
       return [0,null];
     })
   );
-
   galleryData$= combineLatest([this.route.data]).pipe(
-
   )
 
   manuscriptChapters$ = this.allManuscripts$.pipe(

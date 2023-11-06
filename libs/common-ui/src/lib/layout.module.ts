@@ -18,6 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import {EnglishCollationPanelComponent}from './layout/nav-panel/english-collation-panel/english-collation-panel.component';
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import { MatInputModule } from '@angular/material/input';
     NavPanelComponent,
     CollationsPanelComponent,
     ManuscriptsPanelComponent,
+    EnglishCollationPanelComponent
   ],
   exports: [LayoutComponent],
   providers: [],
