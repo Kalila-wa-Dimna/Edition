@@ -128,6 +128,9 @@ export class OverviewComponent implements OnInit
     return groupedColumns;
   }
 
+  isWhiteBackground(i: number): boolean {
+    return i % 2 === 0;
+  }
   modifiedColumnWidths = { ...this.columnWidths };
 
   sanitizeDataInDataSource(data: any[]): any[] {

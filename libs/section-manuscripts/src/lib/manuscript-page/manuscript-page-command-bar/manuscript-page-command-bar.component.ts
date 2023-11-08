@@ -117,13 +117,17 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
     this.data=this.route.snapshot.data;
       this.items =   [
         {
-          label: 'Resize font ',
-          icon: 'format_size',
+          label: 'Language ',
+          icon: 'book',
           styleClass: 'menucus',
           items: [
-            { label: 'Font size', icon: 'add', command: () => this.increaseFontSize()
+            { label: 'Arabic', icon: 'book', command: () => this.changeToArabic()
             },
-            { label: 'Font size', icon: 'remove',command:() => this.decreaseFontSize()
+            { label: 'English', icon: 'book',command: () => {
+                if (this.chapter === 'Mc' || this.chapter === 'McEnglish') {
+                  this.changeToEnglish();
+                }
+              },
             }
           ]
         },
@@ -156,13 +160,18 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
       { label: '',  icon: 'arrow_forward_ios', command:()=> {this.navigateToTheNextPage(), this.ngOnDestroy()}},
 
         {
-          label: 'Resize facsimile ',
+          label: 'Resize',
           icon: 'format_size',
           styleClass: 'menucus',
           items: [
+            { label: 'Font size', icon: 'add', command: () => this.increaseFontSize()
+            },
+            { label: 'Font size', icon: 'remove',command:() => this.decreaseFontSize()
+            },
             {label:'Facsimile size',icon:'add',command:()=>  this.increaseFacsimileSize()
             },
             { label: 'Facsimile size', icon: 'remove',command:()=> this.decreaseFacsimileSize() },
+
           ]
         },
 
@@ -182,6 +191,17 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
 
   }
 
+  isEnglishClickable(): boolean {
+    return this.chapter === 'Mc' || this.chapter === 'McEnglish';
+  }
+  shouldDisableButton(item: any): boolean {
+    // Add your condition here
+    // For example, to disable the "English" button when chapter is not 'Mc' or 'McEnglish':
+    if (item.label === 'English' && this.chapter !== 'Mc' && this.chapter !== 'McEnglish') {
+      return true;
+    }
+    return false;
+  }
   /*async navigateToTheSelectedManuscript(manuscriptId: string) {
       const chapter = this.chapter;
     const { page: pageNumber, flag } = await this.getFirstPageForChapter(manuscriptId.toString());

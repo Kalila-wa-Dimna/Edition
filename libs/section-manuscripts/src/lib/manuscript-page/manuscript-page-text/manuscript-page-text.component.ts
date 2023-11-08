@@ -10,8 +10,6 @@ interface UnitData {
   unitCodes: string[];
   shortenedUnitNames: string[];
 }
-
-
 @Component({
   selector: 'kalila-edition-manuscript-page-text',
   templateUrl: './manuscript-page-text.component.html',

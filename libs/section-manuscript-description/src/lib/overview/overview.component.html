@@ -13,17 +13,17 @@
         </ng-container>
       </ng-container>
      <ng-container *ngFor="let column of columnsToDisplay; let i = index" [matColumnDef]="column">
-        <mat-cell *matHeaderCellDef  class="c-header" [ngStyle]="{
+        <mat-cell *matHeaderCellDef  [ngClass]="{'c-header': true}" [ngStyle]="{
   'min-width.px': columnWidths[column.toLowerCase()] || 50,
   'color': '#ffffff'
 }" [class.sticky-column]="i === 0">
           <div [innerHTML]="modifiedColumnsToDisplay[i]"></div>
         </mat-cell>
-        <mat-cell class="c-header"
+        <mat-cell
                   *matCellDef="let element"
+                  [ngClass]="{'wte': isWhiteBackground(i), 'blk': !isWhiteBackground(i)}"
                   [ngStyle]="{
       'min-width.px': columnWidths[column.toLowerCase()] || 50,
-      'background-color': i % 2 === 0 ? '#ffffff' : '#d0cbc2',
       'color':'#000000'
     }"
                   [class.sticky-column]="i === 0"
