@@ -1,13 +1,6 @@
 
 
 <mat-toolbar class="tool original-toolbar " >
-  <ng-container *ngIf="chapter==='Mc'||chapter==='McEnglish'">
-    <button mat-stroked-button class="mat-button" (click)="changeToArabic()">
-      <mat-icon>book</mat-icon>
-      Arabic
-    </button>
-
-  </ng-container>
   <ng-container *ngFor="let item of items;">
     <ng-container *ngIf="!hasSubItems(item); else subMenu">
       <ng-container>
@@ -27,26 +20,19 @@
     <ng-template #subMenu>
       <button mat-stroked-button class="mat-button" [matMenuTriggerFor]="itemMenu" *ngIf="hasSubItems(item)">
         <mat-icon>{{ item.icon }}</mat-icon>
-        <span [ngClass]="item.styleClass" >{{ item.label }}</span>
+        <span [ngClass]="item.styleClass">{{ item.label }}</span>
         <mat-icon>keyboard_arrow_down</mat-icon>
       </button>
       <mat-menu #itemMenu="matMenu">
-        <button mat-menu-item class="sub-item-container" *ngFor="let subItem of item.items" (click)="subItem.command?.()">
-          <mat-icon  class="sub-item-icon">{{ subItem.icon }}</mat-icon>
-          <span [ngClass]="subItem.styleClass"  class="sub-item-label">{{ subItem.label }}</span>
+        <button mat-menu-item class="sub-item-container" *ngFor="let subItem of item.items"   [disabled]="subItem.label === 'English' && shouldDisableButton(subItem)" [style.color]="subItem.label === 'English' && shouldDisableButton(subItem) ? 'gray' : 'inherit'" (click)="subItem.command?.()">
+          <mat-icon class="sub-item-icon">{{ subItem.icon }}</mat-icon>
+          <span [ngClass]="subItem.styleClass" class="sub-item-label">{{ subItem.label }}</span>
         </button>
       </mat-menu>
-
     </ng-template>
-
   </ng-container>
-  <ng-container *ngIf="chapter==='Mc'||chapter==='McEnglish'">
-    <button mat-stroked-button class="mat-button" (click)="changeToEnglish()">
-      <mat-icon>book</mat-icon>
-      English
-    </button>
 
-  </ng-container>
+
 </mat-toolbar>
 
 

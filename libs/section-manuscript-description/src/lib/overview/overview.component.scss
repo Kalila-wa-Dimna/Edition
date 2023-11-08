@@ -8,6 +8,7 @@
   height: fit-content;
 }
 
+
 main {
   margin-top: 1.5rem;
   @include on-larger-than('md') {
@@ -18,11 +19,18 @@ main {
   }
 }
 
+.wte{
+  background-color: white;
+}
 
+.blk{
+  background-color: #edece8;
+}
 .mat-mdc-table {
   width: 100%;
   max-height: 100%;
   overflow: auto;
+  border: 1px solid #000000;
 }
 
 
@@ -31,6 +39,8 @@ main {
   padding-bottom: 10px;
   overflow: auto;
   box-sizing: border-box;
+  border: 0.10px solid rgba(0, 0, 0, 0.12);
+
 }
 
 .mat-mdc-header-row, .mat-mdc-footer-row, .mat-mdc-row {
@@ -40,9 +50,9 @@ main {
 .bibliography-cell{
   max-height: calc(100vh - 15vh) !important; /* Adjust to your desired height */
   overflow-y: auto;
+
 }
 .mat-footer-row {
-  border: 1px solid #e7e7e7;
   font-weight: bold;
   height: 600px !important;
 }
@@ -79,17 +89,30 @@ main {
   display: flex;
   position: sticky;
   z-index: 2;
-  background-color:#003a4a!important;
   color: white!important;
+
   /* Make sure both rows are displayed as a flex container */
 }
 
 .row-first-header{
-  top:0
+  top:0;
+  background-color: #003a4a!important;
+  z-index: 2;
 }
 
 .row-second-header{
-  top:40px
+  top:40px;
+  background-color:#4c7d8a!important;
+}
+
+::ng-deep .mat-mdc-table .mat-mdc-header-cell{
+  font-size:large!important;
+  font-weight: bold!important;
+}
+
+
+.c-header{
+  font-weight: bold!important;
 }
 .sticky-column  {
   position: sticky;
@@ -98,11 +121,27 @@ main {
   min-width: 20px!important;
   background-color:#003a4a!important;
   color: white!important;
+  font-size:large!important;
+  font-weight: bold!important;
 
 }
 
 
 :host-context(.dark-theme) {
+
+  ::ng-deep a{
+    color: antiquewhite;
+  }
+
+  .wte{
+    background-color: #003a4a;
+    color: white!important;
+  }
+
+  .blk{
+    background-color: #00566d;
+    color: white!important;
+  }
  .sticky-column {
     position: sticky;
     left: 0;
@@ -128,11 +167,28 @@ main {
   }
 
   .row-first-header{
-    top:0
+    top:0;
+    //background-color: #0082a6!important;
+    font-size:large!important;
+    font-weight: bold!important;
   }
 
   .row-second-header{
-    top:40px
+    background-color:#455a64!important;
+  }
+
+::ng-deep .row-first-header.mat-mdc-header-cell{
+  font-size:large!important;
+  font-weight: bold!important;
+}
+
+
+
+
+.row-second-header{
+    top:40px;
+    font-size:large!important;
+    font-weight: bold!important;
   }
   .siglumColor{
     color: #003a4a!important;
