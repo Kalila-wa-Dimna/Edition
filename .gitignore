@@ -45,3 +45,5 @@ dev-deploy.sh
 apps/data-api/images
 
 
+
+.nx/cache

@@ -11,11 +11,11 @@ export class NavPanelComponent implements OnInit {
   expanded = {
     collationPanelOpen: false,
     manuscriptPanelOpen: false,
-    englishCollationPanelOpen:false,
+    englishCollationPanelOpen: false,
     guidesPanelOpen: false,
   };
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router) { }
   ngOnInit(): void {
 
     this.router.events
