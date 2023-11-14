@@ -10,6 +10,9 @@ import {ManuscriptPageTextComponent} from "./manuscript-page/manuscript-page-tex
 import {
   ManuscriptPageFacsimileComponent
 } from "./manuscript-page/manuscript-page-facsimile/manuscript-page-facsimile.component";
+
+import {IllustrationsGalleryComponent}from "./illustrations-gallery/illustrations-gallery.component"
+import {createIllustrationsDataResolver} from "./services/illustrations-gallery.resolver"
 import {
   createAllPagesResolver,
   createChapterThatAllMsHaveDataResolver,
@@ -43,12 +46,6 @@ export const routes: Route[] = [
         },
     },
     // manuscript
-  {
-    path: ':id',
-    component: ManuscriptOverviewComponent,
-    pathMatch: 'full',
-
-  },
 
   {
     path: ':id/gallery', // Adjust the path as needed
@@ -100,6 +97,21 @@ export const routes: Route[] = [
         outlet: 'facsimile',
       }
     ]
+  },
+  {
+    path: '', // Assuming 'manuscripts' is a top-level path
+    children: [
+      {
+        path: 'illustrations', // Nested path for Illustrations under Manuscripts
+        component: IllustrationsGalleryComponent,
+        pathMatch: 'full',
+        title: 'Illustrations gallery',
+        resolve: {
+          illustrationsList: createIllustrationsDataResolver()// Fetching data from 'all_illustrations'
+        },
+      },
+      // ... (other potential child paths under 'manuscripts')
+    ],
   },
   { path: '', component: ManuscriptPageComponent, runGuardsAndResolvers: 'always' },
 

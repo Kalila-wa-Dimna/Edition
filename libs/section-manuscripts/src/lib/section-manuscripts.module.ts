@@ -27,6 +27,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion'; // Import MatExpansionModule
 import { MatSliderModule } from '@angular/material/slider';
 import { ReactiveFormsModule } from '@angular/forms';
+import { IllustrationsGalleryComponent } from './illustrations-gallery/illustrations-gallery.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   imports: [
@@ -46,6 +48,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSliderModule,
     MatExpansionModule,
     ReactiveFormsModule,
+    MatTableModule
   ],
   providers: [FontSizeService, ManuscriptPageService],
   declarations: [
@@ -59,6 +62,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ManuscriptPageGalleryViewerComponent,
     ManuscriptPageGalleryCommandBarComponent,
 
+    IllustrationsGalleryComponent,
   ],
 })
 export class SectionManuscriptsModule {}
