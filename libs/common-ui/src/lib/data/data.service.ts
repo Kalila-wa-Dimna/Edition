@@ -19,7 +19,7 @@ export class DataService {
     @Inject(PLATFORM_ID) private platformId: object,
     @Inject(CONFIG_TOKEN) private config: IConfig,
     private http: HttpClient
-  ) {}
+  ) { }
 
   load<T>(dataPath: string, defaultValue: T): Observable<T> {
     const isBrowser = isPlatformBrowser(this.platformId);
@@ -58,7 +58,7 @@ export class DataService {
       fetch(url)
         .then((response) => {
           if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error(`HTTP error! Status: ${response.status}, URL: ${url}, Message: ${response.statusText}`);
           }
           return response.json();
         })
