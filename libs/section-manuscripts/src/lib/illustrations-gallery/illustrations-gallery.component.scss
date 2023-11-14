@@ -1,0 +1,79 @@
+
+@import 'sass/page.scss';
+@import 'sass/_dark-theme.scss';
+@import 'sass/_light-theme.scss';
+
+:host {
+  // width: 100vw;
+  // min-height: 100vh;
+  height: fit-content;
+
+}
+.table-container {
+  max-height: calc(100vh) ; /* Set a maximum height for the container */
+  overflow: auto;
+  /* Add scrollbars if the content exceeds the height */
+}
+
+.siglum {
+  margin-bottom: 100px; /* Adjust this value to set the desired space between siglums */
+  display: block;
+}
+.ill{
+  padding: 7px;
+}
+main {
+  margin-top: 1.5rem;
+  @include on-larger-than('md') {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+.manuscript-container {
+  display: flex;
+  flex-direction: column;
+ /* Set a maximum height for scroll */
+  /* Add vertical scrollbar */
+  /* Additional styles as needed */
+}
+
+.illustrations-container {
+  display: flex;
+
+ /* Add horizontal scrollbar if needed */
+  /* Additional styles as needed */
+}
+
+.p-m{
+  font-size: medium;
+
+}
+.illustration-caption {
+  position: relative;
+  display: inline-block;
+}
+
+.caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  padding: 5px;
+  margin: 5px;
+}
+
+.sticky-row {
+  display: flex;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+
+  /* Make sure both rows are displayed as a flex container */
+}
+
