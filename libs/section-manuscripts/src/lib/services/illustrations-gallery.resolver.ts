@@ -12,8 +12,6 @@ export function createIllustrationsDataResolver() {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ) => {
-    console.log('router', { route });
-    console.log('state', { state });
     const api = inject(DataService);
     const id = route.paramMap.get('id');
     const url = api.load<any>(`manuscripts/illustrationData`, {});

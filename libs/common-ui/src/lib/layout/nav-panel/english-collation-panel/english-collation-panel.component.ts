@@ -3,9 +3,9 @@ import { CONFIG_TOKEN, IConfig } from '@kalila-edition/common-ui';
 import { catchError, filter, map } from "rxjs/operators";
 import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
-import {retryWhen, delay, take } from 'rxjs/operators';
-import { Subject, Subscription, of, Observable, combineLatest, startWith,switchMap } from "rxjs";
-import {FormControl} from "@angular/forms";
+import { retryWhen, delay, take } from 'rxjs/operators';
+import { Subject, Subscription, of, Observable, combineLatest, startWith, switchMap } from "rxjs";
+import { FormControl } from "@angular/forms";
 
 @Component({
   selector: 'kalila-edition-english-collation-panel',
@@ -25,7 +25,7 @@ export class EnglishCollationPanelComponent implements OnInit {
     private httpClient: HttpClient,
     @Inject(CONFIG_TOKEN) private config: IConfig,
     private el: ElementRef
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.allManuscripts$ = this.httpClient
@@ -51,9 +51,6 @@ export class EnglishCollationPanelComponent implements OnInit {
         )
       )
     );
-    this.englishPagesInMcChapter$.subscribe((result) => {
-      console.log('English Pages In Mc Chapter:', result);
-    });
 
   }
 
