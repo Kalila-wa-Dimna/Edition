@@ -17,10 +17,9 @@ export class ThemeService {
     @Inject(PLATFORM_ID) private platformId: object,
     private overlayContainer: OverlayContainer,
     private storageService: StorageService
-  ) {}
+  ) { }
 
   async initTheme() {
-    console.log('init theme');
     if (isPlatformBrowser(this.platformId)) {
       try {
         const isDarkModePreferred =

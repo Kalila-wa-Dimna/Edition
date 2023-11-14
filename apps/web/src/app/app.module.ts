@@ -1,6 +1,5 @@
-import { TransferHttpCacheModule } from '@nguniversal/common';
 import { APP_ID, NgModule, isDevMode } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration, withHttpTransferCacheOptions } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
@@ -15,7 +14,7 @@ import {
 } from '@kalila-edition/common-ui';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { MainPageComponent } from './main-page.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { AboutPageComponent } from './about-page.component';
 import { ImprintPageComponent } from './imprint-page.component';
 import { environment } from './environment';
@@ -43,10 +42,15 @@ import { environment } from './environment';
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
-    }),
-    TransferHttpCacheModule,
+    })
   ],
-  providers: [{ provide: APP_ID, useValue: 'kd-edition' }],
+  providers: [{ provide: APP_ID, useValue: 'kd-edition' }, provideClientHydration(withHttpTransferCacheOptions({
+    includePostRequests: true
+  })), [
+    provideHttpClient(
+      withFetch(),
+    ),
+  ]],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

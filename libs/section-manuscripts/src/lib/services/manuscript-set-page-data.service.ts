@@ -24,5 +24,7 @@ export class ManuscriptSetPageDataService {
   getManuscriptPageDataObservable(): Observable<{ manuscriptData: any }> {
     return this.ManuscriptPageDataSubject.asObservable();
   }
+
+
 }
 

@@ -53,7 +53,7 @@ import {FacsimileService} from "../../../../libs/section-manuscripts/src/lib/ser
             <div class="side2-content">
               <div> <br><br>
                 In the future, a more representative spectrum of this vast corpus will be made accessible via the project’s online portal. We currently are experimenting with models for gathering feedback of scholars and the public worldwide.
-                Further contributors supporting the Berlin team via transcribing and/or providing English translations on a volunteer basis are highly welcome. Please contact us for registration if you wish to participate: anonymclassic@geschkult.fu-berlin.de.
+                Further contributors supporting the Berlin team via transcribing and/or providing English translations on a volunteer basis are highly welcome. Please contact us for registration if you wish to participate: anonymclassic&#64;geschkult.fu-berlin.de.
               </div><br>
               <div class="paragraph-title">
                 The Digital Edition of AnonymClassic...</div>

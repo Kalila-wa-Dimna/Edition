@@ -20,6 +20,7 @@ app.get('/data/*', async (req, res) => {
     const data = await readFile(filePath(fileName), 'utf-8');
     return res.json(JSON.parse(data));
   } catch (error) {
+    console.log({ error });
     return res.status(500).json({ error: 'Error reading file' });
   }
 });

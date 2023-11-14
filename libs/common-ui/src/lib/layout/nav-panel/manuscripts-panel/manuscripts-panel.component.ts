@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject, OnInit, HostListener,ViewChild,ElementRef, AfterViewInit,QueryList, ViewChildren } from '@angular/core';
+import { Component, Inject, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { MatTabChangeEvent } from '@angular/material/tabs';
 import { CONFIG_TOKEN, IConfig } from '@kalila-edition/common-ui';
 import {
   map,
@@ -21,7 +20,7 @@ import {
   templateUrl: './manuscripts-panel.component.html',
   styleUrls: ['./manuscripts-panel.component.scss'],
 })
-export class ManuscriptsPanelComponent  {
+export class ManuscriptsPanelComponent {
   filterFormControl = new FormControl('');
   siglumSubject = new Subject<string>();
   allManuscripts$: Observable<any[]> = combineLatest([
@@ -33,15 +32,11 @@ export class ManuscriptsPanelComponent  {
   ]).pipe(
     map(([data, filter, siglum]) => {
       if (filter && filter.length !== 0) {
-        console.log(filter);
-        console.log(data);
         return data.filter((item) =>
           item.siglum.toLowerCase().includes(filter.toLocaleLowerCase())
         );
       }
       if (siglum && siglum.length !== 0) {
-        console.log(siglum);
-        console.log(data);
         return data.filter((item) =>
           item.siglum.toLowerCase().includes(siglum.toLocaleLowerCase())
         );
@@ -57,13 +52,13 @@ export class ManuscriptsPanelComponent  {
       if (current) {
         const index = all.findIndex((item) => item.siglum === current);
         if (index !== -1) {
-          return [index,current];
+          return [index, current];
         }
       }
-      return [0,null];
+      return [0, null];
     })
   );
-  galleryData$= combineLatest([this.route.data]).pipe(
+  galleryData$ = combineLatest([this.route.data]).pipe(
   )
 
   manuscriptChapters$ = this.allManuscripts$.pipe(
@@ -78,7 +73,7 @@ export class ManuscriptsPanelComponent  {
     )
   );
 
-constructor(
+  constructor(
     private route: ActivatedRoute,
     private httpClient: HttpClient,
     @Inject(CONFIG_TOKEN) private config: IConfig,

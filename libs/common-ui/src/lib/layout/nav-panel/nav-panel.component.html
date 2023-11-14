@@ -57,10 +57,12 @@
     >
       <mat-expansion-panel-header>
         <mat-panel-title
-        ><span class="panel-title"><span>English translation</span></span>
+          ><span class="panel-title"><span>English translation</span></span>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <kalila-edition-english-collation-panel></kalila-edition-english-collation-panel>
+      <kd-english-collation-panel
+        *ngIf="expanded.englishCollationPanelOpen"
+      ></kd-english-collation-panel>
 
       <mat-divider></mat-divider>
     </mat-expansion-panel>
