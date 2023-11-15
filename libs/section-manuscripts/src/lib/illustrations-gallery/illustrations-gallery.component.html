@@ -18,7 +18,7 @@
                 <p class="p-m"> {{ manuscript.siglum }}</p>
                 <div class="illustrations-container">
                   <div *ngFor="let illustration of manuscript.illustrations">
-                    <div class="illustration-caption">
+                    <div class="illustration-caption" (click)="openIllustrationModal(pagesEndPoint +illustration)">
                       <img [src]="pagesEndPoint + illustration" alt="Illustration" style="max-width: 200px; max-height: 200px; margin: 5px;">
                       <div class="caption">{{ getIllustrationName(illustration) }}</div>
                     </div>

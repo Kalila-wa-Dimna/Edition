@@ -29,7 +29,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IllustrationsGalleryComponent } from './illustrations-gallery/illustrations-gallery.component';
 import { MatTableModule } from '@angular/material/table';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { IllustrationModalComponent } from './illustrations-gallery/illustration-modal.component'
 @NgModule({
   imports: [
     CommonModule,
@@ -48,7 +49,11 @@ import { MatTableModule } from '@angular/material/table';
     MatSliderModule,
     MatExpansionModule,
     ReactiveFormsModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
+
+
+
   ],
   providers: [FontSizeService, ManuscriptPageService],
   declarations: [
@@ -61,7 +66,7 @@ import { MatTableModule } from '@angular/material/table';
     ManuscriptPageGalleryComponent,
     ManuscriptPageGalleryViewerComponent,
     ManuscriptPageGalleryCommandBarComponent,
-
+    IllustrationModalComponent,
     IllustrationsGalleryComponent,
   ],
 })
