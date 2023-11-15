@@ -1,5 +1,3 @@
-
-
 <mat-toolbar class="tool original-toolbar " >
   <ng-container *ngFor="let item of items;">
     <ng-container *ngIf="!hasSubItems(item); else subMenu">
@@ -24,15 +22,13 @@
         <mat-icon>keyboard_arrow_down</mat-icon>
       </button>
       <mat-menu #itemMenu="matMenu">
-        <button mat-menu-item class="sub-item-container" *ngFor="let subItem of item.items"   [disabled]="subItem.label === 'English' && shouldDisableButton(subItem)" [style.color]="subItem.label === 'English' && shouldDisableButton(subItem) ? 'gray' : 'inherit'" (click)="subItem.command?.()">
+        <button mat-menu-item class="sub-item-container" *ngFor="let subItem of item.items" [disabled]="subItem.label === 'English' && shouldDisableButton(subItem)" [style.color]="subItem.label === 'English' && shouldDisableButton(subItem) ? 'gray' : 'inherit'" (click)="subItem.command?.()">
           <mat-icon class="sub-item-icon">{{ subItem.icon }}</mat-icon>
           <span [ngClass]="subItem.styleClass" class="sub-item-label">{{ subItem.label }}</span>
         </button>
       </mat-menu>
     </ng-template>
   </ng-container>
-
-
 </mat-toolbar>
 
 

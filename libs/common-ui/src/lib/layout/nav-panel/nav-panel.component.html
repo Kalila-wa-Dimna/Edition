@@ -24,6 +24,11 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <a mat-button [routerLink]="['/manuscripts']">Manuscripts library</a>
+      <br />
+      <a mat-button
+        [routerLink]="['/manuscripts/illustrations']"
+      >Illustrations collations</a
+      >
       <kd-manuscripts-panel
         *ngIf="expanded.manuscriptPanelOpen"
       ></kd-manuscripts-panel>

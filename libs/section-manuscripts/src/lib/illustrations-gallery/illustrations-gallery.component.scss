@@ -31,6 +31,7 @@ main {
     margin-right: auto;
   }
 
+
 }
 .manuscript-container {
   display: flex;
@@ -45,6 +46,14 @@ main {
 
  /* Add horizontal scrollbar if needed */
   /* Additional styles as needed */
+}
+
+:host-context(.dark-theme) {
+  .mat-elevation-z8{
+    background-color: #00566d;
+    color: white!important;
+  }
+
 }
 
 .p-m{
@@ -76,4 +85,6 @@ main {
 
   /* Make sure both rows are displayed as a flex container */
 }
-
+.mat-elevation-z8{
+  background-color: #edece8;
+}
