@@ -2,13 +2,46 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 .G-button{
   width: 100%;
 
+
 }
 
 .G-button:hover{
   background-color: white;
+}
+
+:host-context(.light-theme) {
+  .mat-flat-button {
+    background-color: #edece8 !important;
+  }
+
+  .hell-background {
+    background-color: #edece8 !important;
+  }
+
+
+  ::ng-deep mat-form-field {
+
+    background-color: #edece8 !important;
+  }
+
+  /* Set background color for the buttons */
+  .mat-flat-button,
+  .mat-expansion-panel {
+    background-color: #edece8 !important;
+  }
+
+  /* Set background color for the tab body */
+  .mat-tab-body {
+    background-color: #edece8 !important;
+  }
+
+  ::ng-deep.mdc-text-field--filled:not(.mdc-text-field--disabled){
+    background-color: #edece8 !important;
+  }
 }
