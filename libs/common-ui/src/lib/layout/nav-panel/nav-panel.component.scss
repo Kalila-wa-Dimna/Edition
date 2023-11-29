@@ -5,12 +5,15 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
   align-items: center;
   flex-grow: 1;
+
 }
 
+
 .panel-top {
-  height: 10%;
+  height: 15%;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -23,6 +26,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+
   align-items: center;
   overflow-y: scroll;
 }
@@ -36,14 +40,21 @@ mat-accordion {
 
 mat-expansion-panel {
   width: 100%;
+
 }
 
+:host-context(.light-theme) {
+  mat-expansion-panel {
+    background-color: #edece8;
+  }
+}
 .panel-title {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+
   & * {
     text-align: center;
   }

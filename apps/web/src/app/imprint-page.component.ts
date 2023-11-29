@@ -15,19 +15,22 @@ import {CONFIG_TOKEN, IConfig} from "@kalila-edition/common-ui";
               </div>
               <div>
                 <br>
-                Anonym Classic Preview Edition...<br>
-                The AnonymClassic Preview Edition is being developed as a MSc thesis project in Technische Informatik – Embedded Systems at Berliner Hochschule für Technik under supervision of <a href="https://prof.beuth-hochschule.de/forler/"> Prof. Dr. Ch. Forler </a>(Fachbereich VI – Informatik und Medien) in cooperation with Freie Universität Berlin, <a href="https://www.geschkult.fu-berlin.de/e/semiarab/arabistik/Seminar/Mitarbeiterinnen-und-Mitarbeiter/Professuren/Gruendler/"> Prof. Dr. B. Gruendler </a> (Arabic Studies, Principal Investigator AnonymClassic).
+                A prototype of the present collations was developed as a MSc thesis project in Technische Informatik – Embedded Systems at Berliner Hochschule für Technik under supervision of  <a href="https://prof.beuth-hochschule.de/forler/"> Prof. Dr. Ch. Forler </a>(Fachbereich VI – Informatik und Medien) in cooperation with Freie Universität Berlin, <a href="https://www.geschkult.fu-berlin.de/e/semiarab/arabistik/Seminar/Mitarbeiterinnen-und-Mitarbeiter/Professuren/Gruendler/"> Prof. Dr. B. Gruendler </a> (Arabic Studies, Principal Investigator AnonymClassic/Arabic Literature Cosmopolitan).
                  <br><br>
+                Concept, layougt, and development was by Marwa M. Ahmed. The present edition was co-developed by Mahmoud M. Kozae and Marwa M. Ahmed and is documented by an a MA thesis project under supervision of Prof. Dr. B. Gruendler.
+                <br>
+                <br>
                 <div class="paragraph-title">
                 Edition team
                   <br>
                 </div>
                   <br>
-                  Transcriptions of Arabic manuscript originals by: AnonymClassic team.
-                  <br>English text versions translated by: Oualid El Khattabi, AnonymClassic.
-                  <br>While the Preview Edition features near-verbatim translations into English, closely following the original versions for philological objectives, we are much indebted to <a href="https://www.geschkult.fu-berlin.de/en/e/kalila-wa-dimna/partners/index.html">Dr. M. Fishbein</a> and his literary English translations of the “Kalīla and Dimna” episodes.
-                  <br>Concept, layout and development by: <a href="https://www.geschkult.fu-berlin.de/e/semiarab/arabistik/Seminar/Mitarbeiterinnen-und-Mitarbeiter/leibniz/ahmed/index.html">Marwa M. Ahmed</a>.
+                Transcriptions of Arabic manuscript originals by: AnonymClassic/Arabic Literature Cosmopolitan team: Khouloud Khalfallah, Rima Redwan,
+                Mahmoud Kozae, Heba Tebakhi, Dima M. Sakran, Oualid El Khattabi and Hala Abedalhadi.
 
+                <br>
+                  <br>English text versions translated by: Oualid El Khattabi, AnonymClassic/Arabic Literature Cosmopolitan.
+                  <br>The editions and collation of one chapter features near-verbatim translations into English, closely following the original versions for philological objectives, we are much indebted to <a href="https://www.geschkult.fu-berlin.de/en/e/kalila-wa-dimna/partners/index.html">Dr. M. Fishbein</a> and his literary English translations of the “Kalīla and Dimna” episodes.
                </div>
 
               <div>
@@ -56,10 +59,12 @@ import {CONFIG_TOKEN, IConfig} from "@kalila-edition/common-ui";
           <div class="side2">
             <div class="side2-content">
               <div class="paragraph-title">
-                The Kalīla and Dimna ‒ AnonymClassic Project
+                The Kalīla and Dimna
               </div>
+              AnonymClassic Project/Arabic Literature Cosmopolitan
+              <br>
               <br> hosted at Freie Universität Berlin
-              <br> has received funding from the European Research Council (ERC)
+              <br> has received funding from the European Research Council (ERC) and from the German Research Foundation (DFG)
               <br> under the European Union's Horizon 2020 research and innovation programme,
               <br> grant agreement No 742 635.
               <br>   <br>

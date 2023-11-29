@@ -1,5 +1,5 @@
-<mat-toolbar class="tool original-toolbar " >
-  <ng-container *ngFor="let item of items;">
+<mat-toolbar class="tool original-toolbar">
+  <ng-container *ngFor="let item of items">
     <ng-container *ngIf="!hasSubItems(item); else subMenu">
       <ng-container>
         <!-- Display the page number as text when the label is ' ' -->
@@ -8,7 +8,7 @@
         </ng-container>
         <!-- Display other items as buttons -->
         <ng-container *ngIf="item.label !== ' '">
-          <button mat-stroked-button class="mat-button" (click)="item.command?.()">
+          <button mat-stroked-button class="mat-button" (click)="item.command?.()" ngSkipHydration>
             <mat-icon>{{ item.icon }}</mat-icon>
             <span [ngClass]="item.styleClass">{{ item.label }}</span>
           </button>
@@ -16,13 +16,16 @@
       </ng-container>
     </ng-container>
     <ng-template #subMenu>
-      <button mat-stroked-button class="mat-button" [matMenuTriggerFor]="itemMenu" *ngIf="hasSubItems(item)">
+      <button mat-stroked-button class="mat-button" [matMenuTriggerFor]="itemMenu" *ngIf="hasSubItems(item)" ngSkipHydration>
         <mat-icon>{{ item.icon }}</mat-icon>
         <span [ngClass]="item.styleClass">{{ item.label }}</span>
         <mat-icon>keyboard_arrow_down</mat-icon>
       </button>
       <mat-menu #itemMenu="matMenu">
-        <button mat-menu-item class="sub-item-container" *ngFor="let subItem of item.items" [disabled]="subItem.label === 'English' && shouldDisableButton(subItem)" [style.color]="subItem.label === 'English' && shouldDisableButton(subItem) ? 'gray' : 'inherit'" (click)="subItem.command?.()">
+        <button mat-menu-item class="sub-item-container" *ngFor="let subItem of item.items"
+                [disabled]="subItem.label === 'English' && shouldDisableButton(subItem)"
+                [style.color]="subItem.label === 'English' && shouldDisableButton(subItem) ? 'gray' : 'inherit'"
+                (click)="subItem.command?.()" ngSkipHydration>
           <mat-icon class="sub-item-icon">{{ subItem.icon }}</mat-icon>
           <span [ngClass]="subItem.styleClass" class="sub-item-label">{{ subItem.label }}</span>
         </button>
@@ -30,57 +33,3 @@
     </ng-template>
   </ng-container>
 </mat-toolbar>
-
-
-<!-- sidebar.component.html -->
-<!--<mat-sidenav-container (backdropClick)="toggleSidenav()" class="site-container" #sideNavRef>
-  <mat-sidenav
-    #sidenav
-    mode="over"
-    class="sidenav"
-    [fixedInViewport]="true"
-    [fixedTopGap]="0"
-    [fixedBottomGap]="0"
-    position="end"
-    [opened]="isSidenavOpen"
-  >
-    <button mat-stroked-button class="mat-button" (click)="sidenav.close()"> X </button>
-    <mat-sidenav-content class="site" >
-      <mat-accordion class="accordion">
-        <ng-container *ngFor="let chapter of manuscriptChapters; let i = index">
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>Chapter {{ chapter.chapter }}</mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-panel-description>
-              <ng-container *ngIf="chapter.pages && chapter.pages.length > 0">
-                Page Range: {{ chapter.pages[0].page_number }} - {{ chapter.pages[chapter.pages.length - 1].page_number }}
-              </ng-container>
-              <ng-container *ngIf="!chapter.pages || chapter.pages.length === 0">
-                No Pages Found
-              </ng-container>
-            </mat-panel-description>
-
-            <div class="page-links">
-
-              <ng-container *ngFor="let page of chapter.pages">
-                <a
-                  mat-button
-                  class="panel"
-                  [routerLink]="['/manuscripts', manuscriptID, chapter.chapter, page.index]"
-                  routerLinkActive="active"
-                  [relativeTo]="route.parent"
-                  (click)="sidenav.close()"
-                >
-                  Page {{ page.page_number }}
-                </a>
-              </ng-container>
-            </div>
-          </mat-expansion-panel>
-        </ng-container>
-      </mat-accordion>
-    </mat-sidenav-content>
-  </mat-sidenav>
-</mat-sidenav-container>
-
--->

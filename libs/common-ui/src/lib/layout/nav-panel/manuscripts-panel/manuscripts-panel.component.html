@@ -1,26 +1,26 @@
 
 <mat-form-field>
-  <mat-label>Filter</mat-label>
-  <mat-icon matPrefix>filter_alt</mat-icon>
-  <input matInput placeholder="filter" [formControl]="filterFormControl" />
+  <mat-label >Filter</mat-label>
+  <mat-icon  matPrefix>filter_alt</mat-icon>
+  <input  matInput placeholder="filter" [formControl]="filterFormControl" />
 </mat-form-field>
 
-<mat-tab-group [selectedIndex]="(selectedIndex$|async)?.[0]">
+<mat-tab-group  [selectedIndex]="(selectedIndex$|async)?.[0]">
   <ng-template
     ngFor
     let-item
     [ngForOf]="(allManuscripts$ | async) ?? []"
     let-index="index"
   >
-    <mat-tab [label]="item.siglum">
+    <mat-tab [label]="item.siglum" >
       <br />
-      <a
+      <a class="hell-background"
         [routerLink]="['/', 'manuscripts', item.siglum, 'gallery']"
         mat-flat-button
         >Page gallery</a
       >
       <mat-divider></mat-divider>
-      <ng-container *ngIf="(manuscriptChapters$ | async)?.[index] as chapters;">
+      <ng-container *ngIf="(manuscriptChapters$ | async)?.[index] as chapters;" class="hell-background">
         <ng-container *ngFor="let chapter of chapters; let i = index">
           <ng-container *ngIf="chapters">
             <mat-expansion-panel>
