@@ -1,6 +1,6 @@
 export interface ICellData {
-  mediumID: string;
-  unitID: string;
+  mediumId: string;
+  unitId: string;
   type: string;
   lacuna: boolean;
   startPage: number;

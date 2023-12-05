@@ -2,11 +2,10 @@ import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { CollationSettingsService } from './collation-settings.service';
 import { ICollationUnit } from '../models/collation-page-data.model';
-import { FONT_SIZE_MAP } from '../constants/font-size.constants';
 import {
   CELL_PADDING,
-  CELL_WIDTH_MAP,
-} from '../constants/cell-width.constants';
+  SIZE_MAP,
+} from '../constants/size.constants';
 import { CollationDataService } from './collation-data.service';
 import { ICellData } from '../models/collation-row-data.model';
 
@@ -18,7 +17,7 @@ export class CellSizingService {
     @Inject(DOCUMENT) private document: Document,
     private settingsSerivce: CollationSettingsService,
     private dataService: CollationDataService
-  ) {}
+  ) { }
   getSize(unit: ICollationUnit, unitIdx: number): number {
     if (!this.dataService.cache[unitIdx]) {
       return MIN_HEIGHT;
@@ -33,9 +32,9 @@ export class CellSizingService {
   }
 
   private getHeadingHeight(title: string) {
-    const { fontSize } = this.settingsSerivce.state$.getValue();
+    const { size } = this.settingsSerivce.state$.getValue();
     const phantom = this.document.createElement('div');
-    phantom.style.fontSize = `${FONT_SIZE_MAP[fontSize]}px`;
+    phantom.style.fontSize = `${SIZE_MAP[size].font}px`;
     phantom.style.position = 'absolute';
     phantom.style.visibility = 'hidden';
     phantom.style.paddingTop = HEADER_PADDING;
@@ -55,18 +54,18 @@ export class CellSizingService {
 
   private getContentHeight(segment: ICellData | undefined) {
     const phantom = this.document.createElement('div');
-    const { fontSize, cellWidth } = this.settingsSerivce.state$.getValue();
+    const { size } = this.settingsSerivce.state$.getValue();
     phantom.className = `collation-cell rtl font-noto-naskh`;
-    phantom.style.fontSize = `${FONT_SIZE_MAP[fontSize]}px`;
+    phantom.style.fontSize = `${SIZE_MAP[size].font}px`;
     // Set the width of the container
-    phantom.style.width = `${CELL_WIDTH_MAP[cellWidth]}px`;
+    phantom.style.width = `${SIZE_MAP[size].cell}px`;
 
     // Ensure the element is not visible and does not affect the layout
     phantom.style.position = 'absolute';
     phantom.style.visibility = 'hidden';
     phantom.style.padding = `${CELL_PADDING}px`;
     // Set the text
-    const text = segment ? segment.tokens.join(' ') : '[absent]';
+    const text = segment ? segment.tokens.join(' ') : '\n[absent]\n';
     phantom.textContent = text;
 
     // Add the phantom to the body
@@ -78,6 +77,6 @@ export class CellSizingService {
     // Remove the phantom from the body
     this.document.body.removeChild(phantom);
 
-    return contentHeight;
+    return contentHeight + 25;
   }
 }

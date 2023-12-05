@@ -1,17 +1,23 @@
 <div
-  #header
-  [ngClass]="unit.divider ? 'row-header divider' : 'row-header'"
-  [ngStyle]="{
-              'width.px':  sigla.length * ((cellWidth$ | async) ?? 75) + 2 * sigla.length * cellPadding,
+  [ngClass]="{
+        'current-result': currentResult,
+    'search-result': searchResult && !currentResult,
+    divider: unit.divider,
+    'row-header': true,
 
-            }"
+  }"
+  [ngStyle]="{
+    'width.px':
+      sigla.length * ((cellWidth$ | async) ?? 75) +
+      2 * sigla.length * cellPadding,
+  }"
 >
-  <div #sticky class="row-header-content">
+  <div class="row-header-content">
     <span>({{ unit.formattedOrder }}) &nbsp;</span>
     <span>{{ unit.title }}</span>
   </div>
 </div>
-<div *ngIf="!unit.divider" #content class="row-content">
+<div *ngIf="!unit.divider" class="row-content">
   <ng-template [ngIf]="rowData !== undefined" [ngIfElse]="loading">
     <kd-collation-cell
       *ngFor="let siglum of sigla"
@@ -21,6 +27,7 @@
               'padding.px': cellPadding,
             }"
       [data]="rowData[siglum]"
+      [siglum]="siglum"
     >
     </kd-collation-cell>
   </ng-template>

@@ -1,0 +1,71 @@
+    "server": {
+      "dependsOn": ["build"],
+      "executor": "@angular-devkit/build-angular:server",
+      "options": {
+        "outputPath": "dist/apps/web/server",
+        "main": "apps/web/server.ts",
+        "tsConfig": "apps/web/tsconfig.server.json"
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "media"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "sourceMap": true,
+          "extractLicenses": false,
+          "vendorChunk": true
+        }
+      },
+      "defaultConfiguration": "production"
+    }
+
+
+  "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/web/browser",
+        "index": "apps/web/src/index.html",
+        "main": "apps/web/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/web/tsconfig.app.json",
+        "assets": [
+          "apps/web/src/favicon.ico",
+          "apps/web/src/assets",
+          "apps/web/src/manifest.webmanifest"
+        ],
+        "styles": ["apps/web/src/styles.scss"],
+        "scripts": [],
+        "serviceWorker": true,
+        "ngswConfigPath": "apps/web/ngsw-config.json",
+        "webWorkerTsConfig": "apps/web/tsconfig.worker.json"
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "4mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "5kb",
+              "maximumError": "10kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },

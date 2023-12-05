@@ -1,18 +1,20 @@
 <mat-toolbar class="command-bar">
   <div class="view-settings">
-    <button color="primary" mat-flat-button aria-label="page settings">
-      <mat-icon>view_comfy</mat-icon> Map
-    </button>
-
-    <button color="primary" mat-flat-button aria-label="page settings">
-      <mat-icon>preview</mat-icon> Facsimile
-    </button>
+    <mat-slide-toggle
+      [checked]="showMap$ | async"
+      (change)="toggleMap($event.checked)"
+      >Map</mat-slide-toggle
+    >
+    <mat-slide-toggle
+      [checked]="showFacsimilePreview$ | async"
+      (change)="toggleFacsimile($event.checked)"
+      >Facsimile</mat-slide-toggle
+    >
 
     <button
       (click)="openSettingsDialog()"
-      mat-flat-button
+      mat-button
       aria-label="page settings"
-      color="primary"
     >
       <mat-icon>settings</mat-icon> Settings...
     </button>
@@ -39,6 +41,15 @@
         />
       </mat-form-field>
     </form>
+    @if(numberOfResults() > 0) {
+    <div class="result-nav">
+      <div class="arrow" (click)="previousResult()"><p><| &nbsp;</p></div>
+      <div class="number-of-results">
+        <p>{{ currentResult() + 1 }} / {{ numberOfResults() }}</p>
+      </div>
+      <div class="arrow" (click)="nextResult()"><p>&nbsp; |></p></div>
+    </div>
+    }
     <button mat-icon-button>
       <mat-icon>info</mat-icon>
     </button>

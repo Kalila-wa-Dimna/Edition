@@ -4,14 +4,16 @@ import {
   OnDestroy,
   OnInit,
   ViewChild,
+  computed,
+  signal,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Data } from '@angular/router';
 import {
   ICollationColumn,
   ICollationUnit,
 } from '../../models/collation-page-data.model';
 import { CollationSettingsService } from '../../services/collation-settings.service';
-import { CELL_PADDING } from '../../constants/cell-width.constants';
+import { CELL_PADDING } from '../../constants/size.constants';
 import { ICollationInfo } from '../../models/collation-summary.model';
 import { CollationDataService } from '../../services/collation-data.service';
 import { IRowData } from '../../models/collation-row-data.model';
@@ -23,6 +25,8 @@ import {
   distinctUntilChanged,
   withLatestFrom,
 } from 'rxjs';
+import { SearchService } from '../../services/search.service';
+import { FacsimilePanelService } from '../../services/facsimile-panel.service';
 
 @Component({
   selector: 'kd-collation',
@@ -34,6 +38,7 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
   columns: ICollationColumn[] = [];
   sigla: string[] = [];
   units: ICollationUnit[] = [];
+  titles = signal<string[]>([]);
   rowData: IRowData[] = [];
   cellPadding = CELL_PADDING;
   sub?: Subscription;
@@ -42,16 +47,31 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   cellWidth$ = this.settingsService.cellWidth$;
   fontSize$ = this.settingsService.fontSize$;
+  showFacsimilePreview$ = this.settingsService.showFacsimilePreview$;
+  showMap$ = this.settingsService.showMap$;
 
   scrollSubject = new Subject<number>();
 
   @ViewChild(CollationVirtualScrollDirective)
   viewport?: CollationVirtualScrollDirective;
 
+  highlightedRows = this.searchService.highlightedRows;
+  activeHighlightedRow = computed(() => {
+    const rows = this.searchService.highlightedRows();
+    if (rows) {
+      const currentRow = this.searchService.currentRow();
+      return rows[currentRow];
+    }
+
+    return null;
+  });
+
   constructor(
     private route: ActivatedRoute,
     private settingsService: CollationSettingsService,
-    private dataService: CollationDataService
+    private dataService: CollationDataService,
+    private searchService: SearchService,
+    private facsimilePanelService: FacsimilePanelService
   ) {}
 
   ngAfterViewInit(): void {
@@ -77,22 +97,24 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   async ngOnInit() {
-    this.columns = this.route.snapshot.data['pageData']['columns'];
-    this.sigla = this.columns.map((c) => c.siglum);
-    this.units = this.route.snapshot.data['pageData']['units'];
-    this.summary = this.route.snapshot.data['pageData']['summary'];
-    this.rowData = this.route.snapshot.data['pageData']['segmentData'];
-    this.dataService.cache =
-      this.route.snapshot.data['pageData']['segmentData'];
+    await this.settingsService.init();
+
+    this.loadData(this.route.snapshot.data);
 
     this.sub = this.route.data.subscribe((data) => {
-      this.columns = data['pageData']['columns'];
-      this.sigla = this.columns.map((c) => c.siglum);
-      this.units = data['pageData']['units'];
-      this.summary = data['pageData']['summary'];
-      this.rowData = data['pageData']['segmentData'];
-      this.dataService.cache = data['pageData']['segmentData'];
+      this.loadData(data);
     });
+  }
+
+  private loadData(data: Data) {
+    this.columns = data['pageData']['columns'];
+    this.facsimilePanelService.columns = this.columns;
+    this.sigla = this.columns.map((c) => c.siglum);
+    this.units = data['pageData']['units'];
+    this.titles.set(this.units.map((u) => u.title));
+    this.summary = data['pageData']['summary'];
+    this.rowData = data['pageData']['segmentData'];
+    this.dataService.cache = data['pageData']['segmentData'];
   }
 
   onGoToRow(index: number) {

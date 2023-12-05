@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cell-tools {
+  height: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.absent {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

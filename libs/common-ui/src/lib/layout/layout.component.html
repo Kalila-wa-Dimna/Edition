@@ -43,7 +43,17 @@
         </a>
       </div>
       <div class="title">
-        <ng-content select="[title]"></ng-content>
+        @if(pathElements.length !== 0) {
+        <div class="path">
+          @for(item of pathElements; track item.display) {
+          <a [routerLink]="item.link">{{ item.display | titlecase }}</a>
+          <p>&nbsp;/&nbsp;</p>
+          }
+        </div>
+        }
+        <div class="page-title">
+          <ng-content select="[title]"></ng-content>
+        </div>
       </div>
 
       <span class="spacer"></span>
