@@ -6,7 +6,6 @@ import {
   OnDestroy,
   PLATFORM_ID,
   ViewChild,
-
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { FacsimileWorkerService } from '@kalila-edition/common-ui';
@@ -21,21 +20,20 @@ export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
   @ViewChild('container')
   container!: ElementRef;
   sub: Subscription | undefined;
-  constructor(@Inject(PLATFORM_ID) private platformId: object, private facsimileWorkerService: FacsimileWorkerService) {
-
-
-  }
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: object,
+    private facsimileWorkerService: FacsimileWorkerService
+  ) {}
 
   async ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.sub = this.facsimileWorkerService.currentLines.pipe(debounceTime(100)).subscribe(async (lines) => {
-        console.log([...lines.keys()]);
-        await this.buildPanel(lines);
-      })
+      this.sub = this.facsimileWorkerService.currentLines
+        .pipe(debounceTime(100))
+        .subscribe(async (lines) => {
+          await this.buildPanel(lines);
+        });
     }
   }
-
-
 
   async buildPanel(lines: Map<string, string>) {
     const Konva = (await import('konva')).default;
@@ -56,7 +54,10 @@ export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
     for (const [key, imageDataUrl] of lines) {
       const imageObj = new Image();
       imageObj.onload = () => {
-        const { width, height } = this.calculateDimensions(imageObj, containerWidth);
+        const { width, height } = this.calculateDimensions(
+          imageObj,
+          containerWidth
+        );
         if (y + height + containerHeight * 0.02 > containerHeight) {
           y = 0;
           x += width + containerWidth * 0.02;
@@ -77,7 +78,7 @@ export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
           width: width,
           padding: 5,
           x: 0,
-          y: 0
+          y: 0,
         });
 
         const group = new Konva.Group({
@@ -99,35 +100,35 @@ export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
         const transformer = new Konva.Transformer({
           nodes: [group],
           keepRatio: true,
-          enabledAnchors: ['bottom-right', 'top-left', 'top-right', 'bottom-left'],
+          enabledAnchors: [
+            'bottom-right',
+            'top-left',
+            'top-right',
+            'bottom-left',
+          ],
           rotateEnabled: false,
-
         });
 
         layer.add(group);
         layer.add(transformer);
-
 
         // Update transformer when circle is clicked
         image.on('click', () => {
           transformer.nodes([image]);
           layer.draw();
         });
-
-
       };
-      imageObj.src = imageDataUrl
+      imageObj.src = imageDataUrl;
     }
-
-
-
   }
 
-  calculateDimensions(imageObj: HTMLImageElement, containerWidth: number): { width: number, height: number } {
+  calculateDimensions(
+    imageObj: HTMLImageElement,
+    containerWidth: number
+  ): { width: number; height: number } {
     const width = containerWidth * 0.3;
     const height = imageObj.height * (width / imageObj.width);
     return { width, height };
-
   }
 
   ngOnDestroy() {
