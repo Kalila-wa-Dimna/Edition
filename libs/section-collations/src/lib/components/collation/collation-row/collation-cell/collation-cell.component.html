@@ -1,3 +1,21 @@
-<span>
-  {{ data ? data.tokens.join(' ') : '[absent]' }}
-</span>
+@if (data) {
+<div>
+  <span>
+    {{ data.tokens.join(' ') }}
+  </span>
+</div>
+<div class="cell-tools">
+  @if(showFacsimilePreview$ | async) {
+  <mat-icon
+    aria-hidden="false"
+    [fontIcon]="facsimilePanelIcon()"
+    (click)="toggleFacimileInPanle()"
+  ></mat-icon>
+  }
+</div>
+
+} @else {
+<div class="absent">
+  <span> [absent] </span>
+</div>
+}

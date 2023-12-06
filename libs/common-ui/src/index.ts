@@ -7,6 +7,8 @@ export * from './lib/theme.module';
 export * from './lib/theme/theme.service';
 export * from './lib/storage/storage.service';
 export * from './lib/data/data.service';
+export * from './lib/data/facsimile-worker.service';
+export * from './lib/data/search-worker.service';
 export * from './lib/data/resolver-factory';
 export * from './lib/data.module';
 export * from './lib/config.module';

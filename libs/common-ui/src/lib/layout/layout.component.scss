@@ -23,17 +23,38 @@
 }
 
 .title {
-  font-size: 15px;
   flex-grow: 1;
   max-width: 70vw;
-  @include on-larger-than('md') {
-    font-size: 20px;
-  }
-  & nav {
-    height: 70%;
-  }
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   & .mdc-tab-indicator {
     margin-top: -5px;
+  }
+}
+
+.path {
+  height: 20%;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  @include on-larger-than('md') {
+    font-size: 12px;
+  }
+  & p {
+    font-size: inherit;
+  }
+  & a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+.page-title {
+  height: 50%;
+  font-size: 15px;
+  @include on-larger-than('md') {
+    font-size: 20px;
   }
 }
 

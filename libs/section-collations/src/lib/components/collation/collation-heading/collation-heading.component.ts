@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CELL_PADDING } from '../../../constants/cell-width.constants';
+import { CELL_PADDING } from '../../../constants/size.constants';
 import { ICollationColumn } from '../../../models/collation-page-data.model';
 import { CollationSettingsService } from '../../../services/collation-settings.service';
 
@@ -14,8 +14,9 @@ export class CollationHeadingComponent {
   cellPadding: number = CELL_PADDING;
 
   cellWidth$ = this.settingsService.cellWidth$;
+  fontSize$ = this.settingsService.fontSize$;
 
-  constructor(private settingsService: CollationSettingsService) {}
+  constructor(private settingsService: CollationSettingsService) { }
 
   mapNumberToLetter(num: number): string {
     const letters = 'ABCDEFGHIKLMNOPQRSTUVWXYZ'.split('');

@@ -72,3 +72,28 @@
     }
   }
 }
+
+.result-nav {
+  display: flex;
+  height: 50px;
+  font-size: 8px;
+  align-items: center;
+  margin-left: 5px;
+  & * {
+    width: 100%;
+    height: 30%;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.arrow {
+  cursor: pointer;
+  &:hover {
+    filter: brightness(70%);
+  }
+}

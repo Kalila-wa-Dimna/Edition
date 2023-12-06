@@ -1,6 +1,6 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ICollationUnit } from '../../../models/collation-page-data.model';
-import { CELL_PADDING } from '../../../constants/cell-width.constants';
+import { CELL_PADDING } from '../../../constants/size.constants';
 import { CollationSettingsService } from '../../../services/collation-settings.service';
 import { IRowData } from '../../../models/collation-row-data.model';
 
@@ -12,6 +12,9 @@ import { IRowData } from '../../../models/collation-row-data.model';
 export class CollationRowComponent {
   @Input() unit!: ICollationUnit;
   @Input() sigla: string[] = [];
+  @Input() searchResult: boolean = false;
+  @Input() currentResult: boolean = false;
+  @Input() highlighlightedTokens: [number, number, number, number][] = [];
 
   @Input()
   rowData?: IRowData | undefined;
@@ -20,18 +23,8 @@ export class CollationRowComponent {
 
   cellPadding = CELL_PADDING;
 
-  @ViewChild('content') content?: ElementRef;
-  @ViewChild('header') header?: ElementRef;
 
-  constructor(private settingsService: CollationSettingsService) {}
+  constructor(private settingsService: CollationSettingsService) { }
 
-  // debugStickyElement(element: ElementRef): void {
-  //   let parent = this.renderer.parentNode(element.nativeElement);
 
-  //   while (parent) {
-  //     const hasOverflow = window.getComputedStyle(parent).overflow;
-  //     console.log(hasOverflow, parent);
-  //     parent = this.renderer.parentNode(parent);
-  //   }
-  // }
 }

@@ -17,8 +17,7 @@ export class SettingsDialogComponent {
     private fb: FormBuilder
   ) {
     this.form = this.fb.group({
-      cellWidth: [data.cellWidth],
-      fontSize: [data.fontSize],
+      size: [data.size],
       facsimilePreviw: [data.facsimilePreviw],
       showFacsimilePreview: [data.showFacsimilePreview],
       map: [data.map],

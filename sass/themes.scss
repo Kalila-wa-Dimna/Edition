@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+mat.$theme-ignore-duplication-warnings: true;
 
 @include mat.core();
 @import 'light-theme';

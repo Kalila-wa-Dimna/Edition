@@ -29,6 +29,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CellSizingService } from './services/cell-sizing.service';
 import { CollationVirtualScrollDirective } from './directives/virtual-scroll/collation-virtual-scroll.directive';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { SearchService } from './services/search.service';
+import { FacsimilePanelComponent } from './components/collation/facsimile-panel/facsimile-panel.component';
+import { FacsimilePanelService } from './services/facsimile-panel.service';
 
 @NgModule({
   imports: [
@@ -51,6 +55,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatDividerModule,
     MatInputModule,
     MatGridListModule,
+    MatSlideToggleModule,
   ],
   declarations: [
     SelectCollationComponent,
@@ -61,11 +66,14 @@ import { MatGridListModule } from '@angular/material/grid-list';
     CollationCellComponent,
     SettingsDialogComponent,
     CollationVirtualScrollDirective,
+    FacsimilePanelComponent,
   ],
   providers: [
     CollationDataService,
     CollationSettingsService,
     CellSizingService,
+    SearchService,
+    FacsimilePanelService,
   ],
 })
 export class SectionCollationsModule {}

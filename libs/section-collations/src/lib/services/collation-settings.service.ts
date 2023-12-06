@@ -3,12 +3,10 @@ import { ICollationViewSettings } from '../models/collation-view-settings.model'
 import { StorageService } from '@kalila-edition/common-ui';
 import { isPlatformBrowser } from '@angular/common';
 import { BehaviorSubject, filter, map } from 'rxjs';
-import { CELL_WIDTH_MAP } from '../constants/cell-width.constants';
-import { FONT_SIZE_MAP } from '../constants/font-size.constants';
+import { SIZE_MAP } from '../constants/size.constants';
 
 const DEFAULT: ICollationViewSettings = {
-  cellWidth: 'md',
-  fontSize: 'md',
+  size: 'md',
   facsimilePreviw: 'permanent',
   map: 'bottom',
   fullWidth: false,
@@ -31,17 +29,20 @@ export class CollationSettingsService {
   );
 
   cellWidth$ = this.stateObservable$.pipe(
-    map(({ cellWidth }) => CELL_WIDTH_MAP[cellWidth])
+    map(({ size }) => SIZE_MAP[size].cell)
   );
 
   fontSize$ = this.stateObservable$.pipe(
-    map(({ fontSize }) => FONT_SIZE_MAP[fontSize])
+    map(({ size }) => SIZE_MAP[size].font)
   );
+
+  showFacsimilePreview$ = this.stateObservable$.pipe(map(({ showFacsimilePreview }) => showFacsimilePreview));
+  showMap$ = this.stateObservable$.pipe(map(({ showMap }) => showMap));
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
     private storageService: StorageService
-  ) {}
+  ) { }
 
   async init() {
     await this.storageService.initDb();

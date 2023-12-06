@@ -3,7 +3,8 @@
   class="header-cell"
   [ngStyle]="{
     'width.px': cellWidth$ | async,
-    'padding.px': cellPadding
+    'padding.px': cellPadding,
+    'font-size.px': fontSize$ | async,
   }"
 >
   <div>({{ mapNumberToLetter(i) }})</div>

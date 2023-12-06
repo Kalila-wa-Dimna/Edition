@@ -7,35 +7,54 @@
       (isMainFullWidth$ | async) ? 'full-width-main' : 'responive-width-main'
     "
   >
+    @if(titles().length > 0) {
     <kd-collation-command-bar
       (goToRow)="onGoToRow($event)"
+      [titles]="titles()"
     ></kd-collation-command-bar>
+    }
 
-    <div class="collation-container" cdkVirtualScrollingElement>
-      <kd-collation-heading [columns]="columns"></kd-collation-heading>
-      <cdk-virtual-scroll-viewport
-        kdCollationVirtualScroll
-        [units]="units"
-        #collationBody
-        class="collation-body"
-        [ngStyle]="{
-          'width.px':
-            columns.length * ((cellWidth$ | async) ?? 75) +
-            2 * columns.length * cellPadding,
-          'font-size.px': fontSize$ | async
+    <div class="outer-container">
+      <div
+        [ngClass]="{
+          'collation-container-full': !(
+            (showFacsimilePreview$ | async) || (showMap$ | async)
+          ),
+          'collation-container-with-panel':
+            (showFacsimilePreview$ | async) || (showMap$ | async)
         }"
+        cdkVirtualScrollingElement
       >
-        <kd-collation-row
-          *cdkVirtualFor="let item of rowData; index as rowIndex"
-          [unit]="units[rowIndex]"
-          [sigla]="sigla"
-          [rowData]="item"
+        <kd-collation-heading [columns]="columns"></kd-collation-heading>
+        <cdk-virtual-scroll-viewport
+          kdCollationVirtualScroll
+          [units]="units"
+          #collationBody
+          class="collation-body"
           [ngStyle]="{
+            'width.px':
+              columns.length * ((cellWidth$ | async) ?? 75) +
+              2 * columns.length * cellPadding,
+            'font-size.px': fontSize$ | async
+          }"
+        >
+          <kd-collation-row
+            *cdkVirtualFor="let item of rowData; index as rowIndex"
+            [unit]="units[rowIndex]"
+            [sigla]="sigla"
+            [rowData]="item"
+            [searchResult]="highlightedRows()?.includes(rowIndex) || false"
+            [currentResult]="activeHighlightedRow() === rowIndex"
+            [ngStyle]="{
         'width.px': columns.length * ((cellWidth$ | async) ?? 75) + 2 * columns.length * cellPadding,
       }"
-        >
-        </kd-collation-row>
-      </cdk-virtual-scroll-viewport>
+          >
+          </kd-collation-row>
+        </cdk-virtual-scroll-viewport>
+      </div>
+      @if(showFacsimilePreview$ | async) {
+      <kd-facsimile-panel class="panel"> </kd-facsimile-panel>
+      }
     </div>
   </main>
 </kd-layout>
