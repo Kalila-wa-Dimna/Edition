@@ -23,7 +23,7 @@ export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
   constructor(
     @Inject(PLATFORM_ID) private platformId: object,
     private facsimileWorkerService: FacsimileWorkerService
-  ) {}
+  ) { }
 
   async ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -113,10 +113,19 @@ export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
         layer.add(transformer);
 
         // Update transformer when circle is clicked
-        image.on('click', () => {
-          transformer.nodes([image]);
+        group.on('click', () => {
+
+          transformer.nodes([group]);
           layer.draw();
         });
+
+        group.on('mouseenter', () => {
+          group.setZIndex(100);
+        })
+
+        group.on('mouseleave', () => {
+          group.setZIndex(0);
+        })
       };
       imageObj.src = imageDataUrl;
     }
