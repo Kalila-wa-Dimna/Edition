@@ -53,7 +53,16 @@
         </cdk-virtual-scroll-viewport>
       </div>
       @if(showFacsimilePreview$ | async) {
-      <kd-facsimile-panel class="panel"> </kd-facsimile-panel>
+      <div class="panel">
+        <kd-facsimile-panel-command-bar class="facsimile-panel-command-bar">
+        </kd-facsimile-panel-command-bar>
+        <kd-facsimile-panel
+          (goToRow)="onGoToRow($event)"
+          class="facsimile-panel"
+        >
+        </kd-facsimile-panel>
+      </div>
+
       }
     </div>
   </main>

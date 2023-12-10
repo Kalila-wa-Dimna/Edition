@@ -1,9 +1,11 @@
 @if (data) {
-<div>
+<p>
+  @for (lineTokens of data.tokens; track $index) {
   <span>
-    {{ data.tokens.join(' ') }}
+    {{ lineTokens.join(' ') }}
   </span>
-</div>
+  }
+</p>
 <div class="cell-tools">
   @if(showFacsimilePreview$ | async) {
   <mat-icon

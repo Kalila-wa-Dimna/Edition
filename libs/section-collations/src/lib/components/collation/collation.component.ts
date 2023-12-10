@@ -72,7 +72,7 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     private dataService: CollationDataService,
     private searchService: SearchService,
     private facsimilePanelService: FacsimilePanelService
-  ) {}
+  ) { }
 
   ngAfterViewInit(): void {
     if (this.viewport) {

@@ -3,19 +3,19 @@ console.log('facsimile worker init');
 const pageCache: Record<string, Record<number, string>> = {};
 
 const IMAGE_ROOT = "/assets/images/pages/";
-
+const PADDING = 10;
 addEventListener('message', async ({ data }) => {
 
 
-  const { medium, page, url, line, points, rotation } = data;
-  const pageDataUrl = await getPageDataUrl(medium, page, url);
+  const { info, url, points, rotation } = data;
+  const pageDataUrl = await getPageDataUrl(info.siglum, info.page, url);
   const { FacsimileCropper } = await import('./cropper');
   const cropper = FacsimileCropper.new(base46(pageDataUrl));
   const p = new Uint32Array(points);
   const color = new Uint32Array([102, 144, 155]);
-  const region = cropper.get_region(p, rotation, color, 3);
+  const region = cropper.get_region(p, rotation, color, PADDING);
   cropper.free();
-  postMessage({ id: `${medium}_${page}_${line}`, region });
+  postMessage({ id: `${info.siglum}_${info.page}_${info.line}`, content: { ...info, dataUrl: region } });
 });
 
 async function getPageDataUrl(medium: string, page: number, url: string) {

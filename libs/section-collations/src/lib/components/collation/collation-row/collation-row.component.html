@@ -20,7 +20,7 @@
 <div *ngIf="!unit.divider" class="row-content">
   <ng-template [ngIf]="rowData !== undefined" [ngIfElse]="loading">
     <kd-collation-cell
-      *ngFor="let siglum of sigla"
+      *ngFor="let siglum of sigla; index as mediumIndex"
       class="collation-cell rtl font-noto-naskh"
       [ngStyle]="{
               'width.px': cellWidth$ | async,
@@ -28,6 +28,9 @@
             }"
       [data]="rowData[siglum]"
       [siglum]="siglum"
+      [unitIndex]="unit.order"
+      [mediumIndex]="mediumIndex"
+      [orderDisplay]="unit.formattedOrder"
     >
     </kd-collation-cell>
   </ng-template>

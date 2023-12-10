@@ -50,8 +50,9 @@
       <div class="arrow" (click)="nextResult()"><p>&nbsp; |></p></div>
     </div>
     }
-    <button mat-icon-button>
-      <mat-icon>info</mat-icon>
-    </button>
+    <mat-icon
+      matTooltip="Entered text determines search type: (1) Digits trigger unit number search. (2) Latin letters trigger title search. (3) Arabic letters trigger content search. "
+      >info</mat-icon
+    >
   </div>
 </mat-toolbar>

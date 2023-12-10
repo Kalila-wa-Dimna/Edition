@@ -11,6 +11,9 @@ import { FacsimilePanelService } from '../../../../services/facsimile-panel.serv
 export class CollationCellComponent {
   @Input() data?: ICellData;
   @Input() siglum: string = '';
+  @Input() orderDisplay: string = '';
+  @Input() unitIndex: number = 0;
+  @Input() mediumIndex: number = 0;
 
   showFacsimilePreview$ = this.settingsSerive.showFacsimilePreview$;
 
@@ -24,14 +27,12 @@ export class CollationCellComponent {
       return '';
     }
 
-    const { unitId } = this.data;
-
-    if (this.facsimilePanelService.hasUnit(unitId, this.siglum)) {
+    if (this.facsimilePanelService.hasUnit(this.unitIndex, this.siglum)) {
       return 'visibility';
     }
 
     if (
-      !this.facsimilePanelService.hasUnit(unitId, this.siglum) &&
+      !this.facsimilePanelService.hasUnit(this.unitIndex, this.siglum) &&
       this.facsimilePanelService.canAddUnit()
     ) {
       return 'visibility_off';
@@ -44,14 +45,14 @@ export class CollationCellComponent {
     if (!this.data) {
       return;
     }
-    const { mediumId, unitId, lines, pages } = this.data;
+    const { mediumId, lines, pages } = this.data;
     if (
-      !this.facsimilePanelService.hasUnit(unitId, this.siglum) &&
+      !this.facsimilePanelService.hasUnit(this.unitIndex, this.siglum) &&
       this.facsimilePanelService.canAddUnit()
     ) {
-      this.facsimilePanelService.addUnit(unitId, this.siglum, mediumId, pages, lines);
-    } else if (this.facsimilePanelService.hasUnit(unitId, this.siglum)) {
-      this.facsimilePanelService.removeUnit(unitId, this.siglum);
+      this.facsimilePanelService.addUnit(this.unitIndex, this.orderDisplay, this.siglum, this.mediumIndex, mediumId, pages, lines);
+    } else if (this.facsimilePanelService.hasUnit(this.unitIndex, this.siglum)) {
+      this.facsimilePanelService.removeUnit(this.unitIndex, this.siglum);
     }
   }
 }

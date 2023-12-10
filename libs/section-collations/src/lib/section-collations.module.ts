@@ -33,6 +33,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SearchService } from './services/search.service';
 import { FacsimilePanelComponent } from './components/collation/facsimile-panel/facsimile-panel.component';
 import { FacsimilePanelService } from './services/facsimile-panel.service';
+import { FacsimilePanelCommandBarComponent } from './components/collation/facsimile-panel/facsimile-panel-command-bar/facsimile-panel-command-bar.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 @NgModule({
   imports: [
@@ -56,6 +59,7 @@ import { FacsimilePanelService } from './services/facsimile-panel.service';
     MatInputModule,
     MatGridListModule,
     MatSlideToggleModule,
+    MatTooltipModule
   ],
   declarations: [
     SelectCollationComponent,
@@ -67,6 +71,7 @@ import { FacsimilePanelService } from './services/facsimile-panel.service';
     SettingsDialogComponent,
     CollationVirtualScrollDirective,
     FacsimilePanelComponent,
+    FacsimilePanelCommandBarComponent,
   ],
   providers: [
     CollationDataService,
@@ -76,4 +81,4 @@ import { FacsimilePanelService } from './services/facsimile-panel.service';
     FacsimilePanelService,
   ],
 })
-export class SectionCollationsModule {}
+export class SectionCollationsModule { }

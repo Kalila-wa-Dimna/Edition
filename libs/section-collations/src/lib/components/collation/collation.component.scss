@@ -11,6 +11,7 @@
 main {
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .outer-container {
@@ -22,6 +23,8 @@ main {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  align-items: center;
+  justify-content: center;
 }
 
 .collation-container-full {
@@ -43,6 +46,24 @@ main {
 .panel {
   width: 100%;
   height: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.facsimile-panel-command-bar {
+  height: 30px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+.facsimile-panel {
+  height: calc(100% - 30px);
+  min-width: 100%;
+  width: fit-content;
 }
 :host-context(.light-theme) {
   .panel {

@@ -3,14 +3,18 @@
     <mat-icon>close</mat-icon>
   </button>
   <mat-divider></mat-divider>
-  <a mat-button style="width: 100%"  [routerLink]="['/']">Home</a>
+  <a mat-button style="width: 100%" [routerLink]="['/']">Home</a>
   <mat-divider></mat-divider>
 </div>
 
 <div class="panel-content">
-  <a mat-button style="width: 100%"  [routerLink]="['/about']">About the Project</a>
+  <a mat-button style="width: 100%" [routerLink]="['/about']"
+    >About the Project</a
+  >
   <mat-divider></mat-divider>
-  <a mat-button style="width: 100%"  [routerLink]="['/description']">Manuscript Description</a>
+  <a mat-button style="width: 100%" [routerLink]="['/description']"
+    >Manuscript Description</a
+  >
   <mat-divider></mat-divider>
   <mat-accordion>
     <mat-expansion-panel
@@ -23,7 +27,7 @@
           ><span class="panel-title"><span>Manuscripts</span></span>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <a mat-button  [routerLink]="['/manuscripts']">Manuscripts library</a>
+      <a mat-button [routerLink]="['/manuscripts']">Manuscripts library</a>
       <kd-manuscripts-panel
         *ngIf="expanded.manuscriptPanelOpen"
       ></kd-manuscripts-panel>
@@ -69,13 +73,14 @@
     <mat-divider></mat-divider>
 
     <mat-expansion-panel
+      disabled
       [expanded]="expanded.guidesPanelOpen"
       (opened)="expanded.guidesPanelOpen = true"
       (closed)="expanded.guidesPanelOpen = false"
     >
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <span class="panel-title"><span>Guides</span></span>
+          <span class="panel-title"><span>Guides [in development]</span></span>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <a mat-button [routerLink]="['/guides']">Overview</a>
@@ -105,8 +110,13 @@
     </mat-expansion-panel>
   </mat-accordion>
   <mat-divider></mat-divider>
-  <a mat-button style="width: 100%" [routerLink]="['/manuscripts/illustrations']">Illustrations</a>
+  <a
+    mat-button
+    style="width: 100%"
+    [routerLink]="['/manuscripts/illustrations']"
+    >Illustrations</a
+  >
   <mat-divider></mat-divider>
-  <a mat-button style="width: 100%"  [routerLink]="['/imprint']">Imprint</a>
+  <a mat-button style="width: 100%" [routerLink]="['/imprint']">Imprint</a>
   <mat-divider></mat-divider>
 </div>

@@ -1,34 +1,44 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+export interface ICollationFacsimileHighlight {
+  siglum: string;
+  page: number;
+  line: number;
+  unit: number;
+  column: number;
+  unitDisplay: string;
+}
+
+
+
 @Injectable({
   providedIn: 'root',
 })
 export class FacsimileWorkerService {
   private _facsimile: Worker | undefined;
-  currentLines: BehaviorSubject<Map<string, string>> = new BehaviorSubject(new Map<string, string>());
+  currentLines: BehaviorSubject<Map<string, ICollationFacsimileHighlight & { dataUrl: string }>> = new BehaviorSubject(new Map<string, ICollationFacsimileHighlight & { dataUrl: string }>());
 
   init(facsimileWorker: Worker): void {
     this._facsimile = facsimileWorker;
 
     this._facsimile.onmessage = ({ data }) => {
-      const { id, region } = data;
-      this.addRegion(id, region);
+      const { id, content } = data;
+      this.addRegion(id, content);
     };
   }
 
-  requestRegion(medium: string, page: number, line: number, url: string, points: number[], rotation: number) {
-    this._facsimile?.postMessage({ medium, page, line, url, points, rotation });
+  requestRegion(info: ICollationFacsimileHighlight, url: string, points: number[], rotation: number) {
+    this._facsimile?.postMessage({ info, url, points, rotation });
   }
 
-  addRegion(id: string, region: string) {
+  addRegion(id: string, data: ICollationFacsimileHighlight & { dataUrl: string }) {
     const current = this.currentLines.getValue();
-    current.set(id, region);
+    current.set(id, data);
     this.currentLines.next(current);
   }
 
   removeRegion(id: string) {
-    console.log(id);
     const current = this.currentLines.getValue();
     current.delete(id);
     this.currentLines.next(current);
