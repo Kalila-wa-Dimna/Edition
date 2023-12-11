@@ -27,6 +27,7 @@ import {
 } from 'rxjs';
 import { SearchService } from '../../services/search.service';
 import { FacsimilePanelService } from '../../services/facsimile-panel.service';
+import { SearchWorkerService } from '@kalila-edition/common-ui';
 
 @Component({
   selector: 'kd-collation',
@@ -57,12 +58,16 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   highlightedRows = this.searchService.highlightedRows;
   activeHighlightedRow = computed(() => {
+    const currentresult = this.searchService.currentResult();
     const rows = this.searchService.highlightedRows();
     if (rows) {
-      const currentRow = this.searchService.currentRow();
-      return rows[currentRow];
-    }
 
+      return rows[currentresult];
+    }
+    const cells = this.searchService.highlightedTokens();
+    if (cells) {
+      return cells[currentresult][0];
+    }
     return null;
   });
 
@@ -71,7 +76,8 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     private settingsService: CollationSettingsService,
     private dataService: CollationDataService,
     private searchService: SearchService,
-    private facsimilePanelService: FacsimilePanelService
+    private facsimilePanelService: FacsimilePanelService,
+    private searchWorkerService: SearchWorkerService,
   ) { }
 
   ngAfterViewInit(): void {
@@ -104,6 +110,8 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     this.sub = this.route.data.subscribe((data) => {
       this.loadData(data);
     });
+
+
   }
 
   private loadData(data: Data) {
@@ -115,6 +123,7 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     this.summary = data['pageData']['summary'];
     this.rowData = data['pageData']['segmentData'];
     this.dataService.cache = data['pageData']['segmentData'];
+    this.searchWorkerService.initCollation(this.summary.siglum);
   }
 
   onGoToRow(index: number) {

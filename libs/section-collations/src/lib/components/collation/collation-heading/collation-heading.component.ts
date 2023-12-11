@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CELL_PADDING } from '../../../constants/size.constants';
 import { ICollationColumn } from '../../../models/collation-page-data.model';
 import { CollationSettingsService } from '../../../services/collation-settings.service';
+import { SearchService } from '../../../services/search.service';
 
 @Component({
   selector: 'kd-collation-heading',
@@ -16,7 +17,9 @@ export class CollationHeadingComponent {
   cellWidth$ = this.settingsService.cellWidth$;
   fontSize$ = this.settingsService.fontSize$;
 
-  constructor(private settingsService: CollationSettingsService) { }
+  highlightedColumn = this.searchService.highlightedColumn;
+
+  constructor(private settingsService: CollationSettingsService, private searchService: SearchService) { }
 
   mapNumberToLetter(num: number): string {
     const letters = 'ABCDEFGHIKLMNOPQRSTUVWXYZ'.split('');

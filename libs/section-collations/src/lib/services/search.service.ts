@@ -3,13 +3,13 @@ import { Injectable, computed, signal } from '@angular/core';
 @Injectable()
 export class SearchService {
 
+
   highlightedRows = signal<number[] | null>(null);
 
-  highlightedTokens = signal<[number, number, number, number][][] | null>(null); // [startLine, startToken, endLine, endToken] = array[row][cell]
+  highlightedTokens = signal<number[][] | null>(null); // [startLine, startToken, endLine, endToken] = array[row][cell]
 
-  currentRow = signal<number>(0);
+  currentResult = signal<number>(0);
 
-  currentCell = signal<number>(0);
 
   numberOfResults = computed(() => {
     const rows = this.highlightedRows();
@@ -24,11 +24,18 @@ export class SearchService {
     return 0;
   });
 
+  highlightedColumn = computed(() => {
+    const tokens = this.highlightedTokens();
+    if (tokens) {
+      return tokens[this.currentResult()][1];
+    }
+    return null
+  });
+
   reset() {
     this.highlightedRows.set(null);
     this.highlightedTokens.set(null);
-    this.currentRow.set(0);
-    this.currentCell.set(0);
+    this.currentResult.set(0);
   }
 
 }
