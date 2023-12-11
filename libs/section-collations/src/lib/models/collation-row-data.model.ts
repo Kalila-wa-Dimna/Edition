@@ -10,7 +10,6 @@ export interface ICellData {
   endLine: number;
   endToken: number;
   images: string[];
-  lemmas: string[][];
   tokens: string[][];
   lines: number[];
   pages: number[];
