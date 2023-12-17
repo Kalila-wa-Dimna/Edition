@@ -42,7 +42,7 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
   titles = signal<string[]>([]);
   rowData: IRowData[] = [];
   cellPadding = CELL_PADDING;
-  sub?: Subscription;
+  dataSubscription?: Subscription;
 
   isMainFullWidth$ = this.settingsService.isMainFullWidth$;
 
@@ -52,6 +52,9 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
   showMap$ = this.settingsService.showMap$;
 
   scrollSubject = new Subject<number>();
+  scrollIndexSubscription = Subscription.EMPTY;
+  currentScrollIndex = signal<number>(0);
+  showTitelPreview = signal<number | null>(null);
 
   @ViewChild(CollationVirtualScrollDirective)
   viewport?: CollationVirtualScrollDirective;
@@ -99,15 +102,20 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
             this.scrollSubject.next(goal);
           }
         });
+      this.scrollIndexSubscription = this.viewport._scrollStrategy.scrolledIndexChange.subscribe((index) => {
+        this.currentScrollIndex.set(index);
+      })
     }
+
   }
+
 
   async ngOnInit() {
     await this.settingsService.init();
 
     this.loadData(this.route.snapshot.data);
 
-    this.sub = this.route.data.subscribe((data) => {
+    this.dataSubscription = this.route.data.subscribe((data) => {
       this.loadData(data);
     });
 
@@ -130,9 +138,18 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     this.scrollSubject.next(index);
   }
 
+  getTitelPreview() {
+    const index = this.showTitelPreview();
+    if (index === null) {
+      return '';
+    }
+
+    return `(${this.units[index].formattedOrder}) ${this.units[index].title}`;
+  }
+
   ngOnDestroy(): void {
-    if (this.sub) {
-      this.sub.unsubscribe();
+    if (this.dataSubscription) {
+      this.dataSubscription.unsubscribe();
     }
   }
 }

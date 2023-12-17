@@ -102,8 +102,6 @@ export class CollationCellComponent {
 
     const ranges: IRange[] = [];
 
-    console.log(rangeDefinitions);
-
     const getRangeContiningWord = (lineIndex: number, wordIndex: number) => {
       for (let i = 0; i < rangeDefinitions.length; i++) {
         const range = rangeDefinitions[i];
@@ -136,9 +134,6 @@ export class CollationCellComponent {
 
       })
     })
-
-    console.log(ranges);
-
     return ranges;
   }
 }

@@ -35,6 +35,7 @@ import { FacsimilePanelComponent } from './components/collation/facsimile-panel/
 import { FacsimilePanelService } from './services/facsimile-panel.service';
 import { FacsimilePanelCommandBarComponent } from './components/collation/facsimile-panel/facsimile-panel-command-bar/facsimile-panel-command-bar.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MapPanelComponent } from './components/collation/map-panel/map-panel.component';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     CollationVirtualScrollDirective,
     FacsimilePanelComponent,
     FacsimilePanelCommandBarComponent,
+    MapPanelComponent,
   ],
   providers: [
     CollationDataService,

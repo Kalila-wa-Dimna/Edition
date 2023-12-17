@@ -26,6 +26,13 @@ main {
   align-items: center;
   justify-content: center;
 }
+.title-previw {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 .collation-container-full {
   height: 100%;
@@ -65,6 +72,13 @@ main {
   min-width: 100%;
   width: fit-content;
 }
+
+.map-panel {
+  height: 100%;
+  min-width: 100%;
+  width: fit-content;
+}
+
 :host-context(.light-theme) {
   .panel {
     border: black solid 1px;

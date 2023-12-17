@@ -64,6 +64,25 @@
         </kd-facsimile-panel>
       </div>
 
+      } @else if(showMap$ | async) {
+      <div class="panel">
+        <kd-map-panel
+          [collationName]="summary.siglum"
+          [currentIndex]="currentScrollIndex()"
+          (rowClicked)="onGoToRow($event)"
+          (rowHovered)="showTitelPreview.set($event)"
+          class="map-panel"
+        >
+          @if(showTitelPreview() !== null ) {
+          <mat-card>
+            <mat-card-content>
+              {{ getTitelPreview() }}
+            </mat-card-content>
+          </mat-card>
+          }
+        </kd-map-panel>
+      </div>
+
       }
     </div>
   </main>
