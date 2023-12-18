@@ -56,8 +56,10 @@ export class CollationCellComponent {
   constructor(
     private settingsSerive: CollationSettingsService,
     private facsimilePanelService: FacsimilePanelService,
-    private searchService: SearchService
-  ) { }
+    private searchService: SearchService,
+  ) {
+
+  }
 
   facsimilePanelIcon(): string {
     if (!this.data) {
