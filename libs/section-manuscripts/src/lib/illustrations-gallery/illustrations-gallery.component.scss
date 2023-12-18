@@ -8,10 +8,13 @@
   // min-height: 100vh;
   height: fit-content;
 
+
 }
 .table-container {
   max-height: calc(100vh) ; /* Set a maximum height for the container */
   overflow: auto;
+  border: solid #000000 1px;
+
   /* Add scrollbars if the content exceeds the height */
 }
 
@@ -36,13 +39,17 @@ main {
 .manuscript-container {
   display: flex;
   flex-direction: column;
+  margin: 20px;
+
  /* Set a maximum height for scroll */
   /* Add vertical scrollbar */
   /* Additional styles as needed */
 }
 
+
 .illustrations-container {
   display: flex;
+
 
  /* Add horizontal scrollbar if needed */
   /* Additional styles as needed */
@@ -53,6 +60,7 @@ main {
     background-color: #00566d;
     color: white!important;
   }
+
 
 }
 
@@ -82,9 +90,21 @@ main {
   position: sticky;
   z-index: 1;
   top: 0;
-
+  border: solid #000000 1px;
   /* Make sure both rows are displayed as a flex container */
 }
 .mat-elevation-z8{
   background-color: #edece8;
+
 }
+
+
+.mat-header-row {
+  border-bottom: 5px solid #000000!important;
+}
+
+.mat-row {
+  border-bottom: 5px solid #000000!important;
+}
+
+

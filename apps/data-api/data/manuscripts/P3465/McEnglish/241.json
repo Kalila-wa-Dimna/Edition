@@ -3,32 +3,32 @@
     "number": 241,
     "manuscript": "P3465",
     "imageUrl": "8bf26cfc-7da1-4ba1-ab53-4f8860a14a52.jpg",
-    "lines": 
+    "lines":
     [["when", "that", "stops", "[flowing],", "they", "part", "from", "them?", "78", "As", "for", "the", "enmity", "that", "has", "been", "made", "into", "friendship,"], ["[only]", "need", "drives", "[one]", "toward", "that.", "87", "And", "know", "that", "the", "misstep", "of", "he", "who", "is", "felled", "by", "his", "own", "candor", "cannot", "be", "excused.", "88", "The", "sensible", "man"], ["treats", "his", "enemy", "with", "whom", "he", "reconciled", "with", "some", "of", "his", "previous", "[reserve],", "and", "does", "not", "trust", "him", "fully.", "89", "Neither", "does", "he", "trust", "him", "with", "his", "safety,"], ["when", "he", "approaches", "him", "and", "stays", "away", "from", "him", "as", "much", "as", "he", "can.", "91", "I", "shall", "like", "you", "from", "afar,", "92", "and", "you", "don\u2019t"], ["have", "to", "reward", "me", "for", "my", "good", "deed,", "93", "for", "there", "is", "no", "way", "for", "us", "to", "reunite.\u2019\u201d"], ["98", "Here", "ends", "the", "Chapter", "of", "the", "Rat", "and", "the", "Cat."], ["The", "Chapter", "of", "the", "King", "and", "the", "Bird", "Fanza", "(Qatra)"], ["King", "Dayshalam", "said", "to", "the", "Philosopher", "Baydhab\u0101:", "\u201cI", "have", "heard", "this", "parable.", "Present", "to", "me", "the", "parable", "of"], ["harm", "inflicted,", "in", "which", "the", "one", "cannot", "avoid", "meeting", "the", "other.", "Baydhab\u0101", "said:", "\u201cThey", "claim", "that"], ["a", "King", "of", "Indian", "Royalty", "called", "Badr\u012bn", "had", "a", "bird", "called", "Fanza,", "which", "had", "a", "nestling.", "This"], ["bird", "and", "its", "nestling", "spoke", "eloquently,", "and", "the", "King", "admired", "them.", "So", "he", "ordered"], ["they", "be", "placed", "with", "his", "wife", "and", "ordered", "her", "to", "look", "after", "them.", "It", "so", "happened", "that", "the", "King\u2019s", "wife"], ["gave", "birth", "to", "a", "boy,", "and", "she", "said,", "\u2018This", "[nestling]", "will", "rear", "my", "child\u2014both", "are", "younglings", "and", "they", "will", "play", "together!\u2019"], ["Fanza", "used", "{to", "go}", "to", "the", "mountain", "and", "bring", "an", "unknown", "fruit,", "feeding", "the", "King\u2019s", "son", "half", "of"]],
     "unitPlaces": [
         [
             1,
-            3
+            6
         ],
         [
             2,
-            12
+            19
         ],
         [
             0,
-            4
-        ],
-        [
-            3,
             8
         ],
         [
             3,
-            12
+            14
+        ],
+        [
+            3,
+            21
         ],
         [
             4,
-            5
+            8
         ],
         [
             5,
@@ -36,7 +36,7 @@
         ],
         [
             1,
-            10
+            24
         ]
     ],
     "unitNames": [

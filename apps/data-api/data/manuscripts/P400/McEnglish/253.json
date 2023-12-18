@@ -3,28 +3,28 @@
     "number": 253,
     "manuscript": "P400",
     "imageUrl": "4871ed1f-1444-4c4f-8865-6fe0b5b16755.jpg",
-    "lines": 
+    "lines":
     [["have", "come", "upon", "me", "in", "succession,", "and", "there", "is", "no", "recourse", "but", "to", "my", "sense", "and", "ingenuity.", "I", "should", "not", "fall", "into", "confusion"], ["and", "be", "disheartened;", "17", "the", "sensible", "man", "does", "not", "lose", "judgment", "and", "his", "intelligence", "does", "not", "abandon", "him,"], ["whatever", "the", "circumstance.", "18", "Indeed,", "a", "good", "judgment", "in", "this", "is", "like", "the", "sea", "whose", "depths", "cannot", "be"], ["reached,", "19", "and", "trouble", "does", "not", "so", "much", "take", "over", "a", "level-headed", "man\u2014especially", "over", "his", "intelligence\u2014as", "to", "cause", "him", "to", "perish,"], ["while", "hope", "is", "attainable.", "20", "I", "see", "no", "better", "strategy", "than", "to", "seek", "reconciliation", "with", "the", "cat,"], ["for", "he", "has", "been", "beset", "by", "a", "grave", "burden.", "I", "could", "\u2026", "me,", "and", "he", "would", "desire", "my", "remaining", "alive,", "and", "in"], ["that", "could", "lie", "my", "and", "his", "rescue.\u2019", "21He", "approached", "him", "and", "said,", "\u2018How", "are", "you?\u2019", "22", "The", "cat", "said,"], ["\u2018As", "you", "would", "fancy\u2014in", "dire", "straight.\u2019", "23", "\u2018I", "swear,\u2019", "said", "the", "rat,"], ["\u2018that", "which", "delighted", "you", "used", "to", "sadden", "me,", "and", "I", "might", "have", "liked", "for", "your", "conditions", "to", "be", "dire", "and", "for", "your"], ["end", "to", "be", "near.", "However,", "I", "have", "been", "so", "beset", "by", "evils", "that", "neither", "the", "precariousness", "of", "your"], ["situation", "nor", "your", "death", "can", "delight", "me.", "You,", "too:", "no", "one", "is", "more", "capable", "of", "getting", "you", "out", "of", "this"], ["situation", "than", "I", "am.", "26", "[I", "am]", "weary", "of", "the", "weasel", "and", "the", "owl:", "they", "are", "watching", "me,", "and", "I", "am"], ["weak,", "incapable", "of", "fending", "them", "off.", "If", "you", "guarantee", "me", "restraint", "on", "your", "part", "and", "ensure", "deliverance"], ["from", "the", "others", "that", "have", "besieged", "and", "are", "watching", "me,", "I", "will", "save", "you", "from", "that", "in", "which", "you", "are", "and", "deliver", "you", "from"], ["your", "bonds.", "Seize", "on", "that,", "then,", "28", "and", "help", "me", "deliver", "you", "and", "myself,", "for", "as", "I", "desire", "my", "survival"]],
     "unitPlaces": [
         [
             4,
-            3
+            4
         ],
         [
             6,
-            4
+            7
         ],
         [
             11,
-            2
-        ],
-        [
-            1,
             4
         ],
         [
-            14,
+            1,
             3
+        ],
+        [
+            14,
+            6
         ],
         [
             7,
@@ -32,11 +32,11 @@
         ],
         [
             6,
-            11
+            15
         ],
         [
             2,
-            4
+            3
         ],
         [
             3,

@@ -3,11 +3,11 @@
     "number": 238,
     "manuscript": "P3465",
     "imageUrl": "c74ab2a3-beaa-43eb-99a9-d79e0a617d1a.jpg",
-    "lines": [["the", "ship", "is", "delivered.\u2019\u201d", "31", "\u201cWhen", "the", "cat", "comprehended", "the", "talk", "by", "the", "rat,", "he", "knew", "that", "he", "was", "truthful", "and", "said", "to", "him,"], ["\u2018Your", "words", "are,", "indeed,", "akin", "to", "the", "truth.", "I,", "too,", "am", "desirous", "of", "this", "truce,", "in", "which", "for", "you", "and", "for", "myself,", "I", "hope,", "will", "be", "deliverance.", "And", "if", "you"], ["do", "this,", "I", "will", "thank", "you", "as", "long", "as", "I", "live.", "33", "The", "rat", "said:", "I", "shall", "approach", "you", "and", "cut"], ["all", "your", "cords,", "except", "for", "one", "cord,", "which", "I", "shall", "keep", "to", "secure", "myself", "against", "you.\u2019\u201d", "37", "\u201cHe", "then", "took", "to", "gnawing", "at", "his", "cords."], ["35", "When", "the", "owl", "and", "the", "mongoose", "saw", "the", "rat", "approach", "the", "cat,", "they", "gave", "up", "on", "[catching]", "him", "and", "left.", "38", "But", "the"], ["rat", "held", "[some", "speed]", "from", "R\u016bm\u012b", "while", "cutting", "the", "cords,", "so", "[R\u016bm\u012b]", "said:", "\u2018Why", "do", "I", "not", "see", "you", "being", "diligent", "at", "cutting", "my", "cords."]],
+    "lines": [["the", "ship", "is", "delivered.\u2019\u201d", "\u201cWhen", "the", "cat", "comprehended", "the", "talk", "by", "the", "rat,", "he", "knew", "that", "he", "was", "truthful", "and", "said", "to", "him,"], ["\u2018Your", "words", "are,", "indeed,", "akin", "to", "the", "truth.", "I,", "too,", "am", "desirous", "of", "this", "truce,", "in", "which", "for", "you", "and", "for", "myself,", "I", "hope,", "will", "be", "deliverance.", "And", "if", "you"], ["do", "this,", "I", "will", "thank", "you", "as", "long", "as", "I", "live.", "The", "rat", "said:", "I", "shall", "approach", "you", "and", "cut"], ["all", "your", "cords,", "except", "for", "one", "cord,", "which", "I", "shall", "keep", "to", "secure", "myself", "against", "you.\u2019\u201d","\u201cHe", "then", "took", "to", "gnawing", "at", "his", "cords."], [ "When", "the", "owl", "and", "the", "mongoose", "saw", "the", "rat", "approach", "the", "cat,", "they", "gave", "up", "on", "[catching]", "him", "and", "left.", "But", "the"], ["rat", "held", "[some", "speed]", "from", "R\u016bm\u012b", "while", "cutting", "the", "cords,", "so", "[R\u016bm\u012b]", "said:", "\u2018Why", "do", "I", "not", "see", "you", "being", "diligent", "at", "cutting", "my", "cords."]],
     "unitPlaces": [
         [
             0,
-            2
+            4
         ],
         [
             4,
@@ -15,15 +15,15 @@
         ],
         [
             4,
-            14
+            21
         ],
         [
             3,
-            9
+            16
         ],
         [
             2,
-            6
+            11
         ]
     ],
     "unitNames": [

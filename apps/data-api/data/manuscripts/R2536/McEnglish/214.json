@@ -3,16 +3,16 @@
     "number": 214,
     "manuscript": "R2536",
     "imageUrl": "be10b7b5-d118-4184-8eff-6734af19f60b.jpg",
-    "lines": 
+    "lines":
     [["I", "might", "have", "like", "for", "your", "conditions", "to", "be", "dire", "and", "for", "your", "end", "to", "be", "near.", "However,", "I", "have", "been", "beset", "by", "an", "evil"], ["which", "does", "not", "make", "me", "delight", "at", "the", "precariousness", "of", "your", "situation", "nor", "your", "death,", "and", "no", "one", "is", "more", "capable", "than", "I", "am", "of", "getting", "you", "out", "of", "this", "24", "situation.", "I", "am", "weary"], ["of", "the", "mongoose", "and", "the", "owl:", "they", "are", "watching", "me,", "and", "I", "am", "weak", "and", "cannot", "fend", "them", "off.", "If", "you", "guarantee", "me", "restraint", "on", "your", "part"], ["and", "ensure", "deliverance", "from", "the", "others", "who", "scare", "me", "and", "are", "watching", "me,", "I", "will", "save", "you", "from", "that", "in", "which", "you", "are", "and", "deliver", "you", "from"], ["your", "bonds.", "Seize", "on", "that,", "and", "help", "me", "deliver", "you", "and", "myself;", "28", "for", "as", "I", "desire"]],
     "unitPlaces": [
         [
             1,
-            14
+            30
         ],
         [
             4,
-            9
+            12
         ]
     ],
     "unitNames": [

@@ -1,6 +1,7 @@
 [
     {
         "chapter": "Lv",
+        "chapter_name": "Burzoy's Voyage",
         "manuscripts": [
             {
                 "siglum": "P5881",
@@ -71,6 +72,7 @@
     },
     {
         "chapter": "Im",
+      "chapter_name": "The Arabic Introduction",
         "manuscripts": [
             {
                 "siglum": "P5881",
@@ -108,6 +110,7 @@
     },
     {
         "chapter": "Oc",
+        "chapter_name": "The Owls and the Crows ",
         "manuscripts": [
             {
                 "siglum": "P5881",
@@ -178,6 +181,7 @@
     },
     {
         "chapter": "Mc",
+      "chapter_name": "The Mouse and the Cat",
         "manuscripts": [
             {
                 "siglum": "P5881",
@@ -235,6 +239,7 @@
     },
     {
         "chapter": "Ag",
+      "chapter_name": "The Ascetic and the Guest ",
         "manuscripts": [
             {
                 "siglum": "P5881",
@@ -253,6 +258,7 @@
     },
     {
         "chapter": "Kd",
+      "chapter_name": "The King and 8 Dreams ",
         "manuscripts": [
             {
                 "siglum": "P400",
@@ -294,6 +300,7 @@
     },
     {
         "chapter": "Lj",
+      "chapter_name": "The Lion and the Jackal ",
         "manuscripts": [
             {
                 "siglum": "P400",
@@ -360,6 +367,7 @@
     },
     {
         "chapter": "Km",
+      "chapter_name": "The King of Mice",
         "manuscripts": [
             {
                 "siglum": "P3466",

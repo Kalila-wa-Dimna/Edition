@@ -6,7 +6,7 @@
 main {
   margin-top: 1.5rem;
   display: grid;
-  grid-gap: 1.5rem; // space between the cards
+  grid-gap: 1rem; // space between the cards
   grid-template-columns: 1fr;
 
   @include on-larger-than('md') {
@@ -16,6 +16,13 @@ main {
     margin-right: auto;
   }
 
+
+  @media screen and (min-width: 1800px){
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 90%; // optional, if you want to limit the maximum width
+    margin-left: auto;
+    margin-right: auto;
+  }
   .card {
     width: 100%;
   }
