@@ -11,7 +11,7 @@ const DARK_COLORS = {
   label: 'white',
   grid: 'gray',
   boxColor: '#edece8',
-  altBoxColor: 'white',
+  altBoxColor: 'red',
   boxBorderColor: '#004659',
   rowHighlighterFill: '#ffdfbf',
   boxHighlighterBorder: '#f0b275',
