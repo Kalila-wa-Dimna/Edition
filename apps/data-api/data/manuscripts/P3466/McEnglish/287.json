@@ -3,20 +3,20 @@
     "number": 287,
     "manuscript": "P3466",
     "imageUrl": "a48debc3-c409-4f3a-b427-d82c36ce58fb.jpg",
-    "lines": 
+    "lines":
     [["his", "friendship", "ceases,", "turning", "[again]", "into", "enmity", "and", "things", "return", "to", "the", "basic", "state,", "79", "as", "with", "water", "heated", "with", "fire:"], ["when", "it", "is", "taken", "off", "it,", "the", "water", "turns", "cold", "again.", "80", "And", "of", "my", "enemies", "there", "is", "none", "more", "harmful", "to", "me", "than", "you.", "81"], ["You", "and", "I", "were", "compelled", "by", "a", "need", "to", "the", "agreement", "we", "created;", "but"], ["the", "matter", "which", "made", "you", "need", "me", "and", "I", "you", "has", "passed,"], ["and", "I", "fear", "with", "its", "passing", "the", "return", "enmity.", "82", "There", "is", "no", "good", "in", "the", "weak", "being", "close", "to", "the", "powerful", "enemy"], ["nor", "in", "the", "humble", "being", "close", "to", "the", "proud", "enemy.", "83", "And", "I\u2019m", "not", "aware", "that", "you", "have", "any", "need", "regarding", "me", "except"], ["your", "wanting", "to", "eat", "me.", "84There", "is", "no", "trusting", "you!", "85", "For", "I", "have", "learned", "that", "the", "weak", "[person]"], ["who", "is", "cautious", "of", "the", "strong", "enemy", "is", "closer", "to", "safety", "than", "the", "[[proud]]", "enemy", "when", "he", "becomes"], ["misled", "by", "the", "weak", "and", "open", "to", "him.", "86", "The", "sensible", "man", "makes", "peace", "with", "his", "enemy,", "if", "he", "is", "compelled", "unto", "him:"], ["he", "treats", "him", "well,", "displays", "friendliness,", "and", "shows", "him", "some", "trust", "on", "his", "part\u2014"], ["if", "he", "can\u2019t", "manage", "other", "than", "that;", "he", "then", "makes", "haste", "to", "part", "from", "him"], ["when", "he", "finds", "a", "way", "for", "that.", "87", "It", "has", "been", "said", "that", "someone", "[too]", "quick", "to", "act", "openly", "can", "hardly", "be", "excused", "for", "his", "misstep;", "and", "the", "sensible", "man"], ["keeps", "his", "pledge", "upon", "himself", "to", "whom", "he", "enters", "into", "a", "truce", "with,", "\u2026", "anyone", "to", "do", "the", "same,", "89", "and", "he", "prefers", "nothing"], ["above", "caution", "\u2026", "For", "me", "to", "stay", "away", "from", "getting", "close", "to", "you", "is", "the", "most", "prudent", "judgment.", "91", "I", "shall", "like"], ["you", "from", "afar", "and", "desire", "for", "you", "survival", "and", "safety", "in", "a", "way", "that", "I", "didn\u2019t", "desire", "for", "you", "before", "today.", "92", "{and", "there\u2019s", "no", "harm", "for", "your", "treating", "me", "likewise}."], ["93There", "is", "no", "way", "for", "us", "to", "reunite.", "Peace!\u2019"], ["The", "Chapter", "of", "the", "King", "and", "the", "Bird", "Fatra"], ["\u201cKing", "Dayshal\u012bm", "said", "to", "the", "Philosopher", "Baydan\u0101,", "\u2018I", "have", "heard", "the", "parable", "of", "the", "man", "who"]],
     "unitPlaces": [
         [
             11,
-            1
+            7
         ],
         [
             1,
-            5
+            11
         ],
         [
             5,
-            6
+            10
         ],
         [
             13,
@@ -24,31 +24,31 @@
         ],
         [
             12,
-            12
+            19
         ],
         [
             6,
-            7
-        ],
-        [
-            8,
-            3
-        ],
-        [
-            13,
-            8
-        ],
-        [
-            4,
-            3
-        ],
-        [
-            14,
             10
         ],
         [
+            8,
+            8
+        ],
+        [
+            13,
+            18
+        ],
+        [
+            4,
+            9
+        ],
+        [
+            14,
+            21
+        ],
+        [
             0,
-            7
+            14
         ],
         [
             15,
@@ -56,15 +56,15 @@
         ],
         [
             6,
-            4
+            5
         ],
         [
             1,
-            12
+            25
         ],
         [
             11,
-            10
+            26
         ]
     ],
     "unitNames": [

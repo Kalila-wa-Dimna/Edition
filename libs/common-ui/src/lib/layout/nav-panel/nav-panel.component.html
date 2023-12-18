@@ -8,9 +8,9 @@
 </div>
 
 <div class="panel-content">
-  <a mat-button style="width: 100%"  [routerLink]="['/about']">About the Project</a>
+  <a mat-button style="width: 100%"  [routerLink]="['/about']">About The Project</a>
   <mat-divider></mat-divider>
-  <a mat-button style="width: 100%"  [routerLink]="['/description']">Manuscript Description</a>
+  <a mat-button style="width: 100%"  [routerLink]="['/description']">Manuscripts Description</a>
   <mat-divider></mat-divider>
   <mat-accordion>
     <mat-expansion-panel
@@ -20,10 +20,10 @@
     >
       <mat-expansion-panel-header>
         <mat-panel-title
-          ><span class="panel-title"><span>Manuscripts</span></span>
+          ><span class="panel-title"><span>Manuscript Library</span></span>
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <a mat-button  [routerLink]="['/manuscripts']">Manuscripts library</a>
+      <a mat-button  [routerLink]="['/manuscripts']">Manuscript library</a>
       <kd-manuscripts-panel
         *ngIf="expanded.manuscriptPanelOpen"
       ></kd-manuscripts-panel>
@@ -57,7 +57,7 @@
     >
       <mat-expansion-panel-header>
         <mat-panel-title
-          ><span class="panel-title"><span>English translation</span></span>
+          ><span class="panel-title"><span>English Translation</span></span>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <kd-english-collation-panel

@@ -3,7 +3,7 @@
     "number": 254,
     "manuscript": "P400",
     "imageUrl": "18e06916-92de-4510-945c-78e24c78406e.jpg",
-    "lines": [["to", "be", "bound", "to", "your", "survival,", "like", "so", "you", "should", "desire", "your", "survival", "to", "be", "bound", "to", "my", "survival", "and", "my", "deliverance.", "29", "As"], ["people", "survive", "the", "sea", "with", "ships,", "30", "so", "I", "hope", "that", "we", "arrive,", "through", "cooperation,", "at", "survival"], ["for", "us", "both", "from", "this", "trouble.\u2019", "31", "\u201cWhen", "the", "cat", "heard", "this", "from", "the", "rat,", "he", "knew", "that", "he", "was", "truthful"], ["and", "said,", "\u2018You", "are", "correct", "and", "have", "spoken", "the", "truth.", "See", "to", "the", "arrangement", "by", "which", "we", "can", "be", "rid"], ["5", "of", "this", "trouble,", "and", "I", "will", "act", "on", "it.", "I", "will", "remember", "this", "favor", "forever", "and", "will", "ensure"], ["that", "I", "properly", "reward", "you.\u2019", "32", "\u2018Allow", "me", "to", "approach", "to", "you,\u2019", "said", "the", "rat,", "\u2018for", "if", "the", "owl", "and", "the", "weasel"], ["see", "us", "in", "agreement,", "they", "will", "leave", "us,", "and", "when", "I", "am", "in", "safety", "from", "them,", "I", "will", "cut", "your", "bonds", "while", "feeling", "secure.\u2019", "34", "\u201cThe", "cat", "did", "so,"]],
+    "lines": [["to", "be", "bound", "to", "your", "survival,", "like", "so", "you", "should", "desire", "your", "survival", "to", "be", "bound", "to", "my", "survival", "and", "my", "deliverance.", "29", "As"], ["people", "survive", "the", "sea", "with", "ships,", "30", "so", "I", "hope", "that", "we", "arrive,", "through", "cooperation,", "at", "survival"], ["for", "us", "both", "from", "this", "trouble.\u2019", "31", "\u201cWhen", "the", "cat", "heard", "this", "from", "the", "rat,", "he", "knew", "that", "he", "was", "truthful"], ["and", "said,", "\u2018You", "are", "correct", "and", "have", "spoken", "the", "truth.", "See", "to", "the", "arrangement", "by", "which", "we", "can", "be", "rid"], [ "of", "this", "trouble,", "and", "I", "will", "act", "on", "it.", "I", "will", "remember", "this", "favor", "forever", "and", "will", "ensure"], ["that", "I", "properly", "reward", "you.\u2019", "32", "\u2018Allow", "me", "to", "approach", "to", "you,\u2019", "said", "the", "rat,", "\u2018for", "if", "the", "owl", "and", "the", "weasel"], ["see", "us", "in", "agreement,", "they", "will", "leave", "us,", "and", "when", "I", "am", "in", "safety", "from", "them,", "I", "will", "cut", "your", "bonds", "while", "feeling", "secure.\u2019", "34", "\u201cThe", "cat", "did", "so,"]],
     "unitPlaces": [
         [
             1,
@@ -11,19 +11,19 @@
         ],
         [
             5,
-            3
+            5
         ],
         [
             0,
-            10
+            22
         ],
         [
             2,
-            4
+            6
         ],
         [
             6,
-            11
+            24
         ]
     ],
     "unitNames": [

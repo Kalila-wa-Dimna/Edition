@@ -4,10 +4,11 @@ main {
   margin-top: 5px;
   flex-direction: column;
   align-items: center;
+
 }
 
 .page-and-text {
-  height: calc(100vh - 50px - 5px - 64px - 5px ); // - top bar - margin - command bar - margin
+// - top bar - margin - command bar - margin
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -23,7 +24,11 @@ main {
   @media screen and (min-width: 897px) {
     width: 100%;
     margin-top: 5px;
-
-
+    height: calc(100vh - 50px - 5px - 64px - 5px)!important;
+  }
+  @media screen and (min-width: 1800px)  {
+    width: 70% !important;
+    margin-top: 5px;
+    height: calc(90vh - 50px - 5px - 64px - 5px) !important;
   }
 }

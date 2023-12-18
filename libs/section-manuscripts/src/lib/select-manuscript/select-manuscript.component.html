@@ -1,12 +1,12 @@
 <kd-layout>
-  <span title>Manuscripts</span>
+  <span title>Manuscript library</span>
 
   <main pageContent>
     <ng-template ngFor let-item [ngForOf]="data">
       <mat-card class="card">
         <mat-card-header>
           <!-- <div mat-card-avatar></div> -->
-          <mat-card-title>{{ item.display }}</mat-card-title>
+          <mat-card-title style="font-size: 1rem" >{{ item.display }}</mat-card-title>
           <mat-card-subtitle>Manuscript</mat-card-subtitle>
         </mat-card-header>
         <img
