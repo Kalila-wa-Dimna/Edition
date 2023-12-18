@@ -68,11 +68,28 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
       return rows[currentresult];
     }
     const cells = this.searchService.highlightedTokens();
-    if (cells) {
+    if (cells && cells[currentresult]) {
       return cells[currentresult][0];
     }
     return null;
   });
+
+  cellsWithResults = computed(() => {
+    const cells = new Map<number, Set<number>>();
+    const allTokens = this.searchService.highlightedTokens();
+    if (allTokens) {
+      for (const result of allTokens) {
+        const row = result[0];
+        const cell = result[1];
+        if (!cells.has(row)) {
+          cells.set(row, new Set<number>());
+        }
+        cells.get(row)?.add(cell);
+      }
+    }
+
+    return cells;
+  })
 
   constructor(
     private route: ActivatedRoute,

@@ -25,7 +25,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatInputModule } from '@angular/material/input';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CellSizingService } from './services/cell-sizing.service';
 import { CollationVirtualScrollDirective } from './directives/virtual-scroll/collation-virtual-scroll.directive';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -36,6 +36,8 @@ import { FacsimilePanelService } from './services/facsimile-panel.service';
 import { FacsimilePanelCommandBarComponent } from './components/collation/facsimile-panel/facsimile-panel-command-bar/facsimile-panel-command-bar.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MapPanelComponent } from './components/collation/map-panel/map-panel.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 
 @NgModule({
@@ -54,6 +56,7 @@ import { MapPanelComponent } from './components/collation/map-panel/map-panel.co
     MatButtonToggleModule,
     ScrollingModule,
     RenderHelpersModule,
+    MatProgressSpinnerModule,
     MatProgressBarModule,
     MatDialogModule,
     MatDividerModule,

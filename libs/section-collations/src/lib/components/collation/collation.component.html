@@ -69,6 +69,7 @@
         <kd-map-panel
           [collationName]="summary.siglum"
           [currentIndex]="currentScrollIndex()"
+          [cellsWithResults]="cellsWithResults()"
           (rowClicked)="onGoToRow($event)"
           (rowHovered)="showTitelPreview.set($event)"
           class="map-panel"

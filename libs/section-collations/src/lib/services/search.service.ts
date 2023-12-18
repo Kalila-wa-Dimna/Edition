@@ -26,8 +26,9 @@ export class SearchService {
 
   highlightedColumn = computed(() => {
     const tokens = this.highlightedTokens();
-    if (tokens) {
-      return tokens[this.currentResult()][1];
+    const currentResult = this.currentResult();
+    if (tokens && tokens[currentResult]) {
+      return tokens[currentResult][1];
     }
     return null
   });

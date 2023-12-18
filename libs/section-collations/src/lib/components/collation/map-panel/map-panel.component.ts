@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, EventEmitter, Input, AfterViewInit, ViewChild, OnDestroy, HostListener, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, AfterViewInit, ViewChild, OnDestroy, HostListener, Output, signal } from '@angular/core';
 import { ThemeService } from '@kalila-edition/common-ui';
 import { BehaviorSubject, Subscription, firstValueFrom } from 'rxjs';
 
@@ -15,6 +15,8 @@ const DARK_COLORS = {
   boxBorderColor: '#004659',
   rowHighlighterFill: '#ffdfbf',
   boxHighlighterBorder: '#f0b275',
+  highlighterText: 'black',
+  boxWithSearchResult: 'yellow',
 }
 const LIGHT_COLORS = {
   label: 'black',
@@ -24,6 +26,8 @@ const LIGHT_COLORS = {
   boxBorderColor: 'white',
   rowHighlighterFill: '#ffdfbf',
   boxHighlighterBorder: '#f0b275',
+  highlighterText: 'black',
+  boxWithSearchResult: 'yellow',
 }
 
 interface IChangeableNode {
@@ -32,7 +36,17 @@ interface IChangeableNode {
 
 @Component({
   selector: 'kd-map-panel',
-  template: '<div class="title-preview"><ng-content></ng-content> </div><div #container id="container"></div>',
+  template: `
+  @if (loading()) {
+    <div class="loading">
+      <mat-spinner></mat-spinner>
+    </div>
+  }
+  <div class="title-preview">
+    <ng-content></ng-content>
+  </div>
+  <div #container id="container"></div>
+  `,
   styleUrls: ['./map-panel.component.scss']
 })
 export class MapPanelComponent implements AfterViewInit, OnDestroy {
@@ -56,9 +70,21 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy {
     this.rerenderStream.next(undefined);
   }
 
+  loading = signal(true);
 
   @Input() set collationName(value: string) {
+    this.loading.set(true);
     this._collationName = value;
+    firstValueFrom(this.httpClient.get<number[][]>(`${DATA_ENDPOINT}/${this._collationName}/presence_matrix.json`)).then(async data => {
+      const colors = await this.getThemeAndDetermineColors();
+      await this.buildMap(data, colors);
+    });
+  }
+
+  private _cellsWithResults: Map<number, Set<number>> = new Map();
+
+  @Input() set cellsWithResults(value: Map<number, Set<number>>) {
+    this._cellsWithResults = value;
     firstValueFrom(this.httpClient.get<number[][]>(`${DATA_ENDPOINT}/${this._collationName}/presence_matrix.json`)).then(async data => {
       const colors = await this.getThemeAndDetermineColors();
       await this.buildMap(data, colors);
@@ -74,11 +100,12 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy {
   @ViewChild('container')
   container!: ElementRef;
 
+
+
   constructor(private httpClient: HttpClient, private themeService: ThemeService) { }
 
   async ngAfterViewInit() {
     const data = await firstValueFrom(this.httpClient.get<number[][]>(`${DATA_ENDPOINT}/${this._collationName}/presence_matrix.json`));
-
 
     this.rerenderSubscription = this.rerenderStream.subscribe(async () => {
       const colors = await this.getThemeAndDetermineColors();
@@ -110,7 +137,6 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy {
   }
 
   async buildMap(data: number[][], colors = LIGHT_COLORS) {
-
     const Konva = (await import('konva')).default;
     const containerWidth = this.container.nativeElement.offsetWidth;
     const containerHeight = this.container.nativeElement.offsetHeight;
@@ -206,7 +232,7 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy {
         text: LETTERS[index],
         fontSize: labelFontSize,
         fontFamily: 'Calibri',
-        fill: 'black',
+        fill: colors.highlighterText,
       });
       rowHighlighter.add(text);
     });
@@ -227,12 +253,15 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy {
       }
       for (let row = 0; row < data.length; row++) {
         if (data[row][column] !== -1) {
+          const isSearchResult = this.hasSearchResult(column, row);
+          const isOutOfOrder = data[row][column] !== column;
+          const fill = isSearchResult ? colors.boxWithSearchResult : isOutOfOrder ? colors.altBoxColor : colors.boxColor;
           const box = new Konva.Rect({
             x: xPos,
             y: distance + row * boxHeight - boxHeight / 2,
             width: boxWidth,
             height: boxHeight,
-            fill: data[row][column] === column ? colors.boxColor : colors.altBoxColor,
+            fill,
             opacity: 0.5,
             stroke: colors.boxBorderColor,
             strokeWidth: border,
@@ -274,9 +303,20 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy {
     this.canvas = stage;
     this.rowHighlighter = rowHighlighter;
     rowHighlighter.moveToTop();
-
+    this.loading.set(false);
   }
 
+  hasSearchResult(row: number, column: number) {
+
+    if (this._cellsWithResults.has(row)) {
+      const cells = this._cellsWithResults.get(row);
+      if (cells) {
+        return cells.has(column);
+      }
+    }
+
+    return false;
+  }
 
   ngOnDestroy() {
     this.themeSubscription.unsubscribe();
