@@ -1,3 +1,29 @@
+@if(showMobileSearchPanel()) {
+<mat-toolbar class="search-panel">
+  <form class="search-panel-form">
+    <mat-form-field subscriptSizing="dynamic" color="accent">
+      <mat-icon matIconPrefix>search</mat-icon>
+      <input
+        [formControl]="searchControl"
+        autocomplete="off"
+        type="text"
+        matInput
+        placeholder="Search..."
+      />
+    </mat-form-field>
+  </form>
+  @if(numberOfResults() > 0) {
+  <div class="result-nav">
+    <div class="arrow" (click)="previousResult()"><p><| &nbsp;</p></div>
+    <div class="number-of-results">
+      <p>{{ currentResult() + 1 }} / {{ numberOfResults() }}</p>
+    </div>
+    <div class="arrow" (click)="nextResult()"><p>&nbsp; |></p></div>
+  </div>
+  }
+</mat-toolbar>
+}
+
 <mat-toolbar class="command-bar">
   <div class="view-settings">
     <mat-slide-toggle
@@ -24,8 +50,12 @@
     <mat-icon>settings</mat-icon>
   </button>
 
-  <button (click)="openSettingsDialog()" class="search-btn" mat-icon-button>
-    <mat-icon>search</mat-icon>
+  <button
+    (click)="toggleMobileSearchPanel()"
+    class="search-btn"
+    mat-icon-button
+  >
+    <mat-icon>{{ showMobileSearchPanel() ? 'search_off' : 'search' }}</mat-icon>
   </button>
 
   <div class="search-controls">

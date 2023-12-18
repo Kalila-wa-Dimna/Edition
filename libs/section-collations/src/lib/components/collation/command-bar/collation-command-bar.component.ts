@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, Input, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input, OnDestroy, Inject, PLATFORM_ID, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
 import { CollationSettingsService } from '../../../services/collation-settings.service';
@@ -42,6 +42,7 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
   sub2 = Subscription.EMPTY;
 
   currentResult = this.searchService.currentResult;
+  showMobileSearchPanel = signal<boolean>(false);
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -104,6 +105,12 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
       });
     }
 
+  }
+
+  toggleMobileSearchPanel(): void {
+    const oldValue = this.showMobileSearchPanel();
+    this.showMobileSearchPanel.set(!oldValue);
+    if (oldValue) { this.searchControl.setValue(''); }
   }
 
   toggleMap(value: boolean): void {
