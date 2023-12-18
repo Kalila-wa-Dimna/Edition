@@ -14,7 +14,6 @@ export class CollationRowComponent {
   @Input() sigla: string[] = [];
   @Input() searchResult: boolean = false;
   @Input() currentResult: boolean = false;
-  @Input() highlighlightedTokens: [number, number, number, number][] = [];
 
   @Input()
   rowData?: IRowData | undefined;

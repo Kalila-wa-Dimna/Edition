@@ -11,6 +11,7 @@
     <kd-collation-command-bar
       (goToRow)="onGoToRow($event)"
       [titles]="titles()"
+      [collationName]="summary.siglum"
     ></kd-collation-command-bar>
     }
 
@@ -53,7 +54,36 @@
         </cdk-virtual-scroll-viewport>
       </div>
       @if(showFacsimilePreview$ | async) {
-      <kd-facsimile-panel class="panel"> </kd-facsimile-panel>
+      <div class="panel">
+        <kd-facsimile-panel-command-bar class="facsimile-panel-command-bar">
+        </kd-facsimile-panel-command-bar>
+        <kd-facsimile-panel
+          (goToRow)="onGoToRow($event)"
+          class="facsimile-panel"
+        >
+        </kd-facsimile-panel>
+      </div>
+
+      } @else if(showMap$ | async) {
+      <div class="panel">
+        <kd-map-panel
+          [collationName]="summary.siglum"
+          [currentIndex]="currentScrollIndex()"
+          [cellsWithResults]="cellsWithResults()"
+          (rowClicked)="onGoToRow($event)"
+          (rowHovered)="showTitelPreview.set($event)"
+          class="map-panel"
+        >
+          @if(showTitelPreview() !== null ) {
+          <mat-card>
+            <mat-card-content>
+              {{ getTitelPreview() }}
+            </mat-card-content>
+          </mat-card>
+          }
+        </kd-map-panel>
+      </div>
+
       }
     </div>
   </main>

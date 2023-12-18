@@ -5,17 +5,35 @@
 }
 
 .cell-tools {
-  height: 25px;
+  height: 24px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: inherit !important;
 }
 
+mat-icon {
+  font-size: inherit !important;
+  height: fit-content;
+  width: fit-content;
+}
+
+mat-icon::before {
+  font-size: inherit !important;
+  height: fit-content;
+  width: fit-content;
+}
 .absent {
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
 }

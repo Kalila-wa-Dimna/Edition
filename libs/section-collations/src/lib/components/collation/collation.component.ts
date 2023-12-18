@@ -27,6 +27,7 @@ import {
 } from 'rxjs';
 import { SearchService } from '../../services/search.service';
 import { FacsimilePanelService } from '../../services/facsimile-panel.service';
+import { SearchWorkerService } from '@kalila-edition/common-ui';
 
 @Component({
   selector: 'kd-collation',
@@ -41,7 +42,7 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
   titles = signal<string[]>([]);
   rowData: IRowData[] = [];
   cellPadding = CELL_PADDING;
-  sub?: Subscription;
+  dataSubscription?: Subscription;
 
   isMainFullWidth$ = this.settingsService.isMainFullWidth$;
 
@@ -51,28 +52,53 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
   showMap$ = this.settingsService.showMap$;
 
   scrollSubject = new Subject<number>();
+  scrollIndexSubscription = Subscription.EMPTY;
+  currentScrollIndex = signal<number>(0);
+  showTitelPreview = signal<number | null>(null);
 
   @ViewChild(CollationVirtualScrollDirective)
   viewport?: CollationVirtualScrollDirective;
 
   highlightedRows = this.searchService.highlightedRows;
   activeHighlightedRow = computed(() => {
+    const currentresult = this.searchService.currentResult();
     const rows = this.searchService.highlightedRows();
     if (rows) {
-      const currentRow = this.searchService.currentRow();
-      return rows[currentRow];
-    }
 
+      return rows[currentresult];
+    }
+    const cells = this.searchService.highlightedTokens();
+    if (cells && cells[currentresult]) {
+      return cells[currentresult][0];
+    }
     return null;
   });
+
+  cellsWithResults = computed(() => {
+    const cells = new Map<number, Set<number>>();
+    const allTokens = this.searchService.highlightedTokens();
+    if (allTokens) {
+      for (const result of allTokens) {
+        const row = result[0];
+        const cell = result[1];
+        if (!cells.has(row)) {
+          cells.set(row, new Set<number>());
+        }
+        cells.get(row)?.add(cell);
+      }
+    }
+
+    return cells;
+  })
 
   constructor(
     private route: ActivatedRoute,
     private settingsService: CollationSettingsService,
     private dataService: CollationDataService,
     private searchService: SearchService,
-    private facsimilePanelService: FacsimilePanelService
-  ) {}
+    private facsimilePanelService: FacsimilePanelService,
+    private searchWorkerService: SearchWorkerService,
+  ) { }
 
   ngAfterViewInit(): void {
     if (this.viewport) {
@@ -93,17 +119,24 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
             this.scrollSubject.next(goal);
           }
         });
+      this.scrollIndexSubscription = this.viewport._scrollStrategy.scrolledIndexChange.subscribe((index) => {
+        this.currentScrollIndex.set(index);
+      })
     }
+
   }
+
 
   async ngOnInit() {
     await this.settingsService.init();
 
     this.loadData(this.route.snapshot.data);
 
-    this.sub = this.route.data.subscribe((data) => {
+    this.dataSubscription = this.route.data.subscribe((data) => {
       this.loadData(data);
     });
+
+
   }
 
   private loadData(data: Data) {
@@ -115,15 +148,25 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     this.summary = data['pageData']['summary'];
     this.rowData = data['pageData']['segmentData'];
     this.dataService.cache = data['pageData']['segmentData'];
+    this.searchWorkerService.initCollation(this.summary.siglum);
   }
 
   onGoToRow(index: number) {
     this.scrollSubject.next(index);
   }
 
+  getTitelPreview() {
+    const index = this.showTitelPreview();
+    if (index === null) {
+      return '';
+    }
+
+    return `(${this.units[index].formattedOrder}) ${this.units[index].title}`;
+  }
+
   ngOnDestroy(): void {
-    if (this.sub) {
-      this.sub.unsubscribe();
+    if (this.dataSubscription) {
+      this.dataSubscription.unsubscribe();
     }
   }
 }

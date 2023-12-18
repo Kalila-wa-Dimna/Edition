@@ -45,8 +45,13 @@
       <div class="title">
         @if(pathElements.length !== 0) {
         <div class="path">
-          @for(item of pathElements; track item.display) {
+          @for(item of pathElements; track item.display) { @if(item.link !==
+          '/') {
           <a [routerLink]="item.link">{{ item.display | titlecase }}</a>
+          } @else {
+          <a [routerLink]="item.link">{{ item.display }}</a>
+          }
+
           <p>&nbsp;/&nbsp;</p>
           }
         </div>
