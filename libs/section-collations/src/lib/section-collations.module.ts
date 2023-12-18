@@ -25,7 +25,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatInputModule } from '@angular/material/input';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CellSizingService } from './services/cell-sizing.service';
 import { CollationVirtualScrollDirective } from './directives/virtual-scroll/collation-virtual-scroll.directive';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -33,6 +33,12 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SearchService } from './services/search.service';
 import { FacsimilePanelComponent } from './components/collation/facsimile-panel/facsimile-panel.component';
 import { FacsimilePanelService } from './services/facsimile-panel.service';
+import { FacsimilePanelCommandBarComponent } from './components/collation/facsimile-panel/facsimile-panel-command-bar/facsimile-panel-command-bar.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MapPanelComponent } from './components/collation/map-panel/map-panel.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
+
 
 @NgModule({
   imports: [
@@ -50,12 +56,14 @@ import { FacsimilePanelService } from './services/facsimile-panel.service';
     MatButtonToggleModule,
     ScrollingModule,
     RenderHelpersModule,
+    MatProgressSpinnerModule,
     MatProgressBarModule,
     MatDialogModule,
     MatDividerModule,
     MatInputModule,
     MatGridListModule,
     MatSlideToggleModule,
+    MatTooltipModule
   ],
   declarations: [
     SelectCollationComponent,
@@ -67,6 +75,8 @@ import { FacsimilePanelService } from './services/facsimile-panel.service';
     SettingsDialogComponent,
     CollationVirtualScrollDirective,
     FacsimilePanelComponent,
+    FacsimilePanelCommandBarComponent,
+    MapPanelComponent,
   ],
   providers: [
     CollationDataService,
@@ -76,4 +86,4 @@ import { FacsimilePanelService } from './services/facsimile-panel.service';
     FacsimilePanelService,
   ],
 })
-export class SectionCollationsModule {}
+export class SectionCollationsModule { }

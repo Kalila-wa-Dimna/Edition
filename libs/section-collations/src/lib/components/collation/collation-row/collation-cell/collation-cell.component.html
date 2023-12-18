@@ -1,9 +1,26 @@
-@if (data) {
-<div>
+@if (data) { @if(!highlightedRanges()) {
+<p>
+  @for (lineTokens of data.tokens; track $index) {
   <span>
-    {{ data.tokens.join(' ') }}
+    {{ lineTokens.join(' ') }}
   </span>
-</div>
+  }
+</p>
+} @else {
+<p>
+  @for (range of getLines(); track $index) {
+  <span
+    [ngStyle]="{
+      color: range.color ? 'black' : undefined,
+      'background-color': range.color
+    }"
+  >
+    {{ range.text }}
+  </span>
+  }
+</p>
+}
+
 <div class="cell-tools">
   @if(showFacsimilePreview$ | async) {
   <mat-icon
@@ -16,6 +33,6 @@
 
 } @else {
 <div class="absent">
-  <span> [absent] </span>
+  <span>[absent]</span>
 </div>
 }

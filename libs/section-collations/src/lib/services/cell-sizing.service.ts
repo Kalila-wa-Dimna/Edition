@@ -28,6 +28,7 @@ export class CellSizingService {
       return this.getHeadingHeight(unit.title);
     }
 
+
     return this.getContentHeight(segment) + this.getHeadingHeight(unit.title);
   }
 
@@ -64,8 +65,9 @@ export class CellSizingService {
     phantom.style.position = 'absolute';
     phantom.style.visibility = 'hidden';
     phantom.style.padding = `${CELL_PADDING}px`;
+
     // Set the text
-    const text = segment ? segment.tokens.join(' ') : '\n[absent]\n';
+    const text = this.getText(segment?.tokens);
     phantom.textContent = text;
 
     // Add the phantom to the body
@@ -78,5 +80,14 @@ export class CellSizingService {
     this.document.body.removeChild(phantom);
 
     return contentHeight + 25;
+  }
+
+  private getText(tokens: string[][] | undefined) {
+    if (!tokens) {
+      return '[absent]'
+    }
+
+    return tokens.map((token) => token.join(' ')).join(' ');
+
   }
 }

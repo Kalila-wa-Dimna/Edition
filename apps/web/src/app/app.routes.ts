@@ -35,8 +35,9 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'guides',
-    loadChildren: () =>
-      import('@kalila-edition/section-help').then((m) => m.SectionHelpModule),
+    // loadChildren: () =>
+    //   import('@kalila-edition/section-help').then((m) => m.SectionHelpModule),
+    redirectTo: '',
   },
   {
     path: 'description',

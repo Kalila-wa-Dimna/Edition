@@ -2,12 +2,14 @@
   {
     "display": "The Arabic Introduction",
     "siglum": "Im",
-    "image": "Im.png"
+    "image": "Im.png",
+    "preface": true
   },
   {
     "display": "Burzoy's Voyage (Long Version)",
     "siglum": "Lv",
-    "image": "Lv.png"
+    "image": "Lv.png",
+    "preface": true
   },
   {
     "display": "The Mouse and the Cat",

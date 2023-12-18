@@ -1,29 +1,35 @@
-import { Component, EventEmitter, OnInit, Output, Input, computed } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input, OnDestroy, Inject, PLATFORM_ID, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
 import { CollationSettingsService } from '../../../services/collation-settings.service';
 import { FormControl } from '@angular/forms';
-import { debounceTime } from 'rxjs';
+import { Subscription, debounceTime } from 'rxjs';
 import {
   parseIfIndoArabicNumber,
   parseIfNumber,
 } from '../../../util/parse-if-number';
 import { SearchService } from '../../../services/search.service';
+import { SearchWorkerService } from '@kalila-edition/common-ui';
+import { arabicLettersRegex, latinLettersRegex } from '@kalila-edition/common-util';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'kd-collation-command-bar',
   templateUrl: './collation-command-bar.component.html',
   styleUrls: ['./collation-command-bar.component.scss'],
 })
-export class CollationCommandBarComponent implements OnInit {
+export class CollationCommandBarComponent implements OnInit, OnDestroy {
   constructor(
     public dialog: MatDialog,
     private settingsService: CollationSettingsService,
     private searchService: SearchService,
+    private searchWorkerService: SearchWorkerService,
+    @Inject(PLATFORM_ID) private platformId: object,
   ) { }
 
   @Output() goToRow = new EventEmitter<number>();
   @Input() titles: string[] = [];
+  @Input() collationName: string = '';
 
   searchControl = new FormControl('');
 
@@ -32,41 +38,56 @@ export class CollationCommandBarComponent implements OnInit {
 
   numberOfResults = this.searchService.numberOfResults;
 
+  sub1 = Subscription.EMPTY;
+  sub2 = Subscription.EMPTY;
 
-  currentResult = computed(() => {
-    if (this.searchService.highlightedRows()) {
-      return this.searchService.currentRow();
-    }
-
-    if (this.searchService.highlightedTokens()) {
-      return this.searchService.currentCell();
-    }
-
-    return 0;
-  })
+  currentResult = this.searchService.currentResult;
+  showMobileSearchPanel = signal<boolean>(false);
 
   ngOnInit() {
-    this.searchControl.valueChanges
-      .pipe(debounceTime(100))
-      .subscribe((value) => {
+    if (isPlatformBrowser(this.platformId)) {
+      this.sub1 = this.searchControl.valueChanges
+        .pipe(debounceTime(100))
+        .subscribe((value) => {
 
-        this.searchService.reset();
-        const index =
-          parseIfNumber(value ?? '') ?? parseIfIndoArabicNumber(value ?? '');
-        if (index && index !== 0) {
-          this.goToRow.emit(index - 1);
-        } else if (value) {
-          const lowerCaseValue = value?.toLowerCase();
-          const indexes = this.titles
-            .map((title, i) => title.toLowerCase().includes(lowerCaseValue) ? i : -1)
-            .filter(index => index !== -1);
-          this.searchService.highlightedRows.set(indexes);
-          if (indexes.length > 0) {
-            this.goToRow.emit(indexes[0]);
+          this.searchService.reset();
+          const index =
+            parseIfNumber(value ?? '') ?? parseIfIndoArabicNumber(value ?? '');
+          if (index && index !== 0) {
+            this.goToRow.emit(index - 1);
+          } else if (value && value.length > 1) {
+            if (latinLettersRegex.test(value)) {
+              const lowerCaseValue = value?.toLowerCase();
+              const indexes = this.titles
+                .map((title, i) => title.toLowerCase().includes(lowerCaseValue) ? i : -1)
+                .filter(index => index !== -1);
+              this.searchService.highlightedRows.set(indexes);
+              if (indexes.length > 0) {
+                this.goToRow.emit(indexes[0]);
+              }
+            } else if (arabicLettersRegex.test(value)) {
+              this.searchWorkerService.search(value, this.collationName);
+            }
+
+          }
+
+        });
+
+      this.sub2 = this.searchWorkerService.searchResults$.subscribe((data) => {
+
+        if (data) {
+          const { sentence, collationName, results } = data;
+          if (sentence === this.searchControl.value && collationName === this.collationName) {
+            this.searchService.highlightedTokens.set(results);
+            if (results.length > 0) {
+              this.goToRow.emit(results[0][0]);
+            }
           }
         }
 
-      });
+      })
+    }
+
   }
 
   toggleFacsimile(value: boolean): void {
@@ -84,6 +105,12 @@ export class CollationCommandBarComponent implements OnInit {
       });
     }
 
+  }
+
+  toggleMobileSearchPanel(): void {
+    const oldValue = this.showMobileSearchPanel();
+    this.showMobileSearchPanel.set(!oldValue);
+    if (oldValue) { this.searchControl.setValue(''); }
   }
 
   toggleMap(value: boolean): void {
@@ -108,31 +135,36 @@ export class CollationCommandBarComponent implements OnInit {
   nextResult(): void {
     const rows = this.searchService.highlightedRows();
     const cells = this.searchService.highlightedTokens();
+    const currentResult = this.searchService.currentResult();
     if (rows) {
-      const currentRow = this.searchService.currentRow();
-      if (currentRow < rows.length - 1) {
-        this.goToRow.emit(rows[currentRow + 1]);
-        this.searchService.currentRow.set(currentRow + 1);
+      if (currentResult < rows.length - 1) {
+        this.goToRow.emit(rows[currentResult + 1]);
+        this.searchService.currentResult.set(currentResult + 1);
       }
-
     }
     if (cells) {
-      // TODO
+      if (currentResult < cells.length - 1) {
+        this.goToRow.emit(cells[currentResult + 1][0]);
+        this.searchService.currentResult.set(currentResult + 1);
+      }
     }
   }
 
   previousResult(): void {
     const rows = this.searchService.highlightedRows();
     const cells = this.searchService.highlightedTokens();
+    const currentResult = this.searchService.currentResult();
     if (rows) {
-      const currentRow = this.searchService.currentRow();
-      if (currentRow > 0) {
-        this.goToRow.emit(rows[currentRow - 1]);
-        this.searchService.currentRow.set(currentRow - 1);
+      if (currentResult > 0) {
+        this.goToRow.emit(rows[currentResult - 1]);
+        this.searchService.currentResult.set(currentResult - 1);
       }
     }
     if (cells) {
-      // TODO
+      if (currentResult > 0) {
+        this.goToRow.emit(cells[currentResult - 1][0]);
+        this.searchService.currentResult.set(currentResult - 1);
+      }
     }
   }
 
@@ -147,5 +179,10 @@ export class CollationCommandBarComponent implements OnInit {
         await this.settingsService.apply(result);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.sub1.unsubscribe();
+    this.sub2.unsubscribe();
   }
 }

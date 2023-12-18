@@ -5,6 +5,8 @@
     'width.px': cellWidth$ | async,
     'padding.px': cellPadding,
     'font-size.px': fontSize$ | async,
+    'background-color': highlightedColumn() === i ? '#f0b275' : undefined,
+    'color': highlightedColumn() === i ? 'black' : undefined,
   }"
 >
   <div>({{ mapNumberToLetter(i) }})</div>
