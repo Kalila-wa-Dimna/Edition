@@ -3,17 +3,8 @@ import { ICellData } from '../../../../models/collation-row-data.model';
 import { CollationSettingsService } from '../../../../services/collation-settings.service';
 import { FacsimilePanelService } from '../../../../services/facsimile-panel.service';
 import { SearchService } from '../../../../services/search.service';
+import { IRange, IRangeDefinition } from './models';
 
-interface IRangeDefinition {
-  start: [number, number];
-  end: [number, number];
-  color: string;
-}
-
-interface IRange {
-  text: string;
-  color?: string;
-}
 
 
 @Component({
@@ -95,7 +86,7 @@ export class CollationCellComponent {
     }
   }
 
-  getLines(): IRange[] {
+  lines  = computed(() => {
     const { tokens } = this.data ?? {};
     const rangeDefinitions = this.highlightedRanges();
     if (!tokens || !rangeDefinitions) {
@@ -137,5 +128,5 @@ export class CollationCellComponent {
       })
     })
     return ranges;
-  }
+  })
 }

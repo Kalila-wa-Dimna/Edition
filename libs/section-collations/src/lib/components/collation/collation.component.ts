@@ -54,7 +54,7 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
   scrollSubject = new Subject<number>();
   scrollIndexSubscription = Subscription.EMPTY;
   currentScrollIndex = signal<number>(0);
-  showTitelPreview = signal<number | null>(null);
+  showTitlePreview = signal<number | null>(null);
 
   @ViewChild(CollationVirtualScrollDirective)
   viewport?: CollationVirtualScrollDirective;
@@ -148,6 +148,7 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     this.summary = data['pageData']['summary'];
     this.rowData = data['pageData']['segmentData'];
     this.dataService.cache = data['pageData']['segmentData'];
+    this.searchService.reset();
     this.searchWorkerService.initCollation(this.summary.siglum);
   }
 
@@ -156,7 +157,7 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getTitelPreview() {
-    const index = this.showTitelPreview();
+    const index = this.showTitlePreview();
     if (index === null) {
       return '';
     }

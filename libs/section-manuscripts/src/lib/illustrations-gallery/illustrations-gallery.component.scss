@@ -1,4 +1,3 @@
-
 @import 'sass/page.scss';
 @import 'sass/_dark-theme.scss';
 @import 'sass/_light-theme.scss';
@@ -7,11 +6,9 @@
   // width: 100vw;
   // min-height: 100vh;
   height: fit-content;
-
-
 }
 .table-container {
-  max-height: calc(100vh) ; /* Set a maximum height for the container */
+  max-height: calc(100vh); /* Set a maximum height for the container */
   overflow: auto;
   border: solid #000000 1px;
 
@@ -22,7 +19,7 @@
   margin-bottom: 100px; /* Adjust this value to set the desired space between siglums */
   display: block;
 }
-.ill{
+.ill {
   padding: 7px;
 }
 main {
@@ -33,44 +30,38 @@ main {
     margin-left: auto;
     margin-right: auto;
   }
-
-
 }
 .manuscript-container {
   display: flex;
   flex-direction: column;
   margin: 20px;
 
- /* Set a maximum height for scroll */
+  /* Set a maximum height for scroll */
   /* Add vertical scrollbar */
   /* Additional styles as needed */
 }
 
-
 .illustrations-container {
   display: flex;
 
-
- /* Add horizontal scrollbar if needed */
+  /* Add horizontal scrollbar if needed */
   /* Additional styles as needed */
 }
 
 :host-context(.dark-theme) {
-  .mat-elevation-z8{
+  .mat-elevation-z8 {
     background-color: #00566d;
-    color: white!important;
+    color: white !important;
   }
-
-
 }
 
-.p-m{
+.p-m {
   font-size: medium;
-
 }
 .illustration-caption {
   position: relative;
   display: inline-block;
+  margin-right: 5px;
 }
 
 .caption {
@@ -82,7 +73,6 @@ main {
   color: white;
   text-align: center;
   padding: 5px;
-  margin: 5px;
 }
 
 .sticky-row {
@@ -93,18 +83,14 @@ main {
   border: solid #000000 1px;
   /* Make sure both rows are displayed as a flex container */
 }
-.mat-elevation-z8{
+.mat-elevation-z8 {
   background-color: #edece8;
-
 }
 
-
 .mat-header-row {
-  border-bottom: 5px solid #000000!important;
+  border-bottom: 5px solid #000000 !important;
 }
 
 .mat-row {
-  border-bottom: 5px solid #000000!important;
+  border-bottom: 5px solid #000000 !important;
 }
-
-

@@ -78,9 +78,15 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
         if (data) {
           const { sentence, collationName, results } = data;
           if (sentence === this.searchControl.value && collationName === this.collationName) {
+            this.searchService.currentResult.set(results.length -1);
             this.searchService.highlightedTokens.set(results);
+
             if (results.length > 0) {
-              this.goToRow.emit(results[0][0]);
+              setTimeout(()=> {
+                this.searchService.currentResult.set(0);
+                this.goToRow.emit(results[0][0]);
+              }, 10)
+
             }
           }
         }
