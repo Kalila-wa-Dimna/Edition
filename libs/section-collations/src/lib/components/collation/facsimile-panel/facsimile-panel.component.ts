@@ -118,6 +118,10 @@ export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
       this.facsimilePanleService.stageDataUrl.set(stage.toDataURL());
     })
 
+    stage.on('touchend', () => {
+      this.facsimilePanleService.stageDataUrl.set(stage.toDataURL());
+    })
+
     const layer = new Konva.Layer();
     stage.add(layer);
 
@@ -201,6 +205,42 @@ export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
       group.on('dblclick', () => {
         this.goToRow.emit(info.unit);
       })
+
+      const getDistance = (p1: { x:number, y:number }, p2:  { x:number, y:number }) => {
+        return Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2));
+      }
+
+      let lastDist = 0;
+      group.on('touchmove', function(evt) {
+        const touch1 = evt.evt.touches[0];
+        const touch2 = evt.evt.touches[1];
+
+        if(touch1 && touch2) {
+          const dist = getDistance({
+            x: touch1.clientX,
+            y: touch1.clientY
+          }, {
+            x: touch2.clientX,
+            y: touch2.clientY
+          });
+
+          if(!lastDist) {
+            lastDist = dist;
+          }
+
+          const scale = group.scaleX() * dist / lastDist;
+
+          group.scaleX(scale);
+          group.scaleY(scale);
+          layer.draw();
+
+          lastDist = dist;
+        }
+      });
+
+      group.on('touchend', function() {
+        lastDist = 0;
+      });
 
     }
 
