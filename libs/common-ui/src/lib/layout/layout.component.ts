@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild,Input } from '@angular/core';
 import { ThemeService } from '../theme/theme.service';
 import { ActivatedRoute, ActivatedRouteSnapshot, NavigationStart, Router } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
@@ -15,6 +15,7 @@ interface IPathElement {
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit, OnDestroy {
+  @Input() dataManuscriptEndPoint!: string;
   logoViewBox = '0 0 720 720';
   logoColor = 'red';
   sub?: Subscription;

@@ -55,6 +55,15 @@
     font-size: x-large;
 
   }
+
+  a {
+    color: black;
+  }
+
+  a:hover {
+    background-color: black;
+    color: white;
+  }
 }
 
 :host-context(.dark-theme) {
@@ -66,5 +75,9 @@
   }
   a{
     color: white;
+  }
+  a:hover{
+    color: black;
+    background-color: white;
   }
 }

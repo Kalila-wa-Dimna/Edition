@@ -1,4 +1,4 @@
-import { APP_ID, NgModule, isDevMode } from '@angular/core';
+import { APP_ID, NgModule, isDevMode,  NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule, provideClientHydration, withHttpTransferCacheOptions } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -43,6 +43,8 @@ import { environment } from './environment';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     })
+  ], schemas: [
+    NO_ERRORS_SCHEMA
   ],
   providers: [{ provide: APP_ID, useValue: 'kd-edition' }, provideClientHydration(withHttpTransferCacheOptions({
     includePostRequests: true
@@ -52,5 +54,6 @@ import { environment } from './environment';
     ),
   ]],
   bootstrap: [AppComponent],
+
 })
 export class AppModule { }
