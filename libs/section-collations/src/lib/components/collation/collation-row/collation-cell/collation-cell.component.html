@@ -1,35 +1,16 @@
-@if (data) { @if(!highlightedRanges()) {
-<p>
-  @for (lineTokens of data.tokens; track $index) {
-  <span>
-    {{ lineTokens.join(' ') }}
-  </span>
-  }
-</p>
-} @else {
-<p>
-  @for (range of getLines(); track $index) {
-  <span
-    [ngStyle]="{
-      color: range.color ? 'black' : undefined,
-      'background-color': range.color
-    }"
-  >
-    {{ range.text }}
-  </span>
-  }
-</p>
-}
+@if (data) {
 
-<div class="cell-tools">
-  @if(showFacsimilePreview$ | async) {
-  <mat-icon
-    aria-hidden="false"
-    [fontIcon]="facsimilePanelIcon()"
-    (click)="toggleFacimileInPanle()"
-  ></mat-icon>
-  }
-</div>
+  <kd-collation-cell-text [tokens]="data.tokens"  [lines]="lines()"></kd-collation-cell-text>
+
+  <div class="cell-tools">
+    @if(showFacsimilePreview$ | async) {
+    <mat-icon
+      aria-hidden="false"
+      [fontIcon]="facsimilePanelIcon()"
+      (click)="toggleFacimileInPanle()"
+    ></mat-icon>
+    }
+  </div>
 
 } @else {
 <div class="absent">

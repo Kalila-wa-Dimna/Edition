@@ -14,7 +14,7 @@
                 <div class="illustrations-container">
                   <div *ngFor="let illustration of manuscript.illustrations">
                     <div class="illustration-caption" (click)="openIllustrationModal(pagesEndPoint +illustration)">
-                      <img [src]="pagesEndPoint + illustration" alt="Illustration" style="height: 200px; width:auto;">
+                      <img [src]="pagesEndPoint + illustration" alt="Illustration" style="height: 200px; width:250px;">
                       <div class="caption">{{ getIllustrationName(illustration) }}</div>
                     </div>
                   </div>

@@ -71,10 +71,10 @@
           [currentIndex]="currentScrollIndex()"
           [cellsWithResults]="cellsWithResults()"
           (rowClicked)="onGoToRow($event)"
-          (rowHovered)="showTitelPreview.set($event)"
+          (rowHovered)="showTitlePreview.set($event)"
           class="map-panel"
         >
-          @if(showTitelPreview() !== null ) {
+          @if(showTitlePreview() !== null ) {
           <mat-card>
             <mat-card-content>
               {{ getTitelPreview() }}

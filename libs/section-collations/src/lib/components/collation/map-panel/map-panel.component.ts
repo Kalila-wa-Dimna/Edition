@@ -11,12 +11,12 @@ const DARK_COLORS = {
   label: 'white',
   grid: 'gray',
   boxColor: '#edece8',
-  altBoxColor: 'red',
+  altBoxColor: 'black',
   boxBorderColor: '#004659',
-  rowHighlighterFill: '#ffdfbf',
-  boxHighlighterBorder: '#f0b275',
+  rowHighlighterFill: '#ccff00',
+  boxHighlighterBorder: '#ccff00',
   highlighterText: 'black',
-  boxWithSearchResult: 'yellow',
+  boxWithSearchResult: '#f0b275',
 }
 const LIGHT_COLORS = {
   label: 'black',
@@ -24,10 +24,10 @@ const LIGHT_COLORS = {
   boxColor: '#004659',
   altBoxColor: 'black',
   boxBorderColor: 'white',
-  rowHighlighterFill: '#ffdfbf',
-  boxHighlighterBorder: '#f0b275',
+  rowHighlighterFill: '#ccff00',
+  boxHighlighterBorder: '#ccff00',
   highlighterText: 'black',
-  boxWithSearchResult: 'yellow',
+  boxWithSearchResult: '#f0b275',
 }
 
 interface IChangeableNode {
@@ -262,7 +262,7 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy {
             width: boxWidth,
             height: boxHeight,
             fill,
-            opacity: 0.5,
+            opacity: isSearchResult ? 0.6 : 0.5,
             stroke: colors.boxBorderColor,
             strokeWidth: border,
           });

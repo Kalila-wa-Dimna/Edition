@@ -1,8 +1,8 @@
 <kd-layout>
   <span title style="font-size:large;">Manuscript descriptions/ Codicology</span>
-
-  <main pageContent>
-    <mat-table [dataSource]="dataSource" class="bibliography-cell">
+    <main pageContent>
+      <button style="padding-right: 10px;padding-left: 10px ; margin-bottom: 2px" (click)="downloadExcel()">Export Excel</button>
+      <mat-table [dataSource]="dataSource" class="bibliography-cell">
       <!-- Column definitions -->
       <ng-container *ngFor="let group of groupedColumns, let ii=index">
         <ng-container [matColumnDef]="group.key">
@@ -36,6 +36,7 @@
       <mat-header-row *matHeaderRowDef="columnsToDisplay" class="sticky-row row-second-header"></mat-header-row>
       <!-- Table rows -->
       <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+
     </mat-table>
 
   </main>
