@@ -126,5 +126,30 @@
             "Lv Subjects And Kings Obey Kisra",
             20
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_4_e14f746e-5214-4249-a591-18bbbcca88bc.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            99,
+            1372,
+            2735,
+            1372,
+            2735,
+            3103,
+            99,
+            3103,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            6,
+            14
+        ]
     ]
 }

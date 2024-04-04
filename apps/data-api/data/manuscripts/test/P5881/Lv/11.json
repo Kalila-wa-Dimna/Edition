@@ -288,5 +288,30 @@
             "Lv Friend Infers Burzoys Secret",
             83
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_11_b8aaa9cb-5dfb-45d8-af70-e44dcda51d37.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            286,
+            772,
+            899,
+            772,
+            899,
+            1205,
+            286,
+            1205,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            12,
+            5
+        ]
     ]
 }

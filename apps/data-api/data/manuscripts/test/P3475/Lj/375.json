@@ -265,5 +265,30 @@
             "Lj Jackal Eats no Meat",
             100
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_375_abc4df89-3c2d-423d-b3a7-1f01cb88330b.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            52,
+            217,
+            461,
+            217,
+            461,
+            466,
+            52,
+            466,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            10,
+            8
+        ]
     ]
 }

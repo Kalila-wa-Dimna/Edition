@@ -21,6 +21,7 @@
       "@kalila-edition/dissemination-history": [
         "libs/dissemination-history/src/index.ts"
       ],
+      "@kalila-edition/other-editions": ["libs/other-editions/src/index.ts"],
       "@kalila-edition/section-collations": [
         "libs/section-collations/src/index.ts"
       ],
@@ -30,7 +31,8 @@
       ],
       "@kalila-edition/section-manuscripts": [
         "libs/section-manuscripts/src/index.ts"
-      ]
+      ],
+
     }
   },
   "exclude": ["node_modules", "tmp"]

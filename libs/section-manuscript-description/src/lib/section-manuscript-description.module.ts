@@ -5,10 +5,13 @@ import {LayoutModule} from "@kalila-edition/common-ui";
 import {RouterModule} from "@angular/router";
 import {routes} from "./section-manuscript-description.routes";
 import { MatTableModule } from '@angular/material/table';
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+
 @NgModule({
   imports: [CommonModule, LayoutModule,
     RouterModule.forChild(routes),
-    MatTableModule
+    MatTableModule, MatButtonToggleModule,
+
   ],
   declarations: [OverviewComponent],
 })

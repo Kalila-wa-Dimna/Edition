@@ -188,5 +188,30 @@
             "Lv Burzoy Opens Up To Friend",
             75
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_18_d6fe3760-09b4-4f9f-851a-4e95a9ee093f.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            116,
+            798,
+            959,
+            798,
+            959,
+            1554,
+            116,
+            1554,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            6,
+            16
+        ]
     ]
 }

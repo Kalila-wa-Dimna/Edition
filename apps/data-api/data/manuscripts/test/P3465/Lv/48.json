@@ -90,5 +90,30 @@
             "Lv Burzoy Expects No Reward",
             167
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_48_232e6c04-173b-49b4-8d2c-05e7baca469b.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            208,
+            211,
+            1004,
+            211,
+            1004,
+            997,
+            208,
+            997,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            3,
+            10
+        ]
     ]
 }

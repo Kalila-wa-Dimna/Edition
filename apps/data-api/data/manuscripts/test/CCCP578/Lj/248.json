@@ -232,5 +232,30 @@
             "Lj False Message and Death Sentence",
             72
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_248_dbc0c3de-a932-42e4-a819-da676faea031.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            125,
+            1634,
+            3025,
+            1634,
+            3025,
+            3075,
+            125,
+            3075,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            9,
+            13
+        ]
     ]
 }

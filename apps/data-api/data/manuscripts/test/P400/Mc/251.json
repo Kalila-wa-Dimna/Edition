@@ -88,5 +88,30 @@
             "Mc Chapter Title",
             1
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_251_d60c97b1-7666-45cf-ad7c-3d6ce822b723.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            254,
+            444,
+            1095,
+            444,
+            1095,
+            1100,
+            254,
+            1100,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            5,
+            10
+        ]
     ]
 }

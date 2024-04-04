@@ -195,5 +195,30 @@
             "Oc Objector Asks Reconsideration",
             132
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_178_6b65ba73-5671-4bec-a73b-aa74cd5536aa.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            253,
+            997,
+            2905,
+            997,
+            2905,
+            2537,
+            253,
+            2537,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            8,
+            13
+        ]
     ]
 }

@@ -221,5 +221,30 @@
             "Kd Gift Receiving Ceremony",
             36
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_209_5e4488d6-6bec-4c41-b511-15d72a8282a0.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            92,
+            1342,
+            2823,
+            1342,
+            2823,
+            2895,
+            92,
+            2895,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            8,
+            14
+        ]
     ]
 }

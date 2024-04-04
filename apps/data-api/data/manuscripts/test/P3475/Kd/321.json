@@ -211,5 +211,30 @@
             "Kd Brahmins Request Delay",
             23
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_321_7d8a3512-2db1-4af6-b11f-7286f7f4eb9f.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            45,
+            367,
+            455,
+            367,
+            455,
+            602,
+            45,
+            602,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            9,
+            9
+        ]
     ]
 }

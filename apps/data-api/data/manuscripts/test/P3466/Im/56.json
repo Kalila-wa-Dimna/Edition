@@ -129,5 +129,30 @@
             "Im The Superficial Readers Miss the Meaning",
             150
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_56_890b3f02-605e-4b92-aac1-dfaedb58bd60.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            43,
+            371,
+            652,
+            371,
+            652,
+            908,
+            43,
+            908,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            7,
+            7
+        ]
     ]
 }

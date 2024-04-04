@@ -162,5 +162,30 @@
             "Oc Mention Thief Demon Story",
             120
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_182_c8a2804a-211c-4a87-81fd-b68ea75b3960.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            21,
+            1649,
+            1905,
+            1649,
+            1905,
+            2999,
+            21,
+            2999,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            6,
+            10
+        ]
     ]
 }

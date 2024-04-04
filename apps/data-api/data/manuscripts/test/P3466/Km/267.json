@@ -135,5 +135,30 @@
             "Km Donkey Imagines Exploits Involving a Spear",
             52
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_267_785c264b-dcb3-42a5-af1e-8017cac58548.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            201,
+            263,
+            870,
+            263,
+            870,
+            721,
+            201,
+            721,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            7,
+            8
+        ]
     ]
 }

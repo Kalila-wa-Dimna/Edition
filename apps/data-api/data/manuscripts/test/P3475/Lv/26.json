@@ -161,5 +161,30 @@
             "Lv Friend Tasked With Hiding Book",
             116
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_26_f27bd744-e19b-497c-bc99-0ab938522b50.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            6,
+            342,
+            499,
+            342,
+            499,
+            670,
+            6,
+            670,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            8,
+            9
+        ]
     ]
 }

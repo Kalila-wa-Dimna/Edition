@@ -114,5 +114,30 @@
             "Lj Lion Reassures Jackal",
             40
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_268_ab6aabba-df3d-43b1-8a92-bf90023856d3.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            132,
+            314,
+            1080,
+            314,
+            1080,
+            1040,
+            132,
+            1040,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            5,
+            15
+        ]
     ]
 }

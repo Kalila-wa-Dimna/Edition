@@ -208,5 +208,30 @@
             "Lj Lion Apologizes to Jackal",
             157
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_377_13ce6325-0741-4a75-95a5-eafa7547e09f.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            56,
+            364,
+            469,
+            364,
+            469,
+            598,
+            56,
+            598,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            10,
+            8
+        ]
     ]
 }

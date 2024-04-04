@@ -169,5 +169,30 @@
             "Lv Burzoy Begins Speech",
             51
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_8_59de8510-76f6-4fbb-8c34-155caa070aee.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            179,
+            787,
+            2745,
+            787,
+            2745,
+            2339,
+            179,
+            2339,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            7,
+            9
+        ]
     ]
 }

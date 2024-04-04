@@ -364,5 +364,30 @@
             "Im The Merchant Notices the Error in the Shop",
             122
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_21_a17de723-c024-4171-b548-2cf69ce53ff4.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            274,
+            241,
+            866,
+            241,
+            866,
+            673,
+            274,
+            673,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            13,
+            9
+        ]
     ]
 }

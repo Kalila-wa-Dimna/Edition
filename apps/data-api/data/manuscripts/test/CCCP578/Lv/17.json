@@ -205,5 +205,30 @@
             "Lv Burzoys Exhaustion Shows",
             147
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_17_7c508868-08fd-4c92-840e-bd3240b9006b.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            0,
+            936,
+            2687,
+            936,
+            2687,
+            2190,
+            0,
+            2190,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            9,
+            11
+        ]
     ]
 }

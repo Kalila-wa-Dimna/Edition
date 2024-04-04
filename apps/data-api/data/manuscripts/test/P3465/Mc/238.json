@@ -147,5 +147,30 @@
             "Mc The Rat Explains the Detail of the Last Rope",
             36
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_238_d10f0b19-bf39-4aa2-bb49-1ebeb7d39851.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            123,
+            387,
+            982,
+            387,
+            982,
+            957,
+            123,
+            957,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            5,
+            16
+        ]
     ]
 }

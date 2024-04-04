@@ -228,5 +228,30 @@
             "Kd Queen Is Especially Deserving",
             48
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_210_99b7b897-08d6-4b91-ab8f-0c6075b0530a.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            161,
+            2292,
+            2987,
+            2292,
+            2987,
+            3706,
+            161,
+            3706,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            9,
+            9
+        ]
     ]
 }

@@ -215,5 +215,30 @@
             "Oc The Intelligent Is Never Free from Worry",
             60
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_244_b120abc8-232d-427c-936e-dd29a2a76eed.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            66,
+            248,
+            496,
+            248,
+            496,
+            406,
+            66,
+            406,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            11,
+            10
+        ]
     ]
 }

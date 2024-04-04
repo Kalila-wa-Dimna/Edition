@@ -189,5 +189,30 @@
             "Im The Merchant Executes the Plot",
             117
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_53_b695d4da-b8ff-4455-bfd5-837454ff1362.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            237,
+            864,
+            952,
+            864,
+            952,
+            1441,
+            237,
+            1441,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            9,
+            12
+        ]
     ]
 }

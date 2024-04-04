@@ -174,5 +174,30 @@
             "Lj Chapter Title Explanation",
             2
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_369_9497b849-ac21-4f4a-9761-749dfef38391.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            89,
+            134,
+            417,
+            134,
+            417,
+            279,
+            89,
+            279,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            11,
+            9
+        ]
     ]
 }

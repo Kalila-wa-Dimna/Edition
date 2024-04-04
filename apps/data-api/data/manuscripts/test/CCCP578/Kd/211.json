@@ -222,5 +222,30 @@
             "Kd King Alternates Nights With Women",
             63
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_211_dbf27fe2-344b-4d7a-9dcb-1f6bfc638ae0.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            0,
+            1370,
+            2784,
+            1370,
+            2784,
+            2863,
+            0,
+            2863,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            9,
+            13
+        ]
     ]
 }

@@ -84,5 +84,30 @@
             "Lv Burzoy Rejoins Kisra",
             146
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_23_f66a6dc1-5d6d-446b-9e4e-267b111736c5.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            231,
+            464,
+            1102,
+            464,
+            1102,
+            1254,
+            231,
+            1254,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            3,
+            9
+        ]
     ]
 }

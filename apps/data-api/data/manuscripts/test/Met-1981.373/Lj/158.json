@@ -90,5 +90,30 @@
             "Lj Lion Offers Viziership",
             27
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_158_fca23df2-30b6-4e34-81f8-58ce0b84cb93.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            266,
+            1305,
+            2616,
+            1305,
+            2616,
+            3202,
+            266,
+            3202,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            4,
+            9
+        ]
     ]
 }

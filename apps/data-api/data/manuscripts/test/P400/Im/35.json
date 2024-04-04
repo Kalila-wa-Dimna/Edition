@@ -73,5 +73,30 @@
             "Im Burglar Steals and Gets Away",
             48
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_35_28a9706b-9191-48bd-b9ce-129069c70797.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            240,
+            400,
+            1126,
+            400,
+            1126,
+            1292,
+            240,
+            1292,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            3,
+            10
+        ]
     ]
 }

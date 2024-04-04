@@ -134,5 +134,30 @@
             "Oc Escape Should Not Be the First Choice",
             24
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_166_2d27b85a-9bdd-45a0-92af-e39dc2b0f633.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            101,
+            604,
+            2177,
+            604,
+            2177,
+            2014,
+            101,
+            2014,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            5,
+            11
+        ]
     ]
 }

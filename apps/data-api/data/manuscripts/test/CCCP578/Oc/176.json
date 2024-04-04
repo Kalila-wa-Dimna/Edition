@@ -271,5 +271,30 @@
             "Oc King O Requests Old Man Story",
             105
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_176_768e22de-704f-429d-8cfd-27c513c194b0.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            345,
+            2666,
+            2919,
+            2666,
+            2919,
+            3668,
+            345,
+            3668,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            11,
+            16
+        ]
     ]
 }

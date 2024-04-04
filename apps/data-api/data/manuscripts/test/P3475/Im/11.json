@@ -141,5 +141,30 @@
             "Im Dove Does Not Learn from Losing Her Chicks",
             95
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_11_bb1296c0-014a-431d-b6a7-0481e5ca25e8.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            54,
+            78,
+            450,
+            78,
+            450,
+            365,
+            54,
+            365,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            7,
+            10
+        ]
     ]
 }

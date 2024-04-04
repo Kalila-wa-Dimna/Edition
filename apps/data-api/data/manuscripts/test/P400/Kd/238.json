@@ -100,5 +100,30 @@
             "Kd Vizier Decides To Spare Queen",
             73
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_238_423c6a8b-65cc-4518-9839-3cb657038bda.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            134,
+            375,
+            1028,
+            375,
+            1028,
+            1188,
+            134,
+            1188,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            3,
+            12
+        ]
     ]
 }

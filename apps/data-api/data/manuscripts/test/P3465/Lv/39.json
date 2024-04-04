@@ -146,5 +146,30 @@
             "Lv Burzoy Meets Kisra",
             40
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_39_f6259a25-1641-4756-9b6a-5ce5967c44da.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            13,
+            597,
+            882,
+            597,
+            882,
+            1177,
+            13,
+            1177,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            7,
+            11
+        ]
     ]
 }

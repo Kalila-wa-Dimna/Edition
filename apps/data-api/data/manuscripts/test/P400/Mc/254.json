@@ -150,5 +150,30 @@
             "Mc The Cat Fulfills His Part",
             38
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_254_26f7d9bf-bed1-4f4e-b4bc-548e39ac3366.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            115,
+            883,
+            1017,
+            883,
+            1017,
+            1477,
+            115,
+            1477,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            6,
+            13
+        ]
     ]
 }

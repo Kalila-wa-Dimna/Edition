@@ -188,5 +188,30 @@
             "Lv Burzoy Wants Bio Chapter",
             172
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_33_3166fc6f-dbed-4cbc-99ce-4b9d85f264b5.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            41,
+            388,
+            455,
+            388,
+            455,
+            630,
+            41,
+            630,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            9,
+            10
+        ]
     ]
 }

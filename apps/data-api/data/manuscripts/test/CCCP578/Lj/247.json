@@ -213,5 +213,30 @@
             "Lj Lion Asks Jackal about Meat",
             63
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_247_4f5e6daf-6cf4-4a49-a59f-ad3d90bcc5eb.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            0,
+            1894,
+            2769,
+            1894,
+            2769,
+            3268,
+            0,
+            3268,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            9,
+            15
+        ]
     ]
 }

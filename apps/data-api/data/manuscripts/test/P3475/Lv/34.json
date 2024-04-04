@@ -200,5 +200,30 @@
             "Lv Chapter Read Publicly",
             198
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_34_3c547144-a282-492f-b7b6-a27aa8774db1.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            39,
+            339,
+            456,
+            339,
+            456,
+            555,
+            39,
+            555,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            10,
+            7
+        ]
     ]
 }

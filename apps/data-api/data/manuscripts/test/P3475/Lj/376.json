@@ -215,5 +215,30 @@
             "Lj Jackal does not Need Lion",
             118
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_376_ea9e90ce-537a-4e0e-99d1-3562e9a39991.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            41,
+            367,
+            463,
+            367,
+            463,
+            589,
+            41,
+            589,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            9,
+            13
+        ]
     ]
 }

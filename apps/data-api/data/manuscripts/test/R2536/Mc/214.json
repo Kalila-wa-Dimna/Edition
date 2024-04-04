@@ -108,5 +108,30 @@
             "Mc The Cat Should Desire Common Rescue",
             30
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_214_97c6980c-5d08-4ef3-abf7-0633fd5b19af.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            64,
+            1295,
+            2133,
+            1295,
+            2133,
+            3012,
+            64,
+            3012,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            4,
+            11
+        ]
     ]
 }

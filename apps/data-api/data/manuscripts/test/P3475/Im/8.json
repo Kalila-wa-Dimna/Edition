@@ -130,5 +130,30 @@
             "Im The Merchant Steals His Own Bale",
             120
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_8_5cb5e023-1044-4a53-93fc-2693e7043433.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            40,
+            230,
+            477,
+            230,
+            477,
+            531,
+            40,
+            531,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            7,
+            7
+        ]
     ]
 }

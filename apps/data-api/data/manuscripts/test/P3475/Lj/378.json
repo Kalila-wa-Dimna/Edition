@@ -259,5 +259,30 @@
             "Lj King Must not Trust the Greedy and Unsatisfied",
             183
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_378_60ef6cea-c5d4-4df0-aaad-b81c4c2c4802.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            77,
+            333,
+            489,
+            333,
+            489,
+            574,
+            77,
+            574,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            10,
+            10
+        ]
     ]
 }

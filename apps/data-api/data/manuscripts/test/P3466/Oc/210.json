@@ -128,5 +128,30 @@
             "Oc Demons Concerns",
             127
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_210_d225ae2a-5c7b-42e4-92e3-3de58e80de7c.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            75,
+            58,
+            785,
+            58,
+            785,
+            784,
+            75,
+            784,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            7,
+            9
+        ]
     ]
 }

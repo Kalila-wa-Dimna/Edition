@@ -154,5 +154,30 @@
             "Mc If One Gives Up a Friend One Loses Out",
             75
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_240_08f09d10-d676-4092-98f2-3b3c5ff0910f.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            148,
+            615,
+            1008,
+            615,
+            1008,
+            1126,
+            148,
+            1126,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            6,
+            12
+        ]
     ]
 }

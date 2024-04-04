@@ -187,5 +187,30 @@
             "Lv Kisra Commissions Burzoy",
             43
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_11_cb2110be-a002-4286-9897-de10502c981b.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            291,
+            983,
+            1114,
+            983,
+            1114,
+            1509,
+            291,
+            1509,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            8,
+            13
+        ]
     ]
 }

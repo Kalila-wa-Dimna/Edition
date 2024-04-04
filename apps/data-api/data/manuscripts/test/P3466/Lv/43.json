@@ -173,5 +173,30 @@
             "Lv Kisra Calls Burzoy Back",
             139
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_43_843a7b45-59b3-48f8-9b18-557fd5fdaff5.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            271,
+            208,
+            918,
+            208,
+            918,
+            687,
+            271,
+            687,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            8,
+            11
+        ]
     ]
 }

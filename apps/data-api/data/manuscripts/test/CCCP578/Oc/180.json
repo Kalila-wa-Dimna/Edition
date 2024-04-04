@@ -219,5 +219,30 @@
             "Oc Carpenter Hears Wifes Speech",
             153
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_180_4b13cf07-5eed-467b-9755-6190e419f1e8.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            258,
+            726,
+            2813,
+            726,
+            2813,
+            2132,
+            258,
+            2132,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            9,
+            13
+        ]
     ]
 }

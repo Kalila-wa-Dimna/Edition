@@ -148,5 +148,30 @@
             "Im Man Notices Burglar but Feigns Sleep",
             47
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_50_4e038511-b0ba-4e83-9266-b522f99b6b2d.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            45,
+            601,
+            736,
+            601,
+            736,
+            1131,
+            45,
+            1131,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            7,
+            9
+        ]
     ]
 }

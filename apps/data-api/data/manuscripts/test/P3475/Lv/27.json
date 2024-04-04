@@ -131,5 +131,30 @@
             "Lv Indian King Is Harsh",
             117
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_27_d79bde82-d6ef-417a-a92b-8989a7ff6952.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            16,
+            349,
+            502,
+            349,
+            502,
+            679,
+            16,
+            679,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            7,
+            8
+        ]
     ]
 }

@@ -104,5 +104,30 @@
             "Lj Mother Reaffirms Intrigue",
             131
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_256_bb75e169-549e-4b31-84dd-b6db978e2a02.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            66,
+            27,
+            1012,
+            27,
+            1012,
+            723,
+            66,
+            723,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            3,
+            16
+        ]
     ]
 }

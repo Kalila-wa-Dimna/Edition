@@ -152,5 +152,30 @@
             "Lv Kisra Urges Burzoy To Take Gifts",
             154
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_32_3cd52510-cf5a-47bd-8beb-bd4755e9102b.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            49,
+            185,
+            463,
+            185,
+            463,
+            412,
+            49,
+            412,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            9,
+            10
+        ]
     ]
 }

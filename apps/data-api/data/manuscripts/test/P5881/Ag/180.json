@@ -253,5 +253,30 @@
             "Ag Guest Request Crow Story",
             22
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_180_e7b80b0e-8bd2-4726-9dc1-1935ab77e563.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            103,
+            660,
+            707,
+            660,
+            707,
+            1231,
+            103,
+            1231,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            9,
+            6
+        ]
     ]
 }

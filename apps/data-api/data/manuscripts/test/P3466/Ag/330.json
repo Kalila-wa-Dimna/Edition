@@ -118,5 +118,30 @@
             "Ag King Understood Last Chapter",
             4
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_330_6b4649bd-0be5-41e4-aea2-29a2acce4b65.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            65,
+            213,
+            754,
+            213,
+            754,
+            675,
+            65,
+            675,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            8,
+            8
+        ]
     ]
 }

@@ -163,5 +163,30 @@
             "Mc The Rat's Need for Friendship Has Gone",
             92
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_257_a029ad4c-faac-4015-8f64-2d0cefb14d0d.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            252,
+            907,
+            1109,
+            907,
+            1109,
+            1490,
+            252,
+            1490,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            6,
+            14
+        ]
     ]
 }

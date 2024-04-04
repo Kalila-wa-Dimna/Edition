@@ -107,5 +107,30 @@
             "Lj King to Reconcile the Reliable",
             9
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_264_7db836be-5b9a-4185-8383-39e29110140a.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            133,
+            423,
+            1068,
+            423,
+            1068,
+            1099,
+            133,
+            1099,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            4,
+            11
+        ]
     ]
 }

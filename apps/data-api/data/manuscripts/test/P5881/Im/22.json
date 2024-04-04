@@ -356,5 +356,30 @@
             "Im The Pauper Panics",
             87
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_22_c14f6657-27ea-4537-8770-68bd2cfc0508.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            139,
+            197,
+            731,
+            197,
+            731,
+            644,
+            139,
+            644,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            14,
+            18
+        ]
     ]
 }

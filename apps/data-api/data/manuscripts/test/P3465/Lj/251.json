@@ -93,5 +93,30 @@
             "Lj Jackal Wants to Remain Carefree",
             37
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_251_94eba5f2-4109-421b-8110-510b6e984446.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            34,
+            251,
+            865,
+            251,
+            865,
+            979,
+            34,
+            979,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            3,
+            12
+        ]
     ]
 }

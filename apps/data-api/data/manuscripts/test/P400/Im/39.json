@@ -110,5 +110,30 @@
             "Im The Here Is Not to Be Preferred Over the Hereafter",
             76
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_39_d0691fea-b9a4-4607-b964-682ba6743c41.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            288,
+            702,
+            1097,
+            702,
+            1097,
+            1496,
+            288,
+            1496,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            3,
+            13
+        ]
     ]
 }

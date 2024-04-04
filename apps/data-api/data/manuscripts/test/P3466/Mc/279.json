@@ -180,5 +180,30 @@
             "Mc The Philosopher Responds that Emotions Change",
             4
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_279_3f48e9fe-78db-4c7c-897e-340879e6f839.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            189,
+            919,
+            901,
+            919,
+            901,
+            1449,
+            189,
+            1449,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            10,
+            6
+        ]
     ]
 }

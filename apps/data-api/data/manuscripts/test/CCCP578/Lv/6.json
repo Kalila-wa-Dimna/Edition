@@ -197,5 +197,30 @@
             "Lv Burzoy Is Selected",
             39
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_6_2de1628a-4c5f-48a0-a7e4-69427f5723d2.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            282,
+            2095,
+            2756,
+            2095,
+            2756,
+            3478,
+            282,
+            3478,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            8,
+            14
+        ]
     ]
 }

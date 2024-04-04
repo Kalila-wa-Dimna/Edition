@@ -171,5 +171,30 @@
             "Lv Burzoys Stipend",
             55
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_10_0b5caba8-1b6e-4f7e-8151-616c3f8ca814.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            214,
+            1630,
+            2660,
+            1630,
+            2660,
+            3135,
+            214,
+            3135,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            7,
+            10
+        ]
     ]
 }

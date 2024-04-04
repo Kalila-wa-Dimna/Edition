@@ -103,11 +103,10 @@
   margin-top: 1%;
   width: 100%;
   //max-width: map-get($breakpoints, 'xxl');
-  margin-right: 5%;
   display: flex;
   align-items: center;
   margin-bottom: 1%;
-  margin-left: 2%;
+
   /* Add other styles if needed */
 }
 
@@ -147,7 +146,7 @@
 }
 
 .logo-content span {
-  font-size: 8px;
+  font-size: 9px;
   margin-top: 2%;
   font-weight: bold;
 }
@@ -156,7 +155,7 @@
   display: flex;
   justify-content: flex-end!important;
   margin-top: 10px;
-  margin-right: 5%;
+  margin-right: 1.5%;
 }
 .link {
   text-decoration: none;

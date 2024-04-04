@@ -176,5 +176,30 @@
             "Oc Question On Origin Of Enemity",
             102
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_246_014fb8f8-adb1-4f57-b8a3-c641558e6c9c.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            62,
+            171,
+            477,
+            171,
+            477,
+            335,
+            62,
+            335,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            12,
+            8
+        ]
     ]
 }

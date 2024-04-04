@@ -332,5 +332,30 @@
             "Oc King O Asks Third Owl",
             114
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_127_40d711d5-abb1-45de-a373-6df67483dde6.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            292,
+            511,
+            893,
+            511,
+            893,
+            971,
+            292,
+            971,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            13,
+            13
+        ]
     ]
 }

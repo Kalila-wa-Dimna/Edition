@@ -65,5 +65,30 @@
             "Lv Burzoy Claim Study Trip",
             59
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_16_e9a1d97d-2ee7-4e81-b364-597ac82e0997.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            102,
+            227,
+            1076,
+            227,
+            1076,
+            1138,
+            102,
+            1138,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            3,
+            11
+        ]
     ]
 }

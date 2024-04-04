@@ -204,5 +204,30 @@
             "Kd Vizier Might Execute Order",
             80
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_213_504158c1-815f-47cf-bfac-908991f98cae.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            63,
+            1132,
+            2532,
+            1132,
+            2532,
+            2562,
+            63,
+            2562,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            11,
+            13
+        ]
     ]
 }

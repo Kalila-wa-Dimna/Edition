@@ -380,5 +380,30 @@
             "Oc The Owls Attack the Crows",
             11
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_114_10de87ee-33c3-42ac-8af4-6b2f3ba56670.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            68,
+            899,
+            709,
+            899,
+            709,
+            1251,
+            68,
+            1251,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            15,
+            8
+        ]
     ]
 }

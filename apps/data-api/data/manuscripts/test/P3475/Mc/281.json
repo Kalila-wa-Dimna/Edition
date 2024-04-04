@@ -201,5 +201,30 @@
             "Mc Situations Do Not Blind the Intelligent",
             20
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_281_4eb58967-459a-4180-a45b-2c5fb2cfd093.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            10,
+            82,
+            487,
+            82,
+            487,
+            322,
+            10,
+            322,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in margin"
+    ],
+    "location": [
+        [
+            11,
+            9
+        ]
     ]
 }

@@ -267,5 +267,30 @@
             "Mc The Intelligent Distrusts Forced Friendship",
             99
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_287_749fd4b1-78b5-4aa7-8a84-a93102097da4.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            60,
+            75,
+            443,
+            75,
+            443,
+            216,
+            60,
+            216,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            12,
+            2
+        ]
     ]
 }

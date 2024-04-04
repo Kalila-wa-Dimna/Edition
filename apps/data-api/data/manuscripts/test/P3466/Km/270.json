@@ -134,5 +134,30 @@
             "Km The Donkey Bites the Stag's Owner",
             69
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_270_02d3e855-58a1-4d16-852c-2b7b4a27d714.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            91,
+            819,
+            706,
+            819,
+            706,
+            1306,
+            91,
+            1306,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            8,
+            3
+        ]
     ]
 }

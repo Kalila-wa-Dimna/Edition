@@ -228,5 +228,30 @@
             "Ag King Ask Seek Wrong Work",
             5
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_179_8dd5cb88-cac6-454e-ab8a-c38a83b843e3.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            294,
+            252,
+            895,
+            252,
+            895,
+            798,
+            294,
+            798,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            10,
+            13
+        ]
     ]
 }

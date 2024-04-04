@@ -132,5 +132,30 @@
             "Lj Grass Rope Ties Elephant",
             138
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_261_8381679f-6672-48aa-be95-083d384f5ef3.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            0,
+            1453,
+            2098,
+            1453,
+            2098,
+            2922,
+            0,
+            2922,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            5,
+            13
+        ]
     ]
 }

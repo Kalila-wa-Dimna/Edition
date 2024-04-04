@@ -52,5 +52,30 @@
             "Im Discoverer Loses Treasure",
             27
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_32_5d31fa62-8894-4d44-bc54-3ad7a7de1856.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            95,
+            371,
+            938,
+            371,
+            938,
+            1398,
+            95,
+            1398,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            1,
+            12
+        ]
     ]
 }

@@ -163,5 +163,30 @@
             "Oc The King Requests the Parable",
             9
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_193_17d65f72-5762-405c-bc61-ecbb559b2254.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            207,
+            650,
+            898,
+            650,
+            898,
+            1116,
+            207,
+            1116,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            8,
+            11
+        ]
     ]
 }

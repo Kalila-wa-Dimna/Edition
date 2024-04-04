@@ -128,5 +128,47 @@
             "Lj Lion Commits to Conditions",
             43
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_373_5f8c83a2-9220-4000-89fb-ea4c16482edc.jpg",
+        "illustration_373_11e76e2d-8401-4160-927e-520125649e9f.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            49,
+            24,
+            474,
+            24,
+            474,
+            271,
+            49,
+            271,
+            0
+        ],
+        [
+            57,
+            425,
+            468,
+            425,
+            468,
+            676,
+            57,
+            676,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body",
+        "image in main body"
+    ],
+    "location": [
+        [
+            5,
+            18
+        ],
+        [
+            5,
+            18
+        ]
     ]
 }

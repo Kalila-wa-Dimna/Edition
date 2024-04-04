@@ -450,5 +450,30 @@
             "Mc The Cat Calls Back the Rat",
             72
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_160_49555247-fb83-42f4-961e-ae5593e54c55.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            75,
+            901,
+            690,
+            901,
+            690,
+            1303,
+            75,
+            1303,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            17,
+            3
+        ]
     ]
 }

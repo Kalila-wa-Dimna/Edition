@@ -214,5 +214,30 @@
             "Oc Lover Spends The Night",
             149
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_264_63391178-f325-4185-9a25-5078dc87a806.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            123,
+            232,
+            457,
+            232,
+            457,
+            362,
+            123,
+            362,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            11,
+            9
+        ]
     ]
 }

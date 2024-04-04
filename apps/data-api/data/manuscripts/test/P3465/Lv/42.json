@@ -84,5 +84,30 @@
             "Lv Friend Stays Devoted To Burzoy",
             85
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_42_7986d81f-6782-4800-be3c-26ac81cf4049.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            161,
+            239,
+            1009,
+            239,
+            1009,
+            979,
+            161,
+            979,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            3,
+            15
+        ]
     ]
 }

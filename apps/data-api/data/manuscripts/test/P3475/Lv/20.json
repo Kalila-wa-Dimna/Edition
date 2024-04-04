@@ -140,5 +140,30 @@
             "Lv Indian King Permits Stay",
             60
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_20_351c2f08-b11d-4c15-ad5c-9be5865b1738.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            61,
+            96,
+            469,
+            96,
+            469,
+            359,
+            61,
+            359,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            8,
+            8
+        ]
     ]
 }

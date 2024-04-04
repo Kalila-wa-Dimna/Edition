@@ -146,5 +146,30 @@
             "Km A Draught Ensues",
             79
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_272_b560d9c1-4067-4ea5-abfd-d6271a3de5d9.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            132,
+            244,
+            660,
+            244,
+            660,
+            680,
+            132,
+            680,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            8,
+            12
+        ]
     ]
 }

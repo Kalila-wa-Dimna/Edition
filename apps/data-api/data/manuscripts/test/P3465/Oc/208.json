@@ -100,5 +100,30 @@
             "Oc Carpenter Wants Proof",
             143
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_208_0b962312-66f9-4a34-b037-61b5f78550b1.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            78,
+            234,
+            997,
+            234,
+            997,
+            906,
+            78,
+            906,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            3,
+            12
+        ]
     ]
 }

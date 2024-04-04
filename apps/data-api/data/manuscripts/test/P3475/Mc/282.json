@@ -199,5 +199,30 @@
             "Mc People Fail without Mutual Trust",
             27
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_282_43fd2f72-ec4c-4d32-aa17-200d05868132.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            11,
+            350,
+            502,
+            350,
+            502,
+            537,
+            11,
+            537,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            11,
+            10
+        ]
     ]
 }

@@ -240,5 +240,30 @@
             "Lj Jackal Is Reluctant to Trust Lion Again",
             172
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_257_ed307591-8865-4d6e-b8e2-aba963a6394e.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            42,
+            823,
+            878,
+            823,
+            878,
+            1213,
+            42,
+            1213,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            10,
+            13
+        ]
     ]
 }

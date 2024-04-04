@@ -237,5 +237,30 @@
             "Oc Man Goes To Sleep",
             124
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_260_8d1a0fb5-b2b1-408e-a642-1abe500f22e8.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            61,
+            439,
+            460,
+            439,
+            460,
+            555,
+            61,
+            555,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            12,
+            7
+        ]
     ]
 }

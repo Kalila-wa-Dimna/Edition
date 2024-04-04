@@ -203,5 +203,30 @@
             "Lv Friend Guesses Burzoys Mission",
             84
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_12_6d132897-c87d-4412-bd28-a945d30b9c09.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            313,
+            1177,
+            2714,
+            1177,
+            2714,
+            2766,
+            313,
+            2766,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            8,
+            9
+        ]
     ]
 }

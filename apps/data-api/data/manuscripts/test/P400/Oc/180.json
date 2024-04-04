@@ -109,5 +109,30 @@
             "Oc The Downsides of Escape Are Explained",
             20
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_180_a82d9262-f30e-402a-9767-bc992a02ed48.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            124,
+            582,
+            1029,
+            582,
+            1029,
+            1284,
+            124,
+            1284,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            4,
+            10
+        ]
     ]
 }

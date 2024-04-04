@@ -43,5 +43,30 @@
             "Im One Should Not Abandon Hard Work ",
             90
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_41_a92138fb-0459-4fa7-ac49-1460e6bb4354.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            272,
+            359,
+            1093,
+            359,
+            1093,
+            1298,
+            272,
+            1298,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            1,
+            12
+        ]
     ]
 }

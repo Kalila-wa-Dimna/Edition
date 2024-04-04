@@ -1,3 +1,4 @@
+
 @import 'sass/page.scss';
 @import 'sass/_dark-theme.scss';
 @import 'sass/_light-theme.scss';
@@ -6,9 +7,11 @@
   // width: 100vw;
   // min-height: 100vh;
   height: fit-content;
+
+
 }
 .table-container {
-  max-height: calc(100vh); /* Set a maximum height for the container */
+  max-height: calc(100vh) ; /* Set a maximum height for the container */
   overflow: auto;
   border: solid #000000 1px;
 
@@ -19,8 +22,9 @@
   margin-bottom: 100px; /* Adjust this value to set the desired space between siglums */
   display: block;
 }
-.ill {
+.ill{
   padding: 7px;
+
 }
 main {
   margin-top: 1.5rem;
@@ -30,6 +34,8 @@ main {
     margin-left: auto;
     margin-right: auto;
   }
+
+
 }
 .manuscript-container {
   display: flex;
@@ -41,23 +47,29 @@ main {
   /* Additional styles as needed */
 }
 
+
 .illustrations-container {
   display: flex;
+
 
   /* Add horizontal scrollbar if needed */
   /* Additional styles as needed */
 }
 
 :host-context(.dark-theme) {
-  .mat-elevation-z8 {
+  .mat-elevation-z8{
     background-color: #00566d;
-    color: white !important;
+    color: white!important;
   }
+
+
 }
 
-.p-m {
+.p-m{
   font-size: medium;
+
 }
+
 .illustration-caption {
   position: relative;
   display: inline-block;
@@ -73,6 +85,7 @@ main {
   color: white;
   text-align: center;
   padding: 5px;
+
 }
 
 .sticky-row {
@@ -83,14 +96,50 @@ main {
   border: solid #000000 1px;
   /* Make sure both rows are displayed as a flex container */
 }
-.mat-elevation-z8 {
+.mat-elevation-z8{
   background-color: #edece8;
+
 }
 
+
 .mat-header-row {
-  border-bottom: 5px solid #000000 !important;
+  border-bottom: 5px solid #000000!important;
 }
 
 .mat-row {
-  border-bottom: 5px solid #000000 !important;
+  border-bottom: 5px solid #000000!important;
 }
+.custom-modal {
+  background-color: gray!important;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 250px);
+  grid-auto-rows: 200px; /* Set the desired fixed height for each image-container */
+  grid-auto-flow: dense;
+  gap: 5px;
+}
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+  align-self: start;
+  background-color: #9e9e9e;
+  padding: 5px;/* Set the desired background color */
+  height: 200px; /* Set the desired fixed height */
+  width: auto; /* Set width to auto for the width to be determined by the image */
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ensure the entire image is visible */
+  display: block;
+  margin-bottom: 0px;
+}
+
+
+
+
+

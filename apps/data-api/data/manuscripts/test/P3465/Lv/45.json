@@ -186,5 +186,30 @@
             "Lv Friend Fears Own Kin",
             122
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_45_aaf2633a-24b7-4138-9c58-330b4fcb93e2.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            22,
+            476,
+            878,
+            476,
+            878,
+            986,
+            22,
+            986,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            9,
+            8
+        ]
     ]
 }

@@ -104,5 +104,30 @@
             "Oc The Crow King Evaluates the Damage",
             13
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_179_bec1e282-f7c6-4f97-9176-996f8b1238cc.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            165,
+            176,
+            1139,
+            176,
+            1139,
+            1022,
+            165,
+            1022,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            4,
+            10
+        ]
     ]
 }

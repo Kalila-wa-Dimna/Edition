@@ -259,5 +259,30 @@
             "Kd King Expresses Anger To Vizier",
             71
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_212_98ef4238-0ece-4e5f-8b46-c50ba78eed9f.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            106,
+            1024,
+            2752,
+            1024,
+            2752,
+            2380,
+            106,
+            2380,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            10,
+            13
+        ]
     ]
 }

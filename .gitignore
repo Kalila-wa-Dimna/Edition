@@ -47,3 +47,5 @@ apps/data-api/images
 
 
 .nx/cache
+/apps/data-api/data/manuscripts/all_illustrations/
+

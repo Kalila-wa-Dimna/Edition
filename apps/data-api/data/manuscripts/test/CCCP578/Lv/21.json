@@ -191,5 +191,30 @@
             "Lv Buzurgmihr Omits Nothing",
             197
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_21_c12183f7-d97d-4eb2-ba61-d7bb453e541c.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            64,
+            1348,
+            2678,
+            1348,
+            2678,
+            2739,
+            64,
+            2739,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            9,
+            11
+        ]
     ]
 }

@@ -198,5 +198,30 @@
             "Kd Gift Receiving Ceremony",
             36
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_331_a62de016-d03f-439c-ab01-a4d3daecd8a7.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            41,
+            306,
+            438,
+            306,
+            438,
+            500,
+            41,
+            500,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            11,
+            8
+        ]
     ]
 }

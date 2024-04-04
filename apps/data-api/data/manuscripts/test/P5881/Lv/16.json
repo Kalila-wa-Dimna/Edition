@@ -212,5 +212,30 @@
             "Lv Chapter To Extol Burzoy",
             182
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_16_488b394e-7913-42bf-bf81-015070fe1abb.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            133,
+            640,
+            742,
+            640,
+            742,
+            1218,
+            133,
+            1218,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            8,
+            11
+        ]
     ]
 }

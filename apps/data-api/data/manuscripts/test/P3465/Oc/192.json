@@ -155,5 +155,30 @@
             "Oc The Information Shall Determine a Truce or Tribute",
             29
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_192_c6b7f7b3-1a64-47a8-9afb-0dfd1ec573a3.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            98,
+            333,
+            1008,
+            333,
+            1008,
+            947,
+            98,
+            947,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            5,
+            12
+        ]
     ]
 }

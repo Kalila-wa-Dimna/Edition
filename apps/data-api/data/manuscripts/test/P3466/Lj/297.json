@@ -170,5 +170,30 @@
             "Lj Jackal Declines Position",
             29
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_297_e7d1dfcc-b668-4e5d-a53e-82fbbe7aa2d9.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            259,
+            672,
+            941,
+            672,
+            941,
+            1098,
+            259,
+            1098,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "blank"
+    ],
+    "location": [
+        [
+            9,
+            11
+        ]
     ]
 }

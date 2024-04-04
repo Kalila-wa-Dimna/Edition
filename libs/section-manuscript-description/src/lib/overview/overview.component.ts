@@ -6,6 +6,9 @@ import { ViewChild } from '@angular/core';
 import { KeyValue } from '@angular/common';
 import { MatColumnDef } from '@angular/material/table';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import jsPDF from 'jspdf';
+import { HttpClient } from '@angular/common/http';
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'kalila-edition-overview',
   templateUrl: './overview.component.html',
@@ -18,11 +21,11 @@ export class OverviewComponent implements OnInit
   columnsToDisplay: string[] = [
     'siglum__siglum',
     'catalogue__title',
-    'catalogue__commentary',
+    'catalogue__link',
     'location__city',
     'location__library',
     'location__manuscript_id',
-    'location__commentary',
+    'publications__publications',
     'dating__accuracy',
     'dating__gregorian_century',
     'dating__gregorian_year',
@@ -75,9 +78,9 @@ export class OverviewComponent implements OnInit
   ];
 
   columnWidths: { [key: string]: number } = {
-   'location__commentary': 400,
+   'publications__publications': 400,
     'location__city': 120,
-    'catalogue__commentary': 400,
+    'catalogue__link': 400,
     'dating__commentary': 400,
     'preservation__commentary': 400,
     'pagination__commentary': 400,
@@ -159,9 +162,13 @@ export class OverviewComponent implements OnInit
 
   // Rest of your component code
 
-  constructor(private route: ActivatedRoute,  @Inject(CONFIG_TOKEN) private config: IConfig, private domSanitizer: DomSanitizer) {
+  constructor(private route: ActivatedRoute,
+              @Inject(CONFIG_TOKEN) private config: IConfig,
+              private domSanitizer: DomSanitizer,
+              private http: HttpClient) {
     this.data =this.route.snapshot.data;
     this.dataSource = new MatTableDataSource(this.data.manuscriptList);
+
   }
   groupColspans: { [key: string]: number } = {};
 
@@ -231,5 +238,22 @@ export class OverviewComponent implements OnInit
 
   capitalizeFirstLetter(text: string): string {
     return text.charAt(0).toUpperCase() + text.slice(1);
+  }
+
+
+
+  downloadExcel(): void {
+    // Path to the Excel file in the assets folder
+    const filePath = 'assets/manuscriptDescriptionAll.xlsx';
+
+    // Send a GET request to download the Excel file
+    this.http.get(filePath, { responseType: 'blob' }).subscribe((data: any) => {
+      const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+      // Save the Excel file
+      saveAs(blob, 'downloaded_data.xlsx');
+    }, (error) => {
+      console.error('Error downloading the Excel file', error);
+    });
   }
 }

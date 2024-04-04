@@ -104,5 +104,30 @@
             "Kd King Has Brahmins Interpret Dreams",
             21
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_226_2cdbcfdb-98a1-430a-a155-b75b51260db5.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            183,
+            1074,
+            2162,
+            1074,
+            2162,
+            2770,
+            183,
+            2770,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            4,
+            12
+        ]
     ]
 }

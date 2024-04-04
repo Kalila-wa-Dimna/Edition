@@ -197,5 +197,30 @@
             "Mc Foes Surround the Rat",
             15
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_229_96a47976-b277-40d3-ac88-0ce8f1fd6ef8.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            18,
+            2129,
+            2682,
+            2129,
+            2682,
+            3623,
+            18,
+            3623,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            9,
+            13
+        ]
     ]
 }

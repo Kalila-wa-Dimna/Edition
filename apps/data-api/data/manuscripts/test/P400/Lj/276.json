@@ -82,5 +82,30 @@
             "Lj Lion Keeps His Promise",
             212
         ]
+    ],
+    "illustrationUrls": [
+        "illustration_276_e3a807fd-15aa-4732-9872-68abbba2c814.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            121,
+            544,
+            1073,
+            544,
+            1073,
+            1453,
+            121,
+            1453,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            3,
+            11
+        ]
     ]
 }
