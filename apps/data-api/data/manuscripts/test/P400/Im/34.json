@@ -1,0 +1,110 @@
+{
+    "id": "e2aaa443-063a-489e-96e5-e88b4e67fb96",
+    "number": 34,
+    "manuscript": "P400",
+    "imageUrl": "7b96d041-8abe-48de-bf67-4bdd5b7ee1d9.jpg",
+    "lines": [
+        [
+            "لا",
+            "ينبغي",
+            "للعاقل",
+            "أن",
+            "يستكثر",
+            "من",
+            "العلم",
+            "ماله",
+            "وإن",
+            "كثر",
+            "وعظم",
+            "فإنّ"
+        ],
+        [
+            "العلم",
+            "يجلو",
+            "العقل",
+            "كما",
+            "يجلو",
+            "الودك",
+            "ظلمة",
+            "النار",
+            "ويزيدها",
+            "ضوءًا"
+        ],
+        [
+            "والأدب",
+            "يرفع",
+            "منزلة",
+            "صاحبه",
+            "والعلم",
+            "يحيي",
+            "من",
+            "استعمله",
+            "ومن",
+            "علم",
+            "ثمّ",
+            "لم",
+            "يستعمل"
+        ]
+    ],
+    "unitPlaces": [
+        [
+            2,
+            0
+        ],
+        [
+            2,
+            4
+        ],
+        [
+            2,
+            8
+        ],
+        [
+            0,
+            11
+        ]
+    ],
+    "unitNames": [
+        [
+            "Im Culture Advances One's Rank",
+            42
+        ],
+        [
+            "Im Culture Shields from Danger",
+            45
+        ],
+        [
+            "Im Man Notices Burglar but Feigns Sleep",
+            47
+        ],
+        [
+            "Im Culture Is the Spark of Life",
+            41
+        ]
+    ],
+    "illustrationUrls": [
+        "illustration_34_b39aed8e-6ace-4a4f-8039-1ab8ec3ac9ac.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            131,
+            205,
+            926,
+            205,
+            926,
+            1254,
+            131,
+            1254,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            2,
+            12
+        ]
+    ]
+}

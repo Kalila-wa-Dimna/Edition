@@ -3,6 +3,7 @@ import { MainPageComponent } from './main-page.component';
 import { AboutPageComponent } from './about-page.component';
 import { ImprintPageComponent } from './imprint-page.component';
 
+
 export const appRoutes: Route[] = [
   {
     path: '',
@@ -43,6 +44,12 @@ export const appRoutes: Route[] = [
     path: 'description',
     loadChildren: () =>
       import('@kalila-edition/section-manuscript-description').then((m) => m.SectionManuscriptDescriptionModule),
+  },
+
+  {
+    path: 'toc-lera',
+    loadChildren: () =>
+      import('@kalila-edition/other-editions').then((m) =>m.OtherEditionsModule ),
   },
 
 ];

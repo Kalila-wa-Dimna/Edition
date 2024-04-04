@@ -226,6 +226,9 @@ devDependencies:
   jsdoc:
     specifier: ^4.0.2
     version: 4.0.2
+  jsonc-eslint-parser:
+    specifier: ^2.1.0
+    version: 2.3.0
   node-loader:
     specifier: ^2.0.0
     version: 2.0.0(webpack@5.89.0)

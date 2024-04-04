@@ -49,9 +49,9 @@ main {
   /* 24 columns, 80px each */
 }
 .bibliography-cell{
-  max-height: calc(100vh - 15vh) !important; /* Adjust to your desired height */
+  max-height: calc(100vh - 15vh) !important;
+  margin-top: 10px!important;/* Adjust to your desired height */
   overflow-y: auto;
-
 }
 .mat-footer-row {
   font-weight: bold;
@@ -197,4 +197,19 @@ main {
 }
 .siglumColor{
   color: #003a4a!important;
+}
+
+.center {
+  height:35px;
+  width:120px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  background-color:#4c7d8a ;
+  border: 1px;
+  color: white;
+
+}
+.center:hover{
+  background-color:#003a4a;
+  cursor: pointer;
 }

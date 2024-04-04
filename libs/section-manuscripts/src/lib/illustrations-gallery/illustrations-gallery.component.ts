@@ -33,5 +33,9 @@ export class IllustrationsGalleryComponent {
   openIllustrationModal(illustration: string): void {
     this.dialog.open(IllustrationModalComponent, {
       data: { illustration },
-    });}
+      height: 'auto',
+      width:'40%',
+      panelClass: 'custom-modal',// Set the height here
+    });
+  }
 }

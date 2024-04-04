@@ -1,0 +1,72 @@
+{
+    "id": "f09a7bb4-5593-42e0-ac3b-bb919d2cce31",
+    "number": 41,
+    "manuscript": "P400",
+    "imageUrl": "907fe696-b2cc-4763-9066-68060133cc2e.jpg",
+    "lines": [
+        [
+            "ثمّ",
+            "عدا",
+            "عليه",
+            "وخرج",
+            "السارق",
+            "هاربًا",
+            "فأخذها",
+            "الرجل",
+            "فلبسها",
+            "وأعاد"
+        ],
+        [
+            "البُرّ",
+            "إلى",
+            "مكانه",
+            "ثمّ",
+            "إنّه",
+            "ليس",
+            "ينبغي",
+            "للعاقل",
+            "أن",
+            "يركن",
+            "إلى",
+            "هذا",
+            "المثل"
+        ]
+    ],
+    "unitPlaces": [
+        [
+            1,
+            3
+        ]
+    ],
+    "unitNames": [
+        [
+            "Im One Should Not Abandon Hard Work ",
+            90
+        ]
+    ],
+    "illustrationUrls": [
+        "illustration_41_a92138fb-0459-4fa7-ac49-1460e6bb4354.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            272,
+            359,
+            1093,
+            359,
+            1093,
+            1298,
+            272,
+            1298,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            1,
+            12
+        ]
+    ]
+}

@@ -1,0 +1,34 @@
+{
+    "id": "34e841c4-db0d-418e-af7e-e1bf34baf2a2",
+    "number": 263,
+    "manuscript": "P3475",
+    "imageUrl": "3015eda1-ce1e-477b-b594-951c993ba7ac.jpg",
+    "lines": [],
+    "unitPlaces": [],
+    "unitNames": [],
+    "illustrationUrls": [
+        "illustration_263_61382006-624b-4c65-9a69-2cbdf283b991.jpg"
+    ],
+    "region_of_illustration": [
+        [
+            52,
+            142,
+            434,
+            142,
+            434,
+            414,
+            52,
+            414,
+            0
+        ]
+    ],
+    "position_of_illustration": [
+        "image in main body"
+    ],
+    "location": [
+        [
+            0,
+            0
+        ]
+    ]
+}

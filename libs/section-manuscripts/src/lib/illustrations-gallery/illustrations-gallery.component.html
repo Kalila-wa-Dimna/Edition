@@ -7,15 +7,17 @@
         <ng-container matColumnDef="manuscripts">
           <th mat-header-cell *matHeaderCellDef style="font-size: large; font-weight: bold;margin-top: 10px"> Manuscripts </th>
           <td mat-cell *matCellDef="let row">
-            <div style="font-size: large; font-weight: bold;color: #b71c1c;margin-top: 10px"> Chapter {{ row.chapter }}  ({{row.chapter_name}}) </div>
+            <div style="font-size: large; font-weight: bold;color:#4c7d8a;margin-top: 10px"> Chapter {{ row.chapter }} ({{row.chapter_name}}) </div>
             <ng-container *ngFor="let manuscript of row.manuscripts">
               <div class="manuscript-container">
                 <p class="p-m"> {{ manuscript.siglum }}</p>
                 <div class="illustrations-container">
                   <div *ngFor="let illustration of manuscript.illustrations">
-                    <div class="illustration-caption" (click)="openIllustrationModal(pagesEndPoint +illustration)">
-                      <img [src]="pagesEndPoint + illustration" alt="Illustration" style="height: 200px; width:250px;">
+                    <div class="image-grid">
+                    <div class="image-container illustration-caption"  (click)="openIllustrationModal(pagesEndPoint +illustration)" >
+                      <img class="image" [src]="pagesEndPoint + illustration" alt="Illustration">
                       <div class="caption">{{ getIllustrationName(illustration) }}</div>
+                    </div>
                     </div>
                   </div>
                 </div>

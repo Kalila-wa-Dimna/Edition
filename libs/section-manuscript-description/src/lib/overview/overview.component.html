@@ -1,7 +1,7 @@
 <kd-layout>
   <span title style="font-size:large;">Manuscript descriptions/ Codicology</span>
     <main pageContent>
-      <button style="padding-right: 10px;padding-left: 10px ; margin-bottom: 2px" (click)="downloadExcel()">Export Excel</button>
+      <button class="center" style="padding-right: 10px;padding-left: 10px ; " (click)="downloadExcel()">Export Excel</button>
       <mat-table [dataSource]="dataSource" class="bibliography-cell">
       <!-- Column definitions -->
       <ng-container *ngFor="let group of groupedColumns, let ii=index">
