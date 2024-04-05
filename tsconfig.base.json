@@ -31,8 +31,7 @@
       ],
       "@kalila-edition/section-manuscripts": [
         "libs/section-manuscripts/src/index.ts"
-      ],
-
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -3,19 +3,19 @@
   "neverConnectToCloud": true,
   "targetDefaults": {
     "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"],
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ],
       "cache": true
     },
     "e2e": {
-      "inputs": ["default", "^production"],
-      "cache": true
-    },
-    "lint": {
       "inputs": [
         "default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore"
+        "^production"
       ],
       "cache": true
     },
@@ -24,7 +24,11 @@
     },
     "@nx/jest:jest": {
       "cache": true,
-      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "inputs": [
+        "default",
+        "^production",
+        "{workspaceRoot}/jest.preset.js"
+      ],
       "options": {
         "passWithNoTests": true
       },
@@ -34,10 +38,21 @@
           "codeCoverage": true
         }
       }
+    },
+    "@nx/eslint:lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore"
+      ],
+      "cache": true
     }
   },
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "production": [
       "default",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
@@ -63,5 +78,6 @@
       "style": "scss"
     }
   },
-  "nxCloudAccessToken": "ZThiMTg5YmYtM2VjZi00ZDdkLTg1YTktNjU1ZTIwOGYwOTgzfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "ZThiMTg5YmYtM2VjZi00ZDdkLTg1YTktNjU1ZTIwOGYwOTgzfHJlYWQtd3JpdGU=",
+  "useInferencePlugins": false
 }
