@@ -20,7 +20,8 @@
           "apps/web/src/assets",
           "apps/web/src/manifest.webmanifest"
         ],
-        "styles": ["apps/web/src/styles.scss",
+        "styles": [
+          "apps/web/src/styles.scss",
           "apps/web/src/catView/lib/catview/catview.css",
           "apps/web/src/catView/lib/lera.css"
         ],
@@ -91,10 +92,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/web/**/*.ts", "apps/web/**/*.html"]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
