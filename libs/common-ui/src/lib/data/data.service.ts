@@ -30,9 +30,8 @@ export class DataService {
       this.transferState.remove(KEY);
       return of(data);
     } else {
-      const data$ = isBrowser
-        ? this.getJSONDataClient<T>(dataPath)
-        : this.getJSONDataServer<T>(dataPath);
+      const data$ = this.getJSONDataClient<T>(dataPath)
+
 
       return data$.pipe(
         catchError((err) => {
@@ -52,23 +51,4 @@ export class DataService {
     return this.http.get<T>(`${this.config.dataEndPoint}${filePath}.json`);
   }
 
-  private getJSONDataServer<T>(filePath: string): Observable<T> {
-    const url = `${this.config.dataApi}${filePath}.json`;
-    return new Observable<T>((observer) => {
-      fetch(url)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}, URL: ${url}, Message: ${response.statusText}`);
-          }
-          return response.json();
-        })
-        .then((data) => {
-          observer.next(data);
-          observer.complete();
-        })
-        .catch((error) => {
-          observer.error(error);
-        });
-    });
-  }
 }

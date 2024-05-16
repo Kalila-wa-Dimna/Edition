@@ -1,3 +1,16 @@
+
+export interface IRangeDefinition {
+  start: [number, number];
+  end: [number, number];
+  color: string;
+}
+
+export interface IRange {
+  text: string;
+  color?: string;
+}
+
+
 export interface ICellData {
   mediumId: string;
   unitId: string;
@@ -12,6 +25,7 @@ export interface ICellData {
   images: string[];
   tokens: string[][];
   lines: number[];
+  ranges?: IRange[];
   pages: number[];
   breaks: (number | null)[];
 }
@@ -19,3 +33,4 @@ export interface ICellData {
 export interface IRowData {
   [siglum: string]: ICellData | undefined;
 }
+// TODO add search results to ICelldata, listen to search results in the main collation component and update the row data accordingly

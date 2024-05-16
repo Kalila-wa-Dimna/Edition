@@ -1,10 +1,9 @@
 import { Component, OnInit, HostListener, Inject, PLATFORM_ID, ElementRef, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { FacsimileService } from "./../../services/manuscript-data.service";
-import { Observable, startWith } from "rxjs";
+import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { isPlatformBrowser } from '@angular/common';
-import { MatSliderModule } from '@angular/material/slider';
 import { CONFIG_TOKEN, IConfig } from "@kalila-edition/common-ui";
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 
@@ -20,8 +19,8 @@ export class ManuscriptPageFacsimileComponent implements OnInit {
   facsimileSize = '65%';
   facsimileS = new FormControl(40);
   pageData$!: Observable<any>;
-  pagesEndPoint = this.config.imagesEndPoint + 'pages/';
-  isNewWindow: boolean = false;
+  pagesEndPoint = this.config.pagesEndPoint;
+  isNewWindow = false;
   disabled = false;
   max = 100;
   min = 0;
@@ -36,7 +35,7 @@ export class ManuscriptPageFacsimileComponent implements OnInit {
     private renderer: Renderer2,
     private facsimileService: FacsimileService,
     private fb: FormBuilder,
-    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(PLATFORM_ID) private platformId: object,
     @Inject(CONFIG_TOKEN) private config: IConfig,
   ) {
     this.form = this.fb.group({

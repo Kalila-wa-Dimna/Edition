@@ -2,7 +2,7 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { ICollationViewSettings } from '../models/collation-view-settings.model';
 import { StorageService } from '@kalila-edition/common-ui';
 import { isPlatformBrowser } from '@angular/common';
-import { BehaviorSubject, filter, map } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, filter, map } from 'rxjs';
 import { SIZE_MAP } from '../constants/size.constants';
 
 const DEFAULT: ICollationViewSettings = {
@@ -20,6 +20,7 @@ export class CollationSettingsService {
     DEFAULT
   );
 
+  currentScrollIndex = new ReplaySubject<number>(1);
   stateObservable$ = this.state$
     .asObservable()
     .pipe(filter((value) => value !== null && value !== undefined));

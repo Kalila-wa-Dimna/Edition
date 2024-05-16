@@ -2,7 +2,7 @@
 console.log('facsimile worker init');
 const pageCache: Record<string, Record<number, string>> = {};
 
-const IMAGE_ROOT = "/assets/images/pages/";
+const IMAGE_ROOT = "https://d5gomyglvpeib.cloudfront.net/srv/page/";
 const PADDING = 10;
 addEventListener('message', async ({ data }) => {
 

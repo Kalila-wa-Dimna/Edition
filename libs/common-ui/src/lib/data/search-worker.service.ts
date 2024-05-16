@@ -5,6 +5,7 @@ export interface IContentSearchResult {
   sentence: string;
   collationName: string;
   results: number[][];
+  indexedResults: Record<number, Record<number, [number, number, number, number, number][]>>;
 }
 
 @Injectable({
@@ -18,9 +19,9 @@ export class SearchWorkerService {
   init(searchWorker: Worker): void {
     this._search = searchWorker;
     this._search.onmessage = ({ data }) => {
-      const { type, results, sentence, collationName } = data;
+      const { type, results, sentence, collationName, indexedResults } = data;
       if (type === 'results') {
-        this.searchResults$.next({ sentence, collationName, results });
+        this.searchResults$.next({ sentence, collationName, results, indexedResults });
       }
     };
   }

@@ -12,8 +12,8 @@ import { IRowData } from '../../../models/collation-row-data.model';
 export class CollationRowComponent {
   @Input() unit!: ICollationUnit;
   @Input() sigla: string[] = [];
-  @Input() searchResult: boolean = false;
-  @Input() currentResult: boolean = false;
+  @Input() searchResult = false;
+  @Input() currentResult = false;
 
   @Input()
   rowData?: IRowData | undefined;
