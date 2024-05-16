@@ -10,14 +10,6 @@
       }
     },
     {
-      "name": "lazy-assets",
-      "installMode": "lazy",
-      "updateMode": "prefetch",
-      "resources": {
-        "files": ["/**/*.html"]
-      }
-    },
-    {
       "name": "assets",
       "installMode": "prefetch",
       "updateMode": "prefetch",
