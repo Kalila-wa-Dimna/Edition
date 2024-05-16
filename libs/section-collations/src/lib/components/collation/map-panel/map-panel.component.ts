@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, Input, AfterViewInit, ViewChild, OnDestroy, HostListener, Output, signal, Inject, OnInit } from '@angular/core';
-import { CONFIG_TOKEN, IColors, IConfig, MapWorkerService, ThemeService } from '@kalila-edition/common-ui';
+import { CONFIG_TOKEN, IColors, IConfig, ThemeService } from '@kalila-edition/common-ui';
 import { BehaviorSubject, Subject, Subscription, debounceTime, firstValueFrom } from 'rxjs';
 
 const LETTERS = 'ABCDEFGHIKLMNOPQRSTUVWXYZ'.split('');
@@ -155,7 +155,6 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   async buildMap(data: number[][], colors = LIGHT_COLORS) {
-    console.log(data);
     const Konva = (await import('konva')).default;
     const containerWidth = this.container.nativeElement.offsetWidth;
     const containerHeight = this.container.nativeElement.offsetHeight;
