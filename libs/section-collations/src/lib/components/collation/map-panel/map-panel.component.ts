@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, EventEmitter, Input, AfterViewInit, ViewChild, OnDestroy, HostListener, Output, signal } from '@angular/core';
-import { ThemeService } from '@kalila-edition/common-ui';
-import { BehaviorSubject, Subscription, firstValueFrom } from 'rxjs';
+import { Component, ElementRef, EventEmitter, Input, AfterViewInit, ViewChild, OnDestroy, HostListener, Output, signal, Inject, OnInit } from '@angular/core';
+import { CONFIG_TOKEN, IColors, IConfig, ThemeService } from '@kalila-edition/common-ui';
+import { BehaviorSubject, Subject, Subscription, debounceTime, firstValueFrom } from 'rxjs';
 
-const DATA_ENDPOINT = "/assets/data/collations"
 const LETTERS = 'ABCDEFGHIKLMNOPQRSTUVWXYZ'.split('');
 
 const DARK_COLORS = {
@@ -49,12 +48,14 @@ interface IChangeableNode {
   `,
   styleUrls: ['./map-panel.component.scss']
 })
-export class MapPanelComponent implements AfterViewInit, OnDestroy {
+export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
   canvas: unknown | null = null;
   @Output() rowHovered = new EventEmitter<number | null>();
   @Output() rowClicked = new EventEmitter<number>();
 
 
+  renderSubject = new Subject<{ data: number[][], colors: IColors }>();
+  renderSubscription = Subscription.EMPTY;
   private _collationName: string | null = null;
   rerenderStream = new BehaviorSubject<undefined>(undefined);
 
@@ -71,13 +72,14 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy {
   }
 
   loading = signal(true);
+  endpoint = (collationName: string) => `${this.config.dataEndPoint}collations/${collationName}/presence_matrix.json`
 
   @Input() set collationName(value: string) {
     this.loading.set(true);
     this._collationName = value;
-    firstValueFrom(this.httpClient.get<number[][]>(`${DATA_ENDPOINT}/${this._collationName}/presence_matrix.json`)).then(async data => {
+    firstValueFrom(this.httpClient.get<number[][]>(this.endpoint(this._collationName))).then(async data => {
       const colors = await this.getThemeAndDetermineColors();
-      await this.buildMap(data, colors);
+      this.renderSubject.next({ data, colors });
     });
   }
 
@@ -85,10 +87,13 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy {
 
   @Input() set cellsWithResults(value: Map<number, Set<number>>) {
     this._cellsWithResults = value;
-    firstValueFrom(this.httpClient.get<number[][]>(`${DATA_ENDPOINT}/${this._collationName}/presence_matrix.json`)).then(async data => {
-      const colors = await this.getThemeAndDetermineColors();
-      await this.buildMap(data, colors);
-    });
+    if (this._collationName) {
+      firstValueFrom(this.httpClient.get<number[][]>(this.endpoint(this._collationName))).then(async data => {
+        const colors = await this.getThemeAndDetermineColors();
+        this.renderSubject.next({ data, colors });
+      });
+    }
+
   }
 
   @Input() set currentIndex(value: number) {
@@ -102,20 +107,33 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy {
 
 
 
-  constructor(private httpClient: HttpClient, private themeService: ThemeService) { }
+  constructor(private httpClient: HttpClient,
+    private themeService: ThemeService,
+    @Inject(CONFIG_TOKEN) private config: IConfig) { }
 
   async ngAfterViewInit() {
-    const data = await firstValueFrom(this.httpClient.get<number[][]>(`${DATA_ENDPOINT}/${this._collationName}/presence_matrix.json`));
 
-    this.rerenderSubscription = this.rerenderStream.subscribe(async () => {
-      const colors = await this.getThemeAndDetermineColors();
-      await this.buildMap(data, colors);
-    });
+    if (this._collationName) {
+      const data = await firstValueFrom(this.httpClient.get<number[][]>(this.endpoint(this._collationName)));
 
-    this.themeSubscription = this.themeService.active$.subscribe(async theme => {
-      const colors = this.determineColors(theme);
-      await this.buildMap(data, colors);
-    });
+      this.rerenderSubscription = this.rerenderStream.subscribe(async () => {
+        const colors = await this.getThemeAndDetermineColors();
+        this.renderSubject.next({ data, colors });
+      });
+
+      this.themeSubscription = this.themeService.active$.subscribe(async theme => {
+        const colors = this.determineColors(theme);
+        this.renderSubject.next({ data, colors });
+      });
+    }
+
+
+  }
+
+  ngOnInit(): void {
+    this.renderSubject.pipe(debounceTime(100)).subscribe(async ({ data, colors }) => {
+      await this.buildMap(data, colors)
+    })
   }
 
   async getThemeAndDetermineColors() {
@@ -140,6 +158,7 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy {
     const Konva = (await import('konva')).default;
     const containerWidth = this.container.nativeElement.offsetWidth;
     const containerHeight = this.container.nativeElement.offsetHeight;
+
     const heightOffset = 10;
     const widthOffset = 15;
     const labelFontSize = 10;
@@ -178,10 +197,10 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy {
 
     const maxNumber = data[0].length;
     const multiplesOfFive = Math.floor(maxNumber / 5);
-    const widthPerFive = (containerWidth - widthOffset) / multiplesOfFive;
+    const boxWidth = (containerWidth - widthOffset) / data[0].length;
 
     for (let i = 1; i < multiplesOfFive; i++) {
-      const xPos = widthOffset + i * widthPerFive;
+      const xPos = i * (5 * boxWidth) - boxWidth / 2 - labelPositioningCorrection;
       const numberText = new Konva.Text({
         x: xPos - labelPositioningCorrection,
         y: 0,
@@ -203,7 +222,7 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy {
 
     // Unit boxes, row highlighter, event layer
     const boxHeight = lineSpacing;
-    const boxWidth = (containerWidth - widthOffset) / data[0].length;
+
     const border = 2;
     const unitBoxesLayer = new Konva.Layer({ listening: false });
     const rowHighlighter = new Konva.Group({
@@ -223,8 +242,9 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy {
     rowHighlighter.add(rowHighlighterRect);
     this.claculateRowHighlighterPosition = (index: number) => widthOffset + boxWidth / 2 + index * boxWidth;
     data.forEach((_, index) => {
-      const yPos = distance + index * lineSpacing;
 
+
+      const yPos = distance + index * lineSpacing;
 
       const text = new Konva.Text({
         x: boxWidth / 2 - labelPositioningCorrection,
@@ -321,6 +341,7 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy {
   ngOnDestroy() {
     this.themeSubscription.unsubscribe();
     this.rerenderSubscription.unsubscribe();
+    this.renderSubscription.unsubscribe();
   }
 
 

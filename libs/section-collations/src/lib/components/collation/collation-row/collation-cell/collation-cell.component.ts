@@ -1,9 +1,8 @@
-import { Component, Input, computed } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ICellData } from '../../../../models/collation-row-data.model';
 import { CollationSettingsService } from '../../../../services/collation-settings.service';
 import { FacsimilePanelService } from '../../../../services/facsimile-panel.service';
-import { SearchService } from '../../../../services/search.service';
-import { IRange, IRangeDefinition } from './models';
+
 
 
 
@@ -14,40 +13,17 @@ import { IRange, IRangeDefinition } from './models';
 })
 export class CollationCellComponent {
   @Input() data?: ICellData;
-  @Input() siglum: string = '';
-  @Input() orderDisplay: string = '';
-  @Input() unitIndex: number = 0;
-  @Input() mediumIndex: number = 0;
+  @Input() siglum = '';
+  @Input() orderDisplay = '';
+  @Input() unitIndex = 0;
+  @Input() mediumIndex = 0;
 
   showFacsimilePreview$ = this.settingsSerive.showFacsimilePreview$;
 
-  highlightedRanges = computed(() => {
-    const results = this.searchService.highlightedTokens();
-    if (results) {
-      const currentResult = this.searchService.currentResult();
-      const cellResults: IRangeDefinition[] = []
-      results.forEach((result, index) => {
-        if (result[0] === this.unitIndex && result[1] === this.mediumIndex) {
-          cellResults.push({
-            start: [result[2], result[3]],
-            end: [result[4], result[5]],
-            color: index === currentResult ? '#f0b275' : '#ffdfbf'
-          });
-        }
-      })
-
-
-      return cellResults.length > 0 ? cellResults : null;
-    }
-
-
-    return null;
-  });
 
   constructor(
     private settingsSerive: CollationSettingsService,
-    private facsimilePanelService: FacsimilePanelService,
-    private searchService: SearchService,
+    private facsimilePanelService: FacsimilePanelService
   ) {
 
   }
@@ -86,47 +62,5 @@ export class CollationCellComponent {
     }
   }
 
-  lines  = computed(() => {
-    const { tokens } = this.data ?? {};
-    const rangeDefinitions = this.highlightedRanges();
-    if (!tokens || !rangeDefinitions) {
-      return [];
-    }
 
-    const ranges: IRange[] = [];
-
-    const getRangeContiningWord = (lineIndex: number, wordIndex: number) => {
-      for (let i = 0; i < rangeDefinitions.length; i++) {
-        const range = rangeDefinitions[i];
-        if (range.start[0] <= lineIndex && range.end[0] >= lineIndex) {
-          if (range.start[0] === lineIndex && range.start[1] > wordIndex) {
-            continue;
-          }
-          if (range.end[0] === lineIndex && range.end[1] < wordIndex) {
-            continue;
-          }
-          return range;
-        }
-      }
-      return null;
-    };
-
-    tokens.forEach((line, lineIndex) => {
-      line.forEach((word, wordIndex) => {
-        const rageContiningWord = getRangeContiningWord(lineIndex, wordIndex);
-        if (rageContiningWord) {
-          ranges.push({
-            text: word,
-            color: rageContiningWord.color
-          })
-        } else {
-          ranges.push({
-            text: word,
-          })
-        }
-
-      })
-    })
-    return ranges;
-  })
 }

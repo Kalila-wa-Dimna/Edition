@@ -29,7 +29,7 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
 
   @Output() goToRow = new EventEmitter<number>();
   @Input() titles: string[] = [];
-  @Input() collationName: string = '';
+  @Input() collationName = '';
 
   searchControl = new FormControl('');
 
@@ -76,13 +76,15 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
       this.sub2 = this.searchWorkerService.searchResults$.subscribe((data) => {
 
         if (data) {
-          const { sentence, collationName, results } = data;
+          const { sentence, collationName, results, indexedResults } = data;
           if (sentence === this.searchControl.value && collationName === this.collationName) {
-            this.searchService.currentResult.set(results.length -1);
+            this.searchService.currentResult.set(results.length - 1);
             this.searchService.highlightedTokens.set(results);
 
+            this.searchService.indexedResults.set(indexedResults);
+
             if (results.length > 0) {
-              setTimeout(()=> {
+              setTimeout(() => {
                 this.searchService.currentResult.set(0);
                 this.goToRow.emit(results[0][0]);
               }, 10)

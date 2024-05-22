@@ -16,8 +16,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private themeService: ThemeService,
     private storageService: StorageService,
     private searchWorkerService: SearchWorkerService,
-    private facsimileWorkerService: FacsimileWorkerService
-  ) {}
+    private facsimileWorkerService: FacsimileWorkerService,
+  ) { }
 
   async ngOnInit() {
     await this.storageService.initDb();
@@ -33,6 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
       const searchWorker = new Worker(
         new URL('./search.worker', import.meta.url)
       );
+
       this.searchWorkerService.init(searchWorker);
       this.facsimileWorkerService.init(facsimileWorker);
     }
@@ -55,3 +56,5 @@ export class AppComponent implements OnInit, OnDestroy {
     this.facsimileWorkerService.terminate();
   }
 }
+
+// nx g @nx/angular:web-worker mapPanelWorker --project=web

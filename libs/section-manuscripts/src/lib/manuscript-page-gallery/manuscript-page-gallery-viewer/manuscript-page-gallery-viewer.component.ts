@@ -1,13 +1,13 @@
-import {Component, OnInit, ViewEncapsulation,OnDestroy, VERSION, ViewChild, ElementRef, Inject, PLATFORM_ID} from '@angular/core';
-import {IGalleryInfo} from "../../models/manuscript-summary.model";
-import {ActivatedRoute} from "@angular/router";
+import { Component, OnInit, ViewEncapsulation, OnDestroy, VERSION, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
+import { IGalleryInfo } from "../../models/manuscript-summary.model";
+import { ActivatedRoute } from "@angular/router";
 import { ImageListItem } from '../../models/manuscript-summary.model';
 import lgZoom from 'lightgallery/plugins/zoom';
 import lgThumbnail from 'lightgallery/plugins/thumbnail';
 import { LightGallery } from 'lightgallery/lightgallery';
-import {CONFIG_TOKEN, IConfig} from "@kalila-edition/common-ui";
+import { CONFIG_TOKEN, IConfig } from "@kalila-edition/common-ui";
 import { isPlatformBrowser } from '@angular/common';
-import {Subscription} from "rxjs";
+import { Subscription } from "rxjs";
 import * as lightGallery from 'lightgallery';
 
 @Component({
@@ -20,27 +20,27 @@ export class ManuscriptPageGalleryViewerComponent implements OnInit, OnDestroy {
 
 
 
-  data:IGalleryInfo[] = [];
-  IMAGES:ImageListItem[]=[];
-  size='1400-933';
-  pagesEndPoint = this.config.imagesEndPoint + 'pages/';
+  data: IGalleryInfo[] = [];
+  IMAGES: ImageListItem[] = [];
+  size = '1400-933';
+  pagesEndPoint = this.config.pagesEndPoint;
 
   sub?: Subscription;
   private needRefresh = false;
 
-  isBrowser:boolean=false;
+  isBrowser: boolean = false;
   private lightGallery!: LightGallery;
   settings = {
-    plugins: [ lgThumbnail],
+    plugins: [lgThumbnail],
 
   };
 
-  getPics(){
-     let i=0;
-    i=i+1;
+  getPics() {
+    let i = 0;
+    i = i + 1;
   }
 
-  constructor( private route: ActivatedRoute, private _elementRef: ElementRef,@Inject(CONFIG_TOKEN) private config: IConfig,  @Inject(PLATFORM_ID) private platformId: Object ) {
+  constructor(private route: ActivatedRoute, private _elementRef: ElementRef, @Inject(CONFIG_TOKEN) private config: IConfig, @Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
     this._elementRef = _elementRef;
   }
@@ -65,7 +65,7 @@ export class ManuscriptPageGalleryViewerComponent implements OnInit, OnDestroy {
       this.needRefresh = false;
     }
   }
-  onInit = (detail:any): void => {
+  onInit = (detail: any): void => {
     this.lightGallery = detail.instance;
     this.lightGallery.plugins.push();
     this.lightGallery.refresh();

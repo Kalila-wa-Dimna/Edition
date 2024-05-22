@@ -2,9 +2,9 @@ import { NgModule, ModuleWithProviders, InjectionToken } from '@angular/core';
 
 // Define the configuration interface
 export interface IConfig {
-  dataApi: string;
   imagesEndPoint: string;
   dataEndPoint: string;
+  pagesEndPoint: string;
 }
 
 export const CONFIG_TOKEN = new InjectionToken<IConfig>('Config');

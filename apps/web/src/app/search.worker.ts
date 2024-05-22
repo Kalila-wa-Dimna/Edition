@@ -1,7 +1,8 @@
 /// <reference lib="webworker" />
 
 const LEMMATIZATION_ENDPOINT = "https://camel.kalila-and-dimna.de/"
-const DATA_ENDPOINT = "/assets/data/collations"
+const DATA_ENDPOINT = "https://d5gomyglvpeib.cloudfront.net/srv/data/edition_data/collations"
+
 
 let unitLemmas: Record<string, Record<string, string[][]>> | undefined = undefined;
 let invertedLemma: Record<string, number[][]> | undefined = undefined;
@@ -91,9 +92,29 @@ addEventListener('message', async ({ data }) => {
       return 0;
     });
 
-    postMessage({ results: sortedResults, sentence, collationName, type: 'results' });
+
+    const indexedResults: Record<number, Record<number, [number, number, number, number, number][]>> = {};
+
+    sortedResults.forEach((result, index) => {
+      const unit = result[0];
+      const column = result[1];
+      const startLine = result[2];
+      const startToken = result[3];
+      const endLine = result[4];
+      const endToken = result[5];
+
+      if (!indexedResults[unit]) {
+        indexedResults[unit] = {};
+      }
+      if (!indexedResults[unit][column]) {
+        indexedResults[unit][column] = [];
+      }
+
+      indexedResults[unit][column].push([index, startLine, startToken, endLine, endToken]);
+    });
+
+    postMessage({ results: sortedResults, indexedResults, sentence, collationName, type: 'results' });
   }
 
 });
-
 

@@ -40,6 +40,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {
   CollationCellTextComponent
 } from './components/collation/collation-row/collation-cell/collation-cell-text.component';
+import { CollationContainerComponent } from './components/collation/collation-container/collation-container.component';
 
 
 
@@ -80,7 +81,8 @@ import {
     FacsimilePanelComponent,
     FacsimilePanelCommandBarComponent,
     MapPanelComponent,
-    CollationCellTextComponent
+    CollationCellTextComponent,
+    CollationContainerComponent,
   ],
   providers: [
     CollationDataService,

@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "nx run web:serve-ssr --proxyConfig proxy.config.json",
-    "data-api": "nx run data-api:serve",
+    "dev": "nx run web:serve-ssr",
     "build": "NX_NO_CLOUD=true  nx run web:prerender"
   },
   "private": true,

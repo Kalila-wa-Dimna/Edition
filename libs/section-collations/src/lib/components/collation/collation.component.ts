@@ -16,19 +16,16 @@ import { CollationSettingsService } from '../../services/collation-settings.serv
 import { CELL_PADDING } from '../../constants/size.constants';
 import { ICollationInfo } from '../../models/collation-summary.model';
 import { CollationDataService } from '../../services/collation-data.service';
-import { IRowData } from '../../models/collation-row-data.model';
-import { CollationVirtualScrollDirective } from '../../directives/virtual-scroll/collation-virtual-scroll.directive';
+import { IRange, IRangeDefinition, IRowData } from '../../models/collation-row-data.model';
 import {
-  Subject,
+
   Subscription,
-  debounceTime,
-  distinctUntilChanged,
-  withLatestFrom,
+
 } from 'rxjs';
 import { SearchService } from '../../services/search.service';
 import { FacsimilePanelService } from '../../services/facsimile-panel.service';
 import { SearchWorkerService } from '@kalila-edition/common-ui';
-
+import { CollationContainerComponent } from './collation-container/collation-container.component';
 @Component({
   selector: 'kd-collation',
   templateUrl: './collation.component.html',
@@ -40,39 +37,70 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
   sigla: string[] = [];
   units: ICollationUnit[] = [];
   titles = signal<string[]>([]);
-  rowData: IRowData[] = [];
+  rowDataReciever = signal<IRowData[]>([]);
+  rowData = computed(() => {
+    const original = this.rowDataReciever()
+    const searchResults = this.searchService.indexedResults();
+    const currentResult = this.searchService.currentResult();
+    if (!searchResults) {
+      return original;
+    }
+
+    const rowsWithResults: IRowData[] = []
+
+    original.forEach((row, index) => {
+      const unitHits = searchResults[index];
+      if (!unitHits) {
+        rowsWithResults.push(row);
+        return;
+      }
+
+      const newRow: IRowData = {};
+      this.sigla.forEach((siglum, columnIndex) => {
+        const originalCell = row[siglum];
+        const cellHits = unitHits[columnIndex];
+        if (!cellHits || !originalCell) {
+          newRow[siglum] = originalCell;
+
+          return;
+        }
+        const defs: IRangeDefinition[] = cellHits.map((hit) => ({
+          start: [hit[1], hit[2]],
+          end: [hit[3], hit[4]],
+          color: hit[0] === currentResult ? '#f0b275' : '#ffdfbf'
+        }))
+
+        newRow[siglum] = {
+          ...originalCell,
+          ranges: buildRages(defs, originalCell.tokens)
+        }
+
+      })
+
+      rowsWithResults.push(newRow);
+    })
+
+
+
+    return rowsWithResults
+  });
   cellPadding = CELL_PADDING;
-  dataSubscription?: Subscription;
+  dataSubscription = Subscription.EMPTY;
 
   isMainFullWidth$ = this.settingsService.isMainFullWidth$;
 
-  cellWidth$ = this.settingsService.cellWidth$;
-  fontSize$ = this.settingsService.fontSize$;
   showFacsimilePreview$ = this.settingsService.showFacsimilePreview$;
   showMap$ = this.settingsService.showMap$;
 
-  scrollSubject = new Subject<number>();
-  scrollIndexSubscription = Subscription.EMPTY;
-  currentScrollIndex = signal<number>(0);
+
+
   showTitlePreview = signal<number | null>(null);
 
-  @ViewChild(CollationVirtualScrollDirective)
-  viewport?: CollationVirtualScrollDirective;
+  @ViewChild(CollationContainerComponent)
+  collationContainer?: CollationContainerComponent;
 
-  highlightedRows = this.searchService.highlightedRows;
-  activeHighlightedRow = computed(() => {
-    const currentresult = this.searchService.currentResult();
-    const rows = this.searchService.highlightedRows();
-    if (rows) {
-
-      return rows[currentresult];
-    }
-    const cells = this.searchService.highlightedTokens();
-    if (cells && cells[currentresult]) {
-      return cells[currentresult][0];
-    }
-    return null;
-  });
+  currentScrollIndex = signal<number>(0);
+  currentScrollIndexSubscription = Subscription.EMPTY;
 
   cellsWithResults = computed(() => {
     const cells = new Map<number, Set<number>>();
@@ -98,32 +126,15 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     private searchService: SearchService,
     private facsimilePanelService: FacsimilePanelService,
     private searchWorkerService: SearchWorkerService,
-  ) { }
+  ) {
+
+  }
 
   ngAfterViewInit(): void {
-    if (this.viewport) {
-      this.scrollSubject
-        .pipe(
-          debounceTime(50),
-          withLatestFrom(
-            this.viewport._scrollStrategy.scrolledIndexChangeSubject$
-          ),
-          distinctUntilChanged(
-            ([goal, curr], [oldGoal, oldCurr]) =>
-              goal === oldGoal && curr === oldCurr
-          )
-        )
-        .subscribe(([goal, curr]) => {
-          this.viewport?._scrollStrategy.scrollToIndex(goal, 'auto');
-          if (Math.abs(goal - curr) > 1) {
-            this.scrollSubject.next(goal);
-          }
-        });
-      this.scrollIndexSubscription = this.viewport._scrollStrategy.scrolledIndexChange.subscribe((index) => {
-        this.currentScrollIndex.set(index);
-      })
-    }
 
+    this.currentScrollIndexSubscription = this.settingsService.currentScrollIndex.subscribe((index) => {
+      this.currentScrollIndex.set(index);
+    });
   }
 
 
@@ -137,6 +148,8 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
 
+
+
   }
 
   private loadData(data: Data) {
@@ -146,14 +159,14 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     this.units = data['pageData']['units'];
     this.titles.set(this.units.map((u) => u.title));
     this.summary = data['pageData']['summary'];
-    this.rowData = data['pageData']['segmentData'];
+    this.rowDataReciever.set(data['pageData']['segmentData']);
     this.dataService.cache = data['pageData']['segmentData'];
     this.searchService.reset();
     this.searchWorkerService.initCollation(this.summary.siglum);
   }
 
   onGoToRow(index: number) {
-    this.scrollSubject.next(index);
+    this.collationContainer?.scrollSubject.next(index);
   }
 
   getTitelPreview() {
@@ -166,8 +179,47 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.dataSubscription) {
-      this.dataSubscription.unsubscribe();
-    }
+
+    this.dataSubscription.unsubscribe();
+    this.currentScrollIndexSubscription.unsubscribe();
+
   }
+}
+
+function buildRages(rangeDefinitions: IRangeDefinition[], tokens: string[][]) {
+  const ranges: IRange[] = [];
+
+  const getRangeContiningWord = (lineIndex: number, wordIndex: number) => {
+    for (let i = 0; i < rangeDefinitions.length; i++) {
+      const range = rangeDefinitions[i];
+      if (range.start[0] <= lineIndex && range.end[0] >= lineIndex) {
+        if (range.start[0] === lineIndex && range.start[1] > wordIndex) {
+          continue;
+        }
+        if (range.end[0] === lineIndex && range.end[1] < wordIndex) {
+          continue;
+        }
+        return range;
+      }
+    }
+    return null;
+  };
+
+  tokens.forEach((line, lineIndex) => {
+    line.forEach((word, wordIndex) => {
+      const rageContiningWord = getRangeContiningWord(lineIndex, wordIndex);
+      if (rageContiningWord) {
+        ranges.push({
+          text: word,
+          color: rageContiningWord.color
+        })
+      } else {
+        ranges.push({
+          text: word,
+        })
+      }
+
+    })
+  })
+  return ranges;
 }

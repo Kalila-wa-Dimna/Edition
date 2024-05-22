@@ -16,7 +16,12 @@
     }
 
     <div class="outer-container">
-      <div
+      @if(rowData().length > 0) {
+      <kd-collation-container
+        [rowData]="rowData()"
+        [sigla]="sigla"
+        [columns]="columns"
+        [units]="units"
         [ngClass]="{
           'collation-container-full': !(
             (showFacsimilePreview$ | async) || (showMap$ | async)
@@ -26,33 +31,9 @@
         }"
         cdkVirtualScrollingElement
       >
-        <kd-collation-heading [columns]="columns"></kd-collation-heading>
-        <cdk-virtual-scroll-viewport
-          kdCollationVirtualScroll
-          [units]="units"
-          #collationBody
-          class="collation-body"
-          [ngStyle]="{
-            'width.px':
-              columns.length * ((cellWidth$ | async) ?? 75) +
-              2 * columns.length * cellPadding,
-            'font-size.px': fontSize$ | async
-          }"
-        >
-          <kd-collation-row
-            *cdkVirtualFor="let item of rowData; index as rowIndex"
-            [unit]="units[rowIndex]"
-            [sigla]="sigla"
-            [rowData]="item"
-            [searchResult]="highlightedRows()?.includes(rowIndex) || false"
-            [currentResult]="activeHighlightedRow() === rowIndex"
-            [ngStyle]="{
-        'width.px': columns.length * ((cellWidth$ | async) ?? 75) + 2 * columns.length * cellPadding,
-      }"
-          >
-          </kd-collation-row>
-        </cdk-virtual-scroll-viewport>
-      </div>
+      </kd-collation-container>
+      }
+      <!-- panels -->
       @if(showFacsimilePreview$ | async) {
       <div class="panel">
         <kd-facsimile-panel-command-bar class="facsimile-panel-command-bar">

@@ -1,7 +1,7 @@
 import { IConfig } from '@kalila-edition/common-ui';
 
 export const environment: IConfig = {
-  dataApi: 'http://localhost:3333/data/',
-  imagesEndPoint: '/assets/images/',
-  dataEndPoint: '/assets/data/',
+  imagesEndPoint: 'https://d5gomyglvpeib.cloudfront.net/srv/data/edition_data/images/',
+  dataEndPoint: 'https://d5gomyglvpeib.cloudfront.net/srv/data/edition_data/',
+  pagesEndPoint: 'https://d5gomyglvpeib.cloudfront.net/srv/page/',
 };

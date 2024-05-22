@@ -1,16 +1,19 @@
 @if (data) {
 
-  <kd-collation-cell-text [tokens]="data.tokens"  [lines]="lines()"></kd-collation-cell-text>
+<kd-collation-cell-text
+  [tokens]="data.tokens"
+  [lines]="data.ranges ?? []"
+></kd-collation-cell-text>
 
-  <div class="cell-tools">
-    @if(showFacsimilePreview$ | async) {
-    <mat-icon
-      aria-hidden="false"
-      [fontIcon]="facsimilePanelIcon()"
-      (click)="toggleFacimileInPanle()"
-    ></mat-icon>
-    }
-  </div>
+<div class="cell-tools">
+  @if(showFacsimilePreview$ | async) {
+  <mat-icon
+    aria-hidden="false"
+    [fontIcon]="facsimilePanelIcon()"
+    (click)="toggleFacimileInPanle()"
+  ></mat-icon>
+  }
+</div>
 
 } @else {
 <div class="absent">

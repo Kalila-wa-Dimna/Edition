@@ -7,6 +7,7 @@ export class SearchService {
   highlightedRows = signal<number[] | null>(null);
 
   highlightedTokens = signal<number[][] | null>(null); // [startLine, startToken, endLine, endToken] = array[row][cell]
+  indexedResults = signal<Record<number, Record<number, [number, number, number, number, number][]>> | null>(null); // [startLine, startToken, endLine, endToken] = array[row][cell]
 
   currentResult = signal<number>(0);
 
