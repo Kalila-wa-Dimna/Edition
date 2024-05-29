@@ -81,7 +81,7 @@ $light-third-background: #d0cbc2;
 $light-foreground: black;
 
 $light-background-palette: (
-  status-bar: mat.get-color-from-palette(mat.$grey-palette, 600),
+  status-bar: mat.m2-get-color-from-palette(mat.$m2-grey-palette, 600),
   app-bar: $light-background,
   background: $light-background,
   hover: darken($light-background, 4%),
@@ -89,11 +89,12 @@ $light-background-palette: (
   dialog: $light-background,
   raised-button: $light-background,
   focused-button: darken($light-background, 12%),
-  selected-button: mat.get-color-from-palette(mat.$grey-palette, 300),
-  selected-disabled-button: mat.get-color-from-palette(mat.$grey-palette, 400),
-  disabled-button: mat.get-color-from-palette(mat.$grey-palette, 400),
-  unselected-chip: mat.get-color-from-palette(mat.$grey-palette, 400),
-  disabled-list-option: mat.get-color-from-palette(mat.$grey-palette, 400),
+  selected-button: mat.m2-get-color-from-palette(mat.$m2-grey-palette, 300),
+  selected-disabled-button:
+    mat.m2-get-color-from-palette(mat.$m2-grey-palette, 400),
+  disabled-button: mat.m2-get-color-from-palette(mat.$m2-grey-palette, 400),
+  unselected-chip: mat.m2-get-color-from-palette(mat.$m2-grey-palette, 400),
+  disabled-list-option: mat.m2-get-color-from-palette(mat.$m2-grey-palette, 400),
 );
 
 $light-foreground-palette: (
@@ -110,14 +111,14 @@ $light-foreground-palette: (
   text: rgba($light-foreground, 0.87),
 );
 
-$light-theme: mat.define-light-theme(
+$light-theme: mat.m2-define-light-theme(
   (
     color: (
-      primary: mat.define-palette($mat-primary-light, 700),
-      accent: mat.define-palette($mat-accent-light, 500),
+      primary: mat.m2-define-palette($mat-primary-light, 700),
+      accent: mat.m2-define-palette($mat-accent-light, 500),
     ),
     typography:
-      mat.define-typography-config(
+      mat.m2-define-typography-config(
         $font-family: '"Source Sans 3 Variable", sans-serif',
       ),
     density: 0,

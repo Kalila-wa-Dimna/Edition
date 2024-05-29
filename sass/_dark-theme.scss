@@ -39,7 +39,7 @@ $mat-primary-dark: (
     A700: $dark-contrast-light-text,
   ),
 );
-$mat-accent-dark: mat.define-palette(mat.$blue-grey-palette, 500);
+$mat-accent-dark: mat.m2-define-palette(mat.$m2-blue-grey-palette, 500);
 
 $dark-background: #004659;
 $dark-background-alt: darken($dark-background, 3%);
@@ -76,14 +76,14 @@ $dark-foreground-palette: (
   text: rgba($dark-foreground, 0.87),
 );
 
-$dark-theme: mat.define-dark-theme(
+$dark-theme: mat.m2-define-dark-theme(
   (
     color: (
-      primary: mat.define-palette($mat-primary-dark, 700),
+      primary: mat.m2-define-palette($mat-primary-dark, 700),
       accent: $mat-accent-dark,
     ),
     typography:
-      mat.define-typography-config(
+      mat.m2-define-typography-config(
         $font-family: '"Source Sans 3 Variable", sans-serif',
       ),
     density: 0,

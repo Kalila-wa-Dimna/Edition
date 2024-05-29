@@ -12,7 +12,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { FooterModule } from './footer.module';
 import { CollationsPanelComponent } from './layout/nav-panel/collations-panel/collations-panel.component';
 import { ManuscriptsPanelComponent } from './layout/nav-panel/manuscripts-panel/manuscripts-panel.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -20,32 +20,25 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import {EnglishCollationPanelComponent}from './layout/nav-panel/english-collation-panel/english-collation-panel.component';
 
-@NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSidenavModule,
-    FooterModule,
-    MatExpansionModule,
-    MatDividerModule,
-    HttpClientModule,
-    MatCardModule,
-    MatMenuModule,
-    MatTabsModule,
-    ReactiveFormsModule,
-    MatInputModule,
-  ],
-  declarations: [
-    LayoutComponent,
-    NavPanelComponent,
-    CollationsPanelComponent,
-    ManuscriptsPanelComponent,
-    EnglishCollationPanelComponent
-  ],
-  exports: [LayoutComponent],
-  providers: [],
-})
+@NgModule({ declarations: [
+        LayoutComponent,
+        NavPanelComponent,
+        CollationsPanelComponent,
+        ManuscriptsPanelComponent,
+        EnglishCollationPanelComponent
+    ],
+    exports: [LayoutComponent], imports: [CommonModule,
+        RouterModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatSidenavModule,
+        FooterModule,
+        MatExpansionModule,
+        MatDividerModule,
+        MatCardModule,
+        MatMenuModule,
+        MatTabsModule,
+        ReactiveFormsModule,
+        MatInputModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class LayoutModule {}
