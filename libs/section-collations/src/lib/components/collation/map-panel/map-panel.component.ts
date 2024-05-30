@@ -271,7 +271,7 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
         for (let column = 0; column < numberOfColumns; column++) {
           if (data[column][row] !== -1) {
             const distanceFromNumbers = numberLineOffset + (column * boxWidth);
-            const isSearchResult = this.hasSearchResult(column, row);
+            const isSearchResult = this.hasSearchResult(row, column);
             const isOutOfOrder = data[column][row] !== row;
             const fill = isSearchResult ? colors.boxWithSearchResult : isOutOfOrder ? colors.altBoxColor : colors.boxColor;
             const box = new Konva.Rect({
