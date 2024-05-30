@@ -4,29 +4,24 @@ a {
   color: inherit;
 }
 
-
 :root {
   --manuscriptEndPoint: initial;
 }
 
 :host-context(.light-theme) {
- .box{
-   background-color:#edece8;
- }
+  .box {
+    background-color: #edece8;
+  }
 
-  .box1{
-    background-color:#edece8;
+  .box1 {
+    background-color: #edece8;
   }
   .logo-img {
     &[src] {
       content: url('../assets/icons/KD-Edition-Logo.png') !important;
     }
   }
-
 }
-
-
-
 
 :host-context(.dark-theme) {
   .box {
@@ -67,11 +62,11 @@ a {
   .box1 {
     width: 85%;
     height: auto;
-    display: list-item!important; /* or whatever you prefer for smaller screens */
+    display: list-item !important; /* or whatever you prefer for smaller screens */
   }
-  .kwd{
+  .kwd {
     width: 100%; /* Adjust width as needed */
-    height:auto;
+    height: auto;
   }
   .container-boxes {
     width: 85%;
@@ -80,12 +75,12 @@ a {
 
   .box {
     width: 100%; /* Adjust as necessary */
-    display: list-item!important;    /* Optional: Add some spacing between boxes on smaller screens */
+    display: list-item !important; /* Optional: Add some spacing between boxes on smaller screens */
   }
 
-  .box img{
-    height: 200px!important;
-    width: auto!important;
+  .box img {
+    height: 200px !important;
+    width: auto !important;
   }
 
   .box .content {
@@ -111,7 +106,7 @@ a {
 .box .content {
   flex-grow: 1; /* Allow content to grow and take available space */
   text-align: left;
-  width:49%
+  width: 49%;
 }
 
 /* Style for text inside the box */
@@ -119,12 +114,11 @@ a {
   font-size: 14px;
   margin-bottom: 10px;
   padding-left: 10px;
-
 }
 
 /* Style for the button inside the box */
 .box button {
-  padding: 10px 20px!important;
+  padding: 10px 20px !important;
   font-size: 16px;
   margin: 20px;
   background-color: #4c7d8a;
@@ -137,18 +131,16 @@ a {
 /* Style for the image inside the box */
 .box img {
   width: 300px; /* Adjust width as needed */
-  height:200px;
-  opacity:7;
+  height: 200px;
+  opacity: 7;
 }
-
-
 
 .box1 {
   /* Use flex container */
   align-items: center; /* Center items vertically */
   margin: 10px;
   padding: 20px;
-  width:85%;
+  width: 85%;
   display: flex;
   border-radius: 8px;
   overflow: hidden;
@@ -156,10 +148,8 @@ a {
 
 /* Style for the content (text and button) inside the box */
 .box1 .content1 {
- /* Allow content to grow and take available space */
+  /* Allow content to grow and take available space */
   text-align: left;
-
-
 }
 
 /* Style for text inside the box */
@@ -167,14 +157,13 @@ a {
   font-size: 16px;
   margin-bottom: 10px;
   padding: 20px;
-
 }
 
 /* Style for the button inside the box */
 .box1 button {
-  padding: 10px 20px!important;
+  padding: 10px 20px !important;
   font-size: 16px;
-margin-left: 20px;
+  margin-left: 20px;
   background-color: #4c7d8a;
   color: white;
   border: none;
@@ -185,23 +174,24 @@ margin-left: 20px;
 /* Style for the image inside the box */
 .box1.kwd {
   width: 70%; /* Adjust width as needed */
-  height:auto;
-
-
+  height: auto;
 }
 /*
 100: #e5ecee,
 200: #ccdade,*/
 
-.logo-img{
+.logo-img {
   margin-top: 5px;
-  width: 40%!important;
+  width: 40% !important;
   height: auto;
-  margin-left: 20px/* Adjust width as needed */
+  margin-left: 20px; /* Adjust width as needed */
 }
 
-.box-title{
+.box-title {
   font-size: 18px;
   color: #4c7d8a;
+}
 
+.version-number {
+  font-size: 12px;
 }
