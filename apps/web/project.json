@@ -176,6 +176,20 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "build-ssr": {
+      "executor": "@angular-devkit/build-angular:prerender",
+      "configurations": {
+        "development": {
+          "browserTarget": "web:build:development",
+          "serverTarget": "web:server:development"
+        },
+        "production": {
+          "browserTarget": "web:build:production",
+          "serverTarget": "web:server:production"
+        }
+      },
+      "defaultConfiguration": "production"
     }
   }
 }

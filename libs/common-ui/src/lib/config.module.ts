@@ -5,6 +5,7 @@ export interface IConfig {
   imagesEndPoint: string;
   dataEndPoint: string;
   pagesEndPoint: string;
+  version: string;
 }
 
 export const CONFIG_TOKEN = new InjectionToken<IConfig>('Config');

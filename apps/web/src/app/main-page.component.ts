@@ -1,11 +1,11 @@
-import {Component, Inject, NO_ERRORS_SCHEMA} from '@angular/core';
-import {CONFIG_TOKEN, IConfig} from "@kalila-edition/common-ui";
+import { Component, Inject } from '@angular/core';
+import { CONFIG_TOKEN, IConfig } from "@kalila-edition/common-ui";
 import { Router } from '@angular/router';
 @Component({
   selector: 'kd-main-page',
   template: `
     <kd-layout  [dataManuscriptEndPoint]="manuscriptEndPoint">
-      <span title>Kalīla wa-Dimna Edition</span>
+      <span title>Kalīla wa-Dimna Edition <span class="version-number">(v.{{version}})</span></span>
       <main pageContent>
       <div class="box1">
         <img class="kwd"  src="{{ manuscriptEndPoint + 'about/KWD.jpg' }}" alt="Box 2 Image">
@@ -132,6 +132,7 @@ import { Router } from '@angular/router';
 export class MainPageComponent {
 
   manuscriptEndPoint = this.config.imagesEndPoint + 'manuscripts/';
+  version = this.config.version;
 
   constructor(
     @Inject(CONFIG_TOKEN) private config: IConfig,
