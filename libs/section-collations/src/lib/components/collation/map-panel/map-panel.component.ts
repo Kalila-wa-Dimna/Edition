@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, Input, AfterViewInit, ViewChild, OnDestroy, HostListener, Output, signal, Inject, OnInit } from '@angular/core';
@@ -63,8 +64,12 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
   rerenderSubscription = Subscription.EMPTY;
 
   rowHighlighter?: IChangeableNode;
+  rowHighlighterNumber?: IChangeableNode;
 
-  claculateRowHighlighterPosition = (index: number) => 100 * index
+  claculateRowHighlighterPosition = (index: number) => {
+    // console.log('using dummy');
+    return 100 * index
+  }
 
   @HostListener('window:resize')
   onResize() {
@@ -99,6 +104,15 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
   @Input() set currentIndex(value: number) {
     if (this.rowHighlighter) {
       this.rowHighlighter.setAttr('x', this.claculateRowHighlighterPosition(value));
+
+    }
+    if (this.rowHighlighterNumber) {
+      const display = value + 1;
+      if (display % 5 === 0) {
+        this.rowHighlighterNumber.setAttr('text', "");
+      } else {
+        this.rowHighlighterNumber.setAttr('text', display.toString());
+      }
     }
   }
 
@@ -158,171 +172,245 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
     const Konva = (await import('konva')).default;
     const containerWidth = this.container.nativeElement.offsetWidth;
     const containerHeight = this.container.nativeElement.offsetHeight;
+    // const mode = 'bottom';
 
-    const heightOffset = 10;
-    const widthOffset = 15;
+    const numberLineOffset = 15;
+    const columnLabelOffset = 15;
     const labelFontSize = 10;
-    const labelPositioningCorrection = labelFontSize / 2
+    const border = 1;
+    // function definitions [TYPES ARE NOT IMPORTABLE, SO THE FUNCTIONS MUST STAY HERE]
+
+    const numberOfColumns = data.length;
+    const numberOfRows = data[0].length;
+    const boxWidth = (containerHeight - numberLineOffset) / numberOfColumns;
+    const boxHeight = (containerWidth - columnLabelOffset) / numberOfRows;
+
+    function createGridLayer() {
+      const layer = new Konva.Layer({ listening: false });
+
+      const numberOfColumnLines = data.length;
+      const columLineStep = boxWidth;
+
+
+      for (let i = 0; i < numberOfColumnLines; i++) {
+        const columnLineDistanceFromNumberLine = (columLineStep * i) + (boxWidth / 2);
+
+        const columnLine = new Konva.Line({
+          points: [columnLabelOffset - 5, numberLineOffset + columnLineDistanceFromNumberLine, containerWidth, numberLineOffset + columnLineDistanceFromNumberLine],
+          stroke: colors.grid,
+          strokeWidth: 1,
+
+        });
+
+        const columnHeading = new Konva.Text({
+          x: 2,
+          y: (numberLineOffset + columnLineDistanceFromNumberLine) - labelFontSize / 2,
+          text: LETTERS[i],
+          fontSize: labelFontSize,
+          fontFamily: 'Calibri',
+          fill: colors.label,
+        });
+
+        layer.add(columnLine);
+        layer.add(columnHeading);
+      }
+
+      const rowLineStep = 5 * boxHeight;
+
+      let count = 1;
+      for (let i = 0; i <= numberOfRows; i++) {
+        const display = i + 1;
+
+        if (display % 5 === 0) {
+          const rowLineDistanceFromNumberLine = (rowLineStep * count) - (boxHeight / 2);
+          count++;
+          const rowLine = new Konva.Line({
+            points: [columnLabelOffset + rowLineDistanceFromNumberLine, numberLineOffset - 5, columnLabelOffset + rowLineDistanceFromNumberLine, containerHeight],
+            stroke: colors.grid,
+            strokeWidth: 1,
+          });
+
+          const rowNumber = new Konva.Text({
+            x: columnLabelOffset + rowLineDistanceFromNumberLine - labelFontSize / 2,
+            y: 2,
+            text: display.toString(),
+            fontSize: labelFontSize,
+            fontFamily: 'Calibri',
+            fill: colors.label,
+          });
+
+          layer.add(rowLine);
+          layer.add(rowNumber);
+        }
+
+
+      }
+
+
+      return layer;
+    }
+
+    const createBoxes = () => {
+      const layer = new Konva.Layer({ listening: false });
+
+      for (let row = 0; row < numberOfRows; row++) {
+        const distanceFromLables = columnLabelOffset + (row * boxHeight);
+        if (data[0][row] === -3) {
+          const box = new Konva.Rect({
+            x: distanceFromLables,
+            y: numberLineOffset,
+            width: boxHeight,
+            height: containerHeight - numberLineOffset,
+            fill: colors.boxColor,
+            opacity: 0.9,
+          });
+          layer.add(box);
+          continue;
+        }
+
+        for (let column = 0; column < numberOfColumns; column++) {
+          if (data[column][row] !== -1) {
+            const distanceFromNumbers = numberLineOffset + (column * boxWidth);
+            const isSearchResult = this.hasSearchResult(column, row);
+            const isOutOfOrder = data[column][row] !== row;
+            const fill = isSearchResult ? colors.boxWithSearchResult : isOutOfOrder ? colors.altBoxColor : colors.boxColor;
+            const box = new Konva.Rect({
+              x: distanceFromLables,
+              y: distanceFromNumbers,
+              width: boxHeight,
+              height: boxWidth,
+              fill,
+              opacity: isSearchResult ? 0.6 : 0.5,
+              stroke: colors.boxBorderColor,
+              strokeWidth: border,
+            });
+            layer.add(box);
+          }
+        }
+      }
+
+
+
+      return layer;
+    }
+
+
+    const createHighlighters = () => {
+      const layer = new Konva.Layer();
+      const rowHighlighter = new Konva.Group({
+        x: columnLabelOffset,
+        y: 0,
+      });
+      const rowHighlighterRect = new Konva.Rect({
+        x: 0,
+        y: 0,
+        width: boxHeight,
+        height: containerHeight,
+        opacity: 0.8,
+        stroke: colors.rowHighlighterFill,
+        strokeWidth: border,
+      });
+
+      rowHighlighter.add(rowHighlighterRect);
+
+
+      this.claculateRowHighlighterPosition = (index: number) => columnLabelOffset + index * boxHeight;
+
+
+
+      layer.add(rowHighlighter);
+      this.rowHighlighter = rowHighlighter;
+      rowHighlighter.moveToTop();
+
+      const columnHoverHighlighters: any[] = [];
+
+      for (let column = 0; column < numberOfColumns; column++) {
+        const distanceFromNumbers = numberLineOffset + (column * boxWidth);
+
+        const columnHoverHighlighter = new Konva.Rect({
+          x: 0,
+          y: distanceFromNumbers,
+          width: containerWidth,
+          height: boxWidth,
+          fill: colors.rowHighlighterFill,
+          opacity: 0.0,
+        });
+
+        columnHoverHighlighters.push(columnHoverHighlighter);
+
+
+        layer.add(columnHoverHighlighter);
+      }
+
+
+      for (let row = 0; row < numberOfRows; row++) {
+        const distanceFromLables = columnLabelOffset + (row * boxHeight);
+
+        const rowHoverHighlighter = new Konva.Rect({
+          x: distanceFromLables,
+          y: 0,
+          width: boxHeight,
+          height: containerHeight,
+          fill: colors.rowHighlighterFill,
+          opacity: 0.0,
+        });
+
+        layer.add(rowHoverHighlighter);
+
+        for (let column = 0; column < numberOfColumns; column++) {
+          if (data[column][row] !== -1) {
+            const distanceFromNumbers = numberLineOffset + (column * boxWidth);
+            const boxEventListener = new Konva.Rect({
+              x: distanceFromLables,
+              y: distanceFromNumbers,
+              width: boxHeight,
+              height: boxWidth,
+              opacity: 0,
+
+            });
+
+            boxEventListener.on('mouseenter', () => {
+              stage.container().style.cursor = 'pointer';
+              rowHoverHighlighter.setAttr('opacity', 0.5);
+              columnHoverHighlighters[column].setAttr('opacity', 0.5);
+              this.rowHovered.emit(row);
+            });
+
+            boxEventListener.on('mouseleave', () => {
+              stage.container().style.cursor = 'default';
+              rowHoverHighlighter.setAttr('opacity', 0.0);
+              columnHoverHighlighters[column].setAttr('opacity', 0.0);
+              this.rowHovered.emit(null);
+            });
+
+            boxEventListener.on('click', () => {
+              this.rowClicked.emit(row);
+            });
+
+            layer.add(boxEventListener);
+          }
+        }
+
+      }
+
+
+
+
+      return layer;
+    }
+
+
+
     const stage = new Konva.Stage({
       container: this.container.nativeElement,
       width: containerWidth,
       height: containerHeight,
     });
 
-    // OUTER LABELS
-    const lineSpacing = (containerHeight - heightOffset) / (data.length);
-    const baseLabelsLayer = new Konva.Layer({ listening: false });
+    stage.add(createGridLayer());
+    stage.add(createBoxes());
+    stage.add(createHighlighters());
 
-    const distance = heightOffset + lineSpacing / 2;
-    data.forEach((_, index) => {
-      const yPos = distance + index * lineSpacing;
-
-
-      const text = new Konva.Text({
-        x: 2,
-        y: yPos - labelPositioningCorrection,
-        text: LETTERS[index],
-        fontSize: labelFontSize,
-        fontFamily: 'Calibri',
-        fill: colors.label,
-      });
-      baseLabelsLayer.add(text);
-      const line = new Konva.Line({
-        points: [0, yPos, containerWidth, yPos],
-        stroke: colors.grid,
-        strokeWidth: 1,
-      });
-      baseLabelsLayer.add(line);
-    });
-
-    const maxNumber = data[0].length;
-    const multiplesOfFive = Math.floor(maxNumber / 5);
-    const boxWidth = (containerWidth - widthOffset) / data[0].length;
-
-    for (let i = 1; i < multiplesOfFive; i++) {
-      const xPos = i * (5 * boxWidth) - boxWidth / 2 - labelPositioningCorrection;
-      const numberText = new Konva.Text({
-        x: xPos - labelPositioningCorrection,
-        y: 0,
-        text: (i * 5).toString(),
-        fontSize: labelFontSize,
-        fontFamily: 'Calibri',
-        fill: colors.label,
-      });
-      const line = new Konva.Line({
-        points: [xPos, 0, xPos, containerHeight],
-        stroke: colors.grid,
-        strokeWidth: 1,
-      });
-      baseLabelsLayer.add(line);
-      baseLabelsLayer.add(numberText);
-    }
-
-
-
-    // Unit boxes, row highlighter, event layer
-    const boxHeight = lineSpacing;
-
-    const border = 2;
-    const unitBoxesLayer = new Konva.Layer({ listening: false });
-    const rowHighlighter = new Konva.Group({
-      x: widthOffset + boxWidth / 2,
-      y: 0,
-    });
-    const rowHighlighterRect = new Konva.Rect({
-      x: 0,
-      y: 0,
-      width: boxWidth,
-      height: containerHeight,
-      fill: colors.rowHighlighterFill,
-      opacity: 0.9,
-      stroke: colors.boxHighlighterBorder,
-      strokeWidth: border,
-    });
-    rowHighlighter.add(rowHighlighterRect);
-    this.claculateRowHighlighterPosition = (index: number) => widthOffset + boxWidth / 2 + index * boxWidth;
-    data.forEach((_, index) => {
-
-
-      const yPos = distance + index * lineSpacing;
-
-      const text = new Konva.Text({
-        x: boxWidth / 2 - labelPositioningCorrection,
-        y: yPos - labelPositioningCorrection,
-        text: LETTERS[index],
-        fontSize: labelFontSize,
-        fontFamily: 'Calibri',
-        fill: colors.highlighterText,
-      });
-      rowHighlighter.add(text);
-    });
-    baseLabelsLayer.add(rowHighlighter);
-    const eventsLayer = new Konva.Layer();
-    for (let column = 0; column < data[0].length; column++) {
-      const xPos = widthOffset + column * boxWidth - boxWidth / 2;
-      if (data[0][column] === -2) { // divider
-        const box = new Konva.Rect({
-          x: xPos,
-          y: heightOffset,
-          width: boxWidth,
-          height: containerHeight - heightOffset,
-          fill: colors.boxColor,
-          opacity: 1,
-        });
-        unitBoxesLayer.add(box);
-      }
-      for (let row = 0; row < data.length; row++) {
-        if (data[row][column] !== -1) {
-          const isSearchResult = this.hasSearchResult(column, row);
-          const isOutOfOrder = data[row][column] !== column;
-          const fill = isSearchResult ? colors.boxWithSearchResult : isOutOfOrder ? colors.altBoxColor : colors.boxColor;
-          const box = new Konva.Rect({
-            x: xPos,
-            y: distance + row * boxHeight - boxHeight / 2,
-            width: boxWidth,
-            height: boxHeight,
-            fill,
-            opacity: isSearchResult ? 0.6 : 0.5,
-            stroke: colors.boxBorderColor,
-            strokeWidth: border,
-          });
-          unitBoxesLayer.add(box);
-        }
-      }
-      const rowEventListner = new Konva.Rect({
-        x: xPos,
-        y: 0,
-        width: boxWidth,
-        height: containerHeight,
-        fill: colors.rowHighlighterFill,
-        opacity: 0.0,
-      });
-
-      rowEventListner.on('mouseenter', () => {
-        stage.container().style.cursor = 'pointer';
-        rowEventListner.setAttr('opacity', 0.5);
-        this.rowHovered.emit(column);
-      });
-
-      rowEventListner.on('mouseleave', () => {
-        stage.container().style.cursor = 'default';
-        rowEventListner.setAttr('opacity', 0.0);
-        this.rowHovered.emit(null);
-      });
-
-      rowEventListner.on('click', () => {
-        this.rowClicked.emit(column);
-      });
-
-      eventsLayer.add(rowEventListner);
-    }
-    stage.add(baseLabelsLayer);
-    stage.add(unitBoxesLayer);
-    stage.add(eventsLayer);
-
-    this.canvas = stage;
-    this.rowHighlighter = rowHighlighter;
-    rowHighlighter.moveToTop();
     this.loading.set(false);
   }
 

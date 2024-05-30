@@ -24,7 +24,7 @@ export class CellSizingService {
     }
     const segment = this.dataService.cache[unitIdx]?.[unit.longestSegment];
 
-    if (unit.divider) {
+    if (unit.isDivider) {
       return this.getHeadingHeight(unit.title);
     }
 
