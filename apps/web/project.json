@@ -56,6 +56,12 @@
               "maximumError": "20kb"
             }
           ],
+          "fileReplacements": [
+            {
+              "replace": "apps/web/src/app/environment.ts",
+              "with": "apps/web/src/app/environment.prod.ts"
+            }
+          ],
           "outputHashing": "all"
         },
         "development": {
@@ -125,7 +131,13 @@
           "tsConfig": "apps/web/tsconfig.server.json",
           "customWebpackConfig": {
             "path": "apps/web/server.webpack.config.js"
-          }
+          },
+          "fileReplacements": [
+            {
+              "replace": "apps/web/src/app/environment.ts",
+              "with": "apps/web/src/app/environment.prod.ts"
+            }
+          ]
         },
         "development": {
           "outputPath": "dist/apps/web/server",
@@ -179,6 +191,7 @@
     },
     "build-ssr": {
       "executor": "@angular-devkit/build-angular:prerender",
+
       "configurations": {
         "development": {
           "browserTarget": "web:build:development",
