@@ -56,6 +56,12 @@
               "maximumError": "20kb"
             }
           ],
+          "fileReplacements": [
+            {
+              "replace": "apps/web/src/app/environment.ts",
+              "with": "apps/web/src/app/environment.prod.ts"
+            }
+          ],
           "outputHashing": "all"
         },
         "development": {
@@ -130,10 +136,6 @@
             {
               "replace": "apps/web/src/app/environment.ts",
               "with": "apps/web/src/app/environment.prod.ts"
-            },
-            {
-              "replace": "apps/web/src/app/search.worker.ts",
-              "with": "apps/web/src/app/search.worker.prod.ts"
             }
           ]
         },
@@ -189,6 +191,7 @@
     },
     "build-ssr": {
       "executor": "@angular-devkit/build-angular:prerender",
+
       "configurations": {
         "development": {
           "browserTarget": "web:build:development",
