@@ -1,5 +1,15 @@
 <kd-layout>
-  <span title>{{ summary.display }}</span>
+  <div title>
+    <span>{{ summary.display }}</span>
+    @if(version) {
+    <span
+      class="version-number"
+      [matTooltip]="versionDetails"
+      matTooltipPosition="below"
+      >&nbsp;(updated: {{ version | date : 'dd.MM.yyyy, HH:mm' }})</span
+    >
+    }
+  </div>
 
   <main
     pageContent

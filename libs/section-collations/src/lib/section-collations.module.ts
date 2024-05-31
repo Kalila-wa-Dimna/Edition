@@ -37,6 +37,7 @@ import { FacsimilePanelCommandBarComponent } from './components/collation/facsim
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MapPanelComponent } from './components/collation/map-panel/map-panel.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 import {
   CollationCellTextComponent
 } from './components/collation/collation-row/collation-cell/collation-cell-text.component';
