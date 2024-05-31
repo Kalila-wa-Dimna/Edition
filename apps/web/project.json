@@ -125,7 +125,17 @@
           "tsConfig": "apps/web/tsconfig.server.json",
           "customWebpackConfig": {
             "path": "apps/web/server.webpack.config.js"
-          }
+          },
+          "fileReplacements": [
+            {
+              "replace": "apps/web/src/app/environment.ts",
+              "with": "apps/web/src/app/environment.prod.ts"
+            },
+            {
+              "replace": "apps/web/src/app/search.worker.ts",
+              "with": "apps/web/src/app/search.worker.prod.ts"
+            }
+          ]
         },
         "development": {
           "outputPath": "dist/apps/web/server",

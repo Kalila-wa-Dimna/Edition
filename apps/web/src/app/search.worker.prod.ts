@@ -1,7 +1,7 @@
 /// <reference lib="webworker" />
 
 const LEMMATIZATION_ENDPOINT = "https://camel.kalila-and-dimna.de/"
-const DATA_ENDPOINT = "https://d5gomyglvpeib.cloudfront.net/srv/data/edition_data/collations" // dev
+const DATA_ENDPOINT = "https://d2u9osbhl165ia.cloudfront.net/srv/data/edition_data/collations" // prod
 
 
 let unitLemmas: Record<string, Record<string, string[][]>> | undefined = undefined;
