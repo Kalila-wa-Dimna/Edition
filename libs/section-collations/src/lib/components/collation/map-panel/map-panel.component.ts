@@ -11,7 +11,7 @@ const DARK_COLORS = {
   label: 'white',
   grid: 'gray',
   boxColor: '#edece8',
-  altBoxColor: 'black',
+  altBoxColor: '#000000',
   boxBorderColor: '#004659',
   rowHighlighterFill: '#ccff00',
   boxHighlighterBorder: '#ccff00',
@@ -19,14 +19,14 @@ const DARK_COLORS = {
   boxWithSearchResult: '#f0b275',
 }
 const LIGHT_COLORS = {
-  label: 'black',
+  label: '#000000',
   grid: 'gray',
   boxColor: '#004659',
-  altBoxColor: 'black',
+  altBoxColor: '#000000',
   boxBorderColor: 'white',
   rowHighlighterFill: '#ccff00',
   boxHighlighterBorder: '#ccff00',
-  highlighterText: 'black',
+  highlighterText: '#000000',
   boxWithSearchResult: '#f0b275',
 }
 
@@ -274,12 +274,14 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
             const isSearchResult = this.hasSearchResult(row, column);
             const isOutOfOrder = data[column][row] !== row;
             const fill = isSearchResult ? colors.boxWithSearchResult : isOutOfOrder ? colors.altBoxColor : colors.boxColor;
+
             const box = new Konva.Rect({
               x: distanceFromLables,
               y: distanceFromNumbers,
               width: boxHeight,
               height: boxWidth,
               fill,
+              fillEnabled: true,
               opacity: isSearchResult ? 0.6 : 0.5,
               stroke: colors.boxBorderColor,
               strokeWidth: border,

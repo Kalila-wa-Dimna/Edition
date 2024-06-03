@@ -4,5 +4,5 @@ export const environment: IConfig = {
   imagesEndPoint: 'https://d5gomyglvpeib.cloudfront.net/srv/data/edition_data/images/',
   dataEndPoint: 'https://d5gomyglvpeib.cloudfront.net/srv/data/edition_data/',
   pagesEndPoint: 'https://d5gomyglvpeib.cloudfront.net/srv/page/',
-  version: '0.5.1',
+  version: '0.5.3',
 };

@@ -194,7 +194,6 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private loadData(data: Data) {
-
     this.versionSummary = data['pageData']['versionSummary'];
     this.columns = data['pageData']['columns'];
     this.facsimilePanelService.columns = this.columns;
