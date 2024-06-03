@@ -42,6 +42,7 @@ import {
   CollationCellTextComponent
 } from './components/collation/collation-row/collation-cell/collation-cell-text.component';
 import { CollationContainerComponent } from './components/collation/collation-container/collation-container.component';
+import { AlignmentService } from './services/alignment.service';
 
 
 
@@ -91,6 +92,7 @@ import { CollationContainerComponent } from './components/collation/collation-co
     CellSizingService,
     SearchService,
     FacsimilePanelService,
+    AlignmentService
   ],
 })
 export class SectionCollationsModule { }
