@@ -3,7 +3,7 @@ console.log('facsimile worker init');
 const pageCache: Record<string, Record<number, string>> = {};
 
 const IMAGE_ROOT = "https://d5gomyglvpeib.cloudfront.net/srv/page/";
-const PADDING = 10;
+const PADDING = 5.5;
 addEventListener('message', async ({ data }) => {
 
 
