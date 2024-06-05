@@ -43,6 +43,7 @@ import {
 } from './components/collation/collation-row/collation-cell/collation-cell-text.component';
 import { CollationContainerComponent } from './components/collation/collation-container/collation-container.component';
 import { AlignmentService } from './services/alignment.service';
+import { CollationCellTextPoetryComponent } from './components/collation/collation-row/collation-cell/collation-cell-text-poetry.component';
 
 
 
@@ -85,6 +86,7 @@ import { AlignmentService } from './services/alignment.service';
     MapPanelComponent,
     CollationCellTextComponent,
     CollationContainerComponent,
+    CollationCellTextPoetryComponent
   ],
   providers: [
     CollationDataService,

@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { ICollationColumn } from '../models/collation-page-data.model';
 import { FacsimileWorkerService, ICollationFacsimileHighlight } from '@kalila-edition/common-ui';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class FacsimilePanelService {
@@ -20,6 +21,10 @@ export class FacsimilePanelService {
   }
 
   stageDataUrl = signal<string | undefined>(undefined)
+  numberOfLines = signal<number>(0);
+  cellInformation = signal<string | undefined>(undefined);
+
+  currentCellLine = new BehaviorSubject<number>(0);
 
   constructor(private workerService: FacsimileWorkerService) { }
 
@@ -64,6 +69,9 @@ export class FacsimilePanelService {
       })
     })
 
+    this.numberOfLines.set(highlights.length);
+    this.cellInformation.set(`${siglum} - ${unitDisplay}`);
+
     this.unitsWithVisibleFacsimile.set(`${unitIndex}-${siglum}`, highlights);
   }
 
@@ -80,11 +88,14 @@ export class FacsimilePanelService {
       this.workerService.removeRegion(`${siglum}_${highlight.page}_${highlight.line}`);
     })
 
+    this.numberOfLines.set(0);
+    this.cellInformation.set(undefined);
+
     this.unitsWithVisibleFacsimile.delete(`${unitIndex}-${siglum}`);
   }
 
   canAddUnit() {
-    return this.unitsWithVisibleFacsimile.size <= 20;
+    return this.unitsWithVisibleFacsimile.size < 1;
   }
   removeAllUnits() {
     this.unitsWithVisibleFacsimile.forEach((highlights) => {
@@ -92,6 +103,12 @@ export class FacsimilePanelService {
         this.workerService.removeRegion(`${highlight.siglum}_${highlight.page}_${highlight.line}`);
       })
     })
+
+    this.numberOfLines.set(0);
+    this.cellInformation.set(undefined);
     this.unitsWithVisibleFacsimile.clear();
   }
+
+
+
 }
