@@ -1,5 +1,10 @@
 <kd-layout>
-  <span title>{{manuscriptID+ "/" + chapter  }}</span>
+  <div title>
+    <span>{{ manuscriptID }}/{{ chapter }}/{{ pageNumber }}</span>
+    <span class="version-number"
+      >&nbsp;(updated: {{ version | date : 'dd.MM.yyyy, HH:mm' }})</span
+    >
+  </div>
 
   <main class="full-width-main" pageContent>
     <router-outlet name="command"></router-outlet>
@@ -8,5 +13,4 @@
       <router-outlet name="facsimile"></router-outlet>
     </div>
   </main>
-
 </kd-layout>
