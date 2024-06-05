@@ -10,7 +10,7 @@ import { IRange } from './models';
             <span class="order-in-ms">|{{ orderInMs }}|</span>
           }
           @for (lineTokens of tokens; track $index) {
-            <span>
+            <span [class.highlighted-line]="highlightLine === $index">
               {{ lineTokens.join(' ') }}
             </span>
           }
@@ -45,6 +45,10 @@ import { IRange } from './models';
         font-weight: bold;
         text-decoration: underline;
       }
+      .highlighted-line {
+        background-color: #ffdfbf;
+        color: black;
+      }
 
     `
   ]
@@ -54,4 +58,14 @@ export class CollationCellTextComponent {
   @Input() tokens: string[][] = []
   @Input() lines: IRange[] = []
   @Input() orderInMs: number | undefined = undefined
+  private _highlightLine: number | undefined = undefined;
+
+  @Input()
+  get highlightLine(): number | undefined {
+    return this._highlightLine;
+  }
+
+  set highlightLine(value: number | undefined) {
+    this._highlightLine = value;
+  }
 }

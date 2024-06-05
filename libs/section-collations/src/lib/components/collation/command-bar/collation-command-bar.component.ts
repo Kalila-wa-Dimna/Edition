@@ -49,7 +49,6 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
       this.sub1 = this.searchControl.valueChanges
         .pipe(debounceTime(100))
         .subscribe((value) => {
-
           this.searchService.reset();
           const index =
             parseIfNumber(value ?? '') ?? parseIfIndoArabicNumber(value ?? '');
@@ -67,8 +66,12 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
               }
             } else if (arabicLettersRegex.test(value)) {
               this.searchWorkerService.search(value, this.collationName);
+            } else {
+              this.searchService.reset();
             }
 
+          } else {
+            this.searchService.reset();
           }
 
         });

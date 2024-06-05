@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { FacsimileWorkerService, ICollationFacsimileHighlight } from '@kalila-edition/common-ui';
-import { BehaviorSubject, Subscription, debounceTime, mergeMap, of } from 'rxjs';
+import { BehaviorSubject, Subscription, combineLatest, debounceTime, mergeMap, of } from 'rxjs';
 import createImageObjects from './create-image-objects';
 import { FacsimilePanelService } from '../../../services/facsimile-panel.service';
 
@@ -26,6 +26,7 @@ interface IImageRenderingInfo {
   info: ICollationFacsimileHighlight;
 }
 
+type LineObject = { key: string; imageObj: HTMLImageElement; info: ICollationFacsimileHighlight }
 const GRID_SIZE = 20;
 
 // add buttons to remove lines
@@ -52,14 +53,15 @@ export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
 
   async ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.sub = this.rerenderStream
-        .pipe(mergeMap(() => this.facsimileWorkerService.currentLines), debounceTime(100), mergeMap((lines) => lines.size !== 0 ? createImageObjects(lines) : of([])))
-        .subscribe(async (lines) => {
+      this.sub = combineLatest([this.facsimilePanleService.currentCellLine, this.rerenderStream])
+        .pipe(mergeMap(([currentCellLine]) => combineLatest([this.facsimileWorkerService.currentLines, of(currentCellLine)])), debounceTime(100), mergeMap(([lines, currentCellLine]) => lines.size !== 0 ? combineLatest([createImageObjects(lines), of(currentCellLine)]) : of([[], currentCellLine])))
+        .subscribe(async (data) => {
           this.facsimilePanleService.stageDataUrl.set(undefined);
+          const [lines, currentCellLine] = data as [LineObject[], number];
           if (lines.length === 0) {
             await this.buildEmptyPanel();
           } else {
-            await this.buildPanelWithImages(lines);
+            await this.buildPanelWithImages(lines, currentCellLine);
           }
         });
     }
@@ -101,12 +103,13 @@ export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
     stage.add(gridLayer);
   }
 
-  async buildPanelWithImages(lines: { key: string; imageObj: HTMLImageElement; info: ICollationFacsimileHighlight }[]) {
+  async buildPanelWithImages(lines: LineObject[], currentCellLine: number) {
     const Konva = (await import('konva')).default;
     const containerWidth = this.container.nativeElement.offsetWidth;
     const containerHeight = this.container.nativeElement.offsetHeight;
+    const visible = lines[currentCellLine]
 
-    const { images, width: adjustedWidth } = this.buildRenderingInfo(lines, containerWidth, containerHeight);
+    const { images, width: adjustedWidth } = this.buildRenderingInfo([visible], containerWidth, containerHeight);
 
     const stage = new Konva.Stage({
       container: this.container.nativeElement,
@@ -157,13 +160,13 @@ export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
 
       const text = new Konva.Text({
         text: `${info.unitDisplay} - ${info.siglum} (p.${info.page}, l.${info.line + 1})`,
-        fontSize: 12,
+        fontSize: 20,
         fontFamily: 'Calibri',
         fill: 'white',
         fontStyle: 'bold',
         align: 'center',
         width: width,
-        padding: 5,
+        padding: 4,
         x: 0,
         y: 0,
       });
@@ -206,16 +209,16 @@ export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
         this.goToRow.emit(info.unit);
       })
 
-      const getDistance = (p1: { x:number, y:number }, p2:  { x:number, y:number }) => {
+      const getDistance = (p1: { x: number, y: number }, p2: { x: number, y: number }) => {
         return Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2));
       }
 
       let lastDist = 0;
-      group.on('touchmove', function(evt) {
+      group.on('touchmove', function (evt) {
         const touch1 = evt.evt.touches[0];
         const touch2 = evt.evt.touches[1];
 
-        if(touch1 && touch2) {
+        if (touch1 && touch2) {
           const dist = getDistance({
             x: touch1.clientX,
             y: touch1.clientY
@@ -224,7 +227,7 @@ export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
             y: touch2.clientY
           });
 
-          if(!lastDist) {
+          if (!lastDist) {
             lastDist = dist;
           }
 
@@ -238,7 +241,7 @@ export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
         }
       });
 
-      group.on('touchend', function() {
+      group.on('touchend', function () {
         lastDist = 0;
       });
 
@@ -265,6 +268,35 @@ export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
     let totalWidth = 0;
     let x = 0;
     let y = 0;
+
+    if (lines.length === 1) {
+
+
+      const imageObj = lines[0].imageObj;
+      const aspectRatio = imageObj.width / imageObj.height;
+
+      let imgWidth = minWidth;
+      let imgHeight = height;
+
+      if (imgWidth / aspectRatio <= height) {
+        imgHeight = imgWidth / aspectRatio;
+      } else {
+        imgWidth = imgHeight * aspectRatio;
+      }
+
+
+      images.push({
+        key: lines[0].key,
+        imageObj: lines[0].imageObj,
+        width: imgWidth,
+        height: imgHeight,
+        x: x,
+        y: y,
+        info: lines[0].info
+      });
+
+      return { images, width: minWidth };
+    }
 
     for (const { imageObj, key, info } of lines) {
       let width = imageObj.width;

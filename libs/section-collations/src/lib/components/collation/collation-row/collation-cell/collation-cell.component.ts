@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, computed } from '@angular/core';
 import { ICellData } from '../../../../models/collation-row-data.model';
 import { CollationSettingsService } from '../../../../services/collation-settings.service';
 import { FacsimilePanelService } from '../../../../services/facsimile-panel.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 
 
@@ -19,6 +20,7 @@ export class CollationCellComponent {
   @Input() mediumIndex = 0;
 
   showFacsimilePreview$ = this.settingsSerive.showFacsimilePreview$;
+  highlightedLine = toSignal(this.facsimilePanelService.currentCellLine);
 
 
   constructor(
@@ -45,6 +47,13 @@ export class CollationCellComponent {
     }
 
     return '';
+  }
+
+  cellHighlightedLine() {
+    if (this.facsimilePanelService.hasUnit(this.unitIndex, this.siglum)) {
+      return this.highlightedLine();
+    }
+    return undefined;
   }
 
   toggleFacimileInPanle() {
