@@ -36,8 +36,9 @@
           'collation-container-full': !(
             (showFacsimilePreview$ | async) || (showMap$ | async)
           ),
-          'collation-container-with-panel':
-            (showFacsimilePreview$ | async) || (showMap$ | async)
+          'collation-container-with-map-panel': (showMap$ | async),
+          'collation-container-with-facsimile-panel':
+            (showFacsimilePreview$ | async),
         }"
         cdkVirtualScrollingElement
       >
@@ -45,7 +46,7 @@
       }
       <!-- panels -->
       @if(showFacsimilePreview$ | async) {
-      <div class="panel">
+      <div class="facsimile-panel-container">
         <kd-facsimile-panel-command-bar class="facsimile-panel-command-bar">
         </kd-facsimile-panel-command-bar>
         <kd-facsimile-panel
@@ -56,7 +57,7 @@
       </div>
 
       } @else if(showMap$ | async) {
-      <div class="panel">
+      <div class="map-panel-container">
         <kd-map-panel
           [collationName]="summary.siglum"
           [currentIndex]="currentScrollIndex()"

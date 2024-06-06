@@ -27,11 +27,9 @@ interface IImageRenderingInfo {
 }
 
 type LineObject = { key: string; imageObj: HTMLImageElement; info: ICollationFacsimileHighlight }
-const GRID_SIZE = 20;
+const GRID_SIZE = 15;
 
-// add buttons to remove lines
-// hover or click events to lead to the unit
-// information in the command bar
+
 @Component({
   selector: 'kd-facsimile-panel',
   template: '<div #container id="container"></div>',
@@ -160,13 +158,13 @@ export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
 
       const text = new Konva.Text({
         text: `${info.unitDisplay} - ${info.siglum} (p.${info.page}, l.${info.line + 1})`,
-        fontSize: 20,
+        fontSize: height * 0.1,
         fontFamily: 'Calibri',
         fill: 'white',
         fontStyle: 'bold',
         align: 'center',
         width: width,
-        padding: 4,
+        padding: 1,
         x: 0,
         y: 0,
       });
