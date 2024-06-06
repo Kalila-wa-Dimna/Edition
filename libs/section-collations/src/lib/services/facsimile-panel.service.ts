@@ -37,6 +37,8 @@ export class FacsimilePanelService {
     pages: number[],
     lines: number[]
   ): void {
+
+    this.removeAllUnits();
     const loc: Record<number, Set<number>> = {};
     pages.forEach((page, index) => {
       if (!loc[page]) {
