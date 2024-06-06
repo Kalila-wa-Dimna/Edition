@@ -39,14 +39,7 @@ export class CollationCellComponent {
       return 'visibility';
     }
 
-    if (
-      !this.facsimilePanelService.hasUnit(this.unitIndex, this.siglum) &&
-      this.facsimilePanelService.canAddUnit()
-    ) {
-      return 'visibility_off';
-    }
-
-    return '';
+    return 'visibility_off';
   }
 
   cellHighlightedLine() {
@@ -61,12 +54,10 @@ export class CollationCellComponent {
       return;
     }
     const { mediumId, lines, pages } = this.data;
-    if (
-      !this.facsimilePanelService.hasUnit(this.unitIndex, this.siglum) &&
-      this.facsimilePanelService.canAddUnit()
-    ) {
+    const hasUnit = this.facsimilePanelService.hasUnit(this.unitIndex, this.siglum);
+    if (!hasUnit) {
       this.facsimilePanelService.addUnit(this.unitIndex, this.orderDisplay, this.siglum, this.mediumIndex, mediumId, pages, lines);
-    } else if (this.facsimilePanelService.hasUnit(this.unitIndex, this.siglum)) {
+    } else {
       this.facsimilePanelService.removeUnit(this.unitIndex, this.siglum);
     }
   }
