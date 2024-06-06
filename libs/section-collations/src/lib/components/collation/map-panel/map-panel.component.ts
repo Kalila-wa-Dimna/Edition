@@ -101,7 +101,10 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
 
   }
 
+  private _currentIndex = 0;
+
   @Input() set currentIndex(value: number) {
+    this._currentIndex = value;
     if (this.rowHighlighter) {
       this.rowHighlighter.setAttr('x', this.claculateRowHighlighterPosition(value));
 
@@ -146,7 +149,7 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
 
   ngOnInit(): void {
     this.renderSubject.pipe(debounceTime(100)).subscribe(async ({ data, colors }) => {
-      await this.buildMap(data, colors)
+      await this.buildMap(data, colors, this._currentIndex)
     })
   }
 
@@ -168,7 +171,7 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
     }
   }
 
-  async buildMap(data: number[][], colors = LIGHT_COLORS) {
+  async buildMap(data: number[][], colors = LIGHT_COLORS, currentIndex = 0) {
     const Konva = (await import('konva')).default;
     const containerWidth = this.container.nativeElement.offsetWidth;
     const containerHeight = this.container.nativeElement.offsetHeight;
@@ -299,8 +302,11 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
 
     const createHighlighters = () => {
       const layer = new Konva.Layer();
+
+      this.claculateRowHighlighterPosition = (index: number) => columnLabelOffset + index * boxHeight;
+      const currentX = this.claculateRowHighlighterPosition(currentIndex);
       const rowHighlighter = new Konva.Group({
-        x: columnLabelOffset,
+        x: currentX,
         y: 0,
       });
       const rowHighlighterRect = new Konva.Rect({
@@ -316,7 +322,7 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
       rowHighlighter.add(rowHighlighterRect);
 
 
-      this.claculateRowHighlighterPosition = (index: number) => columnLabelOffset + index * boxHeight;
+
 
 
 
