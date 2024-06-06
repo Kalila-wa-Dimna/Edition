@@ -1,6 +1,7 @@
 import { Component, computed } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
 import { FacsimilePanelService } from '../../../../services/facsimile-panel.service';
+import { CollationSettingsService } from "../../../../services/collation-settings.service";
 
 // Your code here
 @Component({
@@ -29,12 +30,16 @@ import { FacsimilePanelService } from '../../../../services/facsimile-panel.serv
 
     </div>
     <div class="other-controls">
-    <button [disabled]="stageDataUrl() === undefined" (click)="onExport()" mat-button>
-      <mat-icon>download</mat-icon> Export
+    <button  class="big-button" [disabled]="stageDataUrl() === undefined" (click)="onExport()" mat-button>
+      <mat-icon>download</mat-icon> <span class="button-label">Export</span>
     </button>
-    <button (click)="onRemoveAll()" mat-button>
-      <mat-icon>tab_close</mat-icon> Clear
+    <button  class="big-button" (click)="onRemoveAll()" mat-button>
+      <mat-icon>close</mat-icon> <span class="button-label">Close</span>
     </button>
+
+     <mat-icon (click)="onExport()" class="small-button">download</mat-icon>
+     <mat-icon (click)="onRemoveAll()" class="small-button">close</mat-icon>
+
     </div>
 
 
@@ -46,7 +51,7 @@ import { FacsimilePanelService } from '../../../../services/facsimile-panel.serv
 })
 export class FacsimilePanelCommandBarComponent {
 
-  constructor(private facsimilePanleService: FacsimilePanelService) { }
+  constructor(private facsimilePanleService: FacsimilePanelService, private settingsService: CollationSettingsService) { }
 
   stageDataUrl = this.facsimilePanleService.stageDataUrl;
 
@@ -67,6 +72,12 @@ export class FacsimilePanelCommandBarComponent {
   onRemoveAll() {
     this.facsimilePanleService.removeAllUnits();
     this.facsimilePanleService.currentCellLine.next(0);
+    const oldValue = this.settingsService.state$.getValue();
+    this.settingsService.apply({
+      ...oldValue,
+      showFacsimilePreview: false,
+      showMap: false,
+    });
   }
 
   onExport() {

@@ -122,4 +122,24 @@ main {
 
 .version-number {
   font-size: 12px;
+  @include on-smaller-than(md) {
+    font-size: 10px;
+  }
+}
+
+.title-container {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  white-space: normal;
+  text-align: left;
+  text-wrap: wrap;
+  line-height: 1.2;
+}
+
+.title {
+  @include on-smaller-than(md) {
+    font-size: 12px;
+  }
 }
