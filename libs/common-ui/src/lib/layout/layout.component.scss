@@ -32,6 +32,10 @@
   & .mdc-tab-indicator {
     margin-top: -5px;
   }
+
+  @include on-smaller-than(md) {
+    max-width: 50vw;
+  }
 }
 
 .path {
