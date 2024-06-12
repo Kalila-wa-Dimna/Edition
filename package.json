@@ -1,6 +1,6 @@
 {
   "name": "@kalila-edition/source",
-  "version": "0.5.7",
+  "version": "0.5.11",
   "license": "MIT",
   "scripts": {
     "dev": "nx run web:serve-ssr",

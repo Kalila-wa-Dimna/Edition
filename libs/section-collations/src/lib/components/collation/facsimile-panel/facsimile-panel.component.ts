@@ -105,7 +105,8 @@ export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
     const Konva = (await import('konva')).default;
     const containerWidth = this.container.nativeElement.offsetWidth;
     const containerHeight = this.container.nativeElement.offsetHeight;
-    const visible = lines[currentCellLine]
+    const sortedLines = lines.sort((a, b) => a.info.line - b.info.line).sort((a, b) => a.info.page - b.info.page);
+    const visible = sortedLines[currentCellLine]
 
     const { images, width: adjustedWidth } = this.buildRenderingInfo([visible], containerWidth, containerHeight);
 
