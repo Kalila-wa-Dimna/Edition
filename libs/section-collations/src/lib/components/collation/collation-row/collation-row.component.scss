@@ -14,12 +14,14 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  width: 100%;
   &-content {
     position: sticky;
     padding-left: 5px;
     left: 0;
     top: 0;
     width: fit-content;
+    max-width: 95vw;
     align-self: flex-start;
     & p {
       padding: 0;
