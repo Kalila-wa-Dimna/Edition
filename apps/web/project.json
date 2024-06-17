@@ -15,6 +15,9 @@
         "main": "apps/web/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/web/tsconfig.app.json",
+        "stylePreprocessorOptions": {
+          "includePaths": ["sass"]
+        },
         "assets": [
           "apps/web/src/favicon.ico",
           "apps/web/src/assets",
