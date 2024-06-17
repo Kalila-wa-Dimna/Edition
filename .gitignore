@@ -47,5 +47,6 @@ apps/data-api/images
 
 
 .nx/cache
+.nx/workspace-data
 /apps/data-api/data/manuscripts/all_illustrations/
 myenv
