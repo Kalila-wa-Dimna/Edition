@@ -1,46 +1,41 @@
 <kd-layout>
   <span title style="font-size:large;">Manuscript descriptions/ Codicology</span>
-    <main pageContent>
-      <button class="center" style="padding-right: 10px;padding-left: 10px ; " (click)="downloadExcel()">Export Excel</button>
-      <mat-table [dataSource]="dataSource" class="bibliography-cell">
+  <main pageContent>
+    <button class="center" style="padding-right: 10px;padding-left: 10px;" (click)="downloadExcel()">Export Excel</button>
+    <mat-table [dataSource]="dataSource" class="bibliography-cell">
       <!-- Column definitions -->
-      <ng-container *ngFor="let group of groupedColumns, let ii=index">
+      <ng-container *ngFor="let group of groupedColumns; let ii = index">
         <ng-container [matColumnDef]="group.key">
-          <mat-header-cell *matHeaderCellDef [class.sticky-column]="ii === 0"  [class.siglumColor]="ii===0"
-          [ngStyle]="{'min-width.px':getGroupColWidth(group.key).toString(),  'color': '#ffffff'} "  >
-            {{capitalizeFirstLetter(group.key) }}
+          <mat-header-cell *matHeaderCellDef [class.sticky-column]="ii === 0" [class.siglumColor]="ii === 0"
+                           [ngStyle]="{'min-width.px': getGroupColWidth(group.key).toString(), 'color': '#ffffff'}">
+            {{ capitalizeFirstLetter(group.key) }}
           </mat-header-cell>
         </ng-container>
       </ng-container>
-     <ng-container *ngFor="let column of columnsToDisplay; let i = index" [matColumnDef]="column">
-        <mat-cell *matHeaderCellDef  [ngClass]="{'c-header': true}" [ngStyle]="{
-  'min-width.px': columnWidths[column.toLowerCase()] || 50,
-  'color': '#ffffff'
-}" [class.sticky-column]="i === 0">
+
+
+      <ng-container *ngFor="let column of columnsToDisplay; let i = index" [matColumnDef]="column">
+        <mat-cell *matHeaderCellDef [ngClass]="{'c-header': true}" [ngStyle]="{
+          'min-width.px': columnWidths[column.toLowerCase()] || 50,
+          'color': '#ffffff'
+        }" [class.sticky-column]="i === 0">
           <div [innerHTML]="modifiedColumnsToDisplay[i]"></div>
         </mat-cell>
-        <mat-cell
-                  *matCellDef="let element"
-                  [ngClass]="{'wte': isWhiteBackground(i), 'blk': !isWhiteBackground(i)}"
-                  [ngStyle]="{
-      'min-width.px': columnWidths[column.toLowerCase()] || 50,
-      'color':'#000000'
-    }"
-                  [class.sticky-column]="i === 0"
-        >
+        <mat-cell *matCellDef="let element" [ngClass]="{'wte': isWhiteBackground(i), 'blk': !isWhiteBackground(i)}" [ngStyle]="{
+          'min-width.px': columnWidths[column.toLowerCase()] || 50,
+          'color': '#000000'
+        }" [class.sticky-column]="i === 0">
           <div [innerHTML]="sanitizeData(element[column])"></div>
         </mat-cell>
       </ng-container>
+
       <!-- Table header row -->
       <mat-header-row *matHeaderRowDef="groupedColumnsKeys" class="sticky-row row-first-header"></mat-header-row>
       <mat-header-row *matHeaderRowDef="columnsToDisplay" class="sticky-row row-second-header"></mat-header-row>
+
       <!-- Table rows -->
       <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
 
     </mat-table>
-
   </main>
 </kd-layout>
-
-
-

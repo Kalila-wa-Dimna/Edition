@@ -1,32 +1,30 @@
 @import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lightgallery.css');
 @import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lg-zoom.css');
 @import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lg-thumbnail.css');
+
 .container {
   width: 100%;
   gap: 8px;
   display: flex;
   flex-wrap: wrap;
-
+  direction: rtl; // Add RTL direction here
+  justify-content: flex-end; // Align items to the end (right side)
 }
-
 
 .lg-sub-html {
   color: beige;
   background-color: black;
 }
 
-
 .img-responsive {
-  width: 7.8%; /* Each image occupies 20% of the container width */
+  width: 7.8%;
   height: auto;
   padding: 6px;
-  margin-left: -6px; /* Apply negative margin to overlap images */
+  margin-left: -6px; // Apply negative margin to overlap images
   position: relative;
-
-  z-index: 1; /* Ensure that images are stacked correctly */
-  transition: transform 0.3s ease; /* Add transition for smooth effect */
+  z-index: 1;
+  transition: transform 0.3s ease;
 }
-
 
 .caption {
   position: absolute;
@@ -35,7 +33,7 @@
   width: 90%;
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
-  padding: 5px;
+  padding: 3.5px;
   text-align: center;
   font-size: 14px;
   gap: 6px;
@@ -43,19 +41,15 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  z-index: 2; /* Ensure captions are above images */
+  z-index: 3;
 }
-
-
 
 .image-container {
   width: 100%;
   position: relative;
-  align-items: center; /* Center content vertically */
+  align-items: center;
   justify-content: center;
-
 }
-
 
 /* Apply hover effect to zoom and translate images slightly */
 .img-responsive:hover {
@@ -66,22 +60,20 @@
   position: fixed;
 }
 
-.lg-outer{
+.lg-outer {
   height: 100%;
 }
+
 .lg-toolbar {
   height: 40px;
-  /* display: flex; */
   position: absolute;
   background-color: black;
 }
 
 .lg-outer .lg-item, .lg-outer .lg-img-wrap {
   height: calc(100% - 80px);
- // width: 110%;
   padding-top: 3%;
   padding-bottom: 0%;
-
 }
 
 /*.lg-outer .lg-item.lg-complete.lg-zoomable .lg-image,
@@ -90,7 +82,74 @@
    transition: transform 0.5s ease-in-out, opacity 0.15s !important;
  }*/
 
-:host .container {
-  align-items: center; /* Center content vertically */
-  justify-content: center;
+
+
+
+//////
+.lg-custom-thumbnails {
+  &.lg-outer {
+    width: auto;
+    // Set space for the container to occupy thumbnails
+    right: 225px;
+
+    // Add some spacing on the left to match with the right hand side spacing
+    left: 10px;
+
+    .lg-thumb-outer {
+      // Set the position of the thumbnails
+      left: auto;
+      top: 0;
+      width: 225px;
+      bottom: 0;
+      position: fixed;
+      right: 0;
+
+      // Reset max height
+      max-height: none;
+
+      // Customize the layout (Optional)
+      background-color: #999;
+      padding-left: 5px;
+      padding-right: 5px;
+      margin: 0 -10px;
+      overflow-y: auto;
+
+      // Update transition values
+      // By default thumbnails animates from bottom to top
+      // Change that from right to left.
+      // Also, add a tiny opacity transition to look better
+      transform: translate3d(30%, 0, 0);
+      opacity: 0;
+      will-change: transform opacity;
+      transition: transform 0.15s cubic-bezier(0, 0, 0.25, 1) 0s, cubic-bezier(
+          0,
+          0,
+          0.25,
+          1
+      ) 0.15s;
+    }
+
+    &.lg-thumb-open {
+      .lg-thumb-outer {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+    }
+
+    // Add hove effect (Optional)
+    .lg-thumb-item {
+      filter: grayscale(100%);
+      will-change: filter;
+      transition: filter 0.12s ease-in, border-color 0.12s ease;
+      &:hover,
+      &.active {
+        filter: grayscale(0);
+        border-color: #545454;
+      }
+    }
+
+    .lg-thumb {
+      padding: 5px 0;
+    }
+  }
 }

@@ -3,12 +3,10 @@
 @import 'sass/_light-theme.scss';
 
 :host {
- // width: 100vw;
- // min-height: 100vh;
+  // width: 100vw;
+  // min-height: 100vh;
   height: fit-content;
 }
-
-
 
 main {
   margin-top: 1.5rem;
@@ -20,11 +18,11 @@ main {
   }
 }
 
-.wte{
+.wte {
   background-color: white;
 }
 
-.blk{
+.blk {
   background-color: #edece8;
 }
 .mat-mdc-table {
@@ -34,23 +32,25 @@ main {
   border: 1px solid #000000;
 }
 
-
-.mat-mdc-header-cell, .mat-mdc-footer-cell, .mat-mdc-cell {
+.mat-mdc-header-cell,
+.mat-mdc-footer-cell,
+.mat-mdc-cell {
   padding-top: 10px;
   padding-bottom: 10px;
   overflow: auto;
   box-sizing: border-box;
-  border: 0.10px solid rgba(0, 0, 0, 0.12);
-
+  border: 0.1px solid rgba(0, 0, 0, 0.12);
 }
 
-.mat-mdc-header-row, .mat-mdc-footer-row, .mat-mdc-row {
-  min-width:   10218px;
+.mat-mdc-header-row,
+.mat-mdc-footer-row,
+.mat-mdc-row {
+  min-width: 8738px;
   /* 24 columns, 80px each */
 }
-.bibliography-cell{
+.bibliography-cell {
   max-height: calc(100vh - 15vh) !important;
-  margin-top: 10px!important;/* Adjust to your desired height */
+  margin-top: 10px !important; /* Adjust to your desired height */
   overflow-y: auto;
 }
 .mat-footer-row {
@@ -58,9 +58,8 @@ main {
   height: 600px !important;
 }
 
-::ng-deep  .mat-mdc-table .mdc-data-table__row {
+::ng-deep .mat-mdc-table .mdc-data-table__row {
   height: 300px !important;
-
 }
 .commentary-column .mat-mdc-header-cell,
 .commentary-column .mat-mdc-footer-cell,
@@ -72,144 +71,135 @@ main {
 }
 ::ng-deep .location-commentary-header .mat-mdc-header-cell,
 .location-commentary-header .mat-mdc-footer-cell,
-.location-commentary-header .mat-mdc-cell ,{
- // min-width: 600px;
+.location-commentary-header .mat-mdc-cell {
+  // min-width: 600px;
   /* Other styling properties here */
 }
 
-::ng-deep mat-cell, mat-header-cell, mat-footer-cell {
+::ng-deep mat-cell,
+mat-header-cell,
+mat-footer-cell {
   flex: 1;
-  display: block!important;
+  display: block !important;
 
   /* display: flex;*/
 }
-
-
 
 .sticky-row {
   display: flex;
   position: sticky;
   z-index: 2;
-  color: white!important;
+  color: white !important;
 
   /* Make sure both rows are displayed as a flex container */
 }
 
-.row-first-header{
-  top:0;
-  background-color: #003a4a!important;
+.row-first-header {
+  top: 0;
+  background-color: #003a4a !important;
   z-index: 2;
 }
 
-.row-second-header{
-  top:40px;
-  background-color:#4c7d8a!important;
+.row-second-header {
+  top: 40px;
+  background-color: #4c7d8a !important;
 }
 
-::ng-deep .mat-mdc-table .mat-mdc-header-cell{
-  font-size:large!important;
-  font-weight: bold!important;
+::ng-deep .mat-mdc-table .mat-mdc-header-cell {
+  font-size: large !important;
+  font-weight: bold !important;
 }
 
-
-.c-header{
-  font-weight: bold!important;
+.c-header {
+  font-weight: bold !important;
 }
-.sticky-column  {
+.sticky-column {
   position: sticky;
   left: 0;
   z-index: 1;
-  min-width: 20px!important;
-  background-color:#003a4a!important;
-  color: white!important;
-  font-size:large!important;
-  font-weight: bold!important;
-
+  min-width: 20px !important;
+  background-color: #003a4a !important;
+  color: white !important;
+  font-size: large !important;
+  font-weight: bold !important;
 }
 
-
 :host-context(.dark-theme) {
-
-  ::ng-deep a{
+  ::ng-deep a {
     color: antiquewhite;
   }
 
-  .wte{
+  .wte {
     background-color: #003a4a;
-    color: white!important;
+    color: white !important;
   }
 
-  .blk{
+  .blk {
     background-color: #00566d;
-    color: white!important;
+    color: white !important;
   }
- .sticky-column {
+  .sticky-column {
     position: sticky;
     left: 0;
     z-index: 1;
-    min-width: 20px!important;
-    color:white!important;
-   background-color: #003a4a!important;
+    min-width: 20px !important;
+    color: white !important;
+    background-color: #003a4a !important;
   }
-  ::ng-deep  .mat-mdc-table .mdc-data-table__header-row {
+  ::ng-deep .mat-mdc-table .mdc-data-table__header-row {
     height: 40px;
     position: sticky;
     top: 0;
     z-index: 2;
-    color: black!important;
+    color: black !important;
   }
   .sticky-row {
     display: flex;
     position: sticky;
     z-index: 2;
-    background-color:#003a4a!important;
-    color: white!important;
+    background-color: #003a4a !important;
+    color: white !important;
     /* Make sure both rows are displayed as a flex container */
   }
 
-  .row-first-header{
-    top:0;
+  .row-first-header {
+    top: 0;
     //background-color: #0082a6!important;
-    font-size:large!important;
-    font-weight: bold!important;
+    font-size: large !important;
+    font-weight: bold !important;
   }
 
-  .row-second-header{
-    background-color:#455a64!important;
+  .row-second-header {
+    background-color: #455a64 !important;
   }
 
-::ng-deep .row-first-header.mat-mdc-header-cell{
-  font-size:large!important;
-  font-weight: bold!important;
+  ::ng-deep .row-first-header.mat-mdc-header-cell {
+    font-size: large !important;
+    font-weight: bold !important;
+  }
+
+  .row-second-header {
+    top: 40px;
+    font-weight: bold !important;
+  }
+  .siglumColor {
+    color: #003a4a !important;
+  }
 }
-
-
-
-
-.row-second-header{
-    top:40px;
-    font-weight: bold!important;
-  }
-  .siglumColor{
-    color: #003a4a!important;
-  }
-
-}
-.siglumColor{
-  color: #003a4a!important;
+.siglumColor {
+  color: #003a4a !important;
 }
 
 .center {
-  height:35px;
-  width:120px;
+  height: 35px;
+  width: 120px;
   margin-bottom: 5px;
   margin-top: 5px;
-  background-color:#4c7d8a ;
+  background-color: #4c7d8a;
   border: 1px;
   color: white;
-
 }
-.center:hover{
-  background-color:#003a4a;
+.center:hover {
+  background-color: #003a4a;
   cursor: pointer;
 }

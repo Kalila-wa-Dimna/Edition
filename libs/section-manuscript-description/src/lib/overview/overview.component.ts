@@ -1,6 +1,6 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {CONFIG_TOKEN, IConfig} from "@kalila-edition/common-ui";
+import { Component, Inject, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CONFIG_TOKEN, IConfig } from '@kalila-edition/common-ui';
 import { MatTableDataSource } from '@angular/material/table';
 import { ViewChild } from '@angular/core';
 import { KeyValue } from '@angular/common';
@@ -9,46 +9,34 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import jsPDF from 'jspdf';
 import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
+
 @Component({
   selector: 'kalila-edition-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss'],
 })
-export class OverviewComponent implements OnInit
-{
-   data: any;
+export class OverviewComponent implements OnInit {
+  data: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   columnsToDisplay: string[] = [
     'siglum__siglum',
     'catalogue__title',
     'catalogue__link',
-    'location__city',
-    'location__library',
-    'location__manuscript_id',
+    'catalogue__location',
     'publications__publications',
-    'dating__accuracy',
-    'dating__gregorian_century',
-    'dating__gregorian_year',
-    'dating__hijri_century',
-    'dating__hijri_year',
-    'dating__gregorian_date',
-    'dating__hijri_date',
+    'dating__date',
     'dating__commentary',
     'preservation__status',
     'preservation__missing_parts',
     'preservation__restored_parts',
     'preservation__commentary',
-    'binding__type',
-    'binding__period',
-    'binding__additional_features',
+    'binding__features',
     'binding__commentary',
     'pagination__present',
     'pagination__used',
     'pagination__commentary',
     'composite_manuscript__commentary',
-    'layout__frame',
-    'layout__catchwords',
-    'layout__lines_per_page',
+    'layout__description',
     'layout__chapter_titles',
     'layout__text_division_symbols',
     'layout__commentary',
@@ -74,12 +62,10 @@ export class OverviewComponent implements OnInit
     'orthography__za_dad_shifts',
     'orthography__use_of_hamza',
     'orthography__commentary',
-
   ];
 
   columnWidths: { [key: string]: number } = {
-   'publications__publications': 400,
-    'location__city': 120,
+    'publications__publications': 400,
     'catalogue__link': 400,
     'dating__commentary': 400,
     'preservation__commentary': 400,
@@ -89,34 +75,34 @@ export class OverviewComponent implements OnInit
     'illustrations__commentary': 400,
     'script__commentary': 400,
     'orthography__commentary': 400,
-    'illustrations___commentary':400,
-    'composite_manuscript__commentary':400,
-    'catalogue__title':200,
-    'layout__chapter_titles':200,
-    'layout__text_division_symbols':200,
-    'preservation__restored_parts':200,
-    'binding__additional_features':200,
-    'script__present_additional_writing_signs':250,
-    'siglum__siglum':120
-
+    'illustrations___commentary': 400,
+    'composite_manuscript__commentary': 400,
+    'catalogue__title': 200,
+    'layout__chapter_titles': 200,
+    'layout__text_division_symbols': 200,
+    'preservation__restored_parts': 200,
+    'binding__additional_features': 200,
+    'script__present_additional_writing_signs': 250,
+    'catalogue__location':160
   };
 
-
-
   groupedColumns: { key: string, value: string[] }[] = [];
-  groupedColumnsKeys: string[]=[] ;
+  groupedColumnsKeys: string[] = [];
   modifiedColumnsToDisplay = this.columnsToDisplay.map((column) =>
     column
       .replace(/tha_ta_shifts/g, 'Thāʾ/tāʾ shifts')
       .replace(/sin_sad_shifts/g, 'Sīn/ṣād shifts')
-      .replace(/za_dad_shifts/g,'Ḍād/ẓā shifts')
-      .replace(/d_dh_shifts/g,'Dhāl/dāl shifts')
+      .replace(/za_dad_shifts/g, 'Ḍād/ẓā shifts')
+      .replace(/d_dh_shifts/g, 'Dhāl/dāl shifts')
+      .replace(/city_library_manuscript_id/g, 'City'+'<br>'+'Library'+'<br>'+'Manuscript ID')
+      .replace(/date/g, 'Calendar')
       .replace(/^(\w+)__/g, '')
+      .replace(/^(\w+)__(\w)/g, '/n')
       .replace(/(\w)([^\s]*)/, (match, p1, p2) => p1.toUpperCase() + p2)
       .replace(/__(\w)/g, (match, firstLetter) => `<br>${firstLetter.toUpperCase()}`)
       .replace(/__+/g, '<br>')
       .replace(/_/g, ' ')
-        );
+  );
 
   groupColumns(columns: string[]): Record<string, string[]> {
     const groupedColumns: Record<string, string[]> = {};
@@ -128,12 +114,15 @@ export class OverviewComponent implements OnInit
       groupedColumns[categoryName].push(column);
     });
 
+    // Merge specific columns under 'location'
+
     return groupedColumns;
   }
 
   isWhiteBackground(i: number): boolean {
     return i % 2 === 0;
   }
+
   modifiedColumnWidths = { ...this.columnWidths };
 
   sanitizeDataInDataSource(data: any[]): any[] {
@@ -160,80 +149,75 @@ export class OverviewComponent implements OnInit
     return this.domSanitizer.bypassSecurityTrustHtml(sanitizedInput);
   }
 
-  // Rest of your component code
-
-  constructor(private route: ActivatedRoute,
-              @Inject(CONFIG_TOKEN) private config: IConfig,
-              private domSanitizer: DomSanitizer,
-              private http: HttpClient) {
-    this.data =this.route.snapshot.data;
+  constructor(
+    private route: ActivatedRoute,
+    @Inject(CONFIG_TOKEN) private config: IConfig,
+    private domSanitizer: DomSanitizer,
+    private http: HttpClient
+  ) {
+    this.data = this.route.snapshot.data;
     this.dataSource = new MatTableDataSource(this.data.manuscriptList);
-
   }
-  groupColspans: { [key: string]: number } = {};
 
-  groupWidths:{ [key: string]: number } = {};
-  calculateGroupWidths(  groupedColumns: { key: string; value: string[] }[],
-                         columnWidths: { [key: string]: number },
-                         defaultWidth: number,
-                         groupWidths: { [key: string]: number }
+  groupColspans: { [key: string]: number } = {};
+  groupWidths: { [key: string]: number } = {};
+
+  calculateGroupWidths(
+    groupedColumns: { key: string; value: string[] }[],
+    columnWidths: { [key: string]: number },
+    defaultWidth: number,
+    groupWidths: { [key: string]: number }
   ): { [key: string]: number } {
 
-    // Loop through groupedColumns
     for (const group of groupedColumns) {
       const key = group.key;
       const groupColumns = group.value;
-
-      // Initialize the width for this group
       let groupWidth = 0;
 
-      // Loop through columns in the group and sum their widths
       for (const column of groupColumns) {
         groupWidth += columnWidths[column] || defaultWidth;
       }
 
-      // Store the total width for this group
       groupWidths[key] = groupWidth;
     }
+    console.log('this valueeeeee',groupWidths)
 
     return groupWidths;
   }
 
-
   getColspan(group: string): number {
     return this.groupColspans[group] || 1; // Set a default value if needed
   }
-  getGroupColWidth(group:string):number{
+
+  getGroupColWidth(group: string): number {
     return this.groupWidths[group] || 1;
   }
+
   defaultWidth = 120;
+
   ngOnInit() {
     const totalMinimumWidth = this.columnsToDisplay.reduce((total, column) => {
       return total + (this.columnWidths[column.toLowerCase()] || 130);
     }, 0);
-    //console.log(`Total Minimum Width: ${totalMinimumWidth}px`);
+    //put this value in the scss totalMinimumWidth,  min-width: totalMinimumWidth;
     this.groupedColumns = Object.entries(this.groupColumns(this.columnsToDisplay))
       .map(([key, value]) => ({ key, value }));
 
-    this.groupedColumnsKeys= this.groupedColumns.map(group => group.key);
+    this.groupedColumnsKeys = this.groupedColumns.map(group => group.key);
     this.groupedColumns.forEach((group) => {
       this.groupColspans[group.key] = group.value.length;
     });
 
-
     for (const column of this.columnsToDisplay) {
       if (this.modifiedColumnWidths[column] === undefined) {
-       this.modifiedColumnWidths[column] = this.defaultWidth;
+        this.modifiedColumnWidths[column] = this.defaultWidth;
       }
     }
 
-
     this.groupWidths = this.calculateGroupWidths(this.groupedColumns, this.columnWidths, this.defaultWidth, {});
 
-
     let totalWidth = Object.values(this.groupWidths).reduce((total, width) => total + width, 0);
-    //console.log("Total Width of All Groups:", totalWidth);
-
+    console.log("Total Width of All Groups:", totalWidth);
   }
 
   capitalizeFirstLetter(text: string): string {
@@ -242,7 +226,7 @@ export class OverviewComponent implements OnInit
 
 
 
-  downloadExcel(): void {
+downloadExcel(): void {
     // Path to the Excel file in the assets folder
     const filePath = 'assets/manuscriptDescriptionAll.xlsx';
 
