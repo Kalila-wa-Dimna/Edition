@@ -20,7 +20,7 @@ export interface ICollationUnit {
   frame: string;
   formattedOrder: string;
   longestSegment: string;
-  divider: boolean;
+  isDivider: boolean;
 }
 
 export interface ICollationPageData {

@@ -36,12 +36,19 @@ export function createCollationDataResolver() {
       []
     );
 
-    return combineLatest([columns$, units$, summary$, segmentData$]).pipe(
-      map(([columns, units, summary, segmentData]) => ({
+    const versionSummary$ = api.load<Record<string, string>>(
+      `collations/${editionSiglum}/version_summary`,
+      {}
+    );
+
+
+    return combineLatest([columns$, units$, summary$, segmentData$, versionSummary$]).pipe(
+      map(([columns, units, summary, segmentData, versionSummary]) => ({
         columns,
         units,
         summary,
         segmentData,
+        versionSummary,
       }))
     );
   };

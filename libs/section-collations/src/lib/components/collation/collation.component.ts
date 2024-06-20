@@ -1,6 +1,8 @@
 import {
   AfterViewInit,
   Component,
+  Inject,
+  LOCALE_ID,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -36,6 +38,43 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
   columns: ICollationColumn[] = [];
   sigla: string[] = [];
   units: ICollationUnit[] = [];
+  versionSummary: Record<string, number> = {};
+
+  get version() {
+    const values = Object.values(this.versionSummary);
+
+    if (values.length !== 0) {
+
+      return Math.max(...values);
+    }
+
+
+    return;
+  }
+
+  get versionDetails() {
+    const entries = Object.entries(this.versionSummary);
+
+    if (entries.length !== 0) {
+
+      return entries.map(([siglum, version]) => {
+        const formattedVersion = new Date(version).toLocaleString('de-DE', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+        });
+        return `${siglum}_${formattedVersion}`;
+      }).join('\n');
+    }
+
+
+    return "";
+  }
+
+
   titles = signal<string[]>([]);
   rowDataReciever = signal<IRowData[]>([]);
   rowData = computed(() => {
@@ -126,6 +165,8 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     private searchService: SearchService,
     private facsimilePanelService: FacsimilePanelService,
     private searchWorkerService: SearchWorkerService,
+    @Inject(LOCALE_ID) public locale: string
+
   ) {
 
   }
@@ -153,6 +194,7 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private loadData(data: Data) {
+    this.versionSummary = data['pageData']['versionSummary'];
     this.columns = data['pageData']['columns'];
     this.facsimilePanelService.columns = this.columns;
     this.sigla = this.columns.map((c) => c.siglum);

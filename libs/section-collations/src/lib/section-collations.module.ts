@@ -37,10 +37,13 @@ import { FacsimilePanelCommandBarComponent } from './components/collation/facsim
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MapPanelComponent } from './components/collation/map-panel/map-panel.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 import {
   CollationCellTextComponent
 } from './components/collation/collation-row/collation-cell/collation-cell-text.component';
 import { CollationContainerComponent } from './components/collation/collation-container/collation-container.component';
+import { AlignmentService } from './services/alignment.service';
+import { CollationCellTextPoetryComponent } from './components/collation/collation-row/collation-cell/collation-cell-text-poetry.component';
 
 
 
@@ -83,6 +86,7 @@ import { CollationContainerComponent } from './components/collation/collation-co
     MapPanelComponent,
     CollationCellTextComponent,
     CollationContainerComponent,
+    CollationCellTextPoetryComponent
   ],
   providers: [
     CollationDataService,
@@ -90,6 +94,7 @@ import { CollationContainerComponent } from './components/collation/collation-co
     CellSizingService,
     SearchService,
     FacsimilePanelService,
+    AlignmentService
   ],
 })
 export class SectionCollationsModule { }

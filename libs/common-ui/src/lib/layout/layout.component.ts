@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit, ViewChild,Input } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, Input, Inject } from '@angular/core';
 import { ThemeService } from '../theme/theme.service';
 import { ActivatedRoute, ActivatedRouteSnapshot, NavigationStart, Router } from '@angular/router';
 import { Subscription, filter } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
+import { CONFIG_TOKEN, IConfig } from '../config.module';
 
 interface IPathElement {
   display: string;
@@ -23,7 +24,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   activeTheme$ = this.themeService.active$.asObservable();
   pathElements: IPathElement[] = [];
   @ViewChild(MatSidenav) sideNavRef?: MatSidenav;
-  constructor(private themeService: ThemeService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private themeService: ThemeService, private router: Router, private route: ActivatedRoute, @Inject(CONFIG_TOKEN) private config: IConfig,) { }
 
   ngOnInit(): void {
 
@@ -44,11 +45,12 @@ export class LayoutComponent implements OnInit, OnDestroy {
   getPath(data: ActivatedRouteSnapshot[]) {
     const parts = data.map((r) => r.url[0]?.path).filter((p) => !!p);
     if (parts.length === 1) {
-      this.pathElements = [{ display: "KwD Edition", link: '/' }]
+      this.pathElements = [{ display: `KwD Edition (v.${this.config.version})`, link: '/' }]
     } else if (parts.length > 1) {
       const visibale = parts.slice(0, parts.length - 1);
-      this.pathElements = [{ display: "KwD Edition", link: '/' }, ...visibale.map((p) => ({ display: p, link: `/${p}` }))]
+      this.pathElements = [{ display: `KwD Edition (v.${this.config.version})`, link: '/' }, ...visibale.map((p) => ({ display: p, link: `/${p}` }))]
     }
+
   }
 
   onThemeSelect(theme: string): void {

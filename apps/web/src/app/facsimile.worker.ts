@@ -2,8 +2,9 @@
 console.log('facsimile worker init');
 const pageCache: Record<string, Record<number, string>> = {};
 
-const IMAGE_ROOT = "https://d5gomyglvpeib.cloudfront.net/srv/page/";
-const PADDING = 10;
+// const IMAGE_ROOT = "https://d5gomyglvpeib.cloudfront.net/srv/page/";
+const IMAGE_ROOT = 'https://d2u9osbhl165ia.cloudfront.net/srv/page/';
+const PADDING = 2;
 addEventListener('message', async ({ data }) => {
 
 
@@ -34,6 +35,7 @@ async function loadImageAsDataUrl(url: string) {
     .then((response) => {
       return response.blob();
     })
+
     .then(
       (blob) =>
         new Promise((resolve) => {
@@ -43,8 +45,7 @@ async function loadImageAsDataUrl(url: string) {
           };
           reader.readAsDataURL(blob);
         })
-    );
-
+    )
   return data;
 }
 

@@ -16,18 +16,15 @@ export interface ICellData {
   unitId: string;
   type: string;
   lacuna: boolean;
-  startPage: number;
-  startLine: number;
-  startToken: number;
-  endPage: number;
-  endLine: number;
-  endToken: number;
-  images: string[];
+  orderInMs: number;
+  adjustedOrder: number;
   tokens: string[][];
   lines: number[];
-  ranges?: IRange[];
   pages: number[];
-  breaks: (number | null)[];
+  images: string[];
+  breaks: number[];
+  ranges?: IRange[];
+
 }
 
 export interface IRowData {

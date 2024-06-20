@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, computed } from '@angular/core';
 import { ICellData } from '../../../../models/collation-row-data.model';
 import { CollationSettingsService } from '../../../../services/collation-settings.service';
 import { FacsimilePanelService } from '../../../../services/facsimile-panel.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 
 
@@ -19,6 +20,7 @@ export class CollationCellComponent {
   @Input() mediumIndex = 0;
 
   showFacsimilePreview$ = this.settingsSerive.showFacsimilePreview$;
+  highlightedLine = toSignal(this.facsimilePanelService.currentCellLine);
 
 
   constructor(
@@ -37,14 +39,14 @@ export class CollationCellComponent {
       return 'visibility';
     }
 
-    if (
-      !this.facsimilePanelService.hasUnit(this.unitIndex, this.siglum) &&
-      this.facsimilePanelService.canAddUnit()
-    ) {
-      return 'visibility_off';
-    }
+    return 'visibility_off';
+  }
 
-    return '';
+  cellHighlightedLine() {
+    if (this.facsimilePanelService.hasUnit(this.unitIndex, this.siglum)) {
+      return this.highlightedLine();
+    }
+    return undefined;
   }
 
   toggleFacimileInPanle() {
@@ -52,12 +54,10 @@ export class CollationCellComponent {
       return;
     }
     const { mediumId, lines, pages } = this.data;
-    if (
-      !this.facsimilePanelService.hasUnit(this.unitIndex, this.siglum) &&
-      this.facsimilePanelService.canAddUnit()
-    ) {
+    const hasUnit = this.facsimilePanelService.hasUnit(this.unitIndex, this.siglum);
+    if (!hasUnit) {
       this.facsimilePanelService.addUnit(this.unitIndex, this.orderDisplay, this.siglum, this.mediumIndex, mediumId, pages, lines);
-    } else if (this.facsimilePanelService.hasUnit(this.unitIndex, this.siglum)) {
+    } else {
       this.facsimilePanelService.removeUnit(this.unitIndex, this.siglum);
     }
   }

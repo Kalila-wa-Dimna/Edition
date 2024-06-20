@@ -2,7 +2,7 @@
   [ngClass]="{
         'current-result': currentResult,
     'search-result': searchResult && !currentResult,
-    divider: unit.divider,
+    divider: unit.isDivider,
     'row-header': true,
 
   }"
@@ -17,7 +17,7 @@
     <span>{{ unit.title }}</span>
   </div>
 </div>
-<div *ngIf="!unit.divider" class="row-content">
+<div *ngIf="!unit.isDivider" class="row-content">
   <ng-template [ngIf]="rowData !== undefined" [ngIfElse]="loading">
     <kd-collation-cell
       *ngFor="let siglum of sigla; index as mediumIndex"
