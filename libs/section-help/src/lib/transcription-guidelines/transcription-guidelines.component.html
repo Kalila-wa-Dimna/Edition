@@ -1,0 +1,658 @@
+<div class="toc">
+  <p class="toc-title">Transcription Guidelines</p>
+
+  <ul>
+    <li class="li-md">
+      <a
+        (click)="onScroll('general-objectives')"
+        [class.active-anchor]="activeAnchor === 'general-objectives'"
+        >General Objectives</a
+      >
+    </li>
+    <li class="li-md">
+      <a
+        (click)="onScroll('orthography')"
+        [class.active-anchor]="activeAnchor === 'orthography'"
+        >Orthography</a
+      >
+    </li>
+    <li class="li-md">
+      <a
+        (click)="onScroll('grammar')"
+        [class.active-anchor]="activeAnchor === 'grammar'"
+        >Grammar</a
+      >
+    </li>
+    <li class="li-md">
+      <a
+        (click)="onScroll('morphology')"
+        [class.active-anchor]="activeAnchor === 'morphology'"
+        >Morphology</a
+      >
+    </li>
+    <li>
+      <a
+        (click)="onScroll('edition-symbols')"
+        [class.active-anchor]="activeAnchor === 'edition-symbols'"
+        >Edition Symbols</a
+      >
+      <ul>
+        <li class="li-md">
+          <a
+            (click)="onScroll('corrupt')"
+            [class.active-anchor]="activeAnchor === 'corrupt'"
+            >† 🟰 Corrupt</a
+          >
+        </li>
+        <li class="li-md">
+          <a
+            (click)="onScroll('unintelligible')"
+            [class.active-anchor]="activeAnchor === 'unintelligible'"
+            >? 🟰 Unintelligible</a
+          >
+        </li>
+        <li class="li-md">
+          <a
+            (click)="onScroll('error')"
+            [class.active-anchor]="activeAnchor === 'error'"
+            >! 🟰 Error</a
+          >
+        </li>
+        <li class="li-md">
+          <a
+            (click)="onScroll('emended')"
+            [class.active-anchor]="activeAnchor === 'emended'"
+            >* 🟰 Emended</a
+          >
+        </li>
+        <li class="li-md">
+          <a
+            (click)="onScroll('superfluous')"
+            [class.active-anchor]="activeAnchor === 'superfluous'"
+            >[] 🟰 Superfluous</a
+          >
+        </li>
+        <li class="li-md">
+          <a
+            (click)="onScroll('crossed-out')"
+            [class.active-anchor]="activeAnchor === 'crossed-out'"
+            >[[]] 🟰 Crossed-out</a
+          >
+        </li>
+        <li class="li-md">
+          <a
+            (click)="onScroll('supplied')"
+            [class.active-anchor]="activeAnchor === 'supplied'"
+            >{{ '{}' }} 🟰 Supplied</a
+          >
+        </li>
+        <li class="li-md">
+          <a
+            (click)="onScroll('added')"
+            [class.active-anchor]="activeAnchor === 'added'"
+            >&lt;&gt; 🟰 Added</a
+          >
+        </li>
+        <li class="li-md">
+          <a
+            (click)="onScroll('title')"
+            [class.active-anchor]="activeAnchor === 'title'"
+            >() 🟰 Title</a
+          >
+        </li>
+        <li class="li-md">
+          <a
+            (click)="onScroll('lacuna')"
+            [class.active-anchor]="activeAnchor === 'lacuna'"
+            >*** 🟰 Lacuna</a
+          >
+        </li>
+        <li class="li-md">
+          <a
+            (click)="onScroll('damage')"
+            [class.active-anchor]="activeAnchor === 'damage'"
+            >... 🟰 Damage</a
+          >
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<div id="content">
+  <h3 id="general-objectives">General Objectives</h3>
+  <p class="p-md">
+    Transcription aims to create a digital corpus that accurately represents the
+    original text of the selected Kalīla wa-Dimna manuscripts, adhering to a
+    <strong>standardized orthography</strong>, though not in classical Fuṣḥā or
+    modern standard Arabic. The language, word choice, form, and manner of
+    expression of each copyist must be preserved as closely as possible. Some
+    editorial interventions, as detailed in the following sections, are
+    recommended to facilitate reading the text and to highlight editorial
+    decisions and scholarly insights. The general restriction for editorial
+    interventions is that they should be minimal and only undertaken when they
+    will markedly improve the readability of the text and clarify the (presumed)
+    intent of the copyist.
+  </p>
+  <h3 id="orthography">Orthography</h3>
+  <h3 id="grammar">Grammar</h3>
+  <h3 id="morphology">Morphology</h3>
+  <h3 id="edition-symbols">Edition Symbols</h3>
+  <p class="p-md">
+    Edition symbols declare an editorial intervention or reflect a specific text
+    phenomenon. The following table presents a summary of the meaning and role
+    of each symbol:
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th class="th-md"><strong>Symbol</strong></th>
+        <th class="th-md"><strong>Symbol Name</strong></th>
+        <th class="th-md"><strong>Meaning</strong></th>
+        <th class="th-md"><strong>Editorial Intervention</strong></th>
+        <th class="th-md"><strong>Text Phenomenon</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="td-md">†</td>
+        <td class="td-md">Dagger</td>
+        <td class="td-md">Corrupt</td>
+        <td class="td-md"></td>
+        <td class="td-md">✓</td>
+      </tr>
+      <tr>
+        <td class="td-md">?</td>
+        <td class="td-md">Question Mark</td>
+        <td class="td-md">Unintelligible</td>
+        <td class="td-md"></td>
+        <td class="td-md">✓</td>
+      </tr>
+      <tr>
+        <td class="td-md">!</td>
+        <td class="td-md">Exclamation Mark</td>
+        <td class="td-md">Error</td>
+        <td class="td-md"></td>
+        <td class="td-md">✓</td>
+      </tr>
+      <tr>
+        <td class="td-md">*</td>
+        <td class="td-md">Asterisk</td>
+        <td class="td-md">Emended</td>
+        <td class="td-md">✓</td>
+        <td class="td-md"></td>
+      </tr>
+      <tr>
+        <td class="td-md">[]</td>
+        <td class="td-md">Square Brackets</td>
+        <td class="td-md">Superfluous</td>
+        <td class="td-md">✓</td>
+        <td class="td-md">✓</td>
+      </tr>
+      <tr>
+        <td class="td-md">[[]]</td>
+        <td class="td-md">Double Square Brackets</td>
+        <td class="td-md">Crossed-out</td>
+        <td class="td-md"></td>
+        <td class="td-md">✓</td>
+      </tr>
+      <tr>
+        <td class="td-md">{{ '{}' }}</td>
+        <td class="td-md">Curly Brackets</td>
+        <td class="td-md">Supplied</td>
+        <td class="td-md"></td>
+        <td class="td-md">✓</td>
+      </tr>
+      <tr>
+        <td class="td-md">&lt;&gt;</td>
+        <td class="td-md">Angle Brackets</td>
+        <td class="td-md">Added</td>
+        <td class="td-md">✓</td>
+        <td class="td-md"></td>
+      </tr>
+      <tr>
+        <td class="td-md">()</td>
+        <td class="td-md">Parentheses <strong>or</strong> Round Brackets</td>
+        <td class="td-md">Title</td>
+        <td class="td-md"></td>
+        <td class="td-md">✓</td>
+      </tr>
+      <tr>
+        <td class="td-md">***</td>
+        <td class="td-md">Triple Asterisk</td>
+        <td class="td-md">Lacuna</td>
+        <td class="td-md">✓</td>
+        <td class="td-md">✓</td>
+      </tr>
+      <tr>
+        <td class="td-md">...</td>
+        <td class="td-md">Ellipsis <strong>or</strong> Triple Dot</td>
+        <td class="td-md">Damage</td>
+        <td class="td-md"></td>
+        <td class="td-md">✓</td>
+      </tr>
+    </tbody>
+  </table>
+  <h4 id="corrupt"><code>†</code> 🟰 Corrupt</h4>
+  <p class="p-md">
+    Words that are unreadable due to unclear handwriting or manuscript damage,
+    such as tearing of the paper or smudging of ink, are considered corrupt. To
+    indicate this, try to recreate the appearance of the damaged word and place
+    a dagger symbol before it.
+  </p>
+  <h5 id="examples">Examples</h5>
+  <p class="p-md">TBA</p>
+  <h4 id="unintelligible"><code>?</code> 🟰 Unintelligible</h4>
+  <p class="p-md">
+    Clearly written word that are meaningless in both Standard and Middle
+    Arabic. Type the word and place a question mark before it.
+  </p>
+  <h5 id="examples_1">Examples</h5>
+  <h6 id="1">
+    1. فنشطوا في تعليمه وخفّ عليهم قراءته وحفظه فإذا
+    <strong>?احتبو</strong> الحدث
+  </h6>
+  <blockquote>
+    <p class="p-md">
+      BWII672, P.46, L12
+      <img
+        alt="BWII672, P.46, L12"
+        src="/assets/docs/transcription-guidelines/symbols/unintelligible/BWII672_p46_l12.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="2">
+    2. عنه من غيره حتّى تملّكه ما كان <strong>?أنفقين</strong> بين الناس بل كان
+  </h6>
+  <blockquote>
+    <p class="p-md">
+      BWII672, P.48, L18
+      <img
+        alt="BWII672, P.48, L18"
+        src="/assets/docs/transcription-guidelines/symbols/unintelligible/BWII672_p48_l18.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="3">
+    3. وشدّة عنايتهم ولما تناقضوا فيه من <strong>?الأقتال</strong> والأشباه
+  </h6>
+  <blockquote>
+    <p class="p-md">
+      P3475, P.2, L0
+      <img
+        alt="P3475, P.2, L0"
+        src="/assets/docs/transcription-guidelines/symbols/unintelligible/P3475_p2_l0.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="4">
+    4.
+    <span lang="ar" dir="rtl">
+      ?<strong>مغاناها</strong> وظنّ أنّه بالقراءة قد أحكم ما فيها ثم أنّه تكلّم
+      في بعض</span
+    >
+  </h6>
+  <blockquote>
+    <p class="p-md">
+      P3475, P.4, L15
+      <img
+        alt="P3475, P.4, L15"
+        src="/assets/docs/transcription-guidelines/symbols/unintelligible/P3475_p4_l15.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="5">
+    5.
+    <span lang="ar" dir="rtl"
+      >&#x202D;<strong>هافصأو</strong>?&#x202C; إلى غير مفصح ولا مصرّح ومن
+      الأفعال الّتي جعلها
+    </span>
+  </h6>
+  <blockquote>
+    <p class="p-md">
+      P3471, P.46, L0
+      <img
+        alt="P3471, P.46, L0"
+        src="/assets/docs/transcription-guidelines/symbols/unintelligible/P3471_p46_l0.png"
+      />
+    </p>
+  </blockquote>
+  <h4 id="error"><code>!</code> 🟰 Error</h4>
+  <p class="p-md">
+    Clearly written words that have meanings but are unfit for the context.
+  </p>
+  <h5 id="examples_2">Examples</h5>
+  <h6 id="1_1">1.</h6>
+  <blockquote>
+    <p class="p-md">
+      P3471, P.291, L4
+      <img
+        alt="P3471, P.291, L4"
+        src="/assets/docs/transcription-guidelines/symbols/error/P3471_p291_l4.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="2_1">2.</h6>
+  <blockquote>
+    <p class="p-md">
+      P5881, P.19, L17
+      <img
+        alt="P5881, P.19, L17"
+        src="/assets/docs/transcription-guidelines/symbols/error/P5881_p19_l17.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="3_1">
+    3. إنّ الأدب يجلو الرجل كما يجلو <strong>!الوكد</strong> النار ويزيد ضوؤها
+  </h6>
+  <blockquote>
+    <p class="p-md">
+      P3475, P.5, L7
+      <img
+        alt="P3475, P.5, L7"
+        src="/assets/docs/transcription-guidelines/symbols/error/P3475_p5_l7.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="4_1">
+    4. فاجتمعت خصال ثلاث فإمّا <strong>!أحديها</strong> فإنّهم وجدوا
+  </h6>
+  <blockquote>
+    <p class="p-md">
+      P3475, P.2, L4
+      <img
+        alt="P3475, P.2, L4"
+        src="/assets/docs/transcription-guidelines/symbols/error/P3475_p2_l4.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="5_1">
+    5. لهو والمتعلّمون من الأحداث فنشطوا لعلمه <strong>!وزجرت</strong> عليهم
+    حفظه
+  </h6>
+  <blockquote>
+    <p class="p-md">
+      P3471, P.45, L14
+      <img
+        alt="P3471, P.45, L14"
+        src="/assets/docs/transcription-guidelines/symbols/error/P3471_p45_l14.png"
+      />
+    </p>
+  </blockquote>
+  <h4 id="emended"><code>*</code> 🟰 Emended</h4>
+  <p class="p-md">
+    If a corrupt, unintelligible, or lexically erroneous word can be adjusted to
+    fit the context with minimal changes, enter the corrected word and add an
+    astresik before it.
+  </p>
+  <h5 id="examples_3">Examples</h5>
+  <h6 id="1_2">1.</h6>
+  <blockquote>
+    <p class="p-md">
+      P3473, P.30, L6
+      <img
+        alt="P3473, P.30, L6"
+        src="/assets/docs/transcription-guidelines/symbols/emendations/P3473_p30_l6.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="2_2">2.</h6>
+  <blockquote>
+    <p class="p-md">
+      P3471, P.290, L1
+      <img
+        alt="P3471, P.290, L1"
+        src="/assets/docs/transcription-guidelines/symbols/emendations/P3471_p290_l1.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="3_2">3.</h6>
+  <blockquote>
+    <p class="p-md">
+      P5881, P.19, L6
+      <img
+        alt="P5881, P.19, L6"
+        src="/assets/docs/transcription-guidelines/symbols/emendations/P5881_p19_l6.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="4_2">4.</h6>
+  <blockquote>
+    <p class="p-md">
+      P3473, P.29, L1
+      <img
+        alt="P3473, P.29, L1"
+        src="/assets/docs/transcription-guidelines/symbols/emendations/P3473_p29_l1.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="5_2">5.</h6>
+  <blockquote>
+    <p class="p-md">
+      P2789, P.336, L0
+      <img
+        alt="P2789, P.336, L0"
+        src="/assets/docs/transcription-guidelines/symbols/emendations/P2789_p336_l0.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="6">6.</h6>
+  <blockquote>
+    <p class="p-md">
+      P3471, P.45, L4
+      <img
+        alt="P3471, P.45, L4"
+        src="/assets/docs/transcription-guidelines/symbols/emendations/P3471_p45_l4.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="7">7.</h6>
+  <blockquote>
+    <p class="p-md">
+      P5881, P.19, L2
+      <img
+        alt="P5881, P.19, L2"
+        src="/assets/docs/transcription-guidelines/symbols/emendations/P5881_p19_l2.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="8">8.</h6>
+  <blockquote>
+    <p class="p-md">
+      P3473, P.28, L6
+      <img
+        alt="P3473, P.28, L6"
+        src="/assets/docs/transcription-guidelines/symbols/emendations/P3473_p28_l6.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="9">9.</h6>
+  <blockquote>
+    <p class="p-md">
+      P3466, P.278, L14
+      <img
+        alt="P3466, P.278, L14"
+        src="/assets/docs/transcription-guidelines/symbols/emendations/P3466_p278_l14.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="10">10.</h6>
+  <blockquote>
+    <p class="p-md">
+      P2789, P.336, L9
+      <img
+        alt="P2789, P.336, L9"
+        src="/assets/docs/transcription-guidelines/symbols/emendations/P2789_p336_l9.png"
+      />
+    </p>
+  </blockquote>
+  <h4 id="superfluous"><code>[]</code> 🟰 Superfluous</h4>
+  <p class="p-md">Words that are clearly written by mistake.</p>
+  <h5 id="examples_4">Examples</h5>
+  <blockquote>
+    <p>
+      P3473, P.152, L19
+      <img
+        alt="P3473, P.152, L19"
+        src="/assets/docs/transcription-guidelines/symbols/dittography/P3473_p152_l19.png"
+      />
+      P3471, P.295, L15
+      <img
+        alt="P3471, P.295, L15"
+        src="/assets/docs/transcription-guidelines/symbols/dittography/P3471_p295_l15.png"
+      />
+    </p>
+  </blockquote>
+  <h4 id="crossed-out"><code>[[]]</code> 🟰 Crossed-out</h4>
+  <p class="p-md">A word that the copyist wrote and crossed-out</p>
+  <h5 id="examples_5">Examples</h5>
+  <h6 id="1_3">1.</h6>
+  <blockquote>
+    <p class="p-md">
+      P3466, P.281, L2
+      <img
+        alt="P3466, P.281, L2"
+        src="/assets/docs/transcription-guidelines/symbols/crossed/P3466_p281_l2.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="2_3">2.</h6>
+  <blockquote>
+    <p class="p-md">
+      P3466, P.48, L11
+      <img
+        alt="P3466, P.48, L11"
+        src="/assets/docs/transcription-guidelines/symbols/crossed/P3466_p48_l11.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="3_3">3.</h6>
+  <blockquote>
+    <p class="p-md">
+      P3466, P.287, L7
+      <img
+        alt="P3466, P.287, L7"
+        src="/assets/docs/transcription-guidelines/symbols/crossed/P3466_p287_l7.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="4_3">
+    4.
+    <span dir="rtl" lang="ar"
+      >&#x202D;[[ىلع]]&#x202C; فاجتمعت خصال ثلاث فإمّا أحديها فإنّهم وجدوا
+    </span>
+  </h6>
+  <blockquote>
+    <p class="p-md">
+      P3475, P.279, L16
+      <img
+        alt="P3475, P.279, L16"
+        src="/assets/docs/transcription-guidelines/symbols/crossed/P3475_p279_l16.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="5_3">5.</h6>
+  <blockquote>
+    <p class="p-md">
+      P5881, P.18, L6
+      <img
+        alt="P5881, P.18, L6"
+        src="/assets/docs/transcription-guidelines/symbols/crossed/P5881_p18_l6.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="6_1">6.</h6>
+  <blockquote>
+    <p class="p-md">
+      P5881, P.158, L10
+      <img
+        alt="P5881, P.158, L10"
+        src="/assets/docs/transcription-guidelines/symbols/crossed/P5881_p158_l10.png"
+      />
+    </p>
+  </blockquote>
+  <h4 id="supplied">
+    <code>{{ '{}' }}</code> 🟰 Supplied
+  </h4>
+  <p class="p-md">Marginal additions</p>
+  <h5 id="examples_6">Examples</h5>
+  <h6 id="1_4">1.</h6>
+  <blockquote>
+    <p class="p-md">
+      P3466, P.281, L6
+      <img
+        alt="P3466, P.281, L6"
+        src="/assets/docs/transcription-guidelines/symbols/supplied/P3466_p281_l6.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="2_4">2.</h6>
+  <blockquote>
+    <p class="p-md">
+      P3466, P.283, L5
+      <img
+        alt="P3466, P.283, L5"
+        src="/assets/docs/transcription-guidelines/symbols/supplied/P3466_p283_l5.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="3_4">3.</h6>
+  <blockquote>
+    <p class="p-md">
+      P3466, P.50, L1
+      <img
+        alt="P3466, P.50, L1"
+        src="/assets/docs/transcription-guidelines/symbols/supplied/P3466_p50_l1.png"
+      />
+    </p>
+  </blockquote>
+  <h4 id="added"><code>&lt;&gt;</code> 🟰 Added</h4>
+  <h5 id="examples_7">Examples</h5>
+  <h6 id="1_5">1.</h6>
+  <blockquote>
+    <p class="p-md">
+      P3465, P.54, L6
+      <img
+        alt="P3465, P.54, L6"
+        src="/assets/docs/transcription-guidelines/symbols/added/P3465_p54_l6.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="2_5">2.</h6>
+  <blockquote>
+    <p class="p-md">
+      P3471, P.45, L16
+      <img
+        alt="P3471, P.45, L16"
+        src="/assets/docs/transcription-guidelines/symbols/added/P3471_p45_l16.png"
+      />
+    </p>
+  </blockquote>
+  <h6 id="3_5">3.</h6>
+  <blockquote>
+    <p class="p-md">
+      P5881, P.158, L25
+      <img
+        alt="P5881, P.158, L25"
+        src="/assets/docs/transcription-guidelines/symbols/added/P5881_p158_l25.png"
+      />
+    </p>
+  </blockquote>
+  <h4 id="title"><code>()</code> 🟰 Title</h4>
+  <h5 id="examples_8">Examples</h5>
+  <h6 id="1_6">1.</h6>
+  <blockquote>
+    <p class="p-md">
+      P3465, P.53, L4
+      <img
+        alt="P3465, P.53, L4"
+        src="/assets/docs/transcription-guidelines/symbols/title/P3465_p53_l4.png"
+      />
+    </p>
+  </blockquote>
+  <h4 id="lacuna"><code>***</code> 🟰 Lacuna</h4>
+  <h5 id="examples_9">Examples</h5>
+  <p class="p-md">TBA</p>
+  <h4 id="damage"><code>...</code> 🟰 Damage</h4>
+  <h5 id="examples_10">Examples</h5>
+  <p class="p-md">TBA</p>
+</div>

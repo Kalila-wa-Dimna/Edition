@@ -12,6 +12,7 @@ const DEFAULT: ICollationViewSettings = {
   fullWidth: false,
   showFacsimilePreview: false,
   showMap: false,
+  visibleColumns: {}
 };
 
 @Injectable()
@@ -36,6 +37,8 @@ export class CollationSettingsService {
   fontSize$ = this.stateObservable$.pipe(
     map(({ size }) => SIZE_MAP[size].font)
   );
+
+  visibleColumns$ = this.stateObservable$.pipe(map(({ visibleColumns }) => visibleColumns));
 
   showFacsimilePreview$ = this.stateObservable$.pipe(map(({ showFacsimilePreview }) => showFacsimilePreview));
   showMap$ = this.stateObservable$.pipe(map(({ showMap }) => showMap));

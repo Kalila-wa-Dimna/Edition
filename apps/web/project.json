@@ -15,25 +15,15 @@
         "main": "apps/web/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/web/tsconfig.app.json",
+        "stylePreprocessorOptions": {
+          "includePaths": ["sass"]
+        },
         "assets": [
           "apps/web/src/favicon.ico",
           "apps/web/src/assets",
           "apps/web/src/manifest.webmanifest"
         ],
-        "styles": [
-          "apps/web/src/styles.scss",
-          "apps/web/src/catView/lib/catview/catview.css",
-          "apps/web/src/catView/lib/lera.css"
-        ],
-        "scripts": [
-          "apps/web/src/catView/lib/d3/d3.min.js",
-          "apps/web/src/catView/lib/catview/catview.js",
-          "apps/web/src/catView/data/catview.js",
-          "apps/web/src/catView/lib/jquery-1.11.3.min.js",
-          "apps/web/src/catView/lib/lera.js",
-          "apps/web/src/TocCatView/lib/lera.js",
-          "apps/web/src/TocCatView/data/catview.js"
-        ],
+        "styles": ["apps/web/src/styles.scss"],
         "serviceWorker": true,
         "ngswConfigPath": "apps/web/ngsw-config.json",
         "webWorkerTsConfig": "apps/web/tsconfig.worker.json",
