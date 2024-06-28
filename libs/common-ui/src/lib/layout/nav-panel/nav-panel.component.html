@@ -13,11 +13,27 @@
     >About the Project</a
   >
   <mat-divider></mat-divider>
-  <a mat-button style="width: 100%" [routerLink]="['/description']"
-    >Manuscript Description</a
-  >
-  <mat-divider></mat-divider>
+
   <mat-accordion>
+
+    <mat-expansion-panel
+      [expanded]="expanded.manuscriptDescriptionPanelOpen"
+      (opened)="expanded.manuscriptDescriptionPanelOpen = true"
+      (closed)="expanded.manuscriptDescriptionPanelOpen = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title><span class="panel-title"><span>Manuscritpt Descritiopns</span></span>
+        </mat-panel-title>
+
+
+      </mat-expansion-panel-header>
+      <a mat-button  [routerLink]="['/description']"
+      >Survey</a
+      >
+
+    </mat-expansion-panel>
+
+    <mat-divider></mat-divider>
     <mat-expansion-panel
       [expanded]="expanded.manuscriptPanelOpen"
       (opened)="expanded.manuscriptPanelOpen = true"

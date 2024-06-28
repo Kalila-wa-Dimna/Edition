@@ -12,6 +12,7 @@ export class NavPanelComponent implements OnInit {
     collationPanelOpen: false,
     manuscriptPanelOpen: false,
     englishCollationPanelOpen: false,
+    manuscriptDescriptionPanelOpen:false,
     guidesPanelOpen: false,
   };
 

@@ -12,6 +12,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { FooterModule } from './footer.module';
 import { CollationsPanelComponent } from './layout/nav-panel/collations-panel/collations-panel.component';
 import { ManuscriptsPanelComponent } from './layout/nav-panel/manuscripts-panel/manuscripts-panel.component';
+import { ManuscriptDescriptionPanelComponent } from './layout/nav-panel/manuscript-description-panel/manuscript-description-panel.component';
+
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -25,9 +27,11 @@ import {EnglishCollationPanelComponent}from './layout/nav-panel/english-collatio
         NavPanelComponent,
         CollationsPanelComponent,
         ManuscriptsPanelComponent,
-        EnglishCollationPanelComponent
+        EnglishCollationPanelComponent,
+    ManuscriptDescriptionPanelComponent
     ],
-    exports: [LayoutComponent], imports: [CommonModule,
+    exports: [LayoutComponent],
+    imports: [CommonModule,
         RouterModule,
         MatToolbarModule,
         MatButtonModule,
@@ -40,5 +44,6 @@ import {EnglishCollationPanelComponent}from './layout/nav-panel/english-collatio
         MatMenuModule,
         MatTabsModule,
         ReactiveFormsModule,
+
         MatInputModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class LayoutModule {}
