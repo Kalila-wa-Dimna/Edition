@@ -28,6 +28,7 @@ import { SearchService } from '../../services/search.service';
 import { FacsimilePanelService } from '../../services/facsimile-panel.service';
 import { SearchWorkerService } from '@kalila-edition/common-ui';
 import { CollationContainerComponent } from './collation-container/collation-container.component';
+import { toSignal } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'kd-collation',
   templateUrl: './collation.component.html',
@@ -76,6 +77,7 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   titles = signal<string[]>([]);
+  visibleColumns = toSignal(this.settingsService.visibleColumns$);
   rowDataReciever = signal<IRowData[]>([]);
   rowData = computed(() => {
     const original = this.rowDataReciever()

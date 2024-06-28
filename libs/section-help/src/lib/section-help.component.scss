@@ -1,0 +1,9 @@
+@import 'sass/page.scss';
+@import 'sass/_dark-theme.scss';
+@import 'sass/_light-theme.scss';
+
+:host {
+  width: 100vw;
+  min-height: 100vh;
+  height: fit-content;
+}

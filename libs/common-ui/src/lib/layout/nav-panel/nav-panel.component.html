@@ -8,7 +8,6 @@
 </div>
 
 <div class="panel-content">
-
   <a mat-button style="width: 100%" [routerLink]="['/about']"
     >About the Project</a
   >
@@ -74,10 +73,10 @@
     <mat-divider></mat-divider>
 
     <mat-expansion-panel
-      disabled
       [expanded]="expanded.guidesPanelOpen"
       (opened)="expanded.guidesPanelOpen = true"
       (closed)="expanded.guidesPanelOpen = false"
+      disabled
     >
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -86,35 +85,42 @@
       </mat-expansion-panel-header>
       <a mat-button [routerLink]="['/guides']">Overview</a>
       <mat-divider></mat-divider>
-      <a mat-button [routerLink]="['/guides']">Glossary</a>
+      <a mat-button [routerLink]="['/guides/glossary']">Glossary</a>
       <mat-divider></mat-divider>
-      <a mat-button [routerLink]="['/guides']">Editing Workflow</a>
+      <a mat-button [routerLink]="['/guides/editing-workflow']"
+        >Editing Workflow</a
+      >
       <mat-divider></mat-divider>
-      <a mat-button [routerLink]="['/guides']">Transcription Guidelines</a>
+      <a mat-button [routerLink]="['/guides/transcription-guidelines']"
+        >Transcription Guidelines</a
+      >
       <mat-divider></mat-divider>
-      <a mat-button [routerLink]="['/guides']"
+      <a
+        mat-button
+        [routerLink]="['/guides/segmentation-and-collation-principles']"
         >Segmentation and Collation Principles</a
       >
       <mat-divider></mat-divider>
-      <a mat-button [routerLink]="['/guides']">Middle Arabic Features</a>
+      <a mat-button [routerLink]="['/guides/middle-arabic-features']"
+        >Middle Arabic Features</a
+      >
       <mat-divider></mat-divider>
       <a mat-button [routerLink]="['/', 'guides', 'dissemination-history']"
         >Kalila wa-Dimna Dissemination History</a
       >
       <mat-divider></mat-divider>
-      <a mat-button [routerLink]="['/guides']"
+      <a
+        mat-button
+        [routerLink]="['/guides/kalila-wa-dimna-research-and-publications']"
         >Kalila wa-Dimna Research and Publications</a
       >
       <mat-divider></mat-divider>
-      <a mat-button [routerLink]="['/guides']">Technical Aspects</a>
+      <a mat-button [routerLink]="['/guides/technical-aspects']"
+        >Technical Aspects</a
+      >
       <mat-divider></mat-divider>
     </mat-expansion-panel>
   </mat-accordion>
-  <mat-divider></mat-divider>
-  <mat-divider></mat-divider>
-  <a mat-button style="width: 100%" [routerLink]="['/toc-lera']"
-  >2ToC JAS </a
-  >
   <mat-divider></mat-divider>
   <a
     mat-button

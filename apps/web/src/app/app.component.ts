@@ -58,3 +58,6 @@ export class AppComponent implements OnInit, OnDestroy {
 }
 
 // nx g @nx/angular:web-worker mapPanelWorker --project=web
+
+// nx g @nx/angular:component markdown-page --project=section-help
+

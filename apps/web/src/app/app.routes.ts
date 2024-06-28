@@ -36,9 +36,8 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'guides',
-    // loadChildren: () =>
-    //   import('@kalila-edition/section-help').then((m) => m.SectionHelpModule),
-    redirectTo: '',
+    loadChildren: () =>
+      import('@kalila-edition/section-help').then((m) => m.SectionHelpModule),
   },
   {
     path: 'description',
@@ -48,8 +47,7 @@ export const appRoutes: Route[] = [
 
   {
     path: 'toc-lera',
-    loadChildren: () =>
-      import('@kalila-edition/other-editions').then((m) =>m.OtherEditionsModule ),
+    redirectTo: "collations/ToC"
   },
 
 ];

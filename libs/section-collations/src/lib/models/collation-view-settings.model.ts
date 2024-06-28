@@ -5,4 +5,5 @@ export interface ICollationViewSettings {
   showMap: boolean;
   showFacsimilePreview: boolean;
   fullWidth: boolean;
+  visibleColumns: Record<string, string[] | 'all'>;
 }
