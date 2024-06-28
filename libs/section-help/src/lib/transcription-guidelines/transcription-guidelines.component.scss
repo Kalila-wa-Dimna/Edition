@@ -1,0 +1,46 @@
+@import 'sass/breakpoints.scss';
+
+:host {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  height: fit-content;
+}
+
+.toc {
+  width: 20%;
+  position: sticky;
+  top: 0;
+  @include on-smaller-than(md) {
+    display: none;
+  }
+}
+
+.md-h4 {
+  font-family: 'Noto Naskh Arabic';
+}
+
+table {
+  margin: 0 auto; /* Center the table on the page */
+  border-collapse: collapse; /* Ensure borders are collapsed */
+  width: 80%; /* Optional: Adjust the width as needed */
+}
+
+.th-md,
+.td-md {
+  text-align: center; /* Center the content in table headers and cells */
+  padding: 8px; /* Add some padding for better readability */
+}
+
+// .md-tr:nth-child(even) {
+//   background-color: #f2f2f2; /* Optional: Add a background color to even rows for better readability */
+// }
+
+// .md-th {
+//   background-color: #4caf50; /* Optional: Add a background color to table headers */
+//   color: white; /* Optional: Set the text color of table headers */
+// }
+
+.active-anchor {
+  background-color: red;
+}

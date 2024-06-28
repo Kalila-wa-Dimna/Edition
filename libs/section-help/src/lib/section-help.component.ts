@@ -3,17 +3,13 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'kd-section-help',
   template: ` <kd-layout>
-    <span title>Kalila-wa-Dimna Edition</span>
+    <span title>
+      <router-outlet name="title"></router-outlet>
+    </span>
     <main pageContent>
-      <h1>Help</h1>
+      <router-outlet name="content"></router-outlet>
     </main>
   </kd-layout>`,
-  styles: [
-    `
-      main {
-        flex-grow: 1;
-      }
-    `,
-  ],
+  styleUrl: './section-help.component.scss'
 })
-export class SectionHelpComponent {}
+export class SectionHelpComponent { }
