@@ -21,7 +21,10 @@ import { CollationDataService } from '../../services/collation-data.service';
 import { IRange, IRangeDefinition, IRowData } from '../../models/collation-row-data.model';
 import {
 
+  BehaviorSubject,
   Subscription,
+  combineLatest,
+  map,
 
 } from 'rxjs';
 import { SearchService } from '../../services/search.service';
@@ -74,6 +77,8 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
 
     return "";
   }
+
+  numberOfColumns$ = new BehaviorSubject<number>(0);
 
 
   titles = signal<string[]>([]);
@@ -132,6 +137,9 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   showFacsimilePreview$ = this.settingsService.showFacsimilePreview$;
   showMap$ = this.settingsService.showMap$;
+  mainContainerWidth$ = combineLatest([this.numberOfColumns$, this.settingsService.cellWidth$]).pipe(
+    map(([numberOfColumns, cellWidth]) => `${(numberOfColumns * (cellWidth + 2 * CELL_PADDING)) + (4 * CELL_PADDING)}px`)
+  )
 
 
 
@@ -198,6 +206,7 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
   private loadData(data: Data) {
     this.versionSummary = data['pageData']['versionSummary'];
     this.columns = data['pageData']['columns'];
+    this.numberOfColumns$.next(this.columns.length);
     this.facsimilePanelService.columns = this.columns;
     this.sigla = this.columns.map((c) => c.siglum);
     this.units = data['pageData']['units'];

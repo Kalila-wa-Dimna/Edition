@@ -41,6 +41,7 @@
           'collation-container-with-facsimile-panel':
             (showFacsimilePreview$ | async),
         }"
+        [style.width]="mainContainerWidth$ | async"
         cdkVirtualScrollingElement
       >
       </kd-collation-container>
