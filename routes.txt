@@ -10,6 +10,8 @@
 /collations/Kd
 /collations/Ag
 /collations/Oc
+/collations/ToC
+/toc-lera
 /manuscripts
 /manuscripts/P5881/Lv/6
 /manuscripts/P5881/Lv/7
