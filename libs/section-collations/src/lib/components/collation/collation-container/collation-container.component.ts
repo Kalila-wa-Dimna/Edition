@@ -1,11 +1,11 @@
-import { AfterViewInit, Component, Input, OnDestroy, ViewChild, computed, signal } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, ViewChild, computed } from '@angular/core';
 import { IRowData } from '../../../models/collation-row-data.model';
 import { ICollationColumn, ICollationUnit } from '../../../models/collation-page-data.model';
 import { SearchService } from '../../../services/search.service';
 import { CollationSettingsService } from '../../../services/collation-settings.service';
 import { CELL_PADDING } from '../../../constants/size.constants';
 import { CollationVirtualScrollDirective } from '../../../directives/virtual-scroll/collation-virtual-scroll.directive';
-import { BehaviorSubject, ReplaySubject, Subject, Subscription, debounceTime, distinctUntilChanged, withLatestFrom } from 'rxjs';
+import { Subject, Subscription, debounceTime, distinctUntilChanged, withLatestFrom } from 'rxjs';
 
 @Component({
   selector: 'kd-collation-container',
