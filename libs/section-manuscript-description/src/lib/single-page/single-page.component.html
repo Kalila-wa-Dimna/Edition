@@ -1,0 +1,56 @@
+<kd-layout>
+  <span title style="font-size: large;">Manuscript descriptions</span>
+  <main pageContent>
+    <div class="single-page-container" *ngIf="data">
+      <div class="content-wrapper">
+        <!-- Table of Contents -->
+        <div class="toc">
+          <div class="toc-title">Table of Contents</div>
+          <ul class="toc-list">
+            <li *ngFor="let category of categories">
+              <a (click)="scrollToCategory(category.title)">{{ category.title }}</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Categories and Images -->
+        <div class="categories">
+          <ng-container *ngFor="let category of categories; let i = index">
+            <div class="category-card" [attr.id]="category.title.toLowerCase()">
+              <div class="category-title">{{ category.title }}</div>
+              <div class="category-content">
+                <div class="content-wrapper">
+                  <!-- Display fields -->
+                  <div class="text-content">
+                    <div *ngFor="let field of category.fields" class="field">
+                      <!-- Conditionally display field name -->
+                      <ng-container *ngIf="!isSpecialField(field)">
+                        <strong class="field-name">{{ formatFieldName(field) }}</strong><br>
+                      </ng-container>
+                      <span [innerHTML]="sanitizeHtml(data[field])"></span>
+                      <br>
+                    </div>
+                  </div>
+                  <!-- Insert images for Script and Layout category cards -->
+                  <div class="image-content" *ngIf="(category.title === 'Script' && getScriptImagesForSiglum(data.siglum__siglum).length > 0) ||
+                                                    (category.title === 'Layout' && getImagesForSiglum(data.siglum__siglum).length > 0)">
+                    <div style="font-size: x-small">
+                      Images for {{ data.siglum__siglum }}
+                    </div>
+                    <div class="image-slider">
+                      <button class="prev-button" (click)="prevImage(i)">&#9664;</button>
+                      <div class="image-wrapper">
+                        <img [src]="imagesEndPoint + getImagesForCategory(category.title, data.siglum__siglum)[currentImageIndexes[i]]" alt="Manuscript image" class="manuscript-image">
+                      </div>
+                      <button class="next-button" (click)="nextImage(i)">&#9654;</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </main>
+</kd-layout>

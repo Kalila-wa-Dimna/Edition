@@ -29,6 +29,10 @@
       <a mat-button  [routerLink]="['/description']"
       >Survey</a
       >
+      <mat-divider></mat-divider>
+      <kd-manuscript-descrition-panel
+        *ngIf="expanded.manuscriptDescriptionPanelOpen"
+      ></kd-manuscript-descrition-panel>
 
     </mat-expansion-panel>
 

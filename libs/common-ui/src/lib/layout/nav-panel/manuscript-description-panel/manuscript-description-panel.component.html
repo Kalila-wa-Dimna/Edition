@@ -1,0 +1,6 @@
+<ng-container *ngIf="(data$ | async) as data">
+  <ng-container *ngFor="let item of data">
+    <a mat-button [routerLink]="['/description', item.siglum]">{{ item.siglum }}</a>
+    <mat-divider></mat-divider>
+  </ng-container>
+</ng-container>
