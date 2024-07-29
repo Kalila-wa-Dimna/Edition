@@ -12,6 +12,7 @@ import { SearchService } from '../../../services/search.service';
 import { SearchWorkerService } from '@kalila-edition/common-ui';
 import { arabicLettersRegex, latinLettersRegex } from '@kalila-edition/common-util';
 import { isPlatformBrowser } from '@angular/common';
+import { DownloadsService } from '../../../services/downloads.service';
 
 @Component({
   selector: 'kd-collation-command-bar',
@@ -24,6 +25,7 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
     private settingsService: CollationSettingsService,
     private searchService: SearchService,
     private searchWorkerService: SearchWorkerService,
+    private downloadsService: DownloadsService,
     @Inject(PLATFORM_ID) private platformId: object,
   ) { }
 
@@ -116,6 +118,10 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
       });
     }
 
+  }
+
+  async downloadUnitTable() {
+    await this.downloadsService.downloadUnitTable();
   }
 
   toggleMobileSearchPanel(): void {

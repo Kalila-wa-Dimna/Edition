@@ -44,6 +44,19 @@
     >
       <mat-icon>settings</mat-icon> Settings...
     </button>
+
+    <button
+      [matMenuTriggerFor]="downloadsMenu"
+      mat-button
+      aria-label="downloads"
+    >
+      <mat-icon>download</mat-icon> Downloads...
+    </button>
+    <mat-menu #downloadsMenu="matMenu">
+      <button (click)="downloadUnitTable()" mat-menu-item>
+        Unit Table (CSV)
+      </button>
+    </mat-menu>
   </div>
 
   <button (click)="openSettingsDialog()" class="settings-btn" mat-icon-button>
