@@ -26,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatMenuModule } from '@angular/material/menu';
 import { CellSizingService } from './services/cell-sizing.service';
 import { CollationVirtualScrollDirective } from './directives/virtual-scroll/collation-virtual-scroll.directive';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -44,6 +45,7 @@ import {
 import { CollationContainerComponent } from './components/collation/collation-container/collation-container.component';
 import { AlignmentService } from './services/alignment.service';
 import { CollationCellTextPoetryComponent } from './components/collation/collation-row/collation-cell/collation-cell-text-poetry.component';
+import { DownloadsService } from './services/downloads.service';
 
 
 
@@ -70,7 +72,8 @@ import { CollationCellTextPoetryComponent } from './components/collation/collati
     MatInputModule,
     MatGridListModule,
     MatSlideToggleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatMenuModule
   ],
   declarations: [
     SelectCollationComponent,
@@ -94,7 +97,8 @@ import { CollationCellTextPoetryComponent } from './components/collation/collati
     CellSizingService,
     SearchService,
     FacsimilePanelService,
-    AlignmentService
+    AlignmentService,
+    DownloadsService
   ],
 })
 export class SectionCollationsModule { }
