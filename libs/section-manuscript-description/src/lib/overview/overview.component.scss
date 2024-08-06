@@ -45,12 +45,10 @@ main {
 .mat-mdc-header-row,
 .mat-mdc-footer-row,
 .mat-mdc-row {
-  min-width: 6298px;
+  min-width: 7198px;
   /* 24 columns, 80px each */
 }
-.bibliography-cell {
-  max-height: calc(100vh - 15vh) !important;
-  margin-top: 10px !important; /* Adjust to your desired height */
+.bibliography-cell { /* Adjust to your desired height */
   overflow-y: auto;
 }
 .mat-footer-row {
@@ -173,11 +171,6 @@ mat-footer-cell {
     background-color: #455a64 !important;
   }
 
-  ::ng-deep .row-first-header.mat-mdc-header-cell {
-    font-size: large !important;
-    font-weight: bold !important;
-  }
-
   .row-second-header {
     top: 40px;
     font-weight: bold !important;
@@ -194,7 +187,6 @@ mat-footer-cell {
   height: 35px;
   width: 120px;
   margin-bottom: 5px;
-  margin-top: 5px;
   background-color: #4c7d8a;
   border: 1px;
   color: white;
@@ -202,4 +194,44 @@ mat-footer-cell {
 .center:hover {
   background-color: #003a4a;
   cursor: pointer;
+}
+
+
+
+@media screen and (min-width: 40px) and (max-width: 800px) {
+  .bibliography-cell {
+    max-height: calc(100vh - 15vh) !important;
+    margin-top: 5px !important;
+    width: calc(80vw) !important;
+    font-size: 10px!important;
+  }
+  ::ng-deep .row-first-header.mat-mdc-header-cell {
+    font-size: xx-small!important;
+    font-weight: bold !important;
+  }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1800px){
+  .bibliography-cell {
+    max-height: calc(100vh - 15vh) !important;
+    margin-top: 5px !important;
+    width: calc(100vw) !important;
+  }
+  ::ng-deep .row-first-header.mat-mdc-header-cell {
+    font-size: large!important;
+    font-weight: bold !important;
+  }
+  }
+@media screen and (min-width: 1800px) {
+
+  .bibliography-cell {
+    max-height: calc(100vh - 15vh) !important;
+    margin-top: 5px !important;
+    width: calc(100vw) !important;
+  }
+  ::ng-deep .row-first-header.mat-mdc-header-cell {
+    font-size: x-large!important;
+    font-weight: bold !important;
+  }
+
 }

@@ -48,6 +48,9 @@ export class OverviewComponent implements OnInit {
     'script__commentary',
     'orthography__sound_shifts',
     'orthography__commentary',
+    'place_in_textual_tradition__classification',
+    'place_in_textual_tradition__commentary',
+    'place_in_textual_tradition__related_manuscripts'
   ];
 
   columnWidths: { [key: string]: number } = {
@@ -70,7 +73,10 @@ export class OverviewComponent implements OnInit {
     'binding__additional_features': 200,
     'script__present_additional_writing_signs': 250,
     'orthography__sound_shifts':160,
-    'catalogue__location':160
+    'catalogue__location':160,
+    'place_in_textual_tradition__classification':300,
+    'place_in_textual_tradition__commentary':300,
+    'place_in_textual_tradition__related_manuscripts':300
   };
 
   groupedColumns: { key: string, value: string[] }[] = [];
@@ -207,9 +213,7 @@ export class OverviewComponent implements OnInit {
     console.log("Total Width of All Groups:", totalWidth);
   }
 
-  capitalizeFirstLetter(text: string): string {
-    return text.charAt(0).toUpperCase() + text.slice(1);
-  }
+
 
 
 
@@ -226,5 +230,12 @@ downloadExcel(): void {
     }, (error) => {
       console.error('Error downloading the Excel file', error);
     });
+  }
+
+  capitalizeFirstLetter(text: string): string {
+    if (!text) return '';
+    // Remove underscores and capitalize the first letter
+    const sanitizedText = text.replace(/_/g, ' ');
+    return sanitizedText.charAt(0).toUpperCase() + sanitizedText.slice(1);
   }
 }

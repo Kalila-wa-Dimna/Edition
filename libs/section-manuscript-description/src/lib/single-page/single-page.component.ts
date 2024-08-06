@@ -37,11 +37,12 @@ export class SinglePageComponent implements OnInit, OnDestroy {
     { title: 'Preservation', fields: ['preservation__status', 'preservation__missing_parts', 'preservation__restored_parts', 'preservation__commentary'] },
     { title: 'Binding', fields: ['binding__type', 'binding__period', 'binding__additional_features', 'binding__commentary'] },
     { title: 'Pagination', fields: ['pagination__present', 'pagination__used', 'pagination__commentary'] },
-    { title: 'Composite Manuscript', fields: ['composite_manuscript__bound_with', 'composite_manuscript__commentary'] },
+    { title: 'Composite_Manuscript', fields: ['composite_manuscript__bound_with', 'composite_manuscript__commentary'] },
     { title: 'Layout', fields: ['layout__frame', 'layout__catchwords', 'layout__lines_per_page', 'layout__chapter_titles', 'layout__text_division_symbols', 'layout__highlighted_text', 'layout__commentary'] },
     { title: 'Illustrations', fields: ['illustrations__presence', 'illustrations__legend', 'illustrations___commentary'] },
     { title: 'Script', fields: ['script__type', 'script__hands', 'script__execution', 'script__size', 'script__line_spacing', 'script__word_spacing', 'script__letter_spacing', 'script__stroke_direction', 'script__lower_curves', 'script__stroke_thickness', 'script__baseline', 'script__letter_diacritics', 'script__vowel_markers', 'script__present_additional_writing_signs', 'script__commentary'] },
-    { title: 'Orthography', fields: ['orthography__sound_shifts', 'orthography__commentary'] }
+    { title: 'Orthography', fields: ['orthography__sound_shifts', 'orthography__commentary'] },
+    {title: 'Place_In_Textual_Tradition',fields: ['place_in_textual_tradition__classification','place_in_textual_tradition__commentary','place_in_textual_tradition__related_manuscripts']},
   ];
 
   currentImageIndexes: number[] = [];
@@ -151,12 +152,14 @@ export class SinglePageComponent implements OnInit, OnDestroy {
     return [];
   }
 
-  scrollToCategory(categoryTitle: string) {
-    const element = document.getElementById(categoryTitle.toLowerCase().replace(/ /g, '-'));
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+  convertToId(title: string): string {
+    return title.toLowerCase().replace(/ /g, '-').replace(/_/g, '-');
   }
+
+  formatCategoryTitle(title: string): string {
+    return title.replace(/_/g, ' ');
+  }
+
 
   formatFieldName(field: string): string {
     const parts = field.split('__');
@@ -171,7 +174,13 @@ export class SinglePageComponent implements OnInit, OnDestroy {
 
     return formattedField;
   }
-
+  scrollToCategory(categoryTitle: string) {
+    const elementId = this.convertToId(categoryTitle);
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
   isSpecialField(field: string): boolean {
     const specialFields = [
       'orthography__d_dh_shifts',

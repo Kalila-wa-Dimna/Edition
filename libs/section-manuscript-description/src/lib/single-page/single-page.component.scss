@@ -1,20 +1,15 @@
-@import 'sass/page.scss';
-@import 'sass/_dark-theme.scss';
-@import 'sass/_light-theme.scss';
-@import 'sass/mixins';
-
 .single-page-container {
   display: flex;
   align-items: flex-start;
   margin: 20px;
-  font-size: 15px;
+
   font-family: var(--mat-table-row-item-label-text-font, Roboto, sans-serif);
 
   .content-wrapper {
     display: flex;
     flex-direction: row;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1300px;
   }
 
   .toc {
@@ -55,6 +50,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    padding-bottom: 50px; // Ensure enough space for scrolling
 
     .category-card {
       margin-bottom: 20px;
@@ -166,4 +162,56 @@ table {
 
 .field-name::first-letter {
   text-transform: uppercase;
+}
+
+
+@media screen and (min-width: 40px) and (max-width: 800px) {
+
+
+  .single-page-container{
+   font-size: 12px;
+    .content-wrapper{
+      max-width: 100%;
+    }
+  }
+  .toc {
+    display: none;
+  }
+  .image-content{
+    display: none!important;
+  }
+}
+
+@media screen and (min-width: 800px) {
+
+  .single-page-container{
+    font-size: 15px;
+    margin: 10px;
+    .content-wrapper{
+      max-width: 1200px;
+    }
+  }
+  .toc {
+    display: block;
+  }
+  .image-content{
+    display: block;
+  }
+}
+@media screen and (min-width: 1800px) {
+
+  .single-page-container{
+    font-size: 16px;
+    margin: 10px;
+    .content-wrapper{
+      max-width: 1300px;
+    }
+  }
+  .toc {
+    display: block;
+  }
+  .image-content{
+    display: block;
+  }
+
 }

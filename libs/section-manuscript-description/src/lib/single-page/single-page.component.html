@@ -8,7 +8,7 @@
           <div class="toc-title">Table of Contents</div>
           <ul class="toc-list">
             <li *ngFor="let category of categories">
-              <a (click)="scrollToCategory(category.title)">{{ category.title }}</a>
+              <a (click)="scrollToCategory(category.title)">{{ formatCategoryTitle(category.title) }}</a>
             </li>
           </ul>
         </div>
@@ -16,8 +16,8 @@
         <!-- Categories and Images -->
         <div class="categories">
           <ng-container *ngFor="let category of categories; let i = index">
-            <div class="category-card" [attr.id]="category.title.toLowerCase()">
-              <div class="category-title">{{ category.title }}</div>
+            <div class="category-card" [attr.id]="convertToId(category.title)">
+              <div class="category-title">{{ formatCategoryTitle(category.title) }}</div>
               <div class="category-content">
                 <div class="content-wrapper">
                   <!-- Display fields -->
