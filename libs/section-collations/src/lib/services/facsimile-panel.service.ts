@@ -71,6 +71,8 @@ export class FacsimilePanelService {
       })
     })
 
+    this.currentCellLine.next(0);
+
     this.numberOfLines.set(highlights.length);
     this.cellInformation.set(`${siglum} - ${unitDisplay}`);
 
