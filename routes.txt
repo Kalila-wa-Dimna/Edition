@@ -11,6 +11,8 @@
 /collations/Ag
 /collations/Oc
 /collations/ToC
+/collations/Di
+/collations/Di_s
 /toc-lera
 /manuscripts
 /manuscripts/P5881/Lv/6
