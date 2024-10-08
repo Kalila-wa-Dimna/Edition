@@ -11,19 +11,26 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ReplacePipe } from './single-page/replace.pipe';
+import {GraphComponent} from "./graph/graph.component";
+
 @NgModule({
   imports: [CommonModule, LayoutModule,
     RouterModule.forChild(routes),
     MatTableModule, MatButtonToggleModule,
     MatCardModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+
+
 
   ],
   declarations: [
     OverviewComponent,
     SinglePageComponent,
-    ReplacePipe
+    ReplacePipe,
+    GraphComponent
   ],
 })
-export class SectionManuscriptDescriptionModule {}
+export class SectionManuscriptDescriptionModule {
+
+}
