@@ -12,6 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ReplacePipe } from './single-page/replace.pipe';
 import {GraphComponent} from "./graph/graph.component";
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [CommonModule, LayoutModule,
@@ -20,7 +22,8 @@ import {GraphComponent} from "./graph/graph.component";
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-
+    MatCheckboxModule,
+    FormsModule,
 
 
   ],
