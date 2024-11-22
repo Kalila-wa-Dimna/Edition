@@ -1,14 +1,15 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
+    "types": ["node"],
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "ES2022",
+    "target": "ES2017",
     "module": "esnext",
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,

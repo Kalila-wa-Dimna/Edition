@@ -1,19 +1,13 @@
 import { Route } from '@angular/router';
-import {
-  OverviewComponent
-} from "././overview/overview.component";
-import {createResolver} from "@kalila-edition/common-ui";
-import {ManuscriptPageComponent} from "../../../section-manuscripts/src/lib/manuscript-page/manuscript-page.component";
-import {
-  createAllEnglishPagesResolver,
-  createAllPagesResolver,
-  createManuscriptChaptersDataResolver,
-  createManuscriptDataResolver
-} from "../../../section-manuscripts/src/lib/services/manuscript-page.resolver";
-import {createManuscriptDescriptionDataResolver} from "./services/manuscripts-description-page.resolver";
-import {SinglePageComponent} from "./single-page/single-page.component";
+import { OverviewComponent } from './overview/overview.component';
+import { createResolver } from '@kalila-edition/common-ui';
+import { GraphComponent } from './graph/graph.component';
+import { SinglePageComponent } from './single-page/single-page.component';
+import { createGraphDataResolver } from './services/manuscripts-description-page.resolver';
+import { createManuscriptDescriptionDataResolver } from './services/manuscripts-description-page.resolver';
+
 export const routes: Route[] = [
-  // select
+  // Default route: OverviewComponent
   {
     path: '',
     component: OverviewComponent,
@@ -24,14 +18,23 @@ export const routes: Route[] = [
     },
   },
 
+  // Route for graph component (this must come before the dynamic ':id' route)
+  {
+    path: 'graph',
+    component: GraphComponent,
+    pathMatch: 'full',
+    resolve: {
+      graphData: createGraphDataResolver(),
+    },
+  },
+
+  // Route for individual manuscript pages
   {
     path: ':id',
     component: SinglePageComponent,
     pathMatch: 'full',
     resolve: {
       manuscriptDescriptionData: createManuscriptDescriptionDataResolver(),
-
     },
-  }
-
-]
+  },
+];

@@ -1,0 +1,19 @@
+<kd-layout>
+  <span title style="font-size: large;">Manuscript Descriptions</span>
+  <main pageContent style="margin-top: 10px;">
+    <div class="container">
+      <!-- Chart container -->
+      <div class="chart-container" #chartContainer></div>
+
+      <!-- Filters: Checkboxes aligned to the right -->
+      <div class="checkbox-group">
+        <h6>Select Continuum Groups</h6>
+        <mat-checkbox *ngFor="let group of continuumGroups"
+                      [(ngModel)]="selectedContinuums[group]"
+                      (change)="toggleLinks(group)">
+          {{ capitalizeFirstLetter(group) }}
+        </mat-checkbox>
+      </div>
+    </div>
+  </main>
+</kd-layout>
