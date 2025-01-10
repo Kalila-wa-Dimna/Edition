@@ -3,8 +3,8 @@ import {CONFIG_TOKEN, IConfig} from "@kalila-edition/common-ui";
 import {ActivatedRoute} from "@angular/router";
 import {FacsimileService} from "../../../../libs/section-manuscripts/src/lib/services/manuscript-data.service";
 @Component({
-  selector: 'kd-imprint-page',
-  template: `
+    selector: 'kd-imprint-page',
+    template: `
     <kd-layout>
       <span title>Kalila-wa-Dimna Edition</span>
       <main pageContent>
@@ -97,7 +97,8 @@ import {FacsimileService} from "../../../../libs/section-manuscripts/src/lib/ser
       </main>
     </kd-layout>
   `,
-  styleUrls: ['./about-page.component.scss'],
+    styleUrls: ['./about-page.component.scss'],
+    standalone: false
 })
 export class AboutPageComponent {
 

@@ -9,9 +9,10 @@ interface ICollationInfo {
 }
 
 @Component({
-  selector: 'kd-collations-panel',
-  templateUrl: './collations-panel.component.html',
-  styleUrls: ['./collations-panel.component.scss'],
+    selector: 'kd-collations-panel',
+    templateUrl: './collations-panel.component.html',
+    styleUrls: ['./collations-panel.component.scss'],
+    standalone: false
 })
 export class CollationsPanelComponent {
   constructor(private httpClient: HttpClient,  @Inject(CONFIG_TOKEN) private config: IConfig) {}

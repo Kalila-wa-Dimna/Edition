@@ -17,9 +17,10 @@ interface IManuscriptsDescriptionInfo {
 }
 
 @Component({
-  selector: 'kalila-edition-single-page',
-  templateUrl: './single-page.component.html',
-  styleUrls: ['./single-page.component.scss'],
+    selector: 'kalila-edition-single-page',
+    templateUrl: './single-page.component.html',
+    styleUrls: ['./single-page.component.scss'],
+    standalone: false
 })
 export class SinglePageComponent implements OnInit, OnDestroy {
   data: any;

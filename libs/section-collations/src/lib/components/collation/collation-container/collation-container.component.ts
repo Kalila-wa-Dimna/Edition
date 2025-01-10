@@ -8,8 +8,8 @@ import { CollationVirtualScrollDirective } from '../../../directives/virtual-scr
 import { Subject, Subscription, debounceTime, distinctUntilChanged, withLatestFrom } from 'rxjs';
 
 @Component({
-  selector: 'kd-collation-container',
-  template: `
+    selector: 'kd-collation-container',
+    template: `
         <kd-collation-heading [columns]="columns"></kd-collation-heading>
         <cdk-virtual-scroll-viewport
           kdCollationVirtualScroll
@@ -37,10 +37,11 @@ import { Subject, Subscription, debounceTime, distinctUntilChanged, withLatestFr
           </kd-collation-row>
         </cdk-virtual-scroll-viewport>
   `,
-  styles: `
+    styles: `
 
 
-  `
+  `,
+    standalone: false
 })
 export class CollationContainerComponent implements AfterViewInit, OnDestroy {
 

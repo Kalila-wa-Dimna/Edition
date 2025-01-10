@@ -8,9 +8,10 @@ import { CONFIG_TOKEN, IConfig } from "@kalila-edition/common-ui";
 import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'kalila-edition-manuscript-page-facsimile',
-  templateUrl: './manuscript-page-facsimile.component.html',
-  styleUrls: ['./manuscript-page-facsimile.component.scss'],
+    selector: 'kalila-edition-manuscript-page-facsimile',
+    templateUrl: './manuscript-page-facsimile.component.html',
+    styleUrls: ['./manuscript-page-facsimile.component.scss'],
+    standalone: false
 })
 export class ManuscriptPageFacsimileComponent implements OnInit {
 

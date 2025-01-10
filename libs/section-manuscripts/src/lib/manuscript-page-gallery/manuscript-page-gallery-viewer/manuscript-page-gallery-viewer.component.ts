@@ -10,10 +10,11 @@ import { Subscription } from "rxjs";
 import * as lightGallery from 'lightgallery';
 
 @Component({
-  selector: 'kalila-edition-manuscript-page-gallery-viewer',
-  templateUrl: './manuscript-page-gallery-viewer.component.html',
-  styleUrls: ['./manuscript-page-gallery-viewer.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'kalila-edition-manuscript-page-gallery-viewer',
+    templateUrl: './manuscript-page-gallery-viewer.component.html',
+    styleUrls: ['./manuscript-page-gallery-viewer.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class ManuscriptPageGalleryViewerComponent implements OnInit, OnDestroy, AfterViewChecked {
   data: IGalleryInfo[] = [];

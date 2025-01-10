@@ -35,8 +35,8 @@ interface IChangeableNode {
 }
 
 @Component({
-  selector: 'kd-map-panel',
-  template: `
+    selector: 'kd-map-panel',
+    template: `
   @if (loading()) {
     <div class="loading">
       <mat-spinner></mat-spinner>
@@ -47,7 +47,8 @@ interface IChangeableNode {
   </div>
   <div #container id="container"></div>
   `,
-  styleUrls: ['./map-panel.component.scss']
+    styleUrls: ['./map-panel.component.scss'],
+    standalone: false
 })
 export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
   canvas: unknown | null = null;

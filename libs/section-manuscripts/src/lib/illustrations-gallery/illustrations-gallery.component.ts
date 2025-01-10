@@ -5,9 +5,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { IllustrationModalComponent } from './illustration-modal.component'
 
 @Component({
-  selector: 'kalila-edition-illustrations-gallery',
-  templateUrl: './illustrations-gallery.component.html',
-  styleUrls: ['./illustrations-gallery.component.scss'],
+    selector: 'kalila-edition-illustrations-gallery',
+    templateUrl: './illustrations-gallery.component.html',
+    styleUrls: ['./illustrations-gallery.component.scss'],
+    standalone: false
 })
 export class IllustrationsGalleryComponent {
   data: any;

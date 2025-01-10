@@ -2,8 +2,8 @@ import {Component, Inject} from '@angular/core';
 import {CONFIG_TOKEN, IConfig} from "@kalila-edition/common-ui";
 
 @Component({
-  selector: 'kd-imprint-page',
-  template: `
+    selector: 'kd-imprint-page',
+    template: `
     <kd-layout>
       <span title>Kalila-wa-Dimna Edition</span>
       <main pageContent>
@@ -93,7 +93,8 @@ import {CONFIG_TOKEN, IConfig} from "@kalila-edition/common-ui";
       </main>
     </kd-layout>
   `,
-  styleUrls: ['./imprint-page.component.scss'],
+    styleUrls: ['./imprint-page.component.scss'],
+    standalone: false
 })
 export class ImprintPageComponent {
 

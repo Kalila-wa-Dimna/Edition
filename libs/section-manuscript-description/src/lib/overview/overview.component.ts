@@ -11,9 +11,10 @@ import { HttpClient } from '@angular/common/http';
 import { saveAs } from 'file-saver';
 
 @Component({
-  selector: 'kalila-edition-overview',
-  templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.scss'],
+    selector: 'kalila-edition-overview',
+    templateUrl: './overview.component.html',
+    styleUrls: ['./overview.component.scss'],
+    standalone: false
 })
 export class OverviewComponent implements OnInit {
   data: any;

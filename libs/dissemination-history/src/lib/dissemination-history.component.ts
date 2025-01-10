@@ -5,8 +5,8 @@ import { MatTabGroup } from '@angular/material/tabs';
 import { DisseminationHistoryService } from './dissemination-history.service';
 
 @Component({
-  selector: 'kd-dissemination-history',
-  template: `
+    selector: 'kd-dissemination-history',
+    template: `
     <kd-layout>
       <span title>Dissemination History</span>
       <main pageContent>
@@ -60,7 +60,8 @@ import { DisseminationHistoryService } from './dissemination-history.service';
       </main>
     </kd-layout>
   `,
-  styleUrls: ['./dissemination-history.component.scss'],
+    styleUrls: ['./dissemination-history.component.scss'],
+    standalone: false
 })
 export class DisseminationHistoryComponent {
   @ViewChild(MatTabGroup) tabGroup!: MatTabGroup;

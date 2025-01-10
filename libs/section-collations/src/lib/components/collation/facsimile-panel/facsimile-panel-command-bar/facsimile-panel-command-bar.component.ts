@@ -5,8 +5,8 @@ import { CollationSettingsService } from "../../../../services/collation-setting
 
 // Your code here
 @Component({
-  selector: 'kd-facsimile-panel-command-bar',
-  template: `
+    selector: 'kd-facsimile-panel-command-bar',
+    template: `
 
 
     <div class="line-switcher">
@@ -47,7 +47,8 @@ import { CollationSettingsService } from "../../../../services/collation-setting
 
 
   `,
-  styleUrls: ['./facsimile-panel-command-bar.component.scss']
+    styleUrls: ['./facsimile-panel-command-bar.component.scss'],
+    standalone: false
 })
 export class FacsimilePanelCommandBarComponent {
 

@@ -14,9 +14,10 @@ export interface IEnglishPageInfo {
 }
 
 @Component({
-  selector: 'kd-english-collation-panel',
-  templateUrl: './english-collation-panel.component.html',
-  styleUrls: ['./english-collation-panel.component.scss'],
+    selector: 'kd-english-collation-panel',
+    templateUrl: './english-collation-panel.component.html',
+    styleUrls: ['./english-collation-panel.component.scss'],
+    standalone: false
 })
 export class EnglishCollationPanelComponent {
 

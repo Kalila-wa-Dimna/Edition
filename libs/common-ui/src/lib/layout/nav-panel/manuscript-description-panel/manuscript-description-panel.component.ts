@@ -8,9 +8,10 @@ interface IManuscriptsDescriptionInfo{
   images: string[]
 }
 @Component({
-  selector: 'kd-manuscript-descrition-panel',
-  templateUrl: './manuscript-description-panel.component.html',
-  styleUrls: ['./manuscript-description-panel.component.css']
+    selector: 'kd-manuscript-descrition-panel',
+    templateUrl: './manuscript-description-panel.component.html',
+    styleUrls: ['./manuscript-description-panel.component.css'],
+    standalone: false
 })
 export class ManuscriptDescriptionPanelComponent {
   constructor(private httpClient: HttpClient,  @Inject(CONFIG_TOKEN) private config: IConfig) {}

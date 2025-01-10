@@ -2,9 +2,10 @@ import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 @Component({
-  selector: 'kd-nav-panel',
-  templateUrl: './nav-panel.component.html',
-  styleUrls: ['./nav-panel.component.scss'],
+    selector: 'kd-nav-panel',
+    templateUrl: './nav-panel.component.html',
+    styleUrls: ['./nav-panel.component.scss'],
+    standalone: false
 })
 export class NavPanelComponent implements OnInit {
   @Output() closeClicked = new EventEmitter();

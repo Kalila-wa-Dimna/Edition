@@ -31,9 +31,10 @@ const GRID_SIZE = 15;
 
 
 @Component({
-  selector: 'kd-facsimile-panel',
-  template: '<div #container id="container"></div>',
-  styleUrls: ['./facsimile-panel.component.scss'],
+    selector: 'kd-facsimile-panel',
+    template: '<div #container id="container"></div>',
+    styleUrls: ['./facsimile-panel.component.scss'],
+    standalone: false
 })
 export class FacsimilePanelComponent implements AfterViewInit, OnDestroy {
   @ViewChild('container')

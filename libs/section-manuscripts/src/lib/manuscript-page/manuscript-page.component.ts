@@ -4,9 +4,10 @@ import { ActivatedRoute, Data, ParamMap } from "@angular/router";
 import { combineLatest, Observable, Subscription } from "rxjs";
 import { isPlatformBrowser } from '@angular/common';
 @Component({
-  selector: 'kalila-edition-manuscript-page',
-  templateUrl: './manuscript-page.component.html',
-  styleUrls: ['./manuscript-page.component.scss'],
+    selector: 'kalila-edition-manuscript-page',
+    templateUrl: './manuscript-page.component.html',
+    styleUrls: ['./manuscript-page.component.scss'],
+    standalone: false
 })
 export class ManuscriptPageComponent implements OnInit, OnDestroy {
   combinedData$!: Observable<any>;

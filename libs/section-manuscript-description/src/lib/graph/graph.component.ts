@@ -11,10 +11,11 @@ interface NodeData {
 }
 
 @Component({
-  selector: 'kalila-edition-graph',
-  templateUrl: './graph.component.html',
-  styleUrls: ['./graph.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'kalila-edition-graph',
+    templateUrl: './graph.component.html',
+    styleUrls: ['./graph.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class GraphComponent implements OnInit, OnDestroy {
   @ViewChild('chartContainer', { static: true })

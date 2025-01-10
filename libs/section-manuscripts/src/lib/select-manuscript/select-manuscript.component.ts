@@ -4,9 +4,10 @@ import { IManuscriptInfo } from '../models/manuscript-summary.model';
 import {CONFIG_TOKEN, IConfig} from "@kalila-edition/common-ui";
 
 @Component({
-  selector: 'kalila-edition-select-manuscript',
-  templateUrl: './select-manuscript.component.html',
-  styleUrls: ['./select-manuscript.component.scss'],
+    selector: 'kalila-edition-select-manuscript',
+    templateUrl: './select-manuscript.component.html',
+    styleUrls: ['./select-manuscript.component.scss'],
+    standalone: false
 })
 export class SelectManuscriptComponent implements OnInit{
   data:IManuscriptInfo[] = [];

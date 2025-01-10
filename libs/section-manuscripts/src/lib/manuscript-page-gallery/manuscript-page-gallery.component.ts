@@ -5,9 +5,10 @@ import { combineLatest, Observable, Subscription } from "rxjs";
 import { switchMap } from 'rxjs/operators';
 import { ManuscriptPageService } from "../services/manuscript-page.resolver";
 @Component({
-  selector: 'kalila-edition-manuscript-page-gallery',
-  templateUrl: './manuscript-page-gallery.component.html',
-  styleUrls: ['./manuscript-page-gallery.component.scss'],
+    selector: 'kalila-edition-manuscript-page-gallery',
+    templateUrl: './manuscript-page-gallery.component.html',
+    styleUrls: ['./manuscript-page-gallery.component.scss'],
+    standalone: false
 })
 export class ManuscriptPageGalleryComponent implements OnInit, OnDestroy {
 

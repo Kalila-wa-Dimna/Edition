@@ -2,8 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { CONFIG_TOKEN, IConfig } from "@kalila-edition/common-ui";
 import { Router } from '@angular/router';
 @Component({
-  selector: 'kd-main-page',
-  template: `
+    selector: 'kd-main-page',
+    template: `
     <kd-layout  [dataManuscriptEndPoint]="manuscriptEndPoint">
       <span title>Kalīla wa-Dimna Edition <span class="version-number">(v.{{version}})</span></span>
       <main pageContent>
@@ -127,7 +127,8 @@ import { Router } from '@angular/router';
       </main>
     </kd-layout>
   `,
-  styleUrls: ['./main-page.component.scss'],
+    styleUrls: ['./main-page.component.scss'],
+    standalone: false
 })
 export class MainPageComponent {
 

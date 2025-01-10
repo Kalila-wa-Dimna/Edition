@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { IRange } from './models';
 
 @Component({
-  selector: 'kd-collation-cell-text',
-  template: `
+    selector: 'kd-collation-cell-text',
+    template: `
  @if(lines.length === 0) {
         <p>
           @if(orderInMs) {
@@ -34,8 +34,8 @@ import { IRange } from './models';
         }
 
     `,
-  styles: [
-    `
+    styles: [
+        `
       p {
         margin: 0;
         padding: 0;
@@ -51,7 +51,8 @@ import { IRange } from './models';
       }
 
     `
-  ]
+    ],
+    standalone: false
 })
 export class CollationCellTextComponent {
 

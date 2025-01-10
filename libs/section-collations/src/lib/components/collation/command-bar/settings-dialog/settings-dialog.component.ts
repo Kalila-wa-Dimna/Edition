@@ -4,9 +4,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ICollationViewSettings } from '../../../../models/collation-view-settings.model';
 
 @Component({
-  selector: 'kd-settings-dialog',
-  templateUrl: './settings-dialog.component.html',
-  styleUrls: ['./settings-dialog.component.scss'],
+    selector: 'kd-settings-dialog',
+    templateUrl: './settings-dialog.component.html',
+    styleUrls: ['./settings-dialog.component.scss'],
+    standalone: false
 })
 export class SettingsDialogComponent {
   form: FormGroup;

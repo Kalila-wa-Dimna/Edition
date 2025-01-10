@@ -5,15 +5,16 @@ import { CellSizingService } from '../../services/cell-sizing.service';
 import { ICollationUnit } from '../../models/collation-page-data.model';
 
 @Directive({
-  // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: '[kdCollationVirtualScroll]',
-  providers: [
-    {
-      provide: VIRTUAL_SCROLL_STRATEGY,
-      useFactory: (d: CollationVirtualScrollDirective) => d._scrollStrategy,
-      deps: [forwardRef(() => CollationVirtualScrollDirective)],
-    },
-  ],
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: '[kdCollationVirtualScroll]',
+    providers: [
+        {
+            provide: VIRTUAL_SCROLL_STRATEGY,
+            useFactory: (d: CollationVirtualScrollDirective) => d._scrollStrategy,
+            deps: [forwardRef(() => CollationVirtualScrollDirective)],
+        },
+    ],
+    standalone: false
 })
 export class CollationVirtualScrollDirective {
   _scrollStrategy = new CollationVirtualScrollStrategy(this.sizing);

@@ -10,7 +10,8 @@ import {
 import { isPlatformServer } from '@angular/common';
 
 @Directive({
-  selector: '[clientOnly]',
+    selector: '[clientOnly]',
+    standalone: false
 })
 export class ClientOnlyDirective implements OnInit {
   constructor(

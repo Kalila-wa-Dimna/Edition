@@ -5,9 +5,10 @@ import { CollationSettingsService } from '../../../services/collation-settings.s
 import { SearchService } from '../../../services/search.service';
 
 @Component({
-  selector: 'kd-collation-heading',
-  templateUrl: './collation-heading.component.html',
-  styleUrls: ['./collation-heading.component.scss'],
+    selector: 'kd-collation-heading',
+    templateUrl: './collation-heading.component.html',
+    styleUrls: ['./collation-heading.component.scss'],
+    standalone: false
 })
 export class CollationHeadingComponent {
   @Input() columns: ICollationColumn[] = [];

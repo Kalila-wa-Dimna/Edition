@@ -16,9 +16,10 @@ import {
 } from 'rxjs';
 
 @Component({
-  selector: 'kd-manuscripts-panel',
-  templateUrl: './manuscripts-panel.component.html',
-  styleUrls: ['./manuscripts-panel.component.scss'],
+    selector: 'kd-manuscripts-panel',
+    templateUrl: './manuscripts-panel.component.html',
+    styleUrls: ['./manuscripts-panel.component.scss'],
+    standalone: false
 })
 export class ManuscriptsPanelComponent {
   filterFormControl = new FormControl('');

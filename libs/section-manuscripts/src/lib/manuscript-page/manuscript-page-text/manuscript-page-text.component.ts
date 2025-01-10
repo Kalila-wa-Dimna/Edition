@@ -11,9 +11,10 @@ interface UnitData {
   shortenedUnitNames: string[];
 }
 @Component({
-  selector: 'kalila-edition-manuscript-page-text',
-  templateUrl: './manuscript-page-text.component.html',
-  styleUrls: ['./manuscript-page-text.component.scss'],
+    selector: 'kalila-edition-manuscript-page-text',
+    templateUrl: './manuscript-page-text.component.html',
+    styleUrls: ['./manuscript-page-text.component.scss'],
+    standalone: false
 })
 export class ManuscriptPageTextComponent implements OnInit, OnDestroy {
   pageData$!: Observable<any>;

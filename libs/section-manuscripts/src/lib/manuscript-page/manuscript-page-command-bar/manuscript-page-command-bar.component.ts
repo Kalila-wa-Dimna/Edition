@@ -25,9 +25,10 @@ import {ManuscriptChapterPageService} from "./../../services/manuscript-chapter-
 import {ManuscriptSetPageDataService} from"./../../services/manuscript-set-page-data.service"
 
 @Component({
-  selector: 'kalila-edition-manuscript-page-command-bar',
-  templateUrl: './manuscript-page-command-bar.component.html',
-  styleUrls: ['./manuscript-page-command-bar.component.scss'],
+    selector: 'kalila-edition-manuscript-page-command-bar',
+    templateUrl: './manuscript-page-command-bar.component.html',
+    styleUrls: ['./manuscript-page-command-bar.component.scss'],
+    standalone: false
 })
 export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
   @ViewChild('subMenu') subMenu: MatMenuTrigger | undefined;

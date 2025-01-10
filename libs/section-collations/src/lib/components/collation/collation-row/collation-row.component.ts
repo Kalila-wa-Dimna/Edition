@@ -5,9 +5,10 @@ import { CollationSettingsService } from '../../../services/collation-settings.s
 import { IRowData } from '../../../models/collation-row-data.model';
 
 @Component({
-  selector: 'kd-collation-row',
-  templateUrl: './collation-row.component.html',
-  styleUrls: ['./collation-row.component.scss'],
+    selector: 'kd-collation-row',
+    templateUrl: './collation-row.component.html',
+    styleUrls: ['./collation-row.component.scss'],
+    standalone: false
 })
 export class CollationRowComponent {
   @Input() unit!: ICollationUnit;

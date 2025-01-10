@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'kd-section-help',
-  template: ` <kd-layout>
+    selector: 'kd-section-help',
+    template: ` <kd-layout>
     <span title>
       <router-outlet name="title"></router-outlet>
     </span>
@@ -10,6 +10,7 @@ import { Component } from '@angular/core';
       <router-outlet name="content"></router-outlet>
     </main>
   </kd-layout>`,
-  styleUrl: './section-help.component.scss'
+    styleUrl: './section-help.component.scss',
+    standalone: false
 })
 export class SectionHelpComponent { }

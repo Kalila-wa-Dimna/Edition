@@ -19,10 +19,11 @@ import { DisseminationHistoryService } from '../dissemination-history.service';
 import { MapPhase } from '../data/map-phases';
 import { Arrows } from '../data/arrows';
 @Component({
-  selector: 'kd-dissemination-history-map',
-  templateUrl: './dissemination-history-map.component.html',
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./dissemination-history-map.component.scss'],
+    selector: 'kd-dissemination-history-map',
+    templateUrl: './dissemination-history-map.component.html',
+    encapsulation: ViewEncapsulation.None,
+    styleUrls: ['./dissemination-history-map.component.scss'],
+    standalone: false
 })
 export class DisseminationHistoryMapComponent implements OnInit, OnDestroy {
   private container!: d3.Selection<d3.BaseType, any, any, any>;

@@ -4,9 +4,10 @@ import { ViewportScroller } from "@angular/common";
 
 
 @Component({
-  selector: 'kd-edition-transcription-guidelines',
-  templateUrl: './transcription-guidelines.component.html',
-  styleUrl: './transcription-guidelines.component.scss'
+    selector: 'kd-edition-transcription-guidelines',
+    templateUrl: './transcription-guidelines.component.html',
+    styleUrl: './transcription-guidelines.component.scss',
+    standalone: false
 })
 export class TranscriptionGuidelinesComponent {
   page = 'transcription-guidelines';

@@ -34,9 +34,10 @@ import { CollationContainerComponent } from './collation-container/collation-con
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DownloadsService } from '../../services/downloads.service';
 @Component({
-  selector: 'kd-collation',
-  templateUrl: './collation.component.html',
-  styleUrls: ['./collation.component.scss'],
+    selector: 'kd-collation',
+    templateUrl: './collation.component.html',
+    styleUrls: ['./collation.component.scss'],
+    standalone: false
 })
 export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
   summary: ICollationInfo = { siglum: '', display: '', image: '' };

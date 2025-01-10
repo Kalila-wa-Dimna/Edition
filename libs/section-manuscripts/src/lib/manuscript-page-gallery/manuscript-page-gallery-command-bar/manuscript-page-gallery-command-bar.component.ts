@@ -7,9 +7,10 @@ import { ManuscriptChapterPageService } from "./../../services/manuscript-chapte
 import { Subscription } from "rxjs";
 import { IManuscriptInfo } from "../../models/manuscript-summary.model";
 @Component({
-  selector: 'kalila-edition-manuscript-page-gallery-command-bar',
-  templateUrl: './manuscript-page-gallery-command-bar.component.html',
-  styleUrls: ['./manuscript-page-gallery-command-bar.component.scss'],
+    selector: 'kalila-edition-manuscript-page-gallery-command-bar',
+    templateUrl: './manuscript-page-gallery-command-bar.component.html',
+    styleUrls: ['./manuscript-page-gallery-command-bar.component.scss'],
+    standalone: false
 })
 export class ManuscriptPageGalleryCommandBarComponent implements OnDestroy {
   items!: any[];

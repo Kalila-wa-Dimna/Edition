@@ -15,9 +15,10 @@ import { isPlatformBrowser } from '@angular/common';
 import { DownloadsService } from '../../../services/downloads.service';
 
 @Component({
-  selector: 'kd-collation-command-bar',
-  templateUrl: './collation-command-bar.component.html',
-  styleUrls: ['./collation-command-bar.component.scss'],
+    selector: 'kd-collation-command-bar',
+    templateUrl: './collation-command-bar.component.html',
+    styleUrls: ['./collation-command-bar.component.scss'],
+    standalone: false
 })
 export class CollationCommandBarComponent implements OnInit, OnDestroy {
   constructor(

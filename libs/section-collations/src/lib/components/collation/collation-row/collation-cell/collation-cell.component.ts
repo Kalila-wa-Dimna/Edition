@@ -8,9 +8,10 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 
 @Component({
-  selector: 'kd-collation-cell',
-  templateUrl: './collation-cell.component.html',
-  styleUrls: ['./collation-cell.component.scss'],
+    selector: 'kd-collation-cell',
+    templateUrl: './collation-cell.component.html',
+    styleUrls: ['./collation-cell.component.scss'],
+    standalone: false
 })
 export class CollationCellComponent {
   @Input() data?: ICellData;
