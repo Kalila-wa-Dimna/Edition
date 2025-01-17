@@ -11,7 +11,7 @@ export function createCollationDataTitleResolver() {
 
     const summary = api.load<ICollationInfo>(
       `collations/${editionSiglum}/summary`,
-      { siglum: '', display: '', image: '' }
+      { siglum: '', display: '', image: '', key: '' }
     );
 
     return summary.pipe(map((s) => s.display));

@@ -1,14 +1,24 @@
 <div class="container" *ngIf="isBrowser">
-    <lightgallery [settings]="settings" [onInit]="onInit" id="customize-thumbnails-gallery">
-      <a *ngFor="let item of data; let i = index"
-         class="gallery-item"
-         [attr.href]="item.src" [attr.data-thumb]="item.thumb" [attr.data-sub-html]="item.caption"
-         >  <span class="image-container">
-        <img class="img-responsive" [src]="item.src" />
-        <span class="caption">{{ item.caption  }}</span>
+  <lightgallery
+    [settings]="settings"
+    [onInit]="onInit"
+    id="customize-thumbnails-gallery"
+  >
+    <a
+      *ngFor="let item of data; let i = index"
+      class="gallery-item"
+      [attr.href]="item.src.replace('.jpg', '.webp')"
+      [attr.data-thumb]="item.thumb"
+      [attr.data-sub-html]="item.caption"
+    >
+      <span class="image-container">
+        <img
+          class="img-responsive"
+          [src]="item.src.replace('.jpg', '.webp')"
+          alt=""
+        />
+        <span class="caption">{{ item.caption }}</span>
       </span>
-      </a>
-    </lightgallery>
-  </div>
-
-
+    </a>
+  </lightgallery>
+</div>

@@ -28,7 +28,7 @@ export function createCollationDataResolver() {
 
     const summary$ = api.load<ICollationInfo>(
       `collations/${editionSiglum}/summary`,
-      { siglum: '', display: '', image: '' }
+      { siglum: '', display: '', image: '', key: '' }
     );
 
     const segmentData$ = api.load<IRowData[]>(
@@ -41,8 +41,13 @@ export function createCollationDataResolver() {
       {}
     );
 
-
-    return combineLatest([columns$, units$, summary$, segmentData$, versionSummary$]).pipe(
+    return combineLatest([
+      columns$,
+      units$,
+      summary$,
+      segmentData$,
+      versionSummary$,
+    ]).pipe(
       map(([columns, units, summary, segmentData, versionSummary]) => ({
         columns,
         units,

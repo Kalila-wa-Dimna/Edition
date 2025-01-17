@@ -1,22 +1,26 @@
 /// <reference lib="webworker" />
 
-const LEMMATIZATION_ENDPOINT = "https://camel.kalila-and-dimna.de/"
+const LEMMATIZATION_ENDPOINT = 'https://camel.kalila-and-dimna.de/';
 // const DATA_ENDPOINT = "https://d5gomyglvpeib.cloudfront.net/srv/data/edition_data/collations" // dev
-const DATA_ENDPOINT = "https://d2u9osbhl165ia.cloudfront.net/srv/data/edition_data/collations" // prod
+const DATA_ENDPOINT =
+  'https://d3adbnt3ep1sjp.cloudfront.net/srv/data/edition_data/collations'; // prod
 
-
-let unitLemmas: Record<string, Record<string, string[][]>> | undefined = undefined;
+let unitLemmas: Record<string, Record<string, string[][]>> | undefined =
+  undefined;
 let invertedLemma: Record<string, number[][]> | undefined = undefined;
 let currentCollationName: string | undefined = undefined;
 
 async function init(collationName: string) {
-  unitLemmas = await fetch(`${DATA_ENDPOINT}/${collationName}/lemmas.json`).then(response => response.json());
-  invertedLemma = await fetch(`${DATA_ENDPOINT}/${collationName}/inverted_lemmas.json`).then(response => response.json());
+  unitLemmas = await fetch(
+    `${DATA_ENDPOINT}/${collationName}/lemmas.json`
+  ).then((response) => response.json());
+  invertedLemma = await fetch(
+    `${DATA_ENDPOINT}/${collationName}/inverted_lemmas.json`
+  ).then((response) => response.json());
   currentCollationName = collationName;
 }
 
 addEventListener('message', async ({ data }) => {
-
   const { requestType } = data;
 
   if (requestType === 'init') {
@@ -32,26 +36,37 @@ addEventListener('message', async ({ data }) => {
     const response = await fetch(LEMMATIZATION_ENDPOINT, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ sentence })
+      body: JSON.stringify({ sentence }),
     });
     const searchLemmas: Record<string, string> = await response.json();
     const words = sentence.split(' ');
-    const initialResults = (invertedLemma && words[0] ? invertedLemma[searchLemmas[words[0]] ?? words[0]] : []) ?? [];
+    const initialResults =
+      (invertedLemma && words[0]
+        ? invertedLemma[searchLemmas[words[0]] ?? words[0]]
+        : []) ?? [];
     const finalResults: number[][] = [];
     if (words.length === 1) {
-      initialResults.forEach(result => {
+      initialResults.forEach((result) => {
         const column = result[1];
         const unit = result[0];
         const startLine = result[2];
         const startWord = result[3];
-        finalResults.push([unit, column, startLine, startWord, startLine, startWord]);
-      })
+        finalResults.push([
+          unit,
+          column,
+          startLine,
+          startWord,
+          startLine,
+          startWord,
+        ]);
+      });
     } else {
       for (const result of initialResults) {
         const column = result[1];
-        const columnLemmas = unitLemmas && column !== undefined ? unitLemmas[column] : {};
+        const columnLemmas =
+          unitLemmas && column !== undefined ? unitLemmas[column] : {};
         const unit = result[0];
         const startLine = result[2];
         const startWord = result[3];
@@ -80,7 +95,14 @@ addEventListener('message', async ({ data }) => {
           }
         }
         if (match) {
-          finalResults.push([unit, column, startLine, startWord, endLine, endWord]);
+          finalResults.push([
+            unit,
+            column,
+            startLine,
+            startWord,
+            endLine,
+            endWord,
+          ]);
         }
       }
     }
@@ -93,8 +115,10 @@ addEventListener('message', async ({ data }) => {
       return 0;
     });
 
-
-    const indexedResults: Record<number, Record<number, [number, number, number, number, number][]>> = {};
+    const indexedResults: Record<
+      number,
+      Record<number, [number, number, number, number, number][]>
+    > = {};
 
     sortedResults.forEach((result, index) => {
       const unit = result[0];
@@ -111,11 +135,21 @@ addEventListener('message', async ({ data }) => {
         indexedResults[unit][column] = [];
       }
 
-      indexedResults[unit][column].push([index, startLine, startToken, endLine, endToken]);
+      indexedResults[unit][column].push([
+        index,
+        startLine,
+        startToken,
+        endLine,
+        endToken,
+      ]);
     });
 
-    postMessage({ results: sortedResults, indexedResults, sentence, collationName, type: 'results' });
+    postMessage({
+      results: sortedResults,
+      indexedResults,
+      sentence,
+      collationName,
+      type: 'results',
+    });
   }
-
 });
-

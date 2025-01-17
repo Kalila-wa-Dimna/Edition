@@ -18,15 +18,12 @@ import { CollationSettingsService } from '../../services/collation-settings.serv
 import { CELL_PADDING } from '../../constants/size.constants';
 import { ICollationInfo } from '../../models/collation-summary.model';
 import { CollationDataService } from '../../services/collation-data.service';
-import { IRange, IRangeDefinition, IRowData } from '../../models/collation-row-data.model';
 import {
-
-  BehaviorSubject,
-  Subscription,
-  combineLatest,
-  map,
-
-} from 'rxjs';
+  IRange,
+  IRangeDefinition,
+  IRowData,
+} from '../../models/collation-row-data.model';
+import { BehaviorSubject, Subscription, combineLatest, map } from 'rxjs';
 import { SearchService } from '../../services/search.service';
 import { FacsimilePanelService } from '../../services/facsimile-panel.service';
 import { SearchWorkerService } from '@kalila-edition/common-ui';
@@ -34,13 +31,13 @@ import { CollationContainerComponent } from './collation-container/collation-con
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DownloadsService } from '../../services/downloads.service';
 @Component({
-    selector: 'kd-collation',
-    templateUrl: './collation.component.html',
-    styleUrls: ['./collation.component.scss'],
-    standalone: false
+  selector: 'kd-collation',
+  templateUrl: './collation.component.html',
+  styleUrls: ['./collation.component.scss'],
+  standalone: false,
 })
 export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
-  summary: ICollationInfo = { siglum: '', display: '', image: '' };
+  summary: ICollationInfo = { siglum: '', display: '', image: '', key: '' };
   columns: ICollationColumn[] = [];
   sigla: string[] = [];
   units: ICollationUnit[] = [];
@@ -50,10 +47,8 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     const values = Object.values(this.versionSummary);
 
     if (values.length !== 0) {
-
       return Math.max(...values);
     }
-
 
     return;
   }
@@ -62,39 +57,38 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     const entries = Object.entries(this.versionSummary);
 
     if (entries.length !== 0) {
-
-      return entries.map(([siglum, version]) => {
-        const formattedVersion = new Date(version).toLocaleString('de-DE', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: false
-        });
-        return `${siglum}_${formattedVersion}`;
-      }).join('\n');
+      return entries
+        .map(([siglum, version]) => {
+          const formattedVersion = new Date(version).toLocaleString('de-DE', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false,
+          });
+          return `${siglum}_${formattedVersion}`;
+        })
+        .join('\n');
     }
 
-
-    return "";
+    return '';
   }
 
   numberOfColumns$ = new BehaviorSubject<number>(0);
-
 
   titles = signal<string[]>([]);
   visibleColumns = toSignal(this.settingsService.visibleColumns$);
   rowDataReciever = signal<IRowData[]>([]);
   rowData = computed(() => {
-    const original = this.rowDataReciever()
+    const original = this.rowDataReciever();
     const searchResults = this.searchService.indexedResults();
     const currentResult = this.searchService.currentResult();
     if (!searchResults) {
       return original;
     }
 
-    const rowsWithResults: IRowData[] = []
+    const rowsWithResults: IRowData[] = [];
 
     original.forEach((row, index) => {
       const unitHits = searchResults[index];
@@ -115,22 +109,19 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
         const defs: IRangeDefinition[] = cellHits.map((hit) => ({
           start: [hit[1], hit[2]],
           end: [hit[3], hit[4]],
-          color: hit[0] === currentResult ? '#f0b275' : '#ffdfbf'
-        }))
+          color: hit[0] === currentResult ? '#f0b275' : '#ffdfbf',
+        }));
 
         newRow[siglum] = {
           ...originalCell,
-          ranges: buildRages(defs, originalCell.tokens)
-        }
-
-      })
+          ranges: buildRages(defs, originalCell.tokens),
+        };
+      });
 
       rowsWithResults.push(newRow);
-    })
+    });
 
-
-
-    return rowsWithResults
+    return rowsWithResults;
   });
   cellPadding = CELL_PADDING;
   dataSubscription = Subscription.EMPTY;
@@ -139,11 +130,17 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   showFacsimilePreview$ = this.settingsService.showFacsimilePreview$;
   showMap$ = this.settingsService.showMap$;
-  mainContainerWidth$ = combineLatest([this.numberOfColumns$, this.settingsService.cellWidth$]).pipe(
-    map(([numberOfColumns, cellWidth]) => `${(numberOfColumns * (cellWidth + 2 * CELL_PADDING)) + (4 * CELL_PADDING)}px`)
-  )
-
-
+  mainContainerWidth$ = combineLatest([
+    this.numberOfColumns$,
+    this.settingsService.cellWidth$,
+  ]).pipe(
+    map(
+      ([numberOfColumns, cellWidth]) =>
+        `${
+          numberOfColumns * (cellWidth + 2 * CELL_PADDING) + 4 * CELL_PADDING
+        }px`
+    )
+  );
 
   showTitlePreview = signal<number | null>(null);
 
@@ -168,7 +165,7 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     return cells;
-  })
+  });
 
   constructor(
     private route: ActivatedRoute,
@@ -179,18 +176,14 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     private searchWorkerService: SearchWorkerService,
     private downloadsService: DownloadsService,
     @Inject(LOCALE_ID) public locale: string
-
-  ) {
-
-  }
+  ) {}
 
   ngAfterViewInit(): void {
-
-    this.currentScrollIndexSubscription = this.settingsService.currentScrollIndex.subscribe((index) => {
-      this.currentScrollIndex.set(index);
-    });
+    this.currentScrollIndexSubscription =
+      this.settingsService.currentScrollIndex.subscribe((index) => {
+        this.currentScrollIndex.set(index);
+      });
   }
-
 
   async ngOnInit() {
     await this.settingsService.init();
@@ -200,10 +193,6 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dataSubscription = this.route.data.subscribe((data) => {
       this.loadData(data);
     });
-
-
-
-
   }
 
   private loadData(data: Data) {
@@ -218,8 +207,8 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     this.rowDataReciever.set(data['pageData']['segmentData']);
     this.dataService.cache = data['pageData']['segmentData'];
     this.searchService.reset();
-    this.searchWorkerService.initCollation(this.summary.siglum);
-    this.downloadsService.init(this.summary.siglum);
+    this.searchWorkerService.initCollation(this.summary.key);
+    this.downloadsService.init(this.summary.key);
   }
 
   onGoToRow(index: number) {
@@ -236,10 +225,8 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-
     this.dataSubscription.unsubscribe();
     this.currentScrollIndexSubscription.unsubscribe();
-
   }
 }
 
@@ -268,15 +255,14 @@ function buildRages(rangeDefinitions: IRangeDefinition[], tokens: string[][]) {
       if (rageContiningWord) {
         ranges.push({
           text: word,
-          color: rageContiningWord.color
-        })
+          color: rageContiningWord.color,
+        });
       } else {
         ranges.push({
           text: word,
-        })
+        });
       }
-
-    })
-  })
+    });
+  });
   return ranges;
 }
