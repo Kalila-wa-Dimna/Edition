@@ -8,30 +8,30 @@ const DATA_ENDPOINT =
 let unitLemmas: Record<string, Record<string, string[][]>> | undefined =
   undefined;
 let invertedLemma: Record<string, number[][]> | undefined = undefined;
-let currentCollationName: string | undefined = undefined;
+let currentcollationKey: string | undefined = undefined;
 
-async function init(collationName: string) {
-  unitLemmas = await fetch(
-    `${DATA_ENDPOINT}/${collationName}/lemmas.json`
-  ).then((response) => response.json());
+async function init(collationKey: string) {
+  unitLemmas = await fetch(`${DATA_ENDPOINT}/${collationKey}/lemmas.json`).then(
+    (response) => response.json()
+  );
   invertedLemma = await fetch(
-    `${DATA_ENDPOINT}/${collationName}/inverted_lemmas.json`
+    `${DATA_ENDPOINT}/${collationKey}/inverted_lemmas.json`
   ).then((response) => response.json());
-  currentCollationName = collationName;
+  currentcollationKey = collationKey;
 }
 
 addEventListener('message', async ({ data }) => {
   const { requestType } = data;
 
   if (requestType === 'init') {
-    const { collationName } = data;
-    await init(collationName);
+    const { collationKey } = data;
+    await init(collationKey);
   }
 
   if (requestType === 'search') {
-    const { sentence, collationName } = data;
-    if (collationName !== currentCollationName) {
-      await init(collationName);
+    const { sentence, collationKey } = data;
+    if (collationKey !== currentcollationKey) {
+      await init(collationKey);
     }
     const response = await fetch(LEMMATIZATION_ENDPOINT, {
       method: 'POST',
@@ -148,7 +148,7 @@ addEventListener('message', async ({ data }) => {
       results: sortedResults,
       indexedResults,
       sentence,
-      collationName,
+      collationKey,
       type: 'results',
     });
   }

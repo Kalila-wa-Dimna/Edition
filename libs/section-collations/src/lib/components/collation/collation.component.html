@@ -22,7 +22,7 @@
     <kd-collation-command-bar
       (goToRow)="onGoToRow($event)"
       [titles]="titles()"
-      [collationName]="summary.siglum"
+      [collationKey]="summary.key"
     ></kd-collation-command-bar>
     }
 
@@ -61,7 +61,7 @@
       } @else if(showMap$ | async) {
       <div class="map-panel-container">
         <kd-map-panel
-          [collationName]="summary.siglum"
+          [collationKey]="summary.key"
           [currentIndex]="currentScrollIndex()"
           [cellsWithResults]="cellsWithResults()"
           (rowClicked)="onGoToRow($event)"

@@ -1,4 +1,14 @@
-import { Component, EventEmitter, OnInit, Output, Input, OnDestroy, Inject, PLATFORM_ID, signal } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  Input,
+  OnDestroy,
+  Inject,
+  PLATFORM_ID,
+  signal,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
 import { CollationSettingsService } from '../../../services/collation-settings.service';
@@ -10,15 +20,18 @@ import {
 } from '../../../util/parse-if-number';
 import { SearchService } from '../../../services/search.service';
 import { SearchWorkerService } from '@kalila-edition/common-ui';
-import { arabicLettersRegex, latinLettersRegex } from '@kalila-edition/common-util';
+import {
+  arabicLettersRegex,
+  latinLettersRegex,
+} from '@kalila-edition/common-util';
 import { isPlatformBrowser } from '@angular/common';
 import { DownloadsService } from '../../../services/downloads.service';
 
 @Component({
-    selector: 'kd-collation-command-bar',
-    templateUrl: './collation-command-bar.component.html',
-    styleUrls: ['./collation-command-bar.component.scss'],
-    standalone: false
+  selector: 'kd-collation-command-bar',
+  templateUrl: './collation-command-bar.component.html',
+  styleUrls: ['./collation-command-bar.component.scss'],
+  standalone: false,
 })
 export class CollationCommandBarComponent implements OnInit, OnDestroy {
   constructor(
@@ -27,12 +40,12 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
     private searchService: SearchService,
     private searchWorkerService: SearchWorkerService,
     private downloadsService: DownloadsService,
-    @Inject(PLATFORM_ID) private platformId: object,
-  ) { }
+    @Inject(PLATFORM_ID) private platformId: object
+  ) {}
 
   @Output() goToRow = new EventEmitter<number>();
   @Input() titles: string[] = [];
-  @Input() collationName = '';
+  @Input() collationKey = '';
 
   searchControl = new FormControl('');
 
@@ -61,29 +74,31 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
             if (latinLettersRegex.test(value)) {
               const lowerCaseValue = value?.toLowerCase();
               const indexes = this.titles
-                .map((title, i) => title.toLowerCase().includes(lowerCaseValue) ? i : -1)
-                .filter(index => index !== -1);
+                .map((title, i) =>
+                  title.toLowerCase().includes(lowerCaseValue) ? i : -1
+                )
+                .filter((index) => index !== -1);
               this.searchService.highlightedRows.set(indexes);
               if (indexes.length > 0) {
                 this.goToRow.emit(indexes[0]);
               }
             } else if (arabicLettersRegex.test(value)) {
-              this.searchWorkerService.search(value, this.collationName);
+              this.searchWorkerService.search(value, this.collationKey);
             } else {
               this.searchService.reset();
             }
-
           } else {
             this.searchService.reset();
           }
-
         });
 
       this.sub2 = this.searchWorkerService.searchResults$.subscribe((data) => {
-
         if (data) {
-          const { sentence, collationName, results, indexedResults } = data;
-          if (sentence === this.searchControl.value && collationName === this.collationName) {
+          const { sentence, collationKey, results, indexedResults } = data;
+          if (
+            sentence === this.searchControl.value &&
+            collationKey === this.collationKey
+          ) {
             this.searchService.currentResult.set(results.length - 1);
             this.searchService.highlightedTokens.set(results);
 
@@ -93,15 +108,12 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
               setTimeout(() => {
                 this.searchService.currentResult.set(0);
                 this.goToRow.emit(results[0][0]);
-              }, 10)
-
+              }, 10);
             }
           }
         }
-
-      })
+      });
     }
-
   }
 
   toggleFacsimile(value: boolean): void {
@@ -118,7 +130,6 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
         showFacsimilePreview: value,
       });
     }
-
   }
 
   async downloadUnitTable() {
@@ -128,7 +139,9 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
   toggleMobileSearchPanel(): void {
     const oldValue = this.showMobileSearchPanel();
     this.showMobileSearchPanel.set(!oldValue);
-    if (oldValue) { this.searchControl.setValue(''); }
+    if (oldValue) {
+      this.searchControl.setValue('');
+    }
   }
 
   toggleMap(value: boolean): void {
@@ -146,8 +159,6 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
         showMap: value,
       });
     }
-
-
   }
 
   nextResult(): void {

@@ -2,17 +2,6 @@
 /about
 /imprint
 /collations
-/collations/Mc
-/collations/Im
-/collations/Lv
-/collations/Lj
-/collations/Km
-/collations/Kd
-/collations/Ag
-/collations/Oc
-/collations/ToC
-/collations/Di
-/collations/Di_s
 /toc-lera
 /manuscripts
 /manuscripts/P5881/Lv/6

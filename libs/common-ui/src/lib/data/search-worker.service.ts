@@ -3,9 +3,12 @@ import { BehaviorSubject } from 'rxjs';
 
 export interface IContentSearchResult {
   sentence: string;
-  collationName: string;
+  collationKey: string;
   results: number[][];
-  indexedResults: Record<number, Record<number, [number, number, number, number, number][]>>;
+  indexedResults: Record<
+    number,
+    Record<number, [number, number, number, number, number][]>
+  >;
 }
 
 @Injectable({
@@ -14,30 +17,37 @@ export interface IContentSearchResult {
 export class SearchWorkerService {
   private _search: Worker | undefined;
 
-  searchResults$ = new BehaviorSubject<IContentSearchResult | undefined>(undefined);
+  searchResults$ = new BehaviorSubject<IContentSearchResult | undefined>(
+    undefined
+  );
 
   init(searchWorker: Worker): void {
     this._search = searchWorker;
     this._search.onmessage = ({ data }) => {
-      const { type, results, sentence, collationName, indexedResults } = data;
+      const { type, results, sentence, collationKey, indexedResults } = data;
       if (type === 'results') {
-        this.searchResults$.next({ sentence, collationName, results, indexedResults });
+        this.searchResults$.next({
+          sentence,
+          collationKey,
+          results,
+          indexedResults,
+        });
       }
     };
   }
 
-  initCollation(collationName: string): void {
+  initCollation(collationKey: string): void {
     this._search?.postMessage({
       requestType: 'init',
-      collationName,
+      collationKey,
     });
   }
 
-  search(sentence: string, collationName: string): void {
+  search(sentence: string, collationKey: string): void {
     this._search?.postMessage({
       requestType: 'search',
       sentence,
-      collationName,
+      collationKey,
     });
   }
 
