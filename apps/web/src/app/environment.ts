@@ -10,8 +10,8 @@ import version from './version';
 
 export const environment: IConfig = {
   imagesEndPoint:
-    'https://d3adbnt3ep1sjp.cloudfront.net/srv/data/edition_data/images/',
-  dataEndPoint: 'https://d3adbnt3ep1sjp.cloudfront.net/srv/data/edition_data/',
-  pagesEndPoint: 'https://d3adbnt3ep1sjp.cloudfront.net/srv/page/',
+    'https://d3hlzh8nfbj1bb.cloudfront.net/srv/data/edition_data/images/',
+  dataEndPoint: 'https://d3hlzh8nfbj1bb.cloudfront.net/srv/data/edition_data/',
+  pagesEndPoint: 'https://d3hlzh8nfbj1bb.cloudfront.net/srv/page/',
   version,
 };

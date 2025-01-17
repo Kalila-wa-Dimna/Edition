@@ -3,7 +3,7 @@
 const LEMMATIZATION_ENDPOINT = 'https://camel.kalila-and-dimna.de/';
 // const DATA_ENDPOINT = "https://d5gomyglvpeib.cloudfront.net/srv/data/edition_data/collations" // dev
 const DATA_ENDPOINT =
-  'https://d3adbnt3ep1sjp.cloudfront.net/srv/data/edition_data/collations'; // prod
+  'https://d3hlzh8nfbj1bb.cloudfront.net/srv/data/edition_data/collations'; // prod
 
 let unitLemmas: Record<string, Record<string, string[][]>> | undefined =
   undefined;
