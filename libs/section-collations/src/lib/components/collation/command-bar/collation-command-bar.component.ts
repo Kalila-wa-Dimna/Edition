@@ -111,6 +111,8 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
               }, 10);
             }
           }
+        } else {
+          this.searchService.reset();
         }
       });
     }

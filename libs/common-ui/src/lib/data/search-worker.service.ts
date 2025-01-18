@@ -24,14 +24,12 @@ export class SearchWorkerService {
   init(searchWorker: Worker): void {
     this._search = searchWorker;
     this._search.onmessage = ({ data }) => {
-      const { type, results, sentence, collationKey, indexedResults } = data;
+      const { type, ...payload } = data;
       if (type === 'results') {
-        this.searchResults$.next({
-          sentence,
-          collationKey,
-          results,
-          indexedResults,
-        });
+        this.searchResults$.next(payload);
+      }
+      if (type === 'clear') {
+        this.searchResults$.next(undefined);
       }
     };
   }
@@ -48,6 +46,12 @@ export class SearchWorkerService {
       requestType: 'search',
       sentence,
       collationKey,
+    });
+  }
+
+  reset(): void {
+    this._search?.postMessage({
+      requestType: 'reset',
     });
   }
 

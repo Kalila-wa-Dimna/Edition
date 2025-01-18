@@ -28,6 +28,10 @@ addEventListener('message', async ({ data }) => {
     await init(collationKey);
   }
 
+  if (requestType === 'reset') {
+    postMessage({ type: 'clear' });
+  }
+
   if (requestType === 'search') {
     const { sentence, collationKey } = data;
     if (collationKey !== currentcollationKey) {
