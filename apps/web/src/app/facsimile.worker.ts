@@ -10,7 +10,7 @@ addEventListener('message', async ({ data }) => {
   const pageDataUrl = await getPageDataUrl(
     info.siglum,
     info.page,
-    url.replace('.jpg', '.webp')
+    url.replace('.jpg', '.webp').replace('.jpeg', '.webp')
   );
   const { FacsimileCropper } = await import('./cropper');
   const cropper = FacsimileCropper.new(base46(pageDataUrl));

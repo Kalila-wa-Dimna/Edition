@@ -7,14 +7,14 @@
     <a
       *ngFor="let item of data; let i = index"
       class="gallery-item"
-      [attr.href]="item.src.replace('.jpg', '.webp')"
+      [attr.href]="item.src.replace('.jpg', '.webp').replace('.jpeg', '.webp')"
       [attr.data-thumb]="item.thumb"
       [attr.data-sub-html]="item.caption"
     >
       <span class="image-container">
         <img
           class="img-responsive"
-          [src]="item.src.replace('.jpg', '.webp')"
+          [src]="item.src.replace('.jpg', '.webp').replace('.jpeg', '.webp')"
           alt=""
         />
         <span class="caption">{{ item.caption }}</span>

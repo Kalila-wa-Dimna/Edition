@@ -6,7 +6,10 @@
   </div>-->
 
   <img
-    [src]="pagesEndPoint + facsimile.replace('.jpg', '.webp')"
+    [src]="
+      pagesEndPoint +
+      facsimile.replace('.jpg', '.webp').replace('.jpeg', '.webp')
+    "
     [style.width]="facsimileSize"
     class="image-size"
     alt="Image"
