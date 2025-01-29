@@ -16,7 +16,7 @@
     >
     }
   </div>
-  @if(showFacsimilePreview$ | async) {
+  @if(hasLinks()) { @if(showFacsimilePreview$ | async) {
   <mat-icon
     aria-hidden="false"
     [fontIcon]="facsimilePanelIcon()"
@@ -49,6 +49,7 @@
     </p>
     }
   </div>
+  }
 </div>
 
 @if (siglum === 'IH') {

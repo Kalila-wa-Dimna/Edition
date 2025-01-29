@@ -46,6 +46,11 @@ export class CollationCellComponent {
     return 'visibility_off';
   }
 
+  editionsWithOutLinks = new Set(['IH', 'Cheikho']);
+  hasLinks() {
+    return !this.editionsWithOutLinks.has(this.siglum);
+  }
+
   cellHighlightedLine() {
     if (this.facsimilePanelService.hasUnit(this.unitIndex, this.siglum)) {
       return this.highlightedLine();
