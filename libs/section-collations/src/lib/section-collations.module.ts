@@ -39,15 +39,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MapPanelComponent } from './components/collation/map-panel/map-panel.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-import {
-  CollationCellTextComponent
-} from './components/collation/collation-row/collation-cell/collation-cell-text.component';
+import { CollationCellTextComponent } from './components/collation/collation-row/collation-cell/collation-cell-text.component';
 import { CollationContainerComponent } from './components/collation/collation-container/collation-container.component';
 import { AlignmentService } from './services/alignment.service';
 import { CollationCellTextPoetryComponent } from './components/collation/collation-row/collation-cell/collation-cell-text-poetry.component';
 import { DownloadsService } from './services/downloads.service';
-
-
 
 @NgModule({
   imports: [
@@ -73,7 +69,7 @@ import { DownloadsService } from './services/downloads.service';
     MatGridListModule,
     MatSlideToggleModule,
     MatTooltipModule,
-    MatMenuModule
+    MatMenuModule,
   ],
   declarations: [
     SelectCollationComponent,
@@ -89,7 +85,7 @@ import { DownloadsService } from './services/downloads.service';
     MapPanelComponent,
     CollationCellTextComponent,
     CollationContainerComponent,
-    CollationCellTextPoetryComponent
+    CollationCellTextPoetryComponent,
   ],
   providers: [
     CollationDataService,
@@ -98,7 +94,7 @@ import { DownloadsService } from './services/downloads.service';
     SearchService,
     FacsimilePanelService,
     AlignmentService,
-    DownloadsService
+    DownloadsService,
   ],
 })
-export class SectionCollationsModule { }
+export class SectionCollationsModule {}

@@ -1,51 +1,38 @@
 import { Route } from '@angular/router';
-import {SelectManuscriptComponent} from "./select-manuscript/select-manuscript.component";
-import {createResolver} from "@kalila-edition/common-ui";
-import {ManuscriptOverviewComponent} from "./manuscript-overview/manuscript-overview.component";
-import {ManuscriptPageComponent} from "./manuscript-page/manuscript-page.component";
-import {
-  ManuscriptPageCommandBarComponent
-} from "./manuscript-page/manuscript-page-command-bar/manuscript-page-command-bar.component";
-import {ManuscriptPageTextComponent} from "./manuscript-page/manuscript-page-text/manuscript-page-text.component";
-import {
-  ManuscriptPageFacsimileComponent
-} from "./manuscript-page/manuscript-page-facsimile/manuscript-page-facsimile.component";
+import { SelectManuscriptComponent } from './select-manuscript/select-manuscript.component';
+import { createResolver } from '@kalila-edition/common-ui';
+import { ManuscriptPageComponent } from './manuscript-page/manuscript-page.component';
+import { ManuscriptPageCommandBarComponent } from './manuscript-page/manuscript-page-command-bar/manuscript-page-command-bar.component';
+import { ManuscriptPageTextComponent } from './manuscript-page/manuscript-page-text/manuscript-page-text.component';
+import { ManuscriptPageFacsimileComponent } from './manuscript-page/manuscript-page-facsimile/manuscript-page-facsimile.component';
 
-import {IllustrationsGalleryComponent}from "./illustrations-gallery/illustrations-gallery.component"
-import {createIllustrationsDataResolver} from "./services/illustrations-gallery.resolver"
+import { IllustrationsGalleryComponent } from './illustrations-gallery/illustrations-gallery.component';
+import { createIllustrationsDataResolver } from './services/illustrations-gallery.resolver';
 import {
   createAllPagesResolver,
-  createChapterThatAllMsHaveDataResolver,
   createManuscriptChaptersDataResolver,
-  createManuscriptEnglishDataResolver,
-  createAllEnglishPagesResolver
-} from "./services/manuscript-page.resolver";
-import {createManuscriptDataResolver } from "./services/manuscript-page.resolver";
+  createAllEnglishPagesResolver,
+} from './services/manuscript-page.resolver';
+import { createManuscriptDataResolver } from './services/manuscript-page.resolver';
 
-import {createGalleryDataResolver} from "./services/manuscript-gallery.resolver";
+import { createGalleryDataResolver } from './services/manuscript-gallery.resolver';
 
-import {
-  ManuscriptPageGalleryComponent
-} from "./manuscript-page-gallery/manuscript-page-gallery.component"
-import {
-  ManuscriptPageGalleryViewerComponent
-} from "./manuscript-page-gallery/manuscript-page-gallery-viewer/manuscript-page-gallery-viewer.component"
-import {
-  ManuscriptPageGalleryCommandBarComponent
-} from "./manuscript-page-gallery/manuscript-page-gallery-command-bar/manuscript-page-gallery-command-bar.component"
+import { ManuscriptPageGalleryComponent } from './manuscript-page-gallery/manuscript-page-gallery.component';
+import { ManuscriptPageGalleryViewerComponent } from './manuscript-page-gallery/manuscript-page-gallery-viewer/manuscript-page-gallery-viewer.component';
+import { ManuscriptPageGalleryCommandBarComponent } from './manuscript-page-gallery/manuscript-page-gallery-command-bar/manuscript-page-gallery-command-bar.component';
 
 export const routes: Route[] = [
-    // select
-    {
-        path: '',
-        component: SelectManuscriptComponent,
-        pathMatch: 'full',
-        title: 'Select Manuscript',
-        resolve: {
-            manuscriptList: createResolver<any>('manuscripts/all', []),
-        },
+  // select
+  {
+    path: '',
+    component: SelectManuscriptComponent,
+    pathMatch: 'full',
+    title: 'Select Manuscript',
+    resolve: {
+      manuscriptList: createResolver<any>('manuscripts/all', []),
     },
-    // manuscript
+  },
+  // manuscript
 
   {
     path: ':id/gallery', // Adjust the path as needed
@@ -53,22 +40,21 @@ export const routes: Route[] = [
     pathMatch: 'full',
     resolve: {
       galleryData: createGalleryDataResolver(),
-      manuscriptsInfo: createResolver<any>('manuscripts/all', [])
+      manuscriptsInfo: createResolver<any>('manuscripts/all', []),
     },
-  children: [
-  {
-    path: '',
-    component: ManuscriptPageGalleryCommandBarComponent,
-    outlet: 'command',
+    children: [
+      {
+        path: '',
+        component: ManuscriptPageGalleryCommandBarComponent,
+        outlet: 'command',
+      },
+      {
+        path: '',
+        component: ManuscriptPageGalleryViewerComponent,
+        outlet: 'viewer',
+      },
+    ],
   },
-    {
-      path: '',
-      component: ManuscriptPageGalleryViewerComponent,
-      outlet: 'viewer',
-    },]
-
-  }
-,
   // page
   {
     path: ':id/:chapter/:pageNumber',
@@ -76,9 +62,9 @@ export const routes: Route[] = [
     pathMatch: 'full',
     resolve: {
       pageData: createManuscriptDataResolver(),
-      manuscriptChaptersData:createManuscriptChaptersDataResolver(),
-      allPagesData:createAllPagesResolver(),
-      allEnglishPagesData:createAllEnglishPagesResolver()
+      manuscriptChaptersData: createManuscriptChaptersDataResolver(),
+      allPagesData: createAllPagesResolver(),
+      allEnglishPagesData: createAllEnglishPagesResolver(),
     },
     children: [
       {
@@ -95,8 +81,8 @@ export const routes: Route[] = [
         path: '',
         component: ManuscriptPageFacsimileComponent,
         outlet: 'facsimile',
-      }
-    ]
+      },
+    ],
   },
   {
     path: '', // Assuming 'manuscripts' is a top-level path
@@ -107,12 +93,15 @@ export const routes: Route[] = [
         pathMatch: 'full',
         title: 'Illustrations gallery',
         resolve: {
-          illustrationsList: createIllustrationsDataResolver()// Fetching data from 'all_illustrations'
+          illustrationsList: createIllustrationsDataResolver(), // Fetching data from 'all_illustrations'
         },
       },
       // ... (other potential child paths under 'manuscripts')
     ],
   },
-  { path: '', component: ManuscriptPageComponent, runGuardsAndResolvers: 'always' },
-
+  {
+    path: '',
+    component: ManuscriptPageComponent,
+    runGuardsAndResolvers: 'always',
+  },
 ];

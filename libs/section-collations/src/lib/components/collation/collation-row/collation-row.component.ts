@@ -5,14 +5,15 @@ import { CollationSettingsService } from '../../../services/collation-settings.s
 import { IRowData } from '../../../models/collation-row-data.model';
 
 @Component({
-    selector: 'kd-collation-row',
-    templateUrl: './collation-row.component.html',
-    styleUrls: ['./collation-row.component.scss'],
-    standalone: false
+  selector: 'kd-collation-row',
+  templateUrl: './collation-row.component.html',
+  styleUrls: ['./collation-row.component.scss'],
+  standalone: false,
 })
 export class CollationRowComponent {
   @Input() unit!: ICollationUnit;
   @Input() sigla: string[] = [];
+  @Input() chapterSiglum = '';
   @Input() searchResult = false;
   @Input() currentResult = false;
 
@@ -23,8 +24,5 @@ export class CollationRowComponent {
 
   cellPadding = CELL_PADDING;
 
-
-  constructor(private settingsService: CollationSettingsService) { }
-
-
+  constructor(private settingsService: CollationSettingsService) {}
 }

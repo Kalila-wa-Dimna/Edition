@@ -1,51 +1,66 @@
-import { AfterViewInit, Component, Input, OnDestroy, ViewChild, computed } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnDestroy,
+  ViewChild,
+  computed,
+} from '@angular/core';
 import { IRowData } from '../../../models/collation-row-data.model';
-import { ICollationColumn, ICollationUnit } from '../../../models/collation-page-data.model';
+import {
+  ICollationColumn,
+  ICollationUnit,
+} from '../../../models/collation-page-data.model';
 import { SearchService } from '../../../services/search.service';
 import { CollationSettingsService } from '../../../services/collation-settings.service';
 import { CELL_PADDING } from '../../../constants/size.constants';
 import { CollationVirtualScrollDirective } from '../../../directives/virtual-scroll/collation-virtual-scroll.directive';
-import { Subject, Subscription, debounceTime, distinctUntilChanged, withLatestFrom } from 'rxjs';
+import {
+  Subject,
+  Subscription,
+  debounceTime,
+  distinctUntilChanged,
+  withLatestFrom,
+} from 'rxjs';
 
 @Component({
-    selector: 'kd-collation-container',
-    template: `
-        <kd-collation-heading [columns]="columns"></kd-collation-heading>
-        <cdk-virtual-scroll-viewport
-          kdCollationVirtualScroll
-          [units]="units"
-          #collationBody
-          class="collation-body"
-          [ngStyle]="{
-            'width.px':
-              columns.length * ((cellWidth$ | async) ?? 75) +
-              2 * columns.length * cellPadding,
-            'font-size.px': fontSize$ | async
-          }"
-        >
-          <kd-collation-row
-            *cdkVirtualFor="let item of rowData; index as rowIndex"
-            [unit]="units[rowIndex]"
-            [sigla]="sigla"
-            [rowData]="item"
-            [searchResult]="highlightedRows()?.includes(rowIndex) || false"
-            [currentResult]="activeHighlightedRow() === rowIndex"
-            [ngStyle]="{
+  selector: 'kd-collation-container',
+  template: `
+    <kd-collation-heading [columns]="columns"></kd-collation-heading>
+    <cdk-virtual-scroll-viewport
+      kdCollationVirtualScroll
+      [units]="units"
+      #collationBody
+      class="collation-body"
+      [ngStyle]="{
+        'width.px':
+          columns.length * ((cellWidth$ | async) ?? 75) +
+          2 * columns.length * cellPadding,
+        'font-size.px': fontSize$ | async
+      }"
+    >
+      <kd-collation-row
+        *cdkVirtualFor="let item of rowData; index as rowIndex"
+        [unit]="units[rowIndex]"
+        [sigla]="sigla"
+        [rowData]="item"
+        [searchResult]="highlightedRows()?.includes(rowIndex) || false"
+        [chapterSiglum]="chapterSiglum"
+        [currentResult]="activeHighlightedRow() === rowIndex"
+        [ngStyle]="{
         'width.px': columns.length * ((cellWidth$ | async) ?? 75) + 2 * columns.length * cellPadding,
       }"
-          >
-          </kd-collation-row>
-        </cdk-virtual-scroll-viewport>
+      >
+      </kd-collation-row>
+    </cdk-virtual-scroll-viewport>
   `,
-    styles: `
+  styles: `
 
 
   `,
-    standalone: false
+  standalone: false,
 })
 export class CollationContainerComponent implements AfterViewInit, OnDestroy {
-
-
   private _rowData: IRowData[] = [];
 
   @Input()
@@ -62,6 +77,7 @@ export class CollationContainerComponent implements AfterViewInit, OnDestroy {
   @Input() units: ICollationUnit[] = [];
 
   @Input() sigla: string[] = [];
+  @Input() chapterSiglum = '';
 
   cellWidth$ = this.settingsService.cellWidth$;
   fontSize$ = this.settingsService.fontSize$;
@@ -72,7 +88,6 @@ export class CollationContainerComponent implements AfterViewInit, OnDestroy {
     const currentresult = this.searchService.currentResult();
     const rows = this.searchService.highlightedRows();
     if (rows) {
-
       return rows[currentresult];
     }
     const cells = this.searchService.highlightedTokens();
@@ -85,12 +100,13 @@ export class CollationContainerComponent implements AfterViewInit, OnDestroy {
   scrollSubject = new Subject<number>();
   scrollIndexSubscription = Subscription.EMPTY;
 
-
   @ViewChild(CollationVirtualScrollDirective)
   viewport?: CollationVirtualScrollDirective;
 
-  constructor(private searchService: SearchService, private settingsService: CollationSettingsService,) {
-  }
+  constructor(
+    private searchService: SearchService,
+    private settingsService: CollationSettingsService
+  ) {}
 
   ngAfterViewInit(): void {
     this.settingsService.currentScrollIndex.next(0);
@@ -112,9 +128,10 @@ export class CollationContainerComponent implements AfterViewInit, OnDestroy {
             this.scrollSubject.next(goal);
           }
         });
-      this.scrollIndexSubscription = this.viewport._scrollStrategy.scrolledIndexChange.subscribe((index) => {
-        this.settingsService.currentScrollIndex.next(index);
-      })
+      this.scrollIndexSubscription =
+        this.viewport._scrollStrategy.scrolledIndexChange.subscribe((index) => {
+          this.settingsService.currentScrollIndex.next(index);
+        });
     }
   }
 

@@ -1,22 +1,21 @@
-@if (data) { @if (siglum === 'IH') {
-<kd-collation-cell-poetry-text
-  [tokens]="data.tokens"
-  [lines]="data.ranges ?? []"
-  [orderInMs]="
-    data.adjustedOrder + 1 !== unitIndex ? data.adjustedOrder + 1 : undefined
-  "
-></kd-collation-cell-poetry-text>
-} @else {
-<kd-collation-cell-text
-  [tokens]="data.tokens"
-  [lines]="data.ranges ?? []"
-  [orderInMs]="
-    data.adjustedOrder + 1 !== unitIndex ? data.adjustedOrder + 1 : undefined
-  "
-  [highlightLine]="cellHighlightedLine()"
-></kd-collation-cell-text>
-}
+@if (pageData) {
 <div class="cell-tools">
+  <div class="order-in-ms">
+    {{ pageData.orderInMs + 1 }}
+    @if(pageData.adjustedOrder + 1 > unitIndex) {
+    <mat-icon
+      matTooltip="The unit occures at a later point"
+      matTooltipPosition="above"
+      >arrow_downward</mat-icon
+    >
+    } @if(pageData.adjustedOrder + 1 < unitIndex) {
+    <mat-icon
+      matTooltip="The unit occures at an earlier point"
+      matTooltipPosition="above"
+      >arrow_upward</mat-icon
+    >
+    }
+  </div>
   @if(showFacsimilePreview$ | async) {
   <mat-icon
     aria-hidden="false"
@@ -25,9 +24,45 @@
     [class.toggle-facsimile-active]="facsimilePanelIcon() === 'visibility'"
   ></mat-icon>
   }
+  <div>
+    @if(pages.length === 1) {
+    <p class="page-link">
+      p.<a
+        [routerLink]="[
+          '/',
+          'manuscripts',
+          siglum,
+          chapterSiglum,
+          pageData.pages[0]
+        ]"
+        >{{ pageData.pages[0] }}</a
+      >
+    </p>
+    } @if(pages.length > 1) {
+    <p class="page-link">
+      pp.@for(page of pages; track page; let last = $last){
+      <a [routerLink]="['/', 'manuscripts', siglum, chapterSiglum, page]">{{
+        page
+      }}</a
+      >{{ last ? '' : ',' }}
+      }
+    </p>
+    }
+  </div>
 </div>
 
+@if (siglum === 'IH') {
+<kd-collation-cell-poetry-text
+  [tokens]="pageData.tokens"
+  [lines]="pageData.ranges ?? []"
+></kd-collation-cell-poetry-text>
 } @else {
+<kd-collation-cell-text
+  [tokens]="pageData.tokens"
+  [lines]="pageData.ranges ?? []"
+  [highlightLine]="cellHighlightedLine()"
+></kd-collation-cell-text>
+} } @else {
 <div class="absent">
   <span>[absent]</span>
 </div>
