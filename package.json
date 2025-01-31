@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nx run web:serve-ssr",
     "build": "NX_NO_CLOUD=true  nx run web:prerender:production",
-    "build:ssr": "NX_NO_CLOUD=true  nx run web:build-ssr:production"
+    "build:spa": "NX_NO_CLOUD=true  nx run web:build:production"
   },
   "private": true,
   "dependencies": {

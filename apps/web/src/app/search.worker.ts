@@ -1,7 +1,7 @@
 /// <reference lib="webworker" />
 
-const LEMMATIZATION_ENDPOINT = 'https://camel.kalila-and-dimna.de/';
-// const DATA_ENDPOINT = "https://d5gomyglvpeib.cloudfront.net/srv/data/edition_data/collations" // dev
+const LEMMATIZATION_ENDPOINT =
+  'https://5cyy36myqkzlr3iwjtreaaxv5m0ebbjj.lambda-url.eu-central-1.on.aws/';
 const DATA_ENDPOINT =
   'https://d3hlzh8nfbj1bb.cloudfront.net/srv/data/edition_data/collations'; // prod
 
@@ -26,6 +26,23 @@ addEventListener('message', async ({ data }) => {
   if (requestType === 'init') {
     const { collationKey } = data;
     await init(collationKey);
+    const payload = {
+      id: 'search',
+      lines: [
+        {
+          order: 0,
+          tokens: ['كلمة'],
+        },
+      ],
+    };
+    // A dummy request to warm up the lambda function
+    await fetch(LEMMATIZATION_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
   }
 
   if (requestType === 'reset') {
@@ -37,14 +54,27 @@ addEventListener('message', async ({ data }) => {
     if (collationKey !== currentcollationKey) {
       await init(collationKey);
     }
+    const payload = {
+      id: 'search',
+      lines: [
+        {
+          order: 0,
+          tokens: sentence.split(' '),
+        },
+      ],
+    };
     const response = await fetch(LEMMATIZATION_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ sentence }),
+      body: JSON.stringify(payload),
     });
-    const searchLemmas: Record<string, string> = await response.json();
+    const responseJson = await response.json();
+    const searchLemmas: Record<string, string> = {};
+    responseJson[0]?.lemmas?.forEach((lemma: string, index: number) => {
+      searchLemmas[payload.lines[0].tokens[index]] = lemma;
+    });
     const words = sentence.split(' ');
     const initialResults =
       (invertedLemma && words[0]
