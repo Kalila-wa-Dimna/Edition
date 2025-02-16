@@ -19,11 +19,11 @@ import { DisseminationHistoryService } from '../dissemination-history.service';
 import { MapPhase } from '../data/map-phases';
 import { Arrows } from '../data/arrows';
 @Component({
-    selector: 'kd-dissemination-history-map',
-    templateUrl: './dissemination-history-map.component.html',
-    encapsulation: ViewEncapsulation.None,
-    styleUrls: ['./dissemination-history-map.component.scss'],
-    standalone: false
+  selector: 'kd-dissemination-history-map',
+  templateUrl: './dissemination-history-map.component.html',
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./dissemination-history-map.component.scss'],
+  standalone: false,
 })
 export class DisseminationHistoryMapComponent implements OnInit, OnDestroy {
   private container!: d3.Selection<d3.BaseType, any, any, any>;
@@ -39,6 +39,50 @@ export class DisseminationHistoryMapComponent implements OnInit, OnDestroy {
   private width = 1;
   private height = 1;
   private transitionDelay = 1000;
+
+  phase4Cities = [
+    'Mashhad',
+    'Rome',
+    'Florence',
+    'Edirne',
+    'Madrid',
+    'Belgrade',
+    'Yerevan',
+  ];
+  phase5EuropeCities = [
+    'Stuttgart',
+    'Bursa',
+    'Berlin',
+    'Paris',
+    'Stockholm',
+    'Tbilisi',
+    'Warsaw',
+    'Budapest',
+    'Kobenhavn',
+    'Reykjavik',
+    'Amsterdam',
+    'Prague',
+    'Milan',
+    'Agadir',
+    'London',
+    'Kazan',
+    'Oslo',
+    'Moscow',
+  ];
+  phase5NearEastCities = [
+    'Agra',
+    'Ulaanbaatar',
+    'Karachi',
+    'Dhaka',
+    // "Kabul",
+    'Khost',
+    'Qarshi',
+    'Aksum',
+    'Kochi',
+    'Kuala Lumpur',
+    'Jakarta',
+    'Surabaya',
+  ];
 
   constructor(
     private hostElement: ElementRef,
@@ -79,10 +123,22 @@ export class DisseminationHistoryMapComponent implements OnInit, OnDestroy {
   }
 
   private createMap() {
+    // Reset any existing D3 selections and behaviors
+    if (this.svg) {
+      this.svg.remove();
+    }
     this.createSvg();
     this.createGeoPath();
     this.prepareGeoData();
     this.drawGeoPath();
+
+    // Initialize with default zoom
+    const resetZoom = d3.zoomIdentity.translate(0, -15).scale(1.2);
+    const transition = this.svg.transition().duration(0) as d3.TransitionLike<
+      SVGSVGElement,
+      any
+    >;
+    this.applyZoom(transition, resetZoom);
   }
 
   private createSvg() {
@@ -148,7 +204,61 @@ export class DisseminationHistoryMapComponent implements OnInit, OnDestroy {
       .attr('visibility', 'hidden');
   }
 
+  private applyZoom(
+    transition: d3.TransitionLike<SVGSVGElement, any>,
+    zoomState: d3.ZoomTransform
+  ) {
+    this.zoom.transform(transition, zoomState);
+  }
+
+  private cleanupArrows() {
+    this.globe?.selectAll('.arrow').remove();
+    this.globe?.selectAll('.arrow-head').remove();
+    this.globe?.selectAll('defs').remove();
+  }
+
+  private cleanup() {
+    this.cleanupArrows();
+    if (this.svg) {
+      // Remove the entire SVG and recreate it
+      this.svg.remove();
+      this.svg = null as any;
+      this.globe = null as any;
+      this.zoom = null as any;
+
+      // Recreate the map if container exists
+      if (this.container) {
+        this.createMap();
+      }
+    }
+
+    // Reset all city labels to hidden
+    [
+      'Nagpur',
+      'Yazd',
+      'Baghdad',
+      'Sanliurfa',
+      ...this.phase5NearEastCities,
+      ...this.phase5EuropeCities,
+      ...this.phase4Cities,
+    ].forEach((cityName) => {
+      const el = document.getElementById(cityName);
+      if (el) {
+        el.setAttribute('visibility', 'hidden');
+      }
+    });
+  }
+
   private changePhase(step: MapPhase) {
+    if (step === MapPhase.intro) {
+      this.cleanup();
+      return;
+    }
+
+    // Ensure D3 elements exist
+    if (!this.svg || !this.globe) {
+      this.createMap();
+    }
     const resetZoom = d3.zoomIdentity.translate(0, -15).scale(1.2);
 
     const toIndia = d3.zoomIdentity.translate(-1900, -1200).scale(3);
@@ -166,69 +276,22 @@ export class DisseminationHistoryMapComponent implements OnInit, OnDestroy {
       .transition()
       .duration(this.transitionDelay) as d3.TransitionLike<SVGSVGElement, any>;
 
-    const applyZoom = (zoomState: d3.ZoomTransform) =>
-      this.zoom.transform(transition, zoomState);
-
-    const phase4Cities = [
-      'Mashhad',
-      'Rome',
-      'Florence',
-      'Edirne',
-      'Madrid',
-      'Belgrade',
-      'Yerevan',
-    ];
-    const phase5EuropeCities = [
-      'Stuttgart',
-      'Bursa',
-      'Berlin',
-      'Paris',
-      'Stockholm',
-      'Tbilisi',
-      'Warsaw',
-      'Budapest',
-      'Kobenhavn',
-      'Reykjavik',
-      'Amsterdam',
-      'Prague',
-      'Milan',
-      'Agadir',
-      'London',
-      'Kazan',
-      'Oslo',
-      'Moscow',
-    ];
-    const phase5NearEastCities = [
-      'Agra',
-      'Ulaanbaatar',
-      'Karachi',
-      'Dhaka',
-      // "Kabul",
-      'Khost',
-      'Qarshi',
-      'Aksum',
-      'Kochi',
-      'Kuala Lumpur',
-      'Jakarta',
-      'Surabaya',
-    ];
-
     let lines;
 
     switch (step) {
       case MapPhase.sources:
-        applyZoom(toIndia);
+        this.applyZoom(transition, toIndia);
         DisseminationHistoryMapComponent.addLanguage('Nagpur');
         break;
       //-----------------------------------------------------------------//
       case MapPhase['persian-redaction']:
-        applyZoom(toIndiaIran);
+        this.applyZoom(transition, toIndiaIran);
         DisseminationHistoryMapComponent.addLanguage('Yazd');
         this.addline('Nagpur-Yazd', 2);
         break;
       //-----------------------------------------------------------------//
       case MapPhase.syriac:
-        applyZoom(toIndiaIranArabia);
+        this.applyZoom(transition, toIndiaIranArabia);
         DisseminationHistoryMapComponent.addLanguage('Sanliurfa');
         this.addline('Yazd-Sanliurfa', 3);
         break;
@@ -240,8 +303,8 @@ export class DisseminationHistoryMapComponent implements OnInit, OnDestroy {
         break;
       //-----------------------------------------------------------------//
       case MapPhase.medieval:
-        applyZoom(toEuropeAndNearEast);
-        phase4Cities.forEach((cityName) =>
+        this.applyZoom(transition, toEuropeAndNearEast);
+        this.phase4Cities.forEach((cityName) =>
           DisseminationHistoryMapComponent.addLanguage(cityName)
         );
         lines = Object.values(Arrows).filter((item) => item.phase === 4);
@@ -249,8 +312,8 @@ export class DisseminationHistoryMapComponent implements OnInit, OnDestroy {
         break;
       //-----------------------------------------------------------------//
       case MapPhase['inside-europe']:
-        applyZoom(toEurope);
-        phase5EuropeCities.forEach((cityName) =>
+        this.applyZoom(transition, toEurope);
+        this.phase5EuropeCities.forEach((cityName) =>
           DisseminationHistoryMapComponent.addLanguage(cityName)
         );
         lines = Object.values(Arrows).filter((item) => item.phase === 5);
@@ -258,8 +321,8 @@ export class DisseminationHistoryMapComponent implements OnInit, OnDestroy {
         break;
       //-----------------------------------------------------------------//
       case MapPhase['into-asia-africa']:
-        applyZoom(toNearEast);
-        phase5NearEastCities.forEach((cityName) =>
+        this.applyZoom(transition, toNearEast);
+        this.phase5NearEastCities.forEach((cityName) =>
           DisseminationHistoryMapComponent.addLanguage(cityName)
         );
         lines = Object.values(Arrows).filter((item) => item.phase === 6);
@@ -267,24 +330,11 @@ export class DisseminationHistoryMapComponent implements OnInit, OnDestroy {
         break;
       //-----------------------------------------------------------------//
       case MapPhase.conclusion:
-        applyZoom(resetZoom);
+        this.applyZoom(transition, resetZoom);
         break;
       //-----------------------------------------------------------------//
-      case MapPhase.intro:
       default:
-        applyZoom(resetZoom);
-        [
-          'Nagpur',
-          'Yazd',
-          'Baghdad',
-          'Sanliurfa',
-          ...phase5NearEastCities,
-          ...phase5EuropeCities,
-          ...phase4Cities,
-        ].forEach((cityName) =>
-          DisseminationHistoryMapComponent.hideLanguage(cityName)
-        );
-        this.removeLines();
+        this.cleanup();
         break;
     }
   }
@@ -298,8 +348,11 @@ export class DisseminationHistoryMapComponent implements OnInit, OnDestroy {
     const el = document.getElementById(cityName);
     el!.setAttribute('visibility', 'hidden');
   }
+  private addline(lineId: string, step: MapPhase) {
+    // Remove any existing arrow with this ID first
+    this.globe.selectAll(`#${lineId}-arrow`).remove();
+    this.globe.selectAll(`#${lineId}-marker`).remove();
 
-  addline(lineId: string, step: MapPhase) {
     const arrowHead = step === 2 ? 10 : step === 3 ? 8 : step === 4 ? 6 : 5;
     const arrowPoints: [number, number][] = [
       [0, 0],
@@ -316,10 +369,11 @@ export class DisseminationHistoryMapComponent implements OnInit, OnDestroy {
         ? 'rgba(240, 222, 57, .6)'
         : 'rgba(107, 158, 31, .6)';
 
+    // Create marker with unique ID
     this.globe
       .append('svg:defs')
       .append('svg:marker')
-      .attr('id', `${lineId}`)
+      .attr('id', `${lineId}-marker`)
       .attr('class', 'arrow-head')
       .attr('fill', color)
       .attr('refX', arrowHead)
@@ -331,26 +385,42 @@ export class DisseminationHistoryMapComponent implements OnInit, OnDestroy {
       .append('path')
       .attr('d', d3.line()(arrowPoints));
 
-    this.globe
+    // Create fresh path with unique ID
+    const lineData = this.lineString(lineId);
+    const path = this.globe
       .append('g')
-      .datum(this.lineString(lineId))
+      .attr('id', `${lineId}-arrow`)
       .attr('class', 'arrow')
       .append('path')
-      .attr('d', ({ coordinates, type }) => {
-        coordinates[1] = [coordinates[1][0] + 3.5, coordinates[1][1]];
-        return this.geoPath({ coordinates, type });
-      })
-      .each(function (d) {
-        d.totalLength = this.getTotalLength();
+      .datum(lineData)
+      .attr('d', (d) => {
+        // Create a fresh projection for this specific path
+        const pathProjection = d3
+          .geoMercator()
+          .scale(445)
+          .center([50, 50])
+          .rotate([25, 0, 0]);
+        const pathGeo = d3.geoPath().projection(pathProjection);
+        return pathGeo({
+          type: d.type,
+          coordinates: [
+            d.coordinates[0],
+            [d.coordinates[1][0] + 3.5, d.coordinates[1][1]],
+          ],
+        });
       })
       .attr('stroke-linecap', 'round')
       .attr('stroke-linejoin', 'round')
-      .style('stroke-dasharray', (d) => d.totalLength)
-      .style('stroke-dashoffset', (d) => d.totalLength)
-      .attr('class', `orthodome-p${Arrows[lineId].phase}`)
+      .attr('class', `orthodome-p${Arrows[lineId].phase}`);
+
+    // Calculate length after path is created
+    const totalLength = (path.node() as SVGPathElement).getTotalLength();
+    path
+      .style('stroke-dasharray', totalLength)
+      .style('stroke-dashoffset', totalLength)
       .transition()
       .delay(4000)
-      .attr('marker-end', `url(#${lineId})`);
+      .attr('marker-end', `url(#${lineId}-marker)`);
   }
 
   lineString(
@@ -376,6 +446,19 @@ export class DisseminationHistoryMapComponent implements OnInit, OnDestroy {
 
     if (this.phaseSubscription) {
       this.phaseSubscription.unsubscribe();
+    }
+
+    if (isPlatformBrowser(this.platformId)) {
+      // Add thorough cleanup
+      this.cleanup();
+
+      // Clear references
+      this.container = null as any;
+      this.svg = null as any;
+      this.globe = null as any;
+      this.zoom = null as any;
+      this.projection = null as any;
+      this.geoPath = null as any;
     }
   }
 }

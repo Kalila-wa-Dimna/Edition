@@ -36,3 +36,8 @@ mat-tab-group {
 :host-context(.light-theme) mat-card {
   background-color: $light-background-alt !important;
 }
+
+.phase-description {
+  font-size: 1.5rem;
+  line-height: 1.8;
+}
