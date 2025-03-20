@@ -5,12 +5,14 @@ import { MatTabGroup } from '@angular/material/tabs';
 import { DisseminationHistoryService } from './dissemination-history.service';
 
 @Component({
-    selector: 'kd-dissemination-history',
-    template: `
+  selector: 'kd-dissemination-history',
+  template: `
     <kd-layout>
       <span title>Dissemination History</span>
       <main pageContent>
+        @if(show) {
         <kd-dissemination-history-map></kd-dissemination-history-map>
+        }
         <div>
           <button
             [disabled]="selected.value === phaseTexts.length - 1"
@@ -22,7 +24,7 @@ import { DisseminationHistoryService } from './dissemination-history.service';
           </button>
           <button
             [disabled]="selected.value !== phaseTexts.length - 1"
-            (click)="selected.setValue(0)"
+            (click)="onStartOver()"
             mat-flat-button
             color="primary"
           >
@@ -50,6 +52,7 @@ import { DisseminationHistoryService } from './dissemination-history.service';
             <mat-card appearance="outlined">
               <mat-card-content>
                 <span
+                  class="phase-description"
                   *ngFor="let line of phase.content"
                   [innerHTML]="line"
                 ></span>
@@ -60,19 +63,28 @@ import { DisseminationHistoryService } from './dissemination-history.service';
       </main>
     </kd-layout>
   `,
-    styleUrls: ['./dissemination-history.component.scss'],
-    standalone: false
+  styleUrls: ['./dissemination-history.component.scss'],
+  standalone: false,
 })
 export class DisseminationHistoryComponent {
   @ViewChild(MatTabGroup) tabGroup!: MatTabGroup;
   selected = new FormControl(0);
 
+  show = true;
   phaseTexts = Object.values(PHASE_DESCRIPRIONS);
   phases = Object.keys(PHASE_DESCRIPRIONS);
 
   constructor(
     private disseminationHistoryService: DisseminationHistoryService
   ) {}
+
+  onStartOver() {
+    this.show = false;
+    this.selected.setValue(0);
+    setTimeout(() => {
+      this.show = true;
+    }, 10);
+  }
 
   onIndexChange(index: number) {
     this.selected.setValue(index);
