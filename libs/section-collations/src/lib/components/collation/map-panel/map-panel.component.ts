@@ -209,7 +209,6 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
     const containerWidth = this.container.nativeElement.offsetWidth;
     const containerHeight = this.container.nativeElement.offsetHeight;
     // const mode = 'bottom';
-
     const numberLineOffset = 15;
     const columnLabelOffset = 15;
     const labelFontSize = 10;
