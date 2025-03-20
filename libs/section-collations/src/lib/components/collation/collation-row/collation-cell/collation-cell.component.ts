@@ -27,12 +27,14 @@ export class CollationCellComponent {
   set data(value: ICellData | undefined) {
     this.pageData = value;
     this.pages = [...new Set(value?.pages || [])];
-  }
+     }
 
   constructor(
     private settingsSerive: CollationSettingsService,
     private facsimilePanelService: FacsimilePanelService
-  ) {}
+  ) {
+
+  }
 
   facsimilePanelIcon(): string {
     if (!this.pageData) {
@@ -81,4 +83,21 @@ export class CollationCellComponent {
       this.facsimilePanelService.removeUnit(this.unitIndex, this.siglum);
     }
   }
+
+   updateChapterSiglum(chapterSiglum: string): string {
+    if (chapterSiglum === 'Di_s') {
+      return 'Di';
+    } else if (chapterSiglum === 'ToC') {
+      return 'toc';
+    }
+    return chapterSiglum;
+  }
+
+  get formattedChapterSiglum(): string {
+    const chapterSiglum = this.updateChapterSiglum(this.chapterSiglum);
+    console.log(chapterSiglum);
+    return chapterSiglum;
+  }
+
+
 }

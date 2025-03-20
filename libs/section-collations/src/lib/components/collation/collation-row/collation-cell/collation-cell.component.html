@@ -32,7 +32,7 @@
           '/',
           'manuscripts',
           siglum,
-          chapterSiglum,
+          formattedChapterSiglum,
           pageData.pages[0]
         ]"
         >{{ pageData.pages[0] }}</a
@@ -40,8 +40,8 @@
     </p>
     } @if(pages.length > 1) {
     <p class="page-link">
-      pp.@for(page of pages; track page; let last = $last){
-      <a [routerLink]="['/', 'manuscripts', siglum, chapterSiglum, page]">{{
+         pp.@for(page of pages; track page; let last = $last){
+      <a [routerLink]="['/', 'manuscripts', siglum, formattedChapterSiglum, page]">{{
         page
       }}</a
       >{{ last ? '' : ',' }}
