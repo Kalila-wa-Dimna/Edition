@@ -4,6 +4,7 @@ export interface IColors {
   label: string;
   grid: string;
   boxColor: string;
+  dividerColor: string;
   altBoxColor: string;
   boxBorderColor: string;
   rowHighlighterFill: string;

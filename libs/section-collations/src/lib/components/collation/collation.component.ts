@@ -30,6 +30,7 @@ import { SearchWorkerService } from '@kalila-edition/common-ui';
 import { CollationContainerComponent } from './collation-container/collation-container.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DownloadsService } from '../../services/downloads.service';
+import { UnitsService } from '../../services/units.service';
 @Component({
   selector: 'kd-collation',
   templateUrl: './collation.component.html',
@@ -175,6 +176,7 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     private facsimilePanelService: FacsimilePanelService,
     private searchWorkerService: SearchWorkerService,
     private downloadsService: DownloadsService,
+    private unitsService: UnitsService,
     @Inject(LOCALE_ID) public locale: string
   ) {}
 
@@ -202,6 +204,7 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     this.facsimilePanelService.columns = this.columns;
     this.sigla = this.columns.map((c) => c.siglum);
     this.units = data['pageData']['units'];
+    this.unitsService.setUnits(this.units);
     this.titles.set(this.units.map((u) => u.title));
     this.summary = data['pageData']['summary'];
     this.rowDataReciever.set(data['pageData']['segmentData']);

@@ -28,13 +28,20 @@ import {
   debounceTime,
   firstValueFrom,
 } from 'rxjs';
+import {
+  ICollationColumn,
+  ICollationUnit,
+} from '../../../models/collation-page-data.model';
+import { UnitsService } from '../../../services/units.service';
 
 const LETTERS = 'ABCDEFGHIKLMNOPQRSTUVWXYZ'.split('');
+
 
 const DARK_COLORS = {
   label: 'white',
   grid: 'gray',
   boxColor: '#edece8',
+  dividerColor: '#004659',
   altBoxColor: '#000000',
   boxBorderColor: '#004659',
   rowHighlighterFill: '#ccff00',
@@ -46,6 +53,7 @@ const LIGHT_COLORS = {
   label: '#000000',
   grid: 'gray',
   boxColor: '#004659',
+  dividerColor : '#003a4a',
   altBoxColor: '#000000',
   boxBorderColor: 'white',
   rowHighlighterFill: '#ccff00',
@@ -78,7 +86,7 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
   canvas: unknown | null = null;
   @Output() rowHovered = new EventEmitter<number | null>();
   @Output() rowClicked = new EventEmitter<number>();
-
+  units: ICollationUnit[] = [];
   renderSubject = new Subject<{ data: number[][]; colors: IColors }>();
   renderSubscription = Subscription.EMPTY;
   private _collationName: string | null = null;
@@ -155,7 +163,8 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
   constructor(
     private httpClient: HttpClient,
     private themeService: ThemeService,
-    @Inject(CONFIG_TOKEN) private config: IConfig
+    @Inject(CONFIG_TOKEN) private config: IConfig,
+    private unitsService: UnitsService
   ) {}
 
   async ngAfterViewInit() {
@@ -179,11 +188,16 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
+    this.unitsService.units$.subscribe((units) => {
+      this.units = units;
+    });
     this.renderSubject
       .pipe(debounceTime(100))
       .subscribe(async ({ data, colors }) => {
         await this.buildMap(data, colors, this._currentIndex);
       });
+
+
   }
 
   async getThemeAndDetermineColors() {
@@ -205,6 +219,7 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   async buildMap(data: number[][], colors = LIGHT_COLORS, currentIndex = 0) {
+    console.log(this.units,'Unnknknkln')
     const Konva = (await import('konva')).default;
     const containerWidth = this.container.nativeElement.offsetWidth;
     const containerHeight = this.container.nativeElement.offsetHeight;
@@ -442,6 +457,24 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
       return layer;
     };
 
+    const createDivider = () => {
+      const layer = new Konva.Layer({ listening: false });
+
+      this.units.forEach((unit) => {
+        if (unit.isDivider) {
+          const position = numberLineOffset + unit.order * boxHeight - boxHeight / 2;
+          const dividerLine = new Konva.Line({
+            points: [position, numberLineOffset, position, containerHeight],
+            stroke: colors.dividerColor,
+            strokeWidth: boxHeight,
+          });
+          layer.add(dividerLine);
+        }
+      });
+
+      return layer;
+    };
+
     const stage = new Konva.Stage({
       container: this.container.nativeElement,
       width: containerWidth,
@@ -451,6 +484,7 @@ export class MapPanelComponent implements AfterViewInit, OnDestroy, OnInit {
     stage.add(createGridLayer());
     stage.add(createBoxes());
     stage.add(createHighlighters());
+    stage.add(createDivider());
 
     this.loading.set(false);
   }
