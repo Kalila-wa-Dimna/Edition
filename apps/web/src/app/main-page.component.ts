@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
           <div class="content1">
             <img class="logo-img" src="{{ manuscriptEndPoint + 'about/KD-Edition-Logo.png' }}" alt="Box 2 Image">
             <p>
-              <span class="box-title">THE EDITION...</span><br><br>
+              <span class="box-title">THE EDITION</span><br><br>
               Catching a Book on the Move: <i>Kalīla and Dimna</i> is one of the key texts of world literature. <br>
               The numerous versions of this Book of Wisdom or “Mirror of Princes” in fable form incorporate a multitude of different stories or episodes in varying combinations.
               <br><br> Origins may be traced back to Indian Sanskrit traditions, handed down via Persian and Syriac. The Arabic versions originate in the 8th century when Arabic had become the <i>lingua franca</i> of the Near East; these then furnished the source of all further remodeling in different languages and cultures up to the 19th century and beyond.
@@ -71,7 +71,7 @@ import { Router } from '@angular/router';
               Ramona Teepe<br>
               Isabel Toral<br>
               Alice Woolston<br><br>
-              <span (click)="showMore = false" style="cursor: pointer; color: blue; display: block; margin-top: 5px;">read Less</span>
+              <span (click)="showMore = false" style="cursor: pointer; color: blue; display: block; margin-top: 5px;">Read less</span>
             </ng-container>
             </p>
             <!-- <button (click)="navigateTo('/about')">About the project</button>-->
@@ -115,7 +115,7 @@ import { Router } from '@angular/router';
               <br><br>
               The main tool for analysis of each collation is the literary <b>segmentation</b> into <b>semantic units</b>. These units or segments may vary in length from a couple of words to a short paragraph. Segments are numbered, and each has a unique label. The segmentation allows for systematic insights into the structure and individual character of each manuscript version. It also provides a basis for historical analysis and comparative study of the interrelations of these versions. <b>A list of all segments</b> per chapter is provided for download, as well as a survey of the segments present in each single version: none of the versions contains all of these segments, most of them feature between two thirds and three quarters.
               <br><br>
-              <span (click)="toggleReadMoreCollations()" style="cursor: pointer; color: blue; display: block; margin-top: 5px;">Read Less</span>
+              <span (click)="toggleReadMoreCollations()" style="cursor: pointer; color: blue; display: block; margin-top: 5px;">Read less</span>
             </span>
             <button (click)="navigateTo('/collations')">View</button>
           </div>
@@ -125,7 +125,7 @@ import { Router } from '@angular/router';
           <div class="content">
             <img src="{{ manuscriptEndPoint + 'about/manuscript_description.png' }}" alt="Box 4 Image">
 
-            <p class="box-title">MANUSCRIPTS DESCRIPTION</p>
+            <p class="box-title">MANUSCRIPT DESCRIPTIONS</p>
             <p>
               The Edition provides detailed information on those manuscripts used most often in our edition. The information includes <b>codicological data</b> (date, physical description, layout, and illustrations), as well as notes on the <b>script</b> and <b>orthography</b> and a manuscript's <b>placement within the textual tradition</b>.
               <span *ngIf="!showMoreManuscriptsDescription" (click)="toggleReadMoreManuscriptsDescription()" style="cursor: pointer; color: blue;">... read more</span>
@@ -140,7 +140,7 @@ import { Router } from '@angular/router';
               and for the manuscripts’ interrelation, see Gruendler and Toral, eds., <i>An Unruly Classic</i>, Leiden and Boston 2024,
               <a href="https://brill.com/edcollbook/title/64276" target="_blank"> https://brill.com/edcollbook/title/64276</a>).
               <br><br>
-              <span (click)="toggleReadMoreManuscriptsDescription()" style="cursor: pointer; color: blue; display: block; margin-top: 5px;">Read Less</span>
+              <span (click)="toggleReadMoreManuscriptsDescription()" style="cursor: pointer; color: blue; display: block; margin-top: 5px;">Read less</span>
             </span>
             <button (click)="navigateTo('/description')">View</button>
           </div>
@@ -162,7 +162,7 @@ import { Router } from '@angular/router';
               <br><br>
               In all instances, we have made an effort to remain close to each version as it was produced, with minimal emendation, so that the reader of the synoptic collation can compare the individual choices across the witnesses both in Arabic and in English.
               <br><br>
-              <span (click)="toggleReadMoreTranslation()" style="cursor: pointer; color: blue; display: block; margin-top: 5px;">Read Less</span>
+              <span (click)="toggleReadMoreTranslation()" style="cursor: pointer; color: blue; display: block; margin-top: 5px;">Read less</span>
             </span>
             <button (click)="navigateTo('/manuscripts/CCCP578/McEnglish/228')">View</button>
           </div>
@@ -181,7 +181,7 @@ import { Router } from '@angular/router';
             <span *ngIf="showMoreGallery">
               The choice of scenes illustrated in each manuscript constitutes its <b>image cycle</b>, which serves, in addition to the text version, as a parameter of classification.
               <br><br>
-              <span (click)="toggleReadMoreGallery()" style="cursor: pointer; color: blue; display: block; margin-top: 5px;">Read Less</span>
+              <span (click)="toggleReadMoreGallery()" style="cursor: pointer; color: blue; display: block; margin-top: 5px;">Read less</span>
             </span>
             <button (click)="navigateTo('/manuscripts/P400/gallery')">View</button>
           </div>
@@ -202,7 +202,7 @@ import { Router } from '@angular/router';
             <span *ngIf="showMoreIllustrations">
               (For further detail see the chapter by Rima Redwan in Gruendler and Toral, eds., <i>An Unruly Classic</i>, Leiden and Boston 2024, <a href="https://brill.com/edcollbook/title/64276" target="_blank">https://brill.com/edcollbook/title/64276</a>).
               <br><br>
-              <span (click)="toggleReadMoreIllustrations()" style="cursor: pointer; color: blue; display: block; margin-top: 5px;">Read Less</span>
+              <span (click)="toggleReadMoreIllustrations()" style="cursor: pointer; color: blue; display: block; margin-top: 5px;">Read less</span>
             </span>
             <button (click)="navigateTo('/manuscripts/illustrations')">View</button>
           </div>
