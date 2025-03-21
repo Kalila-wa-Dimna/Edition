@@ -41,7 +41,7 @@ const DARK_COLORS = {
   label: 'white',
   grid: 'gray',
   boxColor: '#edece8',
-  dividerColor: '#004659',
+  dividerColor: '#ffffff',
   altBoxColor: '#000000',
   boxBorderColor: '#004659',
   rowHighlighterFill: '#ccff00',
