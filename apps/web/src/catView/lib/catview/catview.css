@@ -1,0 +1,59 @@
+#CATview svg {
+  background-color: #f8f8f8;
+}
+
+#CATview .axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+
+#CATview .search_result {
+  fill: yellow !important;
+  /*fill: #dcdc00;  // darker for sw-print*/
+}
+
+#CATview .scroll_spy {
+  fill: orange;
+  stroke: black;
+  stroke-width: 1px;
+}
+
+#CATview .rect_linked {
+  fill: #e69a61 !important;
+}
+
+#CATview .remaining{
+  stroke-width: 2;
+  stroke: orange;
+}
+
+#CATview .brush .extent {
+  stroke: black;
+  fill-opacity: 0.125;
+  shape-rendering: crispEdges;
+}
+
+#CATview .tool-icon{
+  cursor: pointer;
+  font-family: FontAwesome;
+}
+
+#CATview .edge-name {
+  position: absolute;
+  margin: 0;
+  padding: 4px;
+  font-size: 1em;
+  background: #f8f8f8;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  white-space: nowrap;
+}
+#CATview .edge-name-top { text-align: center; border-radius: 0 0 8px 8px; } /* tl tr br bl*/
+#CATview .edge-name-right { text-align: right; border-radius: 8px 0 0 8px; } /* tl tr br bl*/
+#CATview .edge-name-bottom { text-align: center; border-radius: 8px 8px 0 0; } /* tl tr br bl*/
+#CATview .edge-name-left { text-align: left; border-radius: 0 8px 8px 0; } /* tl tr br bl*/
+
+#CATview .draggable text{ cursor: grab; }
