@@ -71,13 +71,16 @@
       </mat-expansion-panel-header>
 
       <a mat-button [routerLink]="['/collations']">Overview</a>
+
       <mat-divider></mat-divider>
       <kd-collations-panel
         *ngIf="expanded.collationPanelOpen"
       ></kd-collations-panel>
     </mat-expansion-panel>
     <mat-divider></mat-divider>
+
     <!-- adding the English collations-->
+
     <mat-expansion-panel
       [expanded]="expanded.englishCollationPanelOpen"
       (opened)="expanded.englishCollationPanelOpen = true"
@@ -88,6 +91,10 @@
           ><span class="panel-title"><span>English Translation</span></span>
         </mat-panel-title>
       </mat-expansion-panel-header>
+      <mat-divider></mat-divider>
+      <a mat-button style="ont-weight: bold" [routerLink]="['/mceng']"
+      >Mc English Edition</a
+      >
       <kd-english-collation-panel
         *ngIf="expanded.englishCollationPanelOpen"
       ></kd-english-collation-panel>
@@ -152,6 +159,8 @@
     [routerLink]="['/manuscripts/illustrations']"
     >Illustrations</a
   >
+
+
   <mat-divider></mat-divider>
   <a mat-button style="width: 100%" [routerLink]="['/imprint']">Imprint</a>
   <mat-divider></mat-divider>

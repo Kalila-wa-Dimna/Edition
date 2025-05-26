@@ -17,6 +17,7 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
+      "@kalila-edition/Mc-Eng-Lera": ["libs/english-edition/src/index.ts"],
       "@kalila-edition/common-ui": ["libs/common-ui/src/index.ts"],
       "@kalila-edition/common-util": ["libs/common-util/src/index.ts"],
       "@kalila-edition/dissemination-history": [

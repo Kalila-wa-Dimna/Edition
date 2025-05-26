@@ -4,6 +4,7 @@
 /collations
 /manuscripts
 /description
+/mceng
 /manuscripts/P400/McEnglish/251
 /manuscripts/P400/McEnglish/252
 /manuscripts/P400/McEnglish/253
@@ -62,6 +63,7 @@
 /collations/Di_Main_Edition
 /collations/Im_Main_Edition
 /collations/Investigation_of_Dimna_(Selective)
+/collations/The_Lion_and_the_Ox
 /collations/Kd_Main_Edition
 /collations/Km_Main_Edition
 /collations/Lj_Main_Edition

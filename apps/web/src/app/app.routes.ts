@@ -44,14 +44,17 @@ export const appRoutes: Route[] = [
     loadChildren: () =>
       import('@kalila-edition/section-manuscript-description').then((m) => m.SectionManuscriptDescriptionModule),
   },
+  {
+    path: 'mceng',
+    loadChildren: () => {
+      return import('@kalila-edition/Mc-Eng-Lera').then((m) => m.EnglishEditionModule);
+    },
+  },
   // Catch-all route or redirect (optional)
   {
     path: '**',
     redirectTo: 'description',
   },
-  {
-    path: 'toc-lera',
-    redirectTo: "collations/ToC"
-  },
+
 
 ];

@@ -1,0 +1,63 @@
+
+#CATview{
+
+}
+
+.center {
+  height:35px;
+  width:120px;
+  margin-bottom: 1%;
+  margin-top: 10px;
+  background-color: #4c7d8a;
+  border: 1px;
+  color: white;
+
+}
+.center:hover{
+  background-color:#003a4a;
+  cursor: pointer;
+}
+th{
+  border: solid 1px #003a4a;
+  background-color: #003a4a;
+  color: white;
+
+  margin-top: 3px;
+  margin-bottom: 0px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+
+}
+:host ::ng-deep pageContent {
+  width: 100%;
+}
+
+@media screen and (max-device-width: 500px), screen and (max-width: 700px) {
+  :host ::ng-deep th{
+    font-size: 12px;
+  }
+  .btn-ml-menu-non {
+    font-size: 12px;
+  }
+  .synopsis-segment-text{
+    font-size: 12px;
+  }
+  button{
+    font-size: 12px;
+  }
+}
+
+.head-sticky {
+  position: sticky;
+  top: 0!important; /* Adjust as needed */
+  z-index: 1; /* Ensure it appears above other content */
+
+}
+
+.btn-ml-menu-non{
+  padding-top: 7px!important;
+  padding-bottom: 7px!important;
+
+  background-color: #4c7d8a;
+  color: white;
+}
