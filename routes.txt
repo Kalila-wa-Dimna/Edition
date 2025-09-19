@@ -4,6 +4,7 @@
 /collations
 /manuscripts
 /description
+/manuscripts/illustrations
 /mceng
 /manuscripts/P400/McEnglish/251
 /manuscripts/P400/McEnglish/252
