@@ -18,7 +18,7 @@ export const routes: Route[] = [
     },
   },
 
-  // Route for graph component (this must come before the dynamic ':id' route)
+ 
   {
     path: 'graph',
     component: GraphComponent,
@@ -28,7 +28,7 @@ export const routes: Route[] = [
     },
   },
 
-  // Route for individual manuscript pages
+ 
   {
     path: ':id',
     component: SinglePageComponent,

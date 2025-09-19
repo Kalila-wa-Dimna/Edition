@@ -4,15 +4,29 @@
     <div class="container">
       <!-- Chart container -->
       <div class="chart-container" #chartContainer></div>
-
-      <!-- Filters: Checkboxes aligned to the right -->
-      <div class="checkbox-group">
-        <h6>Select Continuum Groups</h6>
-        <mat-checkbox *ngFor="let group of continuumGroups"
-                      [(ngModel)]="selectedContinuums[group]"
-                      (change)="toggleLinks(group)">
-          {{ capitalizeFirstLetter(group) }}
-        </mat-checkbox>
+      <div class="filters-panel">
+        <!-- Filters: Checkboxes aligned to the right -->
+        <div class="checkbox-panel">
+            <div class="checkbox-group" *ngFor="let category of ['continuum', 'copy_group', 'sequence']">
+              <p class="checkbox-caption"> Select <br /> 
+                {{
+                  category === 'continuum' ? 'Continuum' :
+                  category === 'copy_group' ? 'Copy' :
+                  category === 'sequence' ? 'Sequence' : ''
+                }} Groups
+              </p>
+              <mat-checkbox *ngFor="let group of groupCategories[category]"
+                            [(ngModel)]="selectionStates[category][group]"
+                            (change)="toggleGroup(category, group)">
+                {{ capitalizeFirstLetter(group) }}
+              </mat-checkbox>          
+            </div> 
+          </div>
+        <div class="legend-panel">
+              <p class="legend-caption">Century Groups</p>
+              <div id="century-legend" class="legend-container"></div>
+              <button class="reset-button" (click)="resetGraph()">Reset Graph</button>
+        </div>
       </div>
     </div>
   </main>

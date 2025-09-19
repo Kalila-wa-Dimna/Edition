@@ -18,17 +18,19 @@ main[pageContent] {
 /* Container for the chart and checkboxes */
 .container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
   align-items: flex-start;
   width: 100%;
   height: 100%;
+  padding: 10px; /* Optional: add some padding */
 }
+
 
 /* Chart container that takes up 75% of the width */
 .chart-container {
   flex: 1;
-  margin-right: 20px; /* Spacing between the chart and checkboxes */
-  height: 100%; /* Ensure it fills the container */
+  margin-right: 30px; /* Spacing between the chart and checkboxes */
+  height: 100%; /* Ensure it fills the container */  
 }
 
 /* Checkboxes aligned to the right */
@@ -37,24 +39,22 @@ main[pageContent] {
   flex-direction: column;
   align-items: flex-start; /* Align checkboxes to the left */
   margin-left: auto; /* Push the checkboxes to the far right */
-  padding: 10px; /* Optional: add some padding */
+  padding: 10px; /* Optional: add some padding */  
+  
 }
+
+.checkbox-panel {
+  display: flex;
+  flex-direction: row;
+  }
 
 mat-checkbox {
   margin-bottom: 8px;
-  font-size: 14px;
   padding-left: 10px;
+  padding-right: 20px;
   /* No border or extra styling needed as mat-checkbox handles it */
 }
 
-/* Additional styles for node colors based on centuries */
-.node--13th-century { fill: #ff7f0e; } /* Orange */
-.node--14th-century { fill: #1f77b4; } /* Blue */
-.node--15th-century { fill: #2ca02c; } /* Green */
-.node--16th-century { fill: #d62728; } /* Red */
-.node--17th-century { fill: #9467bd; } /* Purple */
-.node--18th-century { fill: #8c564b; } /* Brown */
-.node--19th-century { fill: #e377c2; } /* Pink */
 
 /* Styles for links between nodes */
 .link {
@@ -69,24 +69,77 @@ mat-checkbox {
 .link--source,
 .link--target {
   stroke-opacity: 1;
-  stroke-width: 2px;
+  stroke-width: 3px;
   z-index: 0; /* Ensure selected links are on top */
 }
 
-/* Source and target links */
-.link--source {
-  stroke: #d62728; /* Red for source link */
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: growStroke 1s linear forwards;
+
+.legend-container {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: 480px;
+  
 }
 
-.link--target {
-  stroke: #2ca02c; /* Green for target link */
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: growStroke 1s linear forwards;
+.legend-panel {
+  margin-left: 40px;
 }
+
+.checkbox-caption {
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 30px; 
+  line-height: 1.2;
+}
+
+.legend-caption {
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 30px; 
+  line-height: 1.2;
+  margin-top: 60px;
+}
+
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+  z-index: 9999;
+}
+
+.tooltip.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.node-hovered {
+  font-weight: bold;
+}
+
+.reset-button {
+  background-color: steelblue;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  margin-top: 60px;
+
+  &:hover {
+    background-color: #1b5690;
+  }
+}
+
+
 
 /* Keyframes for growing link stroke animation */
 @keyframes growStroke {
@@ -113,6 +166,7 @@ mat-checkbox {
 
   .checkbox-group {
     width: 100%; /* Make the checkboxes full width */
-    margin-top: 20px; /* Space between chart and checkboxes */
+    margin-top: 10px; /* Space between chart and checkboxes */
+    
   }
 }

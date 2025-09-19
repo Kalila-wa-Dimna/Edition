@@ -1,3 +1,4 @@
+@use '@angular/material' as mat;
 @import '@fontsource-variable/noto-naskh-arabic';
 @import '@fontsource-variable/source-sans-3';
 @import '@material-design-icons/font';
@@ -6,6 +7,7 @@
 @import 'sass/breakpoints.scss';
 @import 'sass/typography.scss';
 @import 'sass/utility.scss';
+
 
 kalila-edition-root {
   margin: 0;
@@ -18,3 +20,14 @@ body {
 .cdk-virtual-scroll-content-wrapper {
   width: fit-content;
 }
+
+:kalila-edition-root  {
+  @include mat.checkbox-overrides((
+    label-text-size: 16px
+  ));
+}
+
+.mat-mdc-checkbox {
+  --mat-checkbox-label-text-size: 16px;
+}
+
