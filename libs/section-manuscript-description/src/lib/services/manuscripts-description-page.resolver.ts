@@ -3,7 +3,6 @@ import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from '@angular
 import { DataService } from '@kalila-edition/common-ui';
 import { map } from 'rxjs/operators';
 import { Observable,catchError, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 
 // Define interfaces for Graph Data
 export interface Node {
@@ -38,20 +37,28 @@ export function createManuscriptDescriptionDataResolver(): ResolveFn<any> {
   };
 }
 
-export function createGraphDataResolver(): ResolveFn<GraphData | {}> {
+// Resolver for graph data
+// Resolver for graph data
+// Resolver for graph data
+// Resolver for graph data
+export function createGraphDataResolver(): ResolveFn<any> {
   return (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-    const http = inject(HttpClient);
-    return http.get<GraphData>('assets/graph_data.json').pipe(
+    const api = inject(DataService);
+    const url = `manuscripts/ms_descptions/graph`;
+
+    return api.load<any>(url, {}).pipe(
       map(data => {
-        console.log('Loaded graph data from local file:', data);
-        return data;
+        // Log the response data for debugging
+        console.log('Graph data loaded:', data);
+        return data; // Return the data directly
       }),
       catchError(error => {
-        console.error('Error loading local graph data:', error);
-        return of({});
+        console.error('Error loading graph data:', error);
+        return of({}); // Return an empty object or any fallback value
       })
     );
   };
+
 }
 
 
