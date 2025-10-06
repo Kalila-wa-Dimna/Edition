@@ -9,7 +9,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animationsbuild:spa": "19.0.6",
+    "@angular/animations": "19.0.6",
     "@angular/cdk": "19.0.5",
     "@angular/cdk-experimental": "^16.1.4",
     "@angular/common": "19.0.6",
