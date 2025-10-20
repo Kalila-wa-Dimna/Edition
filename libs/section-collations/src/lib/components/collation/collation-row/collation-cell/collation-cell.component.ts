@@ -3,6 +3,7 @@ import { ICellData } from '../../../../models/collation-row-data.model';
 import { CollationSettingsService } from '../../../../services/collation-settings.service';
 import { FacsimilePanelService } from '../../../../services/facsimile-panel.service';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { RobotService } from '../../../../services/robot.service';
 
 @Component({
   selector: 'kd-collation-cell',
@@ -31,7 +32,8 @@ export class CollationCellComponent {
 
   constructor(
     private settingsSerive: CollationSettingsService,
-    private facsimilePanelService: FacsimilePanelService
+    private facsimilePanelService: FacsimilePanelService,
+    private robotService: RobotService
   ) {
 
   }
@@ -99,5 +101,44 @@ export class CollationCellComponent {
     return chapterSiglum;
   }
 
+
+
+
+
+
+  // In CollationCellComponent
+  loadingTranslation = false;
+  cellTranslations: { [key: string]: string } = {};
+
+  translateCell() {
+    if (!this.pageData) return;
+
+    const key = `${this.unitIndex}-${this.mediumIndex}-${this.siglum}`;
+
+    // If translation already exists, remove it
+    if (this.cellTranslations[key]) {
+      this.cellTranslations[key] = '';
+      return;
+    }
+
+    const textToTranslate = this.pageData.tokens
+      .map(line => line.join(' '))
+      .join(' ');
+
+    this.loadingTranslation = true;
+
+    this.robotService.sendText(textToTranslate);
+
+    const sub = this.robotService.response$.subscribe((res: string) => {
+      this.cellTranslations[key] = res; // store per cell
+      this.loadingTranslation = false;
+      sub.unsubscribe();
+    });
+  }
+
+  get translation(): string | null {
+    const key = `${this.unitIndex}-${this.mediumIndex}-${this.siglum}`;
+    return this.cellTranslations[key] || null;
+  }
 
 }

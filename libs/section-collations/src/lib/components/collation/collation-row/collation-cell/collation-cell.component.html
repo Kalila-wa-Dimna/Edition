@@ -50,6 +50,7 @@
     }
   </div>
   }
+
 </div>
 
 @if (siglum === 'IH') {
@@ -63,8 +64,25 @@
   [lines]="pageData.ranges ?? []"
   [highlightLine]="cellHighlightedLine()"
 ></kd-collation-cell-text>
+
+
+
+  <!-- Translation overlay -->
+  <mat-icon class="robot-icon" (click)="translateCell()">smart_toy</mat-icon>
+
+  <!-- translation overlay -->
+  <div *ngIf="translation" class="translation-overlay">
+    {{ translation }}
+  </div>
+
+
 } } @else {
 <div class="absent">
   <span>[absent]</span>
 </div>
+
+
+
+
+
 }

@@ -44,6 +44,9 @@ import { CollationContainerComponent } from './components/collation/collation-co
 import { AlignmentService } from './services/alignment.service';
 import { CollationCellTextPoetryComponent } from './components/collation/collation-row/collation-cell/collation-cell-text-poetry.component';
 import { DownloadsService } from './services/downloads.service';
+import { RobotComponent } from './components/collation/robot/robot.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   imports: [
@@ -70,9 +73,14 @@ import { DownloadsService } from './services/downloads.service';
     MatSlideToggleModule,
     MatTooltipModule,
     MatMenuModule,
+    RobotComponent,
+    FormsModule,
+    CommonModule,
+
   ],
   declarations: [
     SelectCollationComponent,
+
     CollationComponent,
     CollationCommandBarComponent,
     CollationHeadingComponent,

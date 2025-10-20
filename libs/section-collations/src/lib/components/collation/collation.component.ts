@@ -31,18 +31,26 @@ import { CollationContainerComponent } from './collation-container/collation-con
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DownloadsService } from '../../services/downloads.service';
 import { UnitsService } from '../../services/units.service';
+import { RobotService } from '../../services/robot.service';
+
+
 @Component({
   selector: 'kd-collation',
+
   templateUrl: './collation.component.html',
   styleUrls: ['./collation.component.scss'],
   standalone: false,
 })
 export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
+
+
   summary: ICollationInfo = { siglum: '', display: '', image: '', key: '' };
   columns: ICollationColumn[] = [];
   sigla: string[] = [];
   units: ICollationUnit[] = [];
   versionSummary: Record<string, number> = {};
+
+
 
   get version() {
     const values = Object.values(this.versionSummary);
@@ -177,6 +185,7 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     private searchWorkerService: SearchWorkerService,
     private downloadsService: DownloadsService,
     private unitsService: UnitsService,
+    private robotService: RobotService,
     @Inject(LOCALE_ID) public locale: string
   ) {}
 
@@ -195,6 +204,7 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dataSubscription = this.route.data.subscribe((data) => {
       this.loadData(data);
     });
+
   }
 
   private loadData(data: Data) {
