@@ -1,5 +1,4 @@
-  import { sequence } from '@angular/animations';
-import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy } from '@angular/core';
+  import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy } from '@angular/core';
   import { ActivatedRoute } from '@angular/router';
   import * as d3 from 'd3';
 
@@ -11,6 +10,7 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
     continuum?: string;
     copy_group?: string;
     sequence?: string;
+    [key: string]: any;
     
   }
 
@@ -39,7 +39,9 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
         'paris continuum': false,
         'iberian continuum': false,
         'queen continuum': false,
+        'first Risāla' : false,
         'cross copy': false,
+        '':false
       },
       copy_group: {
         'Paris 3471': false,
@@ -50,7 +52,8 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
         'Paris 2789': false,
         'Princeton 169H': false,
         'Riyadh 2536': false,
-        'Arch. Mus. EY 344': false
+        'Arch. Mus. EY 344': false,
+        '':false
       },
       sequence: {
         'sequence A': false,
@@ -60,7 +63,20 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
         'sequence E': false,
         'sequence F': false,
         'sequence G': false,
-        'sequence H': false
+        'sequence H': false,
+        '':false
+      },
+      century: {
+        '10th - 13th century': false, 
+        '13th century': false,
+        '14th century': false,
+        '15th century': false,
+        '16th century': false,
+        '17th century': false,
+        '18th century': false,
+        '19th century': false,
+        '20th century': false,
+        'unspecified': false,
       }
     };
 
@@ -72,18 +88,25 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
       'paris continuum',
       'iberian continuum',
       'queen continuum',
-      'cross copy'
+      'first Risāla',
+      'cross copy',
+      ''
     ],
     copy_group: [
-      'Paris 3471',
-      'Paris 3465',
+      'Arch. Mus. EY 344',
       'Ayasofya 4214',
-      'München 618',
+      'Copies of Edition',
       'Hamburg 170',
+      'München 618',
       'Paris 2789',
+      'Paris 3465',
+      'Paris 3468',
+      'Paris 3471',
+      'Pococke 400',
       'Princeton 169H',
       'Riyadh 2536',
-      'Arch. Mus. EY 344'
+      'Tunis 16030',
+      ''
     ],
     sequence: [
       'sequence A',
@@ -93,8 +116,21 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
       'sequence E',
       'sequence F',
       'sequence G',
-      'sequence H'      
-    ]
+      'sequence H',
+      ''      
+    ],
+    century: [
+        '10th - 13th century',
+        '13th century',
+        '14th century',
+        '15th century',
+        '16th century',
+        '17th century',
+        '18th century',
+        '19th century',
+        '20th century',
+        'unspecified' 
+      ]
   }; 
 
     private centuryColorMap: { [key: string]: string } = {
@@ -126,7 +162,6 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
         this.graphData = data['graphData']
         console.log('Resolved Graph Data:', this.graphData);
         this.renderGraph(this.graphData);
-        this.renderLegend();
       });
     }
 
@@ -135,11 +170,19 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
       Object.keys(this.selectionStates[category]).forEach(key => {
         this.selectionStates[category][key] = false;
       });
-    });      
-      d3.select(this.chartContainer.nativeElement).selectAll('*').remove();      
-      this.renderGraph(this.graphData);
-    }
-    
+      console.log(Object)
+    }); 
+      this.possibleOptions = {};
+      Object.keys(this.groupCategories).forEach(category => {
+        this.possibleOptions[category] = new Set(this.groupCategories[category]);
+      });    
+   
+
+
+          d3.select(this.chartContainer.nativeElement).selectAll('*').remove();      
+          this.renderGraph(this.graphData);
+        }
+        
     ngOnDestroy() {
       d3.select(this.chartContainer.nativeElement).selectAll('*').remove();
     }
@@ -237,16 +280,69 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
         .attr('dy', '0.31em')
         .attr('transform', (d: any) => `rotate(${d.x - 90})translate(${d.y + 8},0)${d.x < 180 ? '' : 'rotate(180)'}`)
         .attr('text-anchor', (d: any) => (d.x < 180 ? 'start' : 'end'))
-        .attr('fill', (d: any) => {
-          const century = d.data.century;
-          return this.centuryColorMap[century] || '#99b5bd';
-        })
+        .attr('fill', '#1b5690')
         .text((d: any) => d.data.name)
         .on('mouseover', (event: any, d: any) => this.mouseovered(event, d))
         .on('mouseout', this.mouseouted.bind(this));
 
       
     }
+
+    possibleOptions: { [category: string]: Set<string> } = {
+      continuum: new Set(this.groupCategories['continuum']),
+      copy_group: new Set(this.groupCategories['copy_group']),
+      sequence: new Set(this.groupCategories['sequence']),
+      century: new Set(this.groupCategories['century'])
+    };
+
+    updatePossibleOptions() {
+      // 1. Gather all selected filters across categories
+      const activeSelections: { [category: string]: Set<string> } = {};
+      Object.keys(this.selectionStates).forEach(cat => {
+        const selected = Object.keys(this.selectionStates[cat])
+          .filter(g => this.selectionStates[cat][g]);
+        activeSelections[cat] = new Set(selected);
+      });
+
+      // 2. Filter nodes that match ALL selected properties
+      let matchingNodes = this.graphData;
+      console.log("Initial nodes:", this.graphData.length);
+      
+
+      Object.keys(activeSelections).forEach(cat => {
+        if (activeSelections[cat].size > 0) {
+          matchingNodes = matchingNodes.filter(n =>
+            activeSelections[cat].has(n[cat])
+          );
+          console.log("After filtering", cat, ":", matchingNodes.length);
+
+        }
+      });
+      // untill here shouls be correct  
+      
+        Object.keys(this.possibleOptions).forEach(cat => {
+        
+        const compatibleGroups = new Set(
+          matchingNodes.map(node => node[cat]).filter(v => v !== null && v !== undefined)
+        );
+        this.possibleOptions[cat] = compatibleGroups;
+        // now the behaviour of the checkbzes is correct, but ia always highlight the nodes of the last selected box - figure out
+      });
+
+      
+      console.log("Possible options after update:", JSON.stringify(
+      Object.fromEntries(
+      Object.entries(this.possibleOptions).map(([cat, set]) => [cat, [...set]])
+      ),
+      null,
+      2
+    ));
+    console.log("Type Possible options", typeof this.possibleOptions)
+    console.log("Possible options", this.possibleOptions)
+    return this.possibleOptions;
+
+  }
+
 
     private tooltip = d3.select('body').append('div')
     .attr('class', 'tooltip');
@@ -418,63 +514,61 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
       return imports;
     }
 
-    toggleCategorySelection(
-      selectedKey: string,
-      selectedCategory: string,
-      updateCallback: (key: string, category: string) => void
-    ): void {
-      Object.keys(this.selectionStates).forEach(category => {
-        Object.keys(this.selectionStates[category]).forEach(key => {
-          this.selectionStates[category][key] = false;
-        });
-      });
-      this.selectionStates[selectedCategory][selectedKey] = true;
 
-      updateCallback(selectedKey, selectedCategory);
-    }
+   
+    updateGraphColors(): void {
 
+    const defaultLinkColor = '#D3D3D3';
 
-    updateGraphColors(category: string): void {
-      
-      const activeGroups = Object.keys(this.selectionStates[category])
-        .filter(key => this.selectionStates[category][key]);
-      const defaultLinkColor = '#D3D3D3';
+    // Helper to test if a node matches ALL category constraints
+    const isNodeValid = (node: any) => {
+      return Object.keys(this.possibleOptions).every(cat => {
+        const value = node.data[cat];
 
-      this.link
-        .style('stroke', (d: any) => {
-          const sourceGroup = d.source.data[category];
-          const targetGroup = d.target.data[category];
-          return (activeGroups.includes(sourceGroup) && activeGroups.includes(targetGroup))
-            ? '#1f77b4'
-            : defaultLinkColor;
-        })
-        .style('z-index', (d: any) => {
-          const sourceGroup = d.source.data[category];
-          const targetGroup = d.target.data[category];
-          return (activeGroups.includes(sourceGroup) && activeGroups.includes(targetGroup)) ? 1 : 0;
-        })
-        .raise();
+    // value may be '' intentionally
+        return this.possibleOptions[cat].has(value);
+    });
+    };
 
-      this.node.each(function (d: any) {
-        const groupValue = d.data[category];
-        const belongsToActiveGroup = activeGroups.includes(groupValue);
-        d3.select(this)
-          .style('font-weight', belongsToActiveGroup ? 'bold' : 'normal')
-          .style('font-size', '16px')
-          .style('fill', belongsToActiveGroup ? '' : '#C0C0C0')
-          .style('opacity', 1)
-      });
-    }
+    // ---- Highlight links ----
+    this.link
+      .style('stroke', (d: any) => {
+        const sourceValid = isNodeValid(d.source);
+        const targetValid = isNodeValid(d.target);
+        return (sourceValid && targetValid)
+          ? '#1f77b4'
+          : defaultLinkColor;
+      })
+      .style('z-index', (d: any) => {
+        const sourceValid = isNodeValid(d.source);
+        const targetValid = isNodeValid(d.target);
+        return (sourceValid && targetValid) ? 1 : 0;
+      })
+      .raise();
+
+    // ---- Highlight nodes ----
+    this.node.each(function (d: any) {
+      const valid = isNodeValid(d);
+
+      d3.select(this)
+        .style('font-weight', valid ? 'bold' : 'normal')
+        .style('font-size', '16px')
+        .style('fill', valid ? '#1b5690' : '#C0C0C0')
+        .style('opacity', 1);
+    });
+  }
 
 
 
     toggleGroup(category: string, selectedGroup: string): void {
-      this.toggleCategorySelection(
-        selectedGroup,
-        category,
-        (key, cat) => this.updateGraphColors(cat)
-      );
+      const current = this.selectionStates[category][selectedGroup];
+      this.selectionStates[category][selectedGroup] = !current;
+
+      this.updatePossibleOptions();
+      this.updateGraphColors();
     }
+
+
 
     
     private hoveredCentury: string | null = null;
@@ -490,61 +584,9 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
     }
 
 
-    private resetNodeStyles(): void {
-      if (!this.hoveredCentury) return;
-      this.node.each(function () {
-        d3.select(this)
-          .style('font-weight', 'normal')         
-      }); 
-       this.node.each((d: any, i, nodes) => {
-        const el = d3.select(nodes[i]);
-
-        Object.keys(this.selectionStates).forEach(category => {
-          const activeGroups = Object.keys(this.selectionStates[category])
-            .filter(key => this.selectionStates[category][key]);
-
-          const groupValue = d.data[category];
-          const belongsToActiveGroup = activeGroups.includes(groupValue);
-          console.log("active group", belongsToActiveGroup)
-           if (belongsToActiveGroup) {
-              el
-                .style('font-weight', 'bold')                
-            } 
-        });
-      });
-      
-    };
+   
 
 
-    renderLegend() {
-      console.log("renderLegend called");
-      const legendContainer = d3.select('#century-legend');
-      legendContainer.selectAll('*').remove();
-
-      const entries = Object.entries(this.centuryColorMap);
-
-      const legendItems = legendContainer.selectAll('.legend-item')
-        .data(entries)
-        .enter()
-        .append('div')
-        .attr('class', 'legend-item')
-        .style('display', 'flex')
-        .style('align-items', 'center')
-        .style('margin-bottom', '4px')
-        .style('cursor', 'pointer')
-        .on('mouseover', (event: any, d: any) => this.highlightCenturyNodes(d[0]))
-        .on('mouseout', () => this.resetNodeStyles());
-
-      legendItems.append('div')
-        .style('width', '14px')
-        .style('height', '14px')
-        .style('border-radius', '50%')
-        .style('margin-right', '8px')
-        .style('background-color', ([, color]) => color);
-
-      legendItems.append('span')
-        .text(([century]) => century || 'unspecified');
-    }
   
     capitalizeFirstLetter(value: string): string {
       if (!value) return value;
