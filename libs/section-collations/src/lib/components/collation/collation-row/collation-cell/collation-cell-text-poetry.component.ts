@@ -50,7 +50,7 @@ export class CollationCellTextPoetryComponent {
   @Input() orderInMs: number | undefined = undefined;
 
   formatLine(lineTokens: string[], index: number): string {
-    if (lineTokens[0].startsWith('|') && index === 0) {
+    if (lineTokens[0] && lineTokens[0].startsWith('|') && index === 0) {
       lineTokens[0] = lineTokens[0].slice(1);
     }
 
