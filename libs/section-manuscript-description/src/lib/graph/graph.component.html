@@ -7,26 +7,25 @@
       <div class="filters-panel">
         <!-- Filters: Checkboxes aligned to the right -->
         <div class="checkbox-panel">
-            <div class="checkbox-group" *ngFor="let category of ['continuum', 'copy_group', 'sequence']">
+            <div class="checkbox-group" *ngFor="let category of ['continuum', 'copy_group', 'sequence', 'century']">
               <p class="checkbox-caption"> Select <br /> 
                 {{
-                  category === 'continuum' ? 'Continuum' :
+                  category === 'continuum' ? 'Textual' :
                   category === 'copy_group' ? 'Copy' :
-                  category === 'sequence' ? 'Sequence' : ''
+                  category === 'sequence' ? 'Sequence' :
+                  category === 'century' ? 'Century' : ''
                 }} Groups
               </p>
               <mat-checkbox *ngFor="let group of groupCategories[category]"
-                            [(ngModel)]="selectionStates[category][group]"
-                            (change)="toggleGroup(category, group)">
-                {{ capitalizeFirstLetter(group) }}
+                            (change)="toggleGroup(category, group)"
+                            [checked]="selectionStates[category][group]"
+                            [disabled]="!possibleOptions[category].has(group)"
+                            [class.highlight]="possibleOptions[category].has(group)">
+                {{ group === '' ? 'Unspecified' : capitalizeFirstLetter(group) }}
               </mat-checkbox>          
             </div> 
           </div>
-        <div class="legend-panel">
-              <p class="legend-caption">Century Groups</p>
-              <div id="century-legend" class="legend-container"></div>
-              <button class="reset-button" (click)="resetGraph()">Reset Graph</button>
-        </div>
+        <button class="reset-button" (click)="resetGraph()">Reset Graph</button>
       </div>
     </div>
   </main>
