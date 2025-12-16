@@ -7,9 +7,10 @@
     size?: number;
     imports?: string[];
     century?: string;
-    continuum?: string;
+    continuum?: string[];
     copy_group?: string;
     sequence?: string;
+    structural?: string[];
     [key: string]: any;
     
   }
@@ -37,9 +38,9 @@
         'early group': false,
         'london continuum': false,
         'paris continuum': false,
+        'wetzstein group' : false,
         'iberian continuum': false,
         'queen continuum': false,
-        'first Risāla' : false,
         'cross copy': false,
         '':false
       },
@@ -53,6 +54,7 @@
         'Princeton 169H': false,
         'Riyadh 2536': false,
         'Arch. Mus. EY 344': false,
+        'Copies of Editions': false,
         '':false
       },
       sequence: {
@@ -77,6 +79,15 @@
         '19th century': false,
         '20th century': false,
         'unspecified': false,
+      },
+      structural: {
+        'First Risāla': false,
+        'Sv preface': false,
+        'As preface': false,
+        'Km chapter': false,
+        'Kw chapter': false,
+        'Df chapter': false,
+        '': false
       }
     };
 
@@ -86,16 +97,16 @@
       'early group',
       'london continuum',
       'paris continuum',
+      'wetzstein group',
       'iberian continuum',
       'queen continuum',
-      'first Risāla',
       'cross copy',
       ''
     ],
     copy_group: [
       'Arch. Mus. EY 344',
       'Ayasofya 4214',
-      'Copies of Edition',
+      'Copies of Editions',
       'Hamburg 170',
       'München 618',
       'Paris 2789',
@@ -130,7 +141,17 @@
         '19th century',
         '20th century',
         'unspecified' 
-      ]
+      ],
+    structural: [
+        'First Risāla',
+        'Sv preface',
+        'As preface',
+        'Km chapter',
+        'Kw chapter',
+        'Df chapter',
+        '' 
+    ]
+    
   }; 
 
     private centuryColorMap: { [key: string]: string } = {
@@ -154,6 +175,7 @@
       'early group': '#C0C0C0',
       'cross copy': '#C0C0C0'
     };
+    currentMatchingNodes = new Set<string>();
 
     constructor(private route: ActivatedRoute) {}
 
@@ -292,56 +314,76 @@
       continuum: new Set(this.groupCategories['continuum']),
       copy_group: new Set(this.groupCategories['copy_group']),
       sequence: new Set(this.groupCategories['sequence']),
-      century: new Set(this.groupCategories['century'])
+      century: new Set(this.groupCategories['century']),
+      structural: new Set(this.groupCategories['structural'])
     };
 
     updatePossibleOptions() {
-      // 1. Gather all selected filters across categories
-      const activeSelections: { [category: string]: Set<string> } = {};
-      Object.keys(this.selectionStates).forEach(cat => {
-        const selected = Object.keys(this.selectionStates[cat])
-          .filter(g => this.selectionStates[cat][g]);
-        activeSelections[cat] = new Set(selected);
-      });
 
-      // 2. Filter nodes that match ALL selected properties
-      let matchingNodes = this.graphData;
-      console.log("Initial nodes:", this.graphData.length);
-      
+        const activeSelections: { [category: string]: Set<string> } = {};
 
-      Object.keys(activeSelections).forEach(cat => {
-        if (activeSelections[cat].size > 0) {
-          matchingNodes = matchingNodes.filter(n =>
-            activeSelections[cat].has(n[cat])
-          );
-          console.log("After filtering", cat, ":", matchingNodes.length);
+        Object.keys(this.selectionStates).forEach(cat => {
+          const selected = Object.keys(this.selectionStates[cat])
+            .filter(g => this.selectionStates[cat][g]);
+          activeSelections[cat] = new Set(selected);
+        });
 
-        }
-      });
-      // untill here shouls be correct  
+        let matchingNodes = this.graphData;
+
+        Object.keys(activeSelections).forEach(cat => {
+          if (activeSelections[cat].size > 0) {
+
+            matchingNodes = matchingNodes.filter(n => {
+              const nodeValue = n[cat];
+
+              if (Array.isArray(nodeValue)) {
+                return [...activeSelections[cat]].every(sel =>
+                  nodeValue.includes(sel)
+                );
+              }
+              return activeSelections[cat].has(nodeValue);
+            });
+          }
+        });
+
+        
+        this.currentMatchingNodes = new Set(
+          matchingNodes.map(n => n.name)
+        );
+
+        console.log(
+          'Matching nodes:',
+          [...this.currentMatchingNodes]
+        );
+
       
         Object.keys(this.possibleOptions).forEach(cat => {
-        
-        const compatibleGroups = new Set(
-          matchingNodes.map(node => node[cat]).filter(v => v !== null && v !== undefined)
+
+          const compatibleValues = new Set<string>();
+
+          matchingNodes.forEach(node => {
+            const value = node[cat];
+
+            if (Array.isArray(value)) {
+              value.forEach(v => compatibleValues.add(v));
+            } else {
+              compatibleValues.add(value);
+            }
+          });
+
+          this.possibleOptions[cat] = compatibleValues;
+        });
+
+        console.log(
+          'Possible options:',
+          Object.fromEntries(
+            Object.entries(this.possibleOptions).map(([k, v]) => [k, [...v]])
+          )
         );
-        this.possibleOptions[cat] = compatibleGroups;
-        // now the behaviour of the checkbzes is correct, but ia always highlight the nodes of the last selected box - figure out
-      });
 
-      
-      console.log("Possible options after update:", JSON.stringify(
-      Object.fromEntries(
-      Object.entries(this.possibleOptions).map(([cat, set]) => [cat, [...set]])
-      ),
-      null,
-      2
-    ));
-    console.log("Type Possible options", typeof this.possibleOptions)
-    console.log("Possible options", this.possibleOptions)
-    return this.possibleOptions;
+        return this.possibleOptions;
+      }
 
-  }
 
 
     private tooltip = d3.select('body').append('div')
@@ -401,7 +443,12 @@
           console.log("i ", i);
           console.log("nodes: ", nodes);
           //[] to access a value of a key, just like in Python - the name of the selected continuum
-          const isActive = this.selectionStates['continuum'][n.data.continuum];
+          // changed here
+          const cont = n.data.continuum;
+          const isActive = Array.isArray(cont) 
+            ? cont.some(c => this.selectionStates['continuum'][c])
+            : this.selectionStates['continuum'][cont];
+
           const isHovered = n === d;      
           
           d3.select(nodes[i]).classed('node-hovered', isHovered);
@@ -521,13 +568,8 @@
     const defaultLinkColor = '#D3D3D3';
 
     // Helper to test if a node matches ALL category constraints
-    const isNodeValid = (node: any) => {
-      return Object.keys(this.possibleOptions).every(cat => {
-        const value = node.data[cat];
-
-    // value may be '' intentionally
-        return this.possibleOptions[cat].has(value);
-    });
+     const isNodeValid = (node: any) => {
+      return this.currentMatchingNodes.has(node.data.name);
     };
 
     // ---- Highlight links ----
@@ -588,14 +630,35 @@
 
 
   
-    capitalizeFirstLetter(value: string): string {
+    capitalizeFirstLetter(value: string, category?: string): string {
       if (!value) return value;
-      let formatted = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
-      if (value.toLowerCase().startsWith("sequence") && formatted.length > 1) {
+   
+      if (value === 'First Risāla' || value === 'Arch. Mus. EY 344' || value === 'Copies of Editions')   
+        return value;     
+   
+      let formatted =
+        value.charAt(0).toUpperCase() +
+        value.slice(1).toLowerCase();
+
+      if (value.toLowerCase().startsWith('sequence') && formatted.length > 1) {
         const lastChar = formatted.charAt(formatted.length - 1).toUpperCase();
         formatted = formatted.slice(0, -1) + lastChar;
       }
 
       return formatted;
     }
+
+     formatGroupLabel(value: string): { before: string; risala: string; after: string } | null {
+        if (!value) return null;
+
+        const match = value.match(/(.*?)(Risāla)(.*)/i);
+        if (!match) return null;
+
+        return {
+          before: match[1],
+          risala: match[2],
+          after: match[3]
+        };
+      }
+
   }
