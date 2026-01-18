@@ -52,4 +52,10 @@ mat-icon::before {
   }
 }
 
+.robot-icon {
+  transition: color 0.3s ease;
+}
 
+.robot-icon.clicked {
+  color: #304ffe; /* Change to your desired color */
+}

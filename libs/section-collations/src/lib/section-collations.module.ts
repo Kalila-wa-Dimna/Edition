@@ -46,6 +46,7 @@ import { CollationCellTextPoetryComponent } from './components/collation/collati
 import { DownloadsService } from './services/downloads.service';
 import { RobotComponent } from './components/collation/robot/robot.component';
 import { FormsModule } from '@angular/forms';
+import {CollationAnalysisService} from "./services/collation-analysis.service";
 
 
 @NgModule({

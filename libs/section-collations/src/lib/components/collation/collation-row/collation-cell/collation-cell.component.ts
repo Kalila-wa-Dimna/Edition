@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ICellData } from '../../../../models/collation-row-data.model';
 import { CollationSettingsService } from '../../../../services/collation-settings.service';
 import { FacsimilePanelService } from '../../../../services/facsimile-panel.service';
@@ -28,15 +28,13 @@ export class CollationCellComponent {
   set data(value: ICellData | undefined) {
     this.pageData = value;
     this.pages = [...new Set(value?.pages || [])];
-     }
+  }
 
   constructor(
     private settingsSerive: CollationSettingsService,
     private facsimilePanelService: FacsimilePanelService,
     private robotService: RobotService
-  ) {
-
-  }
+  ) {}
 
   facsimilePanelIcon(): string {
     if (!this.pageData) {
@@ -86,7 +84,7 @@ export class CollationCellComponent {
     }
   }
 
-   updateChapterSiglum(chapterSiglum: string): string {
+  updateChapterSiglum(chapterSiglum: string): string {
     if (chapterSiglum === 'Di_s') {
       return 'Di';
     } else if (chapterSiglum === 'ToC') {
@@ -101,12 +99,12 @@ export class CollationCellComponent {
     return chapterSiglum;
   }
 
+  isClicked = false;
 
+  toggleIconColor(): void {
+    this.isClicked = !this.isClicked;
+  }
 
-
-
-
-  // In CollationCellComponent
   loadingTranslation = false;
   cellTranslations: { [key: string]: string } = {};
 
@@ -115,7 +113,6 @@ export class CollationCellComponent {
 
     const key = `${this.unitIndex}-${this.mediumIndex}-${this.siglum}`;
 
-    // If translation already exists, remove it
     if (this.cellTranslations[key]) {
       this.cellTranslations[key] = '';
       return;
@@ -130,7 +127,7 @@ export class CollationCellComponent {
     this.robotService.sendText(textToTranslate);
 
     const sub = this.robotService.response$.subscribe((res: string) => {
-      this.cellTranslations[key] = res; // store per cell
+      this.cellTranslations[key] = res;
       this.loadingTranslation = false;
       sub.unsubscribe();
     });
@@ -140,5 +137,4 @@ export class CollationCellComponent {
     const key = `${this.unitIndex}-${this.mediumIndex}-${this.siglum}`;
     return this.cellTranslations[key] || null;
   }
-
 }

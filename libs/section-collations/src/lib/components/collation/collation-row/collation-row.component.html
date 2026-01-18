@@ -1,10 +1,9 @@
 <div
   [ngClass]="{
-        'current-result': currentResult,
+    'current-result': currentResult,
     'search-result': searchResult && !currentResult,
     divider: unit.isDivider,
     'row-header': true,
-
   }"
   [ngStyle]="{
     'width.px':
@@ -15,17 +14,27 @@
   <div class="row-header-content">
     <span>({{ unit.formattedOrder }}) &nbsp;</span>
     <span>{{ unit.title }}</span>
+    <mat-icon
+      class="analysis-icon"
+      [class.analyzing]="analyzing"
+      [class.analyzed]="isAnalyzed"
+      [title]="getAnalysisTooltip()"
+      (click)="analyzeRow()"
+    >
+      {{ getAnalysisIcon() }}
+    </mat-icon>
   </div>
 </div>
+
 <div *ngIf="!unit.isDivider" class="row-content">
   <ng-template [ngIf]="rowData !== undefined" [ngIfElse]="loading">
     <kd-collation-cell
       *ngFor="let siglum of sigla; index as mediumIndex"
       class="collation-cell rtl font-noto-naskh"
       [ngStyle]="{
-              'width.px': cellWidth$ | async,
-              'padding.px': cellPadding,
-            }"
+        'width.px': cellWidth$ | async,
+        'padding.px': cellPadding,
+      }"
       [data]="rowData[siglum]"
       [siglum]="siglum"
       [chapterSiglum]="chapterSiglum"
@@ -40,9 +49,9 @@
     <div
       class="loading-container"
       [ngStyle]="{
-              'width.px':  sigla.length * ((cellWidth$ | async) ?? 75) + 2 * sigla.length * cellPadding,
-
-            }"
+        'width.px':
+          sigla.length * ((cellWidth$ | async) ?? 75) + 2 * sigla.length * cellPadding,
+      }"
     >
       <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>
     </div>
