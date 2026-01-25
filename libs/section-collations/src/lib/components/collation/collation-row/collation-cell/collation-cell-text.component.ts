@@ -77,8 +77,8 @@ export class CollationCellTextComponent implements OnInit, OnChanges, OnDestroy 
   @Input() lines: IRange[] = [];
   @Input() orderInMs: number | undefined = undefined;
   @Input() outOfOrder = false;
-  @Input() siglum: string = '';
-  @Input() unitIndex: number = 0;
+  @Input() siglum = '';
+  @Input() unitIndex = 0;
 
   tokenSegments: Array<Array<{
     token: string;
