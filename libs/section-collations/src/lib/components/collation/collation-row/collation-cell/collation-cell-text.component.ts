@@ -16,7 +16,8 @@ import { SegmentColorService } from '../../../../services/segment-color.service'
               <span
                 class="segment-token"
                 [ngStyle]="getTokenStyle(lineIndex, tokenIndex)"
-                [attr.data-segment]="tokenData.segmentId"
+                [attr.data-group]="tokenData.groupIndex"
+                [title]="tokenData.tooltip"
               >{{ tokenData.token }}</span>{{ tokenIndex < line.length - 1 ? ' ' : '' }}
             }
           </span>
@@ -46,10 +47,12 @@ import { SegmentColorService } from '../../../../services/segment-color.service'
         margin: 0;
         padding: 0;
         font-size: inherit;
+        line-height: 1.8;
       }
       .order-in-ms {
         font-weight: bold;
         text-decoration: underline;
+        margin-left: 0.5rem;
       }
       .highlighted-line {
         background-color: #ffdfbf;
@@ -57,7 +60,13 @@ import { SegmentColorService } from '../../../../services/segment-color.service'
       }
       .segment-token {
         display: inline;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        cursor: help;
+
+        &:hover {
+          transform: scale(1.05);
+          filter: brightness(1.1);
+        }
       }
     `,
   ],
@@ -71,7 +80,13 @@ export class CollationCellTextComponent implements OnInit, OnChanges, OnDestroy 
   @Input() siglum: string = '';
   @Input() unitIndex: number = 0;
 
-  tokenSegments: Array<Array<{ token: string; segmentId: string; color: string }>> = [];
+  tokenSegments: Array<Array<{
+    token: string;
+    groupIndex: number;
+    color: string;
+    tooltip: string;
+    isUnique: boolean;
+  }>> = [];
 
   private _highlightLine: number | undefined = undefined;
   private intervalId: any;
@@ -90,7 +105,7 @@ export class CollationCellTextComponent implements OnInit, OnChanges, OnDestroy 
     private cdr: ChangeDetectorRef
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.processTokens();
 
     // Poll for analysis updates every 500ms
@@ -112,62 +127,98 @@ export class CollationCellTextComponent implements OnInit, OnChanges, OnDestroy 
     }, 500);
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes['tokens'] || changes['siglum'] || changes['unitIndex']) {
       this.processTokens();
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
   }
 
-  private processTokens() {
-    // Check if this unit has been analyzed
+  private processTokens(): void {
     if (!this.segmentColorService.isUnitAnalyzed(this.unitIndex)) {
       // No analysis - create plain tokens
       this.tokenSegments = this.tokens.map(line =>
         line.map(token => ({
           token,
-          segmentId: '',
-          color: 'transparent'
+          groupIndex: -999,
+          color: 'transparent',
+          tooltip: '',
+          isUnique: false
         }))
       );
       return;
     }
 
-    // Unit has been analyzed - apply segment colors
+    // Flatten tokens to get global index
+    let globalTokenIndex = 0;
+
+    // Unit has been analyzed - apply group colors
     this.tokenSegments = this.tokens.map((line, lineIndex) => {
-      return line.map((token, tokenIndex) => {
+     // console.log(`  Line ${lineIndex}: ${line.length} tokens`);
+
+      return line.map((token, tokenIndexInLine) => {
         const segment = this.segmentColorService.getSegmentForPosition(
           this.unitIndex,
           this.siglum,
-          lineIndex,
-          tokenIndex
+          globalTokenIndex
         );
 
-        return {
+        const tooltip = segment
+          ? this.segmentColorService.getSegmentDescription(this.unitIndex, segment.groupIndex)
+          : '';
+
+        const result = {
           token,
-          segmentId: segment?.segmentId || '',
+          groupIndex: segment?.groupIndex ?? -999,
           color: segment?.color || 'transparent',
+          tooltip,
+          isUnique: segment?.isUnique || false
         };
+
+        // Debug log
+        if (segment && segment.color !== 'transparent') {
+      //    console.log(`    ✅ Token ${globalTokenIndex} "${token}": group ${segment.groupIndex}, color: ${segment.color}, unique: ${segment.isUnique}`);
+        }
+
+        globalTokenIndex++; // Increment after each token
+
+        return result;
       });
     });
+
+  //  console.log(`✅ Processed ${globalTokenIndex} total tokens for ${this.siglum}`);
+
+    // Count colored tokens
+    const coloredCount = this.tokenSegments.flat().filter(t => t.color !== 'transparent').length;
+   // console.log(`🎨 ${coloredCount} tokens have colors`);
   }
 
-  getTokenStyle(lineIndex: number, tokenIndex: number) {
+  getTokenStyle(lineIndex: number, tokenIndex: number): any {
     const segment = this.tokenSegments[lineIndex]?.[tokenIndex];
     if (!segment || !segment.color || segment.color === 'transparent') {
       return {};
     }
 
-    return {
+    const baseStyle = {
       'background-color': segment.color,
       'border-radius': '3px',
       'padding': '2px 4px',
       'margin': '0 2px',
     };
+
+    // Add extra styling for unique tokens
+    if (segment.isUnique) {
+      return {
+        ...baseStyle,
+        'font-weight': '600',
+      };
+    }
+
+    return baseStyle;
   }
 }

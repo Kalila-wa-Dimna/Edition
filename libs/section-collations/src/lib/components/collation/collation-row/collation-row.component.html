@@ -14,15 +14,104 @@
   <div class="row-header-content">
     <span>({{ unit.formattedOrder }}) &nbsp;</span>
     <span>{{ unit.title }}</span>
+
+    <!-- Analysis Button with Menu -->
     <mat-icon
       class="analysis-icon"
       [class.analyzing]="analyzing"
       [class.analyzed]="isAnalyzed"
       [title]="getAnalysisTooltip()"
-      (click)="analyzeRow()"
+      [matMenuTriggerFor]="!isAnalyzed && !analyzing ? analysisMenu : null"
+      #menuTriggerElement="matMenuTrigger"
+      (click)="isAnalyzed ? onAnalysisIconClick() : null"
     >
       {{ getAnalysisIcon() }}
     </mat-icon>
+
+    <!-- Analysis Options Menu -->
+    <mat-menu #analysisMenu="matMenu" class="analysis-menu">
+      <div class="analysis-menu-header" (click)="$event.stopPropagation()">
+        <h3>Analysis Configuration</h3>
+        <p>Select pipeline and threshold</p>
+      </div>
+
+      <!-- Pipeline Selection -->
+      <div class="menu-section" (click)="$event.stopPropagation()">
+        <h4>Pipeline Version</h4>
+        <div class="option-group">
+          <button
+            mat-menu-item
+            (click)="selectPipeline('v1')"
+            [class.selected]="selectedPipeline === 'v1'"
+            class="pipeline-option"
+          >
+            <mat-icon>{{selectedPipeline === 'v1' ? 'radio_button_checked' : 'radio_button_unchecked'}}</mat-icon>
+            <div class="option-content">
+              <span class="option-title">Conservative Analysis</span>
+              <span class="option-subtitle">Strict matching, fewer groups</span>
+            </div>
+          </button>
+          <button
+            mat-menu-item
+            (click)="selectPipeline('v2')"
+            [class.selected]="selectedPipeline === 'v2'"
+            class="pipeline-option"
+          >
+            <mat-icon>{{selectedPipeline === 'v2' ? 'radio_button_checked' : 'radio_button_unchecked'}}</mat-icon>
+            <div class="option-content">
+              <span class="option-title">Balanced Analysis</span>
+              <span class="option-subtitle">Moderate matching, standard groups</span>
+            </div>
+          </button>
+          <button
+            mat-menu-item
+            (click)="selectPipeline('v3')"
+            [class.selected]="selectedPipeline === 'v3'"
+            class="pipeline-option"
+          >
+            <mat-icon>{{selectedPipeline === 'v3' ? 'radio_button_checked' : 'radio_button_unchecked'}}</mat-icon>
+            <div class="option-content">
+              <span class="option-title">Comprehensive Analysis</span>
+              <span class="option-subtitle">Detailed matching, more groups</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- Threshold Selection -->
+      <div class="menu-section" (click)="$event.stopPropagation()">
+        <h4>Similarity Threshold</h4>
+        <div class="option-group threshold-grid">
+          <button
+            mat-menu-item
+            *ngFor="let t of thresholds"
+            (click)="selectThreshold(t)"
+            [class.selected]="selectedThreshold === t"
+            class="threshold-option"
+          >
+            <mat-icon>{{selectedThreshold === t ? 'radio_button_checked' : 'radio_button_unchecked'}}</mat-icon>
+            <span>{{ getThresholdLabel(t) }}</span>
+          </button>
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <!-- Start Analysis Button -->
+      <div class="menu-footer" (click)="$event.stopPropagation()">
+        <button
+          mat-raised-button
+          color="primary"
+          class="start-analysis-btn"
+          (click)="startAnalysis()"
+        >
+          <mat-icon>play_arrow</mat-icon>
+          Start Analysis
+        </button>
+      </div>
+    </mat-menu>
   </div>
 </div>
 

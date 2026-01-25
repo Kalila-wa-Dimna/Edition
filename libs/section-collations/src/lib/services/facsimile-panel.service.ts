@@ -66,7 +66,7 @@ export class FacsimilePanelService {
           highlights.push(highlightInfo)
           this.workerService.requestRegion(highlightInfo, this._columns[mediumId].facsimiles[pageNumber].url, points, rotation);
         } catch (e) {
-          console.error(e);
+         // console.error(e);
         }
       })
     })

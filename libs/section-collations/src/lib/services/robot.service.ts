@@ -24,7 +24,7 @@ export class RobotService {
           this.response$.next(res.translation);
         },
         error: (err) => {
-          console.error('❌ Translation failed:', err);
+         // console.error('❌ Translation failed:', err);
           this.response$.next('Translation failed.');
         },
       });

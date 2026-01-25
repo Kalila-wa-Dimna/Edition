@@ -95,7 +95,7 @@ export class CollationCellComponent {
 
   get formattedChapterSiglum(): string {
     const chapterSiglum = this.updateChapterSiglum(this.chapterSiglum);
-    console.log(chapterSiglum);
+   // console.log(chapterSiglum);
     return chapterSiglum;
   }
 

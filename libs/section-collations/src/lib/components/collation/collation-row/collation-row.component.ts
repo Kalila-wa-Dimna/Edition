@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { ICollationUnit } from '../../../models/collation-page-data.model';
 import { CELL_PADDING } from '../../../constants/size.constants';
 import { CollationSettingsService } from '../../../services/collation-settings.service';
@@ -22,12 +23,22 @@ export class CollationRowComponent {
   @Input()
   rowData?: IRowData | undefined;
 
+  // ViewChild to access the menu trigger
+  @ViewChild(MatMenuTrigger) menuTrigger!: MatMenuTrigger;
+
   cellWidth$ = this.settingsService.cellWidth$;
   cellPadding = CELL_PADDING;
 
   analyzing = false;
-  isAnalyzed = false; // Track if this row is currently analyzed
-  segments: string[] = [];
+  isAnalyzed = false;
+  groups: number[] = [];
+
+  // Selected options in the menu
+  selectedPipeline: 'v1' | 'v2' | 'v3' = 'v3';
+  selectedThreshold: number = 0.75;
+
+  // Available thresholds
+  thresholds = [0.95, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5];
 
   constructor(
     private settingsService: CollationSettingsService,
@@ -35,25 +46,47 @@ export class CollationRowComponent {
     private segmentColorService: SegmentColorService
   ) {}
 
-  analyzeRow() {
-    // Toggle analysis on/off
+  onAnalysisIconClick() {
+    // If already analyzed, clear it
     if (this.isAnalyzed) {
-      // Clear analysis - remove colors
       console.log(`🔄 Clearing analysis for unit ${this.unit.order}`);
       this.segmentColorService.clearUnit(this.unit.order);
       this.isAnalyzed = false;
-      this.segments = [];
+      this.groups = [];
       return;
     }
+    // Otherwise, menu will open automatically
+  }
 
-    // Start new analysis
+  selectPipeline(pipeline: 'v1' | 'v2' | 'v3') {
+    this.selectedPipeline = pipeline;
+  }
+
+  selectThreshold(threshold: number) {
+    this.selectedThreshold = threshold;
+  }
+
+  startAnalysis() {
+    // Close the menu
+    if (this.menuTrigger) {
+      this.menuTrigger.closeMenu();
+    }
+
     this.analyzing = true;
+    console.log(`🚀 Starting analysis with Pipeline ${this.selectedPipeline}, Threshold ${this.selectedThreshold}`);
+
     this.analysisService
-      .analyzeRow(this.unit.order, this.unit.formattedOrder, this.rowData ?? {})
+      .analyzeRow(
+        this.unit.order,
+        this.unit.formattedOrder,
+        this.rowData ?? {},
+        this.selectedPipeline,
+        this.selectedThreshold
+      )
       .subscribe({
         next: (result) => {
           console.log('✅ Analysis result:', result);
-          this.segments = this.segmentColorService.getAllSegments(this.unit.order);
+          this.groups = this.segmentColorService.getAllSegments(this.unit.order);
           this.analyzing = false;
           this.isAnalyzed = true;
         },
@@ -67,23 +100,30 @@ export class CollationRowComponent {
 
   getAnalysisIcon(): string {
     if (this.analyzing) {
-      return 'hourglass_empty'; // Loading icon
+      return 'hourglass_empty';
     }
-    return this.isAnalyzed ? 'analytics' : 'analytics'; // Same icon, but we'll style it differently
+    return this.isAnalyzed ? 'analytics' : 'analytics';
   }
 
   getAnalysisTooltip(): string {
     if (this.analyzing) {
       return 'Analyzing...';
     }
-    return this.isAnalyzed ? 'Clear analysis' : 'Analyze this unit';
+    return this.isAnalyzed ? 'Clear analysis' : 'Configure and analyze';
   }
 
-  getSegmentColor(segmentId: string): string {
-    return this.segmentColorService.getSegmentColor(segmentId);
+  getThresholdLabel(threshold: number): string {
+    if (threshold === 0.75) return `${threshold} (Default)`;
+    if (threshold >= 0.9) return `${threshold} (Strict)`;
+    if (threshold <= 0.6) return `${threshold} (Loose)`;
+    return `${threshold}`;
   }
 
-  getSegmentDescription(segmentId: string): string {
-    return this.segmentColorService.getSegmentDescription(this.unit.order, segmentId);
+  getSegmentColor(groupIndex: number): string {
+    return this.segmentColorService.getSegmentColor(groupIndex);
+  }
+
+  getSegmentDescription(groupIndex: number): string {
+    return this.segmentColorService.getSegmentDescription(this.unit.order, groupIndex);
   }
 }
