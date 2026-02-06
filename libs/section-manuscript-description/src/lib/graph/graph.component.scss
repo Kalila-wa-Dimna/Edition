@@ -2,7 +2,7 @@
 kd-layout {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Full height of the viewport */
+  min-height: 100dvh; 
 }
 
 /* Main content area */
@@ -11,7 +11,8 @@ main[pageContent] {
   flex-direction: column;
   flex: 1;
   margin-top: 10px;
-  overflow: auto; /* Allow scrolling if content overflows */
+  overflow-y: auto;
+  overflow-x: hidden; /* Allow scrolling if content overflows */
   height: calc(100vh - 60px); /* Adjust for footer height */
 }
 
@@ -21,7 +22,8 @@ main[pageContent] {
   flex-direction: row;
   align-items: flex-start;
   width: 100%;
-  height: 100%;
+  flex: 1;
+  min-height: 0;
   padding: 10px; /* Optional: add some padding */
 }
 
@@ -30,7 +32,8 @@ main[pageContent] {
 .chart-container {
   flex: 1;
   margin-right: 30px; /* Spacing between the chart and checkboxes */
-  height: 100%; /* Ensure it fills the container */  
+  width: 100%;
+  min-height: 300px; /* Ensure it fills the container */  
 }
 
 /* Checkboxes aligned to the right */
@@ -123,6 +126,10 @@ mat-checkbox {
   font-weight: bold;
 }
 
+.risala {
+  font-style: italic;
+}
+
 .reset-button {
   background-color: steelblue;
   color: white;
@@ -133,7 +140,7 @@ mat-checkbox {
   font-weight: 600;
   transition: background-color 0.3s ease;
   margin-top: 60px;
-
+  margin-left: 370px;
   &:hover {
     background-color: #1b5690;
   }
@@ -141,7 +148,7 @@ mat-checkbox {
 
 
 
-/* Keyframes for growing link stroke animation */
+/* Keyframes for growings link stroke animation */
 @keyframes growStroke {
   0% {
     stroke-dashoffset: 1000;
@@ -153,20 +160,45 @@ mat-checkbox {
 
 /* Responsive styling for smaller screens */
 @media (max-width: 768px) {
+  main[pageContent] {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .graph-column {
+    min-height: 0;
+  }
+  
   .container {
     flex-direction: column;
     align-items: stretch;
+    height: auto;
+  }
+
+  .graph-column {
+    display: flex;
+    flex-direction: column;
   }
 
   .chart-container {
     width: 100%;
-    height: 400px; /* Adjust chart height on small screens */
-    margin-right: 0; /* Remove margin on small screens */
+    height: auto;        
+    min-height: 400px;
+    margin-right: 0;
+  }
+
+  .reset-button {
+    margin-top: 15px;
+    align-self: flex-start;
+  }
+
+  .checkbox-panel {
+    flex-direction: column;
   }
 
   .checkbox-group {
-    width: 100%; /* Make the checkboxes full width */
-    margin-top: 10px; /* Space between chart and checkboxes */
-    
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
   }
 }

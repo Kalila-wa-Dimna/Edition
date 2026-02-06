@@ -1,5 +1,4 @@
-  import { sequence } from '@angular/animations';
-import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy } from '@angular/core';
+  import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy } from '@angular/core';
   import { ActivatedRoute } from '@angular/router';
   import * as d3 from 'd3';
 
@@ -8,9 +7,11 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
     size?: number;
     imports?: string[];
     century?: string;
-    continuum?: string;
+    continuum?: string[];
     copy_group?: string;
     sequence?: string;
+    structural?: string[];
+    [key: string]: any;
     
   }
 
@@ -37,9 +38,11 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
         'early group': false,
         'london continuum': false,
         'paris continuum': false,
+        'wetzstein group' : false,
         'iberian continuum': false,
         'queen continuum': false,
         'cross copy': false,
+        '':false
       },
       copy_group: {
         'Paris 3471': false,
@@ -50,7 +53,9 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
         'Paris 2789': false,
         'Princeton 169H': false,
         'Riyadh 2536': false,
-        'Arch. Mus. EY 344': false
+        'Arch. Mus. EY 344': false,
+        'Copies of Editions': false,
+        '':false
       },
       sequence: {
         'sequence A': false,
@@ -60,7 +65,29 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
         'sequence E': false,
         'sequence F': false,
         'sequence G': false,
-        'sequence H': false
+        'sequence H': false,
+        '':false
+      },
+      century: {
+        '10th - 13th century': false, 
+        '13th century': false,
+        '14th century': false,
+        '15th century': false,
+        '16th century': false,
+        '17th century': false,
+        '18th century': false,
+        '19th century': false,
+        '20th century': false,
+        'unspecified': false,
+      },
+      structural: {
+        'First Risāla': false,
+        'Sv preface': false,
+        'As preface': false,
+        'Km chapter': false,
+        'Kw chapter': false,
+        'Df chapter': false,
+        '': false
       }
     };
 
@@ -70,20 +97,27 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
       'early group',
       'london continuum',
       'paris continuum',
+      'wetzstein group',
       'iberian continuum',
       'queen continuum',
-      'cross copy'
+      'cross copy',
+      ''
     ],
     copy_group: [
-      'Paris 3471',
-      'Paris 3465',
+      'Arch. Mus. EY 344',
       'Ayasofya 4214',
-      'München 618',
+      'Copies of Editions',
       'Hamburg 170',
+      'München 618',
       'Paris 2789',
+      'Paris 3465',
+      'Paris 3468',
+      'Paris 3471',
+      'Pococke 400',
       'Princeton 169H',
       'Riyadh 2536',
-      'Arch. Mus. EY 344'
+      'Tunis 16030',
+      ''
     ],
     sequence: [
       'sequence A',
@@ -93,8 +127,31 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
       'sequence E',
       'sequence F',
       'sequence G',
-      'sequence H'      
+      'sequence H',
+      ''      
+    ],
+    century: [
+        '10th - 13th century',
+        '13th century',
+        '14th century',
+        '15th century',
+        '16th century',
+        '17th century',
+        '18th century',
+        '19th century',
+        '20th century',
+        'unspecified' 
+      ],
+    structural: [
+        'First Risāla',
+        'Sv preface',
+        'As preface',
+        'Km chapter',
+        'Kw chapter',
+        'Df chapter',
+        '' 
     ]
+    
   }; 
 
     private centuryColorMap: { [key: string]: string } = {
@@ -118,6 +175,7 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
       'early group': '#C0C0C0',
       'cross copy': '#C0C0C0'
     };
+    currentMatchingNodes = new Set<string>();
 
     constructor(private route: ActivatedRoute) {}
 
@@ -126,7 +184,6 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
         this.graphData = data['graphData']
         console.log('Resolved Graph Data:', this.graphData);
         this.renderGraph(this.graphData);
-        this.renderLegend();
       });
     }
 
@@ -135,10 +192,17 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
       Object.keys(this.selectionStates[category]).forEach(key => {
         this.selectionStates[category][key] = false;
       });
-    });      
-      d3.select(this.chartContainer.nativeElement).selectAll('*').remove();      
-      this.renderGraph(this.graphData);
-    }
+      console.log(Object)
+      }); 
+        this.possibleOptions = {};
+        Object.keys(this.groupCategories).forEach(category => {
+          this.possibleOptions[category] = new Set(this.groupCategories[category]);
+        });    
+    
+          d3.select(this.chartContainer.nativeElement).selectAll('*').remove();      
+          this.renderGraph(this.graphData);
+      }
+    
     
     ngOnDestroy() {
       d3.select(this.chartContainer.nativeElement).selectAll('*').remove();
@@ -237,16 +301,102 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
         .attr('dy', '0.31em')
         .attr('transform', (d: any) => `rotate(${d.x - 90})translate(${d.y + 8},0)${d.x < 180 ? '' : 'rotate(180)'}`)
         .attr('text-anchor', (d: any) => (d.x < 180 ? 'start' : 'end'))
-        .attr('fill', (d: any) => {
-          const century = d.data.century;
-          return this.centuryColorMap[century] || '#99b5bd';
-        })
+        .attr('fill', '#1b5690')
         .text((d: any) => d.data.name)
         .on('mouseover', (event: any, d: any) => this.mouseovered(event, d))
         .on('mouseout', this.mouseouted.bind(this));
 
       
     }
+
+    possibleOptions: { [category: string]: Set<string> } = {
+      continuum: new Set(this.groupCategories['continuum']),
+      copy_group: new Set(this.groupCategories['copy_group']),
+      sequence: new Set(this.groupCategories['sequence']),
+      century: new Set(this.groupCategories['century']),
+      structural: new Set(this.groupCategories['structural'])
+    };
+
+    updatePossibleOptions() {
+
+        const activeSelections: { [category: string]: Set<string> } = {};
+        console.log("activeSelections1", activeSelections)
+        Object.keys(this.selectionStates).forEach(cat => {
+          const selected = Object.keys(this.selectionStates[cat])
+            .filter(g => this.selectionStates[cat][g]);
+          activeSelections[cat] = new Set(selected);
+        });
+        console.log("activeSelections2", activeSelections)
+        
+        //// come back here
+        // the nodes aren´t blue, figure out why
+        const hasAnySelection = Object.values(activeSelections)
+        .some(set => set.size > 0);
+
+          if (!hasAnySelection) {   
+            this.currentMatchingNodes.clear();
+            this.resetGraph();
+            return this.possibleOptions;
+          }
+
+        let matchingNodes = this.graphData;
+
+        Object.keys(activeSelections).forEach(cat => {
+          if (activeSelections[cat].size > 0) {
+
+            matchingNodes = matchingNodes.filter(n => {
+              const nodeValue = n[cat];
+
+              if (Array.isArray(nodeValue)) {
+                return [...activeSelections[cat]].every(sel =>
+                  nodeValue.includes(sel)
+                );
+              }
+              return activeSelections[cat].has(nodeValue);
+            });
+          }
+        });
+
+        
+        this.currentMatchingNodes = new Set(
+          matchingNodes.map(n => n.name)
+        );
+
+        console.log(
+          'Matching nodes:',
+          [...this.currentMatchingNodes]
+        );
+
+      
+        Object.keys(this.possibleOptions).forEach(cat => {
+
+          const compatibleValues = new Set<string>();
+
+          matchingNodes.forEach(node => {
+            const value = node[cat];
+
+            if (Array.isArray(value)) {
+              value.forEach(v => compatibleValues.add(v));
+            } else {
+              compatibleValues.add(value);
+            }
+          });
+
+          this.possibleOptions[cat] = compatibleValues;
+        });
+
+        console.log(
+          'Possible options:',
+          Object.fromEntries(
+            Object.entries(this.possibleOptions).map(([k, v]) => [k, [...v]])
+          )
+        );
+
+        return this.possibleOptions;
+      }
+    
+    
+
 
     private tooltip = d3.select('body').append('div')
     .attr('class', 'tooltip');
@@ -300,28 +450,19 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
         // n - data bound to the element
         // i - index of the element in the group
         // nodes - entire array of selected DOM nodes
-        this.node.each((n: any, i, nodes) => {
-          console.log("n: ", n);
-          console.log("i ", i);
-          console.log("nodes: ", nodes);
-          //[] to access a value of a key, just like in Python - the name of the selected continuum
-          const isActive = this.selectionStates['continuum'][n.data.continuum];
-          const isHovered = n === d;      
+        // clear previous hover
+
+      this.node.classed('node-hovered', false);
+
+      // only style the hovered node
+      const hovered = this.node.filter(n => n === d);
+
+      hovered
+        .classed('node-hovered', true)
+        .style('font-weight', 'bold')
+        .style('font-size', '19px');
+
           
-          d3.select(nodes[i]).classed('node-hovered', isHovered);
-          // .classed('node-hovered', isHovered): adds or removes the class node-hovered based on the boolean isHovered
-          // specifies the apperience of nodes that are both HOVERED and SELECTED
-          if (isActive) {
-            d3.select(nodes[i])
-              .style('font-size', isHovered ? '19px' : '17px')  
-              .style('font-weight', 'bold');                    
-          } else {
-          // HOVERED and not SELECTED
-            d3.select(nodes[i])
-              .style('font-weight', isHovered ? 'bold' : 'normal')  
-              .style('font-size', isHovered ? '18px' : '16px');    
-          }
-        });
       }
 
       this.tooltip
@@ -334,15 +475,24 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
     
 
     private mouseouted() {
+      // Remove link hover classes
       this.link
         .classed('link--target', false)
         .classed('link--source', false);
 
+      // Remove node hover classes
       this.node
         .classed('node--target', false)
         .classed('node--source', false)
-        .classed('node-hovered', false);
+        .classed('node-hovered', false)
+        // IMPORTANT: clear inline hover styles
+        .style('font-size', null)
+        .style('font-weight', null);
 
+      // Re-apply selection-based styling
+      this.updateGraphColors();
+
+      // Hide tooltip
       this.tooltip.classed('visible', false);
     }
 
@@ -418,142 +568,98 @@ import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, OnDestroy 
       return imports;
     }
 
-    toggleCategorySelection(
-      selectedKey: string,
-      selectedCategory: string,
-      updateCallback: (key: string, category: string) => void
-    ): void {
-      Object.keys(this.selectionStates).forEach(category => {
-        Object.keys(this.selectionStates[category]).forEach(key => {
-          this.selectionStates[category][key] = false;
-        });
-      });
-      this.selectionStates[selectedCategory][selectedKey] = true;
 
-      updateCallback(selectedKey, selectedCategory);
-    }
-
-
-    updateGraphColors(category: string): void {
-      
-      const activeGroups = Object.keys(this.selectionStates[category])
-        .filter(key => this.selectionStates[category][key]);
-      const defaultLinkColor = '#D3D3D3';
+   
+  updateGraphColors(): void {
+    if (this.currentMatchingNodes.size === 0) {
+      this.node
+        .style('font-weight', 'normal')
+        .style('font-size', '16px')
+        .style('fill', '#1b5690')
+        .style('opacity', 1);
 
       this.link
-        .style('stroke', (d: any) => {
-          const sourceGroup = d.source.data[category];
-          const targetGroup = d.target.data[category];
-          return (activeGroups.includes(sourceGroup) && activeGroups.includes(targetGroup))
-            ? '#1f77b4'
-            : defaultLinkColor;
-        })
-        .style('z-index', (d: any) => {
-          const sourceGroup = d.source.data[category];
-          const targetGroup = d.target.data[category];
-          return (activeGroups.includes(sourceGroup) && activeGroups.includes(targetGroup)) ? 1 : 0;
-        })
-        .raise();
+        .style('stroke', '#D3D3D3');
 
-      this.node.each(function (d: any) {
-        const groupValue = d.data[category];
-        const belongsToActiveGroup = activeGroups.includes(groupValue);
-        d3.select(this)
-          .style('font-weight', belongsToActiveGroup ? 'bold' : 'normal')
-          .style('font-size', '16px')
-          .style('fill', belongsToActiveGroup ? '' : '#C0C0C0')
-          .style('opacity', 1)
-      });
+      return;
     }
+
+    const defaultLinkColor = '#D3D3D3';
+
+    // Helper to test if a node matches ALL category constraints
+     const isNodeValid = (node: any) => {
+      return this.currentMatchingNodes.has(node.data.name);
+    };
+
+    // ---- Highlight links ----
+    this.link
+      .style('stroke', (d: any) => {
+        const sourceValid = isNodeValid(d.source);
+        const targetValid = isNodeValid(d.target);
+        return (sourceValid && targetValid)
+          ? '#1f77b4'
+          : defaultLinkColor;
+      })
+      .style('z-index', (d: any) => {
+        const sourceValid = isNodeValid(d.source);
+        const targetValid = isNodeValid(d.target);
+        return (sourceValid && targetValid) ? 1 : 0;
+      })
+      .raise();
+
+    // ---- Highlight nodes ----
+    this.node.each(function (d: any) {
+      const valid = isNodeValid(d);
+
+      d3.select(this)
+        .style('font-weight', valid ? 'bold' : 'normal')
+        .style('font-size', '16px')
+        .style('fill', valid ? '#1b5690' : '#C0C0C0')
+        .style('opacity', 1);
+    });
+  }
 
 
 
     toggleGroup(category: string, selectedGroup: string): void {
-      this.toggleCategorySelection(
-        selectedGroup,
-        category,
-        (key, cat) => this.updateGraphColors(cat)
-      );
-    }
+      const current = this.selectionStates[category][selectedGroup];
+      this.selectionStates[category][selectedGroup] = !current;
 
-    
-    private hoveredCentury: string | null = null;
-
-    private highlightCenturyNodes(century: string): void {
-      this.hoveredCentury = century;
-      this.node.each(function (d: any) {
-        if (d.data.century === century) {
-          d3.select(this)
-            .style('font-weight', 'bold');
-        }
-      });
+      this.updatePossibleOptions();
+      this.updateGraphColors();
     }
 
 
-    private resetNodeStyles(): void {
-      if (!this.hoveredCentury) return;
-      this.node.each(function () {
-        d3.select(this)
-          .style('font-weight', 'normal')         
-      }); 
-       this.node.each((d: any, i, nodes) => {
-        const el = d3.select(nodes[i]);
 
-        Object.keys(this.selectionStates).forEach(category => {
-          const activeGroups = Object.keys(this.selectionStates[category])
-            .filter(key => this.selectionStates[category][key]);
-
-          const groupValue = d.data[category];
-          const belongsToActiveGroup = activeGroups.includes(groupValue);
-          console.log("active group", belongsToActiveGroup)
-           if (belongsToActiveGroup) {
-              el
-                .style('font-weight', 'bold')                
-            } 
-        });
-      });
-      
-    };
-
-
-    renderLegend() {
-      console.log("renderLegend called");
-      const legendContainer = d3.select('#century-legend');
-      legendContainer.selectAll('*').remove();
-
-      const entries = Object.entries(this.centuryColorMap);
-
-      const legendItems = legendContainer.selectAll('.legend-item')
-        .data(entries)
-        .enter()
-        .append('div')
-        .attr('class', 'legend-item')
-        .style('display', 'flex')
-        .style('align-items', 'center')
-        .style('margin-bottom', '4px')
-        .style('cursor', 'pointer')
-        .on('mouseover', (event: any, d: any) => this.highlightCenturyNodes(d[0]))
-        .on('mouseout', () => this.resetNodeStyles());
-
-      legendItems.append('div')
-        .style('width', '14px')
-        .style('height', '14px')
-        .style('border-radius', '50%')
-        .style('margin-right', '8px')
-        .style('background-color', ([, color]) => color);
-
-      legendItems.append('span')
-        .text(([century]) => century || 'unspecified');
-    }
-  
-    capitalizeFirstLetter(value: string): string {
+    capitalizeFirstLetter(value: string, category?: string): string {
       if (!value) return value;
-      let formatted = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
-      if (value.toLowerCase().startsWith("sequence") && formatted.length > 1) {
+   
+      if (value === 'First Risāla' || value === 'Arch. Mus. EY 344' || value === 'Copies of Editions')   
+        return value;     
+   
+      let formatted =
+        value.charAt(0).toUpperCase() +
+        value.slice(1).toLowerCase();
+
+      if (value.toLowerCase().startsWith('sequence') && formatted.length > 1) {
         const lastChar = formatted.charAt(formatted.length - 1).toUpperCase();
         formatted = formatted.slice(0, -1) + lastChar;
       }
 
       return formatted;
     }
+
+     formatGroupLabel(value: string): { before: string; risala: string; after: string } | null {
+        if (!value) return null;
+
+        const match = value.match(/(.*?)(Risāla)(.*)/i);
+        if (!match) return null;
+
+        return {
+          before: match[1],
+          risala: match[2],
+          after: match[3]
+        };
+      }
+
   }

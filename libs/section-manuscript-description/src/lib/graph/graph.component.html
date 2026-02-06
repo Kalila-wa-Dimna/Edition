@@ -3,30 +3,83 @@
   <main pageContent style="margin-top: 10px;">
     <div class="container">
       <!-- Chart container -->
-      <div class="chart-container" #chartContainer></div>
-      <div class="filters-panel">
-        <!-- Filters: Checkboxes aligned to the right -->
-        <div class="checkbox-panel">
-            <div class="checkbox-group" *ngFor="let category of ['continuum', 'copy_group', 'sequence']">
-              <p class="checkbox-caption"> Select <br /> 
-                {{
-                  category === 'continuum' ? 'Continuum' :
-                  category === 'copy_group' ? 'Copy' :
-                  category === 'sequence' ? 'Sequence' : ''
-                }} Groups
-              </p>
-              <mat-checkbox *ngFor="let group of groupCategories[category]"
-                            [(ngModel)]="selectionStates[category][group]"
-                            (change)="toggleGroup(category, group)">
-                {{ capitalizeFirstLetter(group) }}
-              </mat-checkbox>          
-            </div> 
+      <div class="graph-column">
+        <div class="chart-container" #chartContainer></div>   
+        <button class="reset-button" (click)="resetGraph()">Reset Graph</button>    
+      </div>
+      <div class="checkbox-panel">
+
+        <!-- TEXTUAL + STRUCTURAL (stacked vertically) -->
+        <div class="checkbox-column">
+          
+          <!-- Textual -->
+          <div class="checkbox-group">
+            <p class="checkbox-caption">Select<br />Textual Groups</p>
+            <mat-checkbox *ngFor="let group of groupCategories['continuum']"
+                          (change)="toggleGroup('continuum', group)"
+                          [checked]="selectionStates['continuum'][group]"
+                          [disabled]="!possibleOptions['continuum'].has(group)"
+                          [class.highlight]="possibleOptions['continuum'].has(group)">
+              {{ group === '' ? 'Unspecified' : capitalizeFirstLetter(group) }}
+            </mat-checkbox>
           </div>
-        <div class="legend-panel">
-              <p class="legend-caption">Century Groups</p>
-              <div id="century-legend" class="legend-container"></div>
-              <button class="reset-button" (click)="resetGraph()">Reset Graph</button>
+
+          <!-- Structural (directly beneath Textual) -->
+          <div class="checkbox-group">
+            <p class="checkbox-caption">Select<br />Structural Groups</p>
+            <mat-checkbox *ngFor="let group of groupCategories['structural']"
+                          (change)="toggleGroup('structural', group)"
+                          [checked]="selectionStates['structural'][group]"
+                          [disabled]="!possibleOptions['structural'].has(group)"
+                          [class.highlight]="possibleOptions['structural'].has(group)">
+                <ng-container *ngIf="formatGroupLabel(group) as parts; else normalLabel">
+                  {{ capitalizeFirstLetter(parts.before) }}
+                  <span class="risala">{{ parts.risala }}</span>
+                  {{ capitalizeFirstLetter(parts.after) }}
+                </ng-container>
+
+                <ng-template #normalLabel>
+                  {{ group === '' ? 'Unspecified' : capitalizeFirstLetter(group) }}
+                </ng-template>
+            </mat-checkbox>
+          </div>
+
         </div>
+
+        <!-- ALL OTHER CATEGORIES (side by side) -->
+        <div class="checkbox-group">
+          <p class="checkbox-caption">Select<br />Copy Groups</p>
+          <mat-checkbox *ngFor="let group of groupCategories['copy_group']"
+                        (change)="toggleGroup('copy_group', group)"
+                        [checked]="selectionStates['copy_group'][group]"
+                        [disabled]="!possibleOptions['copy_group'].has(group)"
+                        [class.highlight]="possibleOptions['copy_group'].has(group)">
+            {{ group === '' ? 'Unspecified' : capitalizeFirstLetter(group) }}
+          </mat-checkbox>
+        </div>
+
+        <div class="checkbox-group">
+          <p class="checkbox-caption">Select<br />Sequence Groups</p>
+          <mat-checkbox *ngFor="let group of groupCategories['sequence']"
+                        (change)="toggleGroup('sequence', group)"
+                        [checked]="selectionStates['sequence'][group]"
+                        [disabled]="!possibleOptions['sequence'].has(group)"
+                        [class.highlight]="possibleOptions['sequence'].has(group)">
+            {{ group === '' ? 'Unspecified' : capitalizeFirstLetter(group) }}
+          </mat-checkbox>
+        </div>
+
+        <div class="checkbox-group">
+          <p class="checkbox-caption">Select<br />Century Groups</p>
+          <mat-checkbox *ngFor="let group of groupCategories['century']"
+                        (change)="toggleGroup('century', group)"
+                        [checked]="selectionStates['century'][group]"
+                        [disabled]="!possibleOptions['century'].has(group)"
+                        [class.highlight]="possibleOptions['century'].has(group)">
+            {{ group === '' ? 'Unspecified' : capitalizeFirstLetter(group) }}
+          </mat-checkbox>
+        </div>       
+         
       </div>
     </div>
   </main>
