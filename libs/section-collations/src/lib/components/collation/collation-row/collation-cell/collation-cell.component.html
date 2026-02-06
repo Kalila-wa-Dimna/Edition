@@ -1,70 +1,73 @@
 @if (pageData) {
-<div class="cell-tools">
-  <div class="order-in-ms">
-    {{ pageData.orderInMs + 1 }}
-    @if(pageData.adjustedOrder + 1 > unitIndex) {
-    <mat-icon
-      matTooltip="The unit occures at a later point"
-      matTooltipPosition="above"
-      >arrow_downward</mat-icon
-    >
-    } @if(pageData.adjustedOrder + 1 < unitIndex) {
-    <mat-icon
-      matTooltip="The unit occures at an earlier point"
-      matTooltipPosition="above"
-      >arrow_upward</mat-icon
-    >
-    }
-  </div>
-  @if(hasLinks()) { @if(showFacsimilePreview$ | async) {
-  <mat-icon
-    aria-hidden="false"
-    [fontIcon]="facsimilePanelIcon()"
-    (click)="toggleFacimileInPanle()"
-    [class.toggle-facsimile-active]="facsimilePanelIcon() === 'visibility'"
-  ></mat-icon>
-  }
-  <div>
-    @if(pages.length === 1) {
-    <p class="page-link">
-      p.<a
-        [routerLink]="[
-          '/',
-          'manuscripts',
-          siglum,
-          formattedChapterSiglum,
-          pageData.pages[0]
-        ]"
-        >{{ pageData.pages[0] }}</a
-      >
-    </p>
-    } @if(pages.length > 1) {
-    <p class="page-link">
-         pp.@for(page of pages; track page; let last = $last){
-      <a [routerLink]="['/', 'manuscripts', siglum, formattedChapterSiglum, page]">{{
-        page
-      }}</a
-      >{{ last ? '' : ',' }}
+  <div class="cell-tools">
+    <div class="order-in-ms">
+      {{ pageData.orderInMs + 1 }}
+      @if(pageData.adjustedOrder + 1 > unitIndex) {
+        <mat-icon
+          matTooltip="The unit occures at a later point"
+          matTooltipPosition="above"
+        >arrow_downward</mat-icon>
       }
-    </p>
+      @if(pageData.adjustedOrder + 1 < unitIndex) {
+        <mat-icon
+          matTooltip="The unit occures at an earlier point"
+          matTooltipPosition="above"
+        >arrow_upward</mat-icon>
+      }
+    </div>
+    @if(hasLinks()) {
+      @if(showFacsimilePreview$ | async) {
+        <mat-icon
+          aria-hidden="false"
+          [fontIcon]="facsimilePanelIcon()"
+          (click)="toggleFacimileInPanle()"
+          [class.toggle-facsimile-active]="facsimilePanelIcon() === 'visibility'"
+        ></mat-icon>
+      }
+      <div>
+        @if(pages.length === 1) {
+          <p class="page-link">
+            p.<a [routerLink]="['/', 'manuscripts', siglum, formattedChapterSiglum, pageData.pages[0]]">{{ pageData.pages[0] }}</a>
+          </p>
+        }
+        @if(pages.length > 1) {
+          <p class="page-link">
+            pp.@for(page of pages; track page; let last = $last) {
+            <a [routerLink]="['/', 'manuscripts', siglum, formattedChapterSiglum, page]">{{ page }}</a>{{ last ? '' : ',' }}
+          }
+          </p>
+        }
+      </div>
     }
   </div>
-  }
-</div>
 
-@if (siglum === 'IH') {
-<kd-collation-cell-poetry-text
-  [tokens]="pageData.tokens"
-  [lines]="pageData.ranges ?? []"
-></kd-collation-cell-poetry-text>
+  @if (siglum === 'IH') {
+    <kd-collation-cell-poetry-text
+      [tokens]="pageData.tokens"
+      [lines]="pageData.ranges ?? []"
+    ></kd-collation-cell-poetry-text>
+  } @else {
+    <kd-collation-cell-text
+      [tokens]="pageData.tokens"
+      [lines]="pageData.ranges ?? []"
+      [highlightLine]="cellHighlightedLine()"
+      [siglum]="siglum"
+      [unitIndex]="unitIndex"
+    ></kd-collation-cell-text>
+
+    <mat-icon
+      class="robot-icon"
+      [class.clicked]="isClicked"
+      (click)="translateCell(); toggleIconColor()"
+      [ngStyle]="{ color: isClicked ? '#4682B4' : '#4c7d8a' }"
+    >smart_toy</mat-icon>
+
+    <div *ngIf="translation" class="translation-overlay">
+      {{ translation }}
+    </div>
+  }
 } @else {
-<kd-collation-cell-text
-  [tokens]="pageData.tokens"
-  [lines]="pageData.ranges ?? []"
-  [highlightLine]="cellHighlightedLine()"
-></kd-collation-cell-text>
-} } @else {
-<div class="absent">
-  <span>[absent]</span>
-</div>
+  <div class="absent">
+    <span>[absent]</span>
+  </div>
 }

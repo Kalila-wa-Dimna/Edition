@@ -137,6 +137,10 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
   async downloadUnitTable() {
     await this.downloadsService.downloadUnitTable();
   }
+  async downloadEditionTable() {
+    await this.downloadsService.downloadEditionTable();
+  }
+
 
   toggleMobileSearchPanel(): void {
     const oldValue = this.showMobileSearchPanel();

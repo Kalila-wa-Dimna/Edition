@@ -28,6 +28,7 @@ export function createCollationDataResolver() {
 
     const summary$ = api.load<ICollationInfo>(
       `collations/${editionSiglum}/summary`,
+
       { siglum: '', display: '', image: '', key: '' }
     );
 

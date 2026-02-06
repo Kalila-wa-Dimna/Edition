@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ICellData } from '../../../../models/collation-row-data.model';
 import { CollationSettingsService } from '../../../../services/collation-settings.service';
 import { FacsimilePanelService } from '../../../../services/facsimile-panel.service';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { RobotService } from '../../../../services/robot.service';
 
 @Component({
   selector: 'kd-collation-cell',
@@ -27,14 +28,13 @@ export class CollationCellComponent {
   set data(value: ICellData | undefined) {
     this.pageData = value;
     this.pages = [...new Set(value?.pages || [])];
-     }
+  }
 
   constructor(
     private settingsSerive: CollationSettingsService,
-    private facsimilePanelService: FacsimilePanelService
-  ) {
-
-  }
+    private facsimilePanelService: FacsimilePanelService,
+    private robotService: RobotService
+  ) {}
 
   facsimilePanelIcon(): string {
     if (!this.pageData) {
@@ -84,7 +84,7 @@ export class CollationCellComponent {
     }
   }
 
-   updateChapterSiglum(chapterSiglum: string): string {
+  updateChapterSiglum(chapterSiglum: string): string {
     if (chapterSiglum === 'Di_s') {
       return 'Di';
     } else if (chapterSiglum === 'ToC') {
@@ -95,9 +95,46 @@ export class CollationCellComponent {
 
   get formattedChapterSiglum(): string {
     const chapterSiglum = this.updateChapterSiglum(this.chapterSiglum);
-    console.log(chapterSiglum);
+   // console.log(chapterSiglum);
     return chapterSiglum;
   }
 
+  isClicked = false;
 
+  toggleIconColor(): void {
+    this.isClicked = !this.isClicked;
+  }
+
+  loadingTranslation = false;
+  cellTranslations: { [key: string]: string } = {};
+
+  translateCell() {
+    if (!this.pageData) return;
+
+    const key = `${this.unitIndex}-${this.mediumIndex}-${this.siglum}`;
+
+    if (this.cellTranslations[key]) {
+      this.cellTranslations[key] = '';
+      return;
+    }
+
+    const textToTranslate = this.pageData.tokens
+      .map(line => line.join(' '))
+      .join(' ');
+
+    this.loadingTranslation = true;
+
+    this.robotService.sendText(textToTranslate);
+
+    const sub = this.robotService.response$.subscribe((res: string) => {
+      this.cellTranslations[key] = res;
+      this.loadingTranslation = false;
+      sub.unsubscribe();
+    });
+  }
+
+  get translation(): string | null {
+    const key = `${this.unitIndex}-${this.mediumIndex}-${this.siglum}`;
+    return this.cellTranslations[key] || null;
+  }
 }

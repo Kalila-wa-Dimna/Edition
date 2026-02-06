@@ -17,7 +17,7 @@ export class ManuscriptPageComponent implements OnInit, OnDestroy {
   manuscriptID = '';
   chapter = '';
   pageNumber = '';
-  version = 1717161237519; // our version 0, corresponds to 31.05.2024
+  version = 1763769600000; // our version 0, corresponds to 31.05.2024
 
   constructor(
     private manuscriptPageService: ManuscriptPageService,
