@@ -2,6 +2,24 @@ import { Component, Input, OnInit, OnChanges, SimpleChanges, ChangeDetectorRef, 
 import { IRange } from './models';
 import { SegmentColorService } from '../../../../services/segment-color.service';
 
+interface TokenSegment {
+  token: string;
+  groupIndex: number;
+  color: string;
+  tooltip: string;
+  isUnique: boolean;
+  lineIndex: number;
+}
+
+interface MergedSegment {
+  text: string;
+  groupIndex: number;
+  color: string;
+  tooltip: string;
+  isUnique: boolean;
+  lineIndexes: number[];
+}
+
 @Component({
   selector: 'kd-collation-cell-text',
   template: `
@@ -10,17 +28,15 @@ import { SegmentColorService } from '../../../../services/segment-color.service'
         @if(orderInMs) {
           <span class="order-in-ms">|{{ orderInMs }}|</span>
         }
-        @for (line of tokenSegments; track $index; let lineIndex = $index) {
-          <span [class.highlighted-line]="highlightLine === lineIndex">
-            @for (tokenData of line; track $index; let tokenIndex = $index) {
-              <span
-                class="segment-token"
-                [ngStyle]="getTokenStyle(lineIndex, tokenIndex)"
-                [attr.data-group]="tokenData.groupIndex"
-                [title]="tokenData.tooltip"
-              >{{ tokenData.token }}</span>{{ tokenIndex < line.length - 1 ? ' ' : '' }}
-            }
-          </span>
+        @for (segment of mergedSegments; track $index; let segmentIndex = $index) {
+          <span
+            class="segment-token"
+            [class.segment-colored]="segment.color !== 'transparent'"
+            [class.highlighted-line]="isHighlighted(segment)"
+            [ngStyle]="getSegmentStyle(segment)"
+            [attr.data-group]="segment.groupIndex"
+            [title]="segment.tooltip"
+          >{{ segment.text }}</span>{{ segmentIndex < mergedSegments.length - 1 ? ' ' : '' }}
         }
       </p>
     } @else {
@@ -55,17 +71,26 @@ import { SegmentColorService } from '../../../../services/segment-color.service'
         margin-left: 0.5rem;
       }
       .highlighted-line {
-        background-color: #ffdfbf;
-        color: black;
+        outline: 2px solid #f0b275;
+        outline-offset: 1px;
       }
       .segment-token {
         display: inline;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-        cursor: help;
+        font-weight: inherit;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
 
-        &:hover {
-          transform: scale(1.05);
-          filter: brightness(1.1);
+        &.segment-colored {
+          cursor: help;
+          border: none;
+          border-radius: 0;
+          outline: none;
+          /* Horizontal padding only — keeps word spaces colored without changing line spacing */
+          padding: 0 2px;
+          margin: 0;
         }
       }
     `,
@@ -80,13 +105,8 @@ export class CollationCellTextComponent implements OnInit, OnChanges, OnDestroy 
   @Input() siglum = '';
   @Input() unitIndex = 0;
 
-  tokenSegments: Array<Array<{
-    token: string;
-    groupIndex: number;
-    color: string;
-    tooltip: string;
-    isUnique: boolean;
-  }>> = [];
+  tokenSegments: TokenSegment[][] = [];
+  mergedSegments: MergedSegment[] = [];
 
   private _highlightLine: number | undefined = undefined;
   private intervalId: any;
@@ -108,7 +128,6 @@ export class CollationCellTextComponent implements OnInit, OnChanges, OnDestroy 
   ngOnInit(): void {
     this.processTokens();
 
-    // Poll for analysis updates every 500ms
     this.intervalId = setInterval(() => {
       const wasAnalyzed = this.tokenSegments.some(line =>
         line.some(token => token.color !== 'transparent')
@@ -120,7 +139,6 @@ export class CollationCellTextComponent implements OnInit, OnChanges, OnDestroy 
         line.some(token => token.color !== 'transparent')
       );
 
-      // Only trigger change detection if analysis state changed
       if (wasAnalyzed !== isNowAnalyzed) {
         this.cdr.detectChanges();
       }
@@ -141,27 +159,24 @@ export class CollationCellTextComponent implements OnInit, OnChanges, OnDestroy 
 
   private processTokens(): void {
     if (!this.segmentColorService.isUnitAnalyzed(this.unitIndex)) {
-      // No analysis - create plain tokens
-      this.tokenSegments = this.tokens.map(line =>
+      this.tokenSegments = this.tokens.map((line, lineIndex) =>
         line.map(token => ({
           token,
           groupIndex: -999,
           color: 'transparent',
           tooltip: '',
-          isUnique: false
+          isUnique: false,
+          lineIndex,
         }))
       );
+      this.mergedSegments = this.mergeTokenSegments(this.tokenSegments);
       return;
     }
 
-    // Flatten tokens to get global index
     let globalTokenIndex = 0;
 
-    // Unit has been analyzed - apply group colors
     this.tokenSegments = this.tokens.map((line, lineIndex) => {
-     // console.log(`  Line ${lineIndex}: ${line.length} tokens`);
-
-      return line.map((token, tokenIndexInLine) => {
+      return line.map((token) => {
         const segment = this.segmentColorService.getSegmentForPosition(
           this.unitIndex,
           this.siglum,
@@ -172,53 +187,79 @@ export class CollationCellTextComponent implements OnInit, OnChanges, OnDestroy 
           ? this.segmentColorService.getSegmentDescription(this.unitIndex, segment.groupIndex)
           : '';
 
-        const result = {
+        const result: TokenSegment = {
           token,
           groupIndex: segment?.groupIndex ?? -999,
           color: segment?.color || 'transparent',
           tooltip,
-          isUnique: segment?.isUnique || false
+          isUnique: segment?.isUnique || false,
+          lineIndex,
         };
 
-        // Debug log
-        if (segment && segment.color !== 'transparent') {
-      //    console.log(`    ✅ Token ${globalTokenIndex} "${token}": group ${segment.groupIndex}, color: ${segment.color}, unique: ${segment.isUnique}`);
-        }
-
-        globalTokenIndex++; // Increment after each token
+        globalTokenIndex++;
 
         return result;
       });
     });
 
-  //  console.log(`✅ Processed ${globalTokenIndex} total tokens for ${this.siglum}`);
-
-    // Count colored tokens
-    const coloredCount = this.tokenSegments.flat().filter(t => t.color !== 'transparent').length;
-   // console.log(`🎨 ${coloredCount} tokens have colors`);
+    this.mergedSegments = this.mergeTokenSegments(this.tokenSegments);
   }
 
-  getTokenStyle(lineIndex: number, tokenIndex: number): any {
-    const segment = this.tokenSegments[lineIndex]?.[tokenIndex];
-    if (!segment || !segment.color || segment.color === 'transparent') {
+  /** Merge consecutive tokens from the same group into one continuous highlight. */
+  private mergeTokenSegments(lines: TokenSegment[][]): MergedSegment[] {
+    const flat = lines.reduce<TokenSegment[]>((all, line) => all.concat(line), []);
+    const merged: MergedSegment[] = [];
+
+    for (const token of flat) {
+      const previous = merged[merged.length - 1];
+      const canMerge =
+        previous &&
+        previous.groupIndex === token.groupIndex &&
+        previous.color === token.color &&
+        token.color !== 'transparent';
+
+      if (canMerge) {
+        previous.text += ` ${token.token}`;
+        if (!previous.lineIndexes.includes(token.lineIndex)) {
+          previous.lineIndexes.push(token.lineIndex);
+        }
+      } else if (
+        previous &&
+        previous.color === 'transparent' &&
+        token.color === 'transparent'
+      ) {
+        previous.text += ` ${token.token}`;
+        if (!previous.lineIndexes.includes(token.lineIndex)) {
+          previous.lineIndexes.push(token.lineIndex);
+        }
+      } else {
+        merged.push({
+          text: token.token,
+          groupIndex: token.groupIndex,
+          color: token.color,
+          tooltip: token.tooltip,
+          isUnique: token.isUnique,
+          lineIndexes: [token.lineIndex],
+        });
+      }
+    }
+
+    return merged;
+  }
+
+  isHighlighted(segment: MergedSegment): boolean {
+    return this._highlightLine !== undefined && segment.lineIndexes.includes(this._highlightLine);
+  }
+
+  getSegmentStyle(segment: MergedSegment): Record<string, string> {
+    if (!segment.color || segment.color === 'transparent') {
       return {};
     }
 
-    const baseStyle = {
+    return {
       'background-color': segment.color,
-      'border-radius': '3px',
-      'padding': '2px 4px',
-      'margin': '0 2px',
+      'border': 'none',
+      'font-weight': 'inherit',
     };
-
-    // Add extra styling for unique tokens
-    if (segment.isUnique) {
-      return {
-        ...baseStyle,
-        'font-weight': '600',
-      };
-    }
-
-    return baseStyle;
   }
 }

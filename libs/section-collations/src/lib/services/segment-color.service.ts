@@ -27,31 +27,20 @@ export interface GroupData {
   providedIn: 'root',
 })
 export class SegmentColorService {
-  // Color palette with transparency
+  // Mild color muster — pink reserved for unique tokens only
   private segmentColors: string[] = [
-    'rgba(59, 130, 246, 0.5)',   // blue
-    'rgba(172, 255, 169, 0.5)',            // green
-    'rgba(168, 85, 247, 0.5)',   // purple
-    'rgba(249, 115, 22, 0.5)',   // orange
-    'rgba(137, 81, 41, 1)',      // brown - no transparency
-    'rgba(14, 165, 233, 0.5)',   // sky blue
-    'rgba(251, 191, 36, 0.5)',   // amber
-    'rgba(239, 68, 68, 0.5)',    // red
-    'rgba(99, 102, 241, 0.5)',   // indigo
-    'rgba(16, 185, 129, 0.5)',   // emerald
-    'rgba(139, 92, 246, 0.5)',   // violet
-    'rgba(245, 158, 11, 0.5)',   // yellow
-    'rgba(244, 63, 94, 0.5)',    // rose
-    'rgba(6, 182, 212, 0.5)',    // cyan
-    'rgba(132, 204, 22, 0.5)',   // lime
-    'rgba(234, 88, 12, 0.5)',    // orange-600
-    'rgba(217, 70, 239, 0.5)',   // fuchsia
-    'rgba(20, 184, 166, 0.5)',   // teal
-    'rgba(163, 230, 53, 0.5)',   // lime-400
-    'rgba(251, 146, 60, 0.5)',   // orange-400
+    'rgba(167, 206, 91, 0.55)',  // Mild Green #A7CE5B
+    'rgba(252, 192, 55, 0.55)',  // Mild Gold #FCC037
+    'rgba(253, 105, 71, 0.5)',   // Mild Vermilion #FD6947
+    'rgba(149, 179, 238, 0.55)', // Mild Dark Blue #95B3EE
+    'rgba(46, 89, 167, 0.4)',    // #2E59A7
+    'rgba(246, 255, 85, 0.55)',  // Mild Citrus Green #F6FF55
+    'rgba(83, 233, 227, 0.5)',   // Mild Summer Green #53E9E3
+    'rgba(134, 152, 243, 0.55)', // Mild Lavender #8698F3
+    'rgba(110, 207, 247, 0.55)', // Mild Cyan #6ECFF7
   ];
 
-  private uniqueTokenColor = 'rgba(255, 105, 180, 0.5)'; // Pink for unique - FULL opacity, NO boundary
+  private uniqueTokenColor = 'rgba(249, 118, 181, 0.55)'; // Mild Fuchsia — unique only
   private noGroupColor = 'transparent'; // No color for tokens not in any group
 
   private groupDataByUnit: Map<number, GroupData> = new Map();
