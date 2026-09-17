@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>{{ data.title || 'XML viewer' }}</h1>
+
+<div mat-dialog-content class="xml-viewer-content">
+  <pre class="xml-pre" dir="auto">{{ data.xml }}</pre>
+</div>
+
+<div mat-dialog-actions align="end" class="xml-viewer-actions">
+  <button mat-stroked-button type="button" (click)="copy()">Copy</button>
+  <button mat-stroked-button type="button" (click)="download()">
+    Download XML
+  </button>
+  <button mat-flat-button color="primary" type="button" (click)="close()">
+    Close
+  </button>
+</div>

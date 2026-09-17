@@ -1,30 +1,31 @@
-<!--
-  <mat-toolbar class="tool">
-    <mat-toolbar-row>
+<div class="gallery-bar">
+  <div class="bar-row actions-row">
+    <button
+      type="button"
+      class="action-btn"
+      (click)="navigateToFacsimileText()"
+      matTooltip="Open transcription / facsimile"
+    >
+      <mat-icon>menu_book</mat-icon>
+      <span>Open page</span>
+    </button>
+  </div>
 
-      <ng-container *ngFor="let item of items">
-        <ng-container *ngIf="!hasSubItems(item); else subMenu">
-          <button mat-stroked-button class="mat-button" (click)="item.command?.()" >
-            <mat-icon>{{ item.icon }}</mat-icon>
-            {{ item.label }}
-
-          </button>
-        </ng-container>
-        <ng-template #subMenu>
-          <button mat-stroked-button class="mat-button"  [matMenuTriggerFor]="itemMenu" *ngIf="hasSubItems(item)">
-            <mat-icon>{{ item.icon }}</mat-icon>
-            {{ item.label }}
-            <mat-icon>keyboard_arrow_down</mat-icon>
-          </button>
-          <mat-menu #itemMenu="matMenu">
-            <button mat-menu-item *ngFor="let subItem of item.items" (click)="subItem.command?.()">
-              <mat-icon>{{ subItem.icon }}</mat-icon>
-              {{ subItem.label }}
-            </button>
-          </mat-menu>
-        </ng-template>
-      </ng-container>
-    </mat-toolbar-row>
-  </mat-toolbar>
-
--->
+  <div class="bar-row manuscripts-row">
+    <span class="section-label">Manuscripts</span>
+    <div class="ms-nav" role="navigation" aria-label="Manuscript galleries">
+      @for (ms of manuscriptsInfo; track ms.siglum) {
+        <button
+          type="button"
+          class="ms-chip"
+          [class.active]="isSelectedManuscript(ms.siglum)"
+          [attr.aria-current]="isSelectedManuscript(ms.siglum) ? 'true' : null"
+          [matTooltip]="ms.display || ms.siglum"
+          (click)="navigateToTheSelectedManuscript(ms.siglum)"
+        >
+          {{ ms.siglum }}
+        </button>
+      }
+    </div>
+  </div>
+</div>

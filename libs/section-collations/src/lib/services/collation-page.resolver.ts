@@ -9,6 +9,7 @@ import {
 } from '../models/collation-page-data.model';
 import { ICollationInfo } from '../models/collation-summary.model';
 import { IRowData } from '../models/collation-row-data.model';
+import { alignSegmentDataToUnits } from '../utils/align-segment-data';
 
 export function createCollationDataResolver() {
   const resolve: ResolveFn<ICollationPageData> = (
@@ -53,7 +54,7 @@ export function createCollationDataResolver() {
         columns,
         units,
         summary,
-        segmentData,
+        segmentData: alignSegmentDataToUnits(units, segmentData),
         versionSummary,
       }))
     );

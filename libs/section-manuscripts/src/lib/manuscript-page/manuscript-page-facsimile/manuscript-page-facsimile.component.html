@@ -1,17 +1,63 @@
-<div class="image-container">
-  <!--<div [formGroup]="form">
-    <mat-slider formControlName="facsimileS" min="0" max="150" step="20" showTickMarks discrete>
-      <input matSliderThumb>
-    </mat-slider>
-  </div>-->
+@if (isVisible) {
+  <div class="facsimile-shell">
+    <div class="facsimile-surface">
+      <button
+        type="button"
+        class="facsimile-close"
+        aria-label="Hide facsimile"
+        matTooltip="Hide facsimile"
+        (click)="hideFacsimile()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+      <div class="facsimile-viewer">
+        <div class="image-container">
+          @if (facsimile) {
+            <figure class="page-stage" [class.is-loaded]="imageLoaded">
+              <img
+                [src]="imageSrc"
+                [style.width]="facsimileSize"
+                class="image-size"
+                alt="Manuscript facsimile"
+                (load)="onImageLoad()"
+                (error)="onImageError()"
+              />
+              @if (pageLabel) {
+                <figcaption class="page-caption">{{ pageLabel }}</figcaption>
+              }
+            </figure>
+          } @else {
+            <div class="empty-state">
+              <span class="empty-mark">Facsimile</span>
+              <p>No page image available</p>
+            </div>
+          }
+        </div>
 
-  <img
-    [src]="
-      pagesEndPoint +
-      facsimile.replace('.jpg', '.webp').replace('.jpeg', '.webp')
-    "
-    [style.width]="facsimileSize"
-    class="image-size"
-    alt="Image"
-  />
-</div>
+        <div class="zoom-controls">
+          <div class="zoom-group" role="group" aria-label="Page size">
+            <button
+              type="button"
+              class="zoom-btn"
+              aria-label="Decrease page size"
+              [disabled]="sizePercent <= minSize"
+              (click)="decreaseSize()"
+            >
+              −
+            </button>
+            <span class="zoom-label">{{ sizePercent }}%</span>
+            <button
+              type="button"
+              class="zoom-btn"
+              aria-label="Increase page size"
+              [disabled]="sizePercent >= maxSize"
+              (click)="increaseSize()"
+            >
+              +
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

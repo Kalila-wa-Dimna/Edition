@@ -80,7 +80,10 @@ a {
 
   .box img {
     height: 200px !important;
-    width: auto !important;
+    width: 100% !important;
+    max-width: 400px;
+    object-fit: cover;
+    object-position: top center;
   }
 
   .box .content {
@@ -131,9 +134,11 @@ a {
 
 /* Style for the image inside the box */
 .box img {
-  width: 300px; /* Adjust width as needed */
-  height: 200px;
-  opacity: 7;
+  width: 400px;
+  height: 280px;
+  object-fit: cover;
+  object-position: top center;
+  opacity: 1;
 }
 
 .box1 {
@@ -210,8 +215,10 @@ a {
 .content img {
   display: block;
   margin: 0 auto;
-  height: auto;
   width: 400px;
+  height: 280px;
+  object-fit: cover;
+  object-position: top center;
 }
 
 
@@ -232,4 +239,33 @@ span {
   font-family: "Times New Roman";
   margin-bottom: 10px;
 
+}
+
+.team-names {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 1.5rem;
+  row-gap: 0.15rem;
+  margin: 0.5rem 0 1rem;
+  padding-left: 10px;
+
+  span {
+    display: block;
+    font-size: 16px;
+    font-family: "Times New Roman";
+    margin-bottom: 0;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 1000px) {
+  .team-names {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .team-names {
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,61 +1,66 @@
-
 <mat-form-field>
-  <mat-label >Filter</mat-label>
-  <mat-icon  matPrefix>filter_alt</mat-icon>
-  <input  matInput placeholder="filter" [formControl]="filterFormControl" />
+  <mat-label>Filter</mat-label>
+  <mat-icon matPrefix>filter_alt</mat-icon>
+  <input matInput placeholder="filter" [formControl]="filterFormControl" />
 </mat-form-field>
 
-<mat-tab-group  [selectedIndex]="(selectedIndex$|async)?.[0]">
-  <ng-template
-    ngFor
-    let-item
-    [ngForOf]="(allManuscripts$ | async) ?? []"
-    let-index="index"
-  >
-    <mat-tab [label]="item.siglum" >
-      <br />
-      <a class="hell-background"
-        [routerLink]="['/', 'manuscripts', item.siglum, 'gallery']"
-        mat-flat-button
-        >Page gallery</a
-      >
-      <mat-divider></mat-divider>
-      <ng-container *ngIf="(manuscriptChapters$ | async)?.[index] as chapters;" class="hell-background">
-        <ng-container *ngFor="let chapter of chapters; let i = index">
-          <ng-container *ngIf="chapters">
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>Chapter {{ chapter.chapter }}</mat-panel-title>
-              </mat-expansion-panel-header>
-              <mat-panel-description>
-                <ng-container *ngIf="chapter.pages && chapter.pages.length > 0">
-                  Page Range: {{ chapter.pages[0].page_number }} -
-                  {{ chapter.pages[chapter.pages.length - 1].page_number }}
-                </ng-container>
-                <ng-container
-                  *ngIf="!chapter.pages || chapter.pages.length === 0"
-                >
-                  No Pages Found
-                </ng-container>
-              </mat-panel-description>
-
-              <div class="page-links">
-                <ng-container *ngFor="let page of chapter.pages">
-                  <a
-                    mat-button
-                    class="panel"
-                    [routerLink]="['/' + page.page_link]"
-                    routerLinkActive="active"
-                  >
-                    {{ page.page_number }}
-                  </a>
-                </ng-container>
-              </div>
-            </mat-expansion-panel>
-          </ng-container>
-        </ng-container>
-      </ng-container>
-    </mat-tab>
-
-  </ng-template>
+<mat-tab-group
+  [selectedIndex]="selectedIndex"
+  (selectedIndexChange)="onTabChange($event)"
+  animationDuration="0ms"
+>
+  @for (item of manuscripts; track item.siglum) {
+    <mat-tab [label]="item.siglum"></mat-tab>
+  }
 </mat-tab-group>
+
+@if (selectedSiglum) {
+  <div class="ms-selected-panel">
+    <a
+      class="hell-background gallery-link"
+      [routerLink]="['/', 'manuscripts', selectedSiglum, 'gallery']"
+      mat-flat-button
+    >
+      Page gallery
+    </a>
+
+    <div class="ms-chapters">
+    @if (chaptersLoading) {
+      <p class="ms-status">Loading chapters for {{ selectedSiglum }}…</p>
+    }
+
+    @if (!chaptersLoading && chaptersError) {
+      <p class="ms-status ms-error">{{ chaptersError }}</p>
+    }
+
+    @for (chapter of selectedChapters; track chapter.chapter) {
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Chapter {{ chapter.chapter }}</mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          @if (chapter.pages?.length) {
+            Page Range: {{ chapter.pages[0].page_number }} -
+            {{ chapter.pages[chapter.pages.length - 1].page_number }}
+          } @else {
+            No Pages Found
+          }
+        </mat-panel-description>
+
+        <div class="page-links">
+          @for (page of chapter.pages; track page.id || page.page_link) {
+            <a
+              mat-button
+              class="panel"
+              [routerLink]="pageLink(page)"
+              routerLinkActive="active"
+            >
+              {{ page.page_number }}
+            </a>
+          }
+        </div>
+      </mat-expansion-panel>
+    }
+    </div>
+  </div>
+}

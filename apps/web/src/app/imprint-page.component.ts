@@ -17,7 +17,7 @@ import {CONFIG_TOKEN, IConfig} from "@kalila-edition/common-ui";
                 <br>
                 A prototype of the present collations was developed as a MSc thesis project in Technische Informatik – Embedded Systems at Berliner Hochschule für Technik under supervision of  <a href="https://prof.beuth-hochschule.de/forler/"> Prof. Dr. Ch. Forler </a>(Fachbereich VI – Informatik und Medien) in cooperation with Freie Universität Berlin, <a href="https://www.geschkult.fu-berlin.de/e/semiarab/arabistik/Seminar/Mitarbeiterinnen-und-Mitarbeiter/Professuren/Gruendler/"> Prof. Dr. B. Gruendler </a> (Arabic Studies, Principal Investigator AnonymClassic/Arabic Literature Cosmopolitan).
                  <br><br>
-                Concept, layout, and development was by Marwa M. Ahmed. The present edition was co-developed by Mahmoud M. Kozae and Marwa M. Ahmed and is documented by an a MA thesis project under supervision of Prof. Dr. B. Gruendler.
+                Concept, layout, and development was by Marwa M. Ahmed. The present edition was co-developed by Marwa M. Ahmed and Mahmoud M. Kozae and is documented by an a MA thesis project under supervision of Prof. Dr. B. Gruendler.
                 <br>
                 <br>
                 <div class="paragraph-title">

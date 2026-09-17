@@ -20,6 +20,10 @@ export class SelectCollationComponent implements OnInit {
 
   cols = 2;
   ngOnInit() {
-    this.data = this.route.snapshot.data['collationsList'];
+    const list = this.route.snapshot.data['collationsList'] as ICollationInfo[];
+    this.data = list.map((item) => ({
+      ...item,
+      key: item.key || item.siglum,
+    }));
   }
 }

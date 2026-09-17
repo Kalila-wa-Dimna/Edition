@@ -21,8 +21,9 @@ import {
 import { SearchService } from '../../../services/search.service';
 import { SearchWorkerService } from '@kalila-edition/common-ui';
 import {
-  arabicLettersRegex,
-  latinLettersRegex,
+  hasArabicLetters,
+  isLatinTitleQuery,
+  normalizeArabic,
 } from '@kalila-edition/common-util';
 import { isPlatformBrowser } from '@angular/common';
 import { DownloadsService } from '../../../services/downloads.service';
@@ -66,29 +67,31 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
         .pipe(debounceTime(100))
         .subscribe((value) => {
           this.searchService.reset();
+          const raw = (value ?? '').trim();
           const index =
-            parseIfNumber(value ?? '') ?? parseIfIndoArabicNumber(value ?? '');
+            parseIfNumber(raw) ?? parseIfIndoArabicNumber(raw);
           if (index && index !== 0) {
             this.goToRow.emit(index - 1);
-          } else if (value && value.length > 1) {
-            if (latinLettersRegex.test(value)) {
-              const lowerCaseValue = value?.toLowerCase();
-              const indexes = this.titles
-                .map((title, i) =>
-                  title.toLowerCase().includes(lowerCaseValue) ? i : -1
-                )
-                .filter((index) => index !== -1);
-              this.searchService.highlightedRows.set(indexes);
-              if (indexes.length > 0) {
-                this.goToRow.emit(indexes[0]);
-              }
-            } else if (arabicLettersRegex.test(value)) {
-              this.searchWorkerService.search(value, this.collationKey);
-            } else {
-              this.searchService.reset();
+            return;
+          }
+          if (!raw || raw.length < 1) {
+            this.searchWorkerService.reset();
+            return;
+          }
+
+          // Prefer content search whenever Arabic is present (handles diacritics / mixed paste)
+          if (hasArabicLetters(raw)) {
+            const normalized = normalizeArabic(raw);
+            if (normalized.length >= 1) {
+              this.searchWorkerService.search(normalized, this.collationKey);
             }
-          } else {
-            this.searchService.reset();
+            return;
+          }
+
+          // Latin / English: search collation content (not only titles)
+          if (isLatinTitleQuery(raw) && raw.length > 1) {
+            this.searchWorkerService.search(raw, this.collationKey);
+            return;
           }
         });
 
@@ -96,18 +99,26 @@ export class CollationCommandBarComponent implements OnInit, OnDestroy {
         if (data) {
           const { sentence, collationKey, results, indexedResults } = data;
           if (
-            sentence === this.searchControl.value &&
+            sentence === normalizeArabic(this.searchControl.value ?? '') &&
             collationKey === this.collationKey
           ) {
-            this.searchService.currentResult.set(results.length - 1);
-            this.searchService.highlightedTokens.set(results);
+            // Lemma indexes use full `units[]` indices (same as the collation
+            // rows), including divider slots — do not remap via content-only
+            // indexes or highlights land on the wrong words/units.
+            const hits = (results as number[][]) ?? [];
+            this.searchService.currentResult.set(hits.length - 1);
+            this.searchService.highlightedTokens.set(hits);
+            this.searchService.indexedResults.set(
+              (indexedResults ?? {}) as Record<
+                number,
+                Record<number, [number, number, number, number, number][]>
+              >
+            );
 
-            this.searchService.indexedResults.set(indexedResults);
-
-            if (results.length > 0) {
+            if (hits.length > 0) {
               setTimeout(() => {
                 this.searchService.currentResult.set(0);
-                this.goToRow.emit(results[0][0]);
+                this.goToRow.emit(hits[0][0]);
               }, 10);
             }
           }

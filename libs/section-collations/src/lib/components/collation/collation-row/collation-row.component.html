@@ -115,19 +115,30 @@
   </div>
 </div>
 
-<div *ngIf="!unit.isDivider" class="row-content">
+<div
+  *ngIf="!unit.isDivider"
+  class="row-content"
+  [class.map-focused]="mapFocused && !currentResult"
+>
   <ng-template [ngIf]="rowData !== undefined" [ngIfElse]="loading">
     <kd-collation-cell
       *ngFor="let siglum of sigla; index as mediumIndex"
-      class="collation-cell rtl font-noto-naskh"
+      class="collation-cell font-noto-naskh"
+      [class.rtl]="!isLatinSiglum(siglum)"
+      [class.ltr]="isLatinSiglum(siglum)"
+      [attr.dir]="isLatinSiglum(siglum) ? 'ltr' : 'rtl'"
       [ngStyle]="{
-        'width.px': cellWidth$ | async,
-        'padding.px': cellPadding,
+        'width.px': ((cellWidth$ | async) ?? 0) + 2 * cellPadding,
+        'min-width.px': ((cellWidth$ | async) ?? 0) + 2 * cellPadding,
+        padding: cellPadding + 'px',
+        'box-sizing': 'border-box',
+        'flex-shrink': 0,
       }"
       [data]="rowData[siglum]"
       [siglum]="siglum"
       [chapterSiglum]="chapterSiglum"
       [unitIndex]="unit.order"
+      [unitArrayIndex]="unitArrayIndex"
       [mediumIndex]="mediumIndex"
       [orderDisplay]="unit.formattedOrder"
     >

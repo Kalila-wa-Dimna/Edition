@@ -1,16 +1,17 @@
 @if (pageData) {
   <div class="cell-tools">
     <div class="order-in-ms">
-      {{ pageData.orderInMs + 1 }}
-      @if(pageData.adjustedOrder + 1 > unitIndex) {
+      @let arrow = sequenceArrow();
+      {{ orderInMsDisplay() }}
+      @if (arrow === 'down') {
         <mat-icon
-          matTooltip="The unit occures at a later point"
+          matTooltip="The unit occurs at a later point in this manuscript"
           matTooltipPosition="above"
         >arrow_downward</mat-icon>
       }
-      @if(pageData.adjustedOrder + 1 < unitIndex) {
+      @if (arrow === 'up') {
         <mat-icon
-          matTooltip="The unit occures at an earlier point"
+          matTooltip="The unit occurs at an earlier point in this manuscript"
           matTooltipPosition="above"
         >arrow_upward</mat-icon>
       }

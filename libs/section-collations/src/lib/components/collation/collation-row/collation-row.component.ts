@@ -15,10 +15,13 @@ import { SegmentColorService } from '../../../services/segment-color.service';
 })
 export class CollationRowComponent {
   @Input() unit!: ICollationUnit;
+  /** 0-based index in units / segment_data (not unit.order). */
+  @Input() unitArrayIndex = 0;
   @Input() sigla: string[] = [];
   @Input() chapterSiglum = '';
   @Input() searchResult = false;
   @Input() currentResult = false;
+  @Input() mapFocused = false;
 
   @Input()
   rowData?: IRowData | undefined;
@@ -28,6 +31,11 @@ export class CollationRowComponent {
 
   cellWidth$ = this.settingsService.cellWidth$;
   cellPadding = CELL_PADDING;
+
+  /** English / Latin columns should read left-to-right. */
+  isLatinSiglum(siglum: string): boolean {
+    return /english|mc-english|\beng\b|latin/i.test(siglum || '');
+  }
 
   analyzing = false;
   isAnalyzed = false;

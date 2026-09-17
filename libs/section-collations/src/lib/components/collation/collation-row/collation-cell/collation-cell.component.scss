@@ -2,6 +2,13 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  box-sizing: border-box;
+  /* Inner inset so text is not flush to the cell edge */
+  padding: 8px 10px !important;
+  flex-shrink: 0;
+  gap: 0.2rem;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .cell-tools {
@@ -11,6 +18,8 @@
   justify-content: space-between;
   align-items: center;
   font-size: inherit !important;
+  box-sizing: border-box;
+  padding: 0;
 }
 
 mat-icon {

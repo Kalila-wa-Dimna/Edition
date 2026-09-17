@@ -34,6 +34,8 @@
         [chapterSiglum]="summary.siglum"
         [columns]="columns"
         [units]="units"
+        [focusedUnitIndex]="selectedUnitIndex()"
+        (click)="clearMapUnitHighlight()"
         [ngClass]="{
           'collation-container-full': !(
             (showFacsimilePreview$ | async) || (showMap$ | async)
@@ -64,18 +66,17 @@
       <div class="map-panel-container">
         <kd-map-panel
           [collationKey]="summary.key"
+          [columns]="columns"
           [currentIndex]="currentScrollIndex()"
           [cellsWithResults]="cellsWithResults()"
-          (rowClicked)="onGoToRow($event)"
-          (rowHovered)="showTitlePreview.set($event)"
+          (rowClicked)="onMapUnitClicked($event)"
+          (rowHovered)="onMapUnitHovered($event)"
           class="map-panel"
         >
           @if(showTitlePreview() !== null ) {
-          <mat-card>
-            <mat-card-content>
-              {{ getTitelPreview() }}
-            </mat-card-content>
-          </mat-card>
+          <div class="map-unit-title">
+            {{ getTitelPreview() }}
+          </div>
           }
         </kd-map-panel>
       </div>

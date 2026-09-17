@@ -1,32 +1,37 @@
 <mat-tab-group>
   <mat-divider></mat-divider>
-  <ng-container *ngFor="let manuscript of (allManuscripts$ | async); let i = index">
+  <ng-container
+    *ngFor="let manuscript of allManuscripts$ | async; let i = index"
+  >
     <mat-tab [label]="manuscript.siglum">
-      <!-- Replace mat-expansion-panel with mat-card -->
       <mat-card>
-        <!-- mat-card content -->
         <mat-card-content>
-          <mat-card-title style="font-size: 13px">Mc English translation</mat-card-title>
+          <mat-card-title style="font-size: 13px"
+            >Mc English translation</mat-card-title
+          >
 
           <div class="page-links">
-            <ng-container *ngFor="let page of (englishPagesInMcChapter$ | async)?.[i]">
+            <ng-container
+              *ngFor="let page of (englishPagesInMcChapter$ | async)?.[i]"
+            >
               <a
                 mat-button
                 class="panel"
-                [routerLink]="['/' + page.page_link]"
+                [routerLink]="pageRouterLink(page)"
                 routerLinkActive="active"
               >
                 {{ page.page_number }}
               </a>
             </ng-container>
+            <p
+              class="empty-hint"
+              *ngIf="!(englishPagesInMcChapter$ | async)?.[i]?.length"
+            >
+              No English pages listed for this manuscript.
+            </p>
           </div>
         </mat-card-content>
       </mat-card>
     </mat-tab>
-
   </ng-container>
 </mat-tab-group>
-
-
-
-

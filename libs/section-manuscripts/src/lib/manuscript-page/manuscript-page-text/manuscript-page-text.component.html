@@ -1,27 +1,218 @@
-<div class="extra-padding">
-  <mat-card>
-    <mat-card-content class="mat-card-content">
-      <div *ngFor="let line of concatenatedDataArray; let i = index"  [ngClass]="{'list-item font-noto-naskh': isArabicLine(line), 'list-english-item': !isArabicLine(line)}">
-
-        <div class="line" [style.font-size]="fontSize">
-          <span class="line-number" *ngIf="((i+1) % 5 === 0) && (i !== 0);then numbering; else noNumbering;">
-            <ng-container *ngTemplateOutlet="numbering; context: { index: (i+1) }"></ng-container>
-          </span>
-          <ng-template #numbering let-index="index">
-            <span class="f-r" [ngClass]="{'numbering-arabic': isArabicLine(line), 'numbering-english': !isArabicLine(line)}"  [ngStyle]="{'font-size': 14 - 6 + 'px'}">{{i+1}}</span>
-          </ng-template>
-          <ng-container *ngFor="let word of line; let j = index">
-            <ng-container *ngFor="let unit of getUnitsInLine(i, j).shortenedUnitNames; let index = index">
-              <span class="f-r" matTooltip="{{ getUnitsInLine(i, j).unitCodes[index] }}" matTooltipPosition='left'>
-                {{ unit }}
-              </span>
-            </ng-container>
-            {{ word }}
-          </ng-container>
-        </div>
+<div
+  class="transcription-shell"
+  [class.is-rtl]="showTranscription && !isBothMode && isRtlPage"
+  [class.is-ltr]="showTranscription && !isBothMode && !isRtlPage"
+  [class.is-both]="isBothMode"
+  [class.is-content-both]="contentMode === 'both'"
+  [class.is-xml-only]="contentMode === 'xml'"
+>
+  @if (contentMode === 'both') {
+    <div class="content-split-grid">
+      <div class="transcription-column">
+        <ng-container *ngTemplateOutlet="transcriptionBody"></ng-container>
       </div>
+      <ng-container *ngTemplateOutlet="xmlPaneTpl"></ng-container>
+    </div>
+  } @else if (contentMode === 'xml') {
+    <ng-container *ngTemplateOutlet="xmlPaneTpl"></ng-container>
+  } @else {
+    <ng-container *ngTemplateOutlet="transcriptionBody"></ng-container>
+  }
 
-      <ng-template #noNumbering></ng-template>
-    </mat-card-content>
-  </mat-card>
+  @if (showTranscription) {
+    <div class="font-controls">
+      <div class="font-group" role="group" aria-label="Font size">
+        <button
+          type="button"
+          class="font-btn"
+          aria-label="Decrease font size"
+          [disabled]="fontSizePx <= minFontSize"
+          (click)="decreaseFontSize()"
+        >
+          −
+        </button>
+        <span class="font-label">{{ fontSizePx }}px</span>
+        <button
+          type="button"
+          class="font-btn"
+          aria-label="Increase font size"
+          [disabled]="fontSizePx >= maxFontSize"
+          (click)="increaseFontSize()"
+        >
+          +
+        </button>
+      </div>
+    </div>
+  }
 </div>
+
+<ng-template #transcriptionBody>
+  @if (isBothMode) {
+    <div class="bilingual-grid">
+      <ng-container
+        *ngTemplateOutlet="
+          paneTpl;
+          context: {
+            pane: sourcePane,
+            emptyHint: 'No transcription available for this page'
+          }
+        "
+      ></ng-container>
+      <ng-container
+        *ngTemplateOutlet="
+          paneTpl;
+          context: {
+            pane: translationPane,
+            emptyHint: companionLoading
+              ? 'Loading translation…'
+              : 'No translation available for this page'
+          }
+        "
+      ></ng-container>
+    </div>
+  } @else {
+    <div class="transcription-surface">
+      @if (pageLabel) {
+        <header class="transcription-header">
+          <span class="eyebrow">Transcription</span>
+          <span class="page-label">{{ pageLabel }}</span>
+        </header>
+      }
+
+      <div class="transcription-scroll">
+        <ng-container
+          *ngTemplateOutlet="
+            linesTpl;
+            context: {
+              lines: concatenatedDataArray,
+              unitPlaces: unitPlaces,
+              unitNames: unitNames
+            }
+          "
+        ></ng-container>
+        @if (!concatenatedDataArray?.length) {
+          <div class="empty-state">
+            <span class="empty-mark">Transcription</span>
+            <p>No text available for this page</p>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</ng-template>
+
+<ng-template #xmlPaneTpl>
+  <div class="transcription-surface xml-surface">
+    <header class="transcription-header xml-header">
+      <span class="eyebrow">TEI XML</span>
+      <span class="page-label">{{ pageLabel }}</span>
+      <button
+        type="button"
+        class="xml-download-btn"
+        (click)="downloadXml()"
+        [disabled]="!pageXml"
+      >
+        Download
+      </button>
+    </header>
+    <div class="transcription-scroll xml-scroll">
+      @if (pageXml) {
+        <pre class="xml-pre" dir="ltr">{{ pageXml }}</pre>
+      } @else {
+        <div class="empty-state">
+          <span class="empty-mark">XML</span>
+          <p>No XML available for this page</p>
+        </div>
+      }
+    </div>
+  </div>
+</ng-template>
+
+<ng-template
+  #paneTpl
+  let-pane="pane"
+  let-emptyHint="emptyHint"
+>
+  <div
+    class="transcription-surface pane-surface"
+    [class.is-rtl]="pane?.isRtl"
+    [class.is-ltr]="pane && !pane.isRtl"
+  >
+    <header class="transcription-header">
+      <span class="eyebrow">{{ pane?.label || 'Text' }}</span>
+      @if (pane?.pageLabel) {
+        <span class="page-label">{{ pane.pageLabel }}</span>
+      }
+    </header>
+    <div class="transcription-scroll">
+      @if (pane?.lines?.length) {
+        <ng-container
+          *ngTemplateOutlet="
+            linesTpl;
+            context: {
+              lines: pane.lines,
+              unitPlaces: pane.unitPlaces,
+              unitNames: pane.unitNames
+            }
+          "
+        ></ng-container>
+      } @else {
+        <div class="empty-state">
+          <span class="empty-mark">{{ pane?.label || 'Text' }}</span>
+          <p>{{ emptyHint }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</ng-template>
+
+<ng-template
+  #linesTpl
+  let-lines="lines"
+  let-unitPlaces="unitPlaces"
+  let-unitNames="unitNames"
+>
+  @for (line of lines; track $index; let i = $index) {
+    <div
+      class="line-row"
+      [class.list-item]="isRtlLine(line)"
+      [class.font-noto-naskh]="isArabicLine(line)"
+      [class.font-hebrew]="isHebrewLine(line)"
+      [class.list-english-item]="!isRtlLine(line)"
+    >
+      <div class="line" [style.font-size]="fontSize">
+        @if ((i + 1) % 5 === 0 && i !== 0) {
+          <span
+            class="line-number"
+            [class.numbering-rtl]="isRtlLine(line)"
+            [class.numbering-ltr]="!isRtlLine(line)"
+          >
+            {{ i + 1 }}
+          </span>
+        }
+
+        @for (word of line; track $index; let j = $index) {
+          @for (
+            unit of getUnitsForPane(i, j, unitPlaces, unitNames)
+              .shortenedUnitNames;
+            track $index;
+            let unitIndex = $index
+          ) {
+            <span
+              class="unit-marker"
+              [matTooltip]="
+                getUnitsForPane(i, j, unitPlaces, unitNames).unitCodes[
+                  unitIndex
+                ]
+              "
+              matTooltipPosition="above"
+            >
+              {{ unit }}
+            </span>
+          }
+          <span class="word">{{ word }} </span>
+        }
+      </div>
+    </div>
+  }
+</ng-template>

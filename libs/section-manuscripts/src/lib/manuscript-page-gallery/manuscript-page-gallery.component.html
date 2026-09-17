@@ -1,12 +1,13 @@
 <kd-layout>
-  <span title>{{manuscriptID}}</span>
-
+  <div title>
+    <span>{{ manuscriptID }}</span>
+    <span class="title-meta">Gallery</span>
+  </div>
 
   <main class="full-width-main" pageContent>
     <router-outlet name="command"></router-outlet>
-    <div>
-      <router-outlet name="viewer" class="gallery"></router-outlet>
+    <div class="gallery-shell">
+      <router-outlet name="viewer"></router-outlet>
     </div>
   </main>
-
 </kd-layout>

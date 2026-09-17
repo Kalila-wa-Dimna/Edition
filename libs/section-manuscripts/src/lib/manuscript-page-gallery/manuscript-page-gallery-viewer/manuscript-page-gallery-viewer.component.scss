@@ -1,155 +1,618 @@
-@import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lightgallery.css');
-@import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lg-zoom.css');
-@import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lg-thumbnail.css');
+.gallery-viewer {
+  width: min(100%, 1400px);
+  margin: 0 auto;
+  padding: 1rem 1rem 2rem;
+  box-sizing: border-box;
+}
 
-.container {
-  width: 100%;
-  gap: 8px;
+.gallery-header {
   display: flex;
   flex-wrap: wrap;
-  direction: rtl; // Add RTL direction here
-  justify-content: flex-end; // Align items to the end (right side)
+  align-items: end;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 0.85rem 1rem;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  /* Keep shadow from overlapping the top navbar / command bar */
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset;
 }
 
-.lg-sub-html {
-  color: beige;
-  background-color: black;
+.eyebrow {
+  margin: 0 0 0.2rem;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.45);
 }
 
-.img-responsive {
-  width: 7.8%;
-  height: auto;
-  padding: 6px;
-  margin-left: -6px; // Apply negative margin to overlap images
+.heading {
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: #1f1f1f;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+  width: 100%;
+  direction: ltr;
+}
+
+.gallery-grid.is-rtl {
+  direction: rtl;
+}
+
+.gallery-item {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+  color: inherit;
+  text-align: inherit;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: rgba(76, 125, 138, 0.45);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.image-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  z-index: 1;
-  transition: transform 0.3s ease;
+  aspect-ratio: 3 / 4;
+  background: #e8e4dc;
+  overflow: hidden;
+
+  &.is-failed {
+    background: #ddd8cf;
+  }
+}
+
+.thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: #e8e4dc;
+  transition: transform 0.25s ease;
+}
+
+.thumb-fallback {
+  font-family: 'Source Sans 3 Variable', 'Source Sans 3', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.gallery-item:hover .thumb {
+  transform: scale(1.02);
 }
 
 .caption {
   position: absolute;
+  inset-inline: 0;
   bottom: 0;
-  left: 0;
-  width: 90%;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  padding: 3.5px;
+  padding: 0.4rem 0.45rem;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.72));
+  color: #fff;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 0.78rem;
   text-align: center;
-  font-size: 14px;
-  gap: 6px;
   white-space: nowrap;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  z-index: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.image-container {
-  width: 100%;
-  position: relative;
+.empty-state {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(0, 0, 0, 0.45);
+  text-align: center;
+
+  .empty-mark {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 0.35rem 0.7rem;
+  }
+}
+
+/* Dark theme — ViewEncapsulation.None, so scope via body.dark-theme */
+.dark-theme {
+  .gallery-header {
+    background: #003646;
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: none;
+  }
+
+  .eyebrow,
+  .hint,
+  .thumb-fallback,
+  .empty-state {
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .heading {
+    color: #f2f5f6;
+  }
+
+  .gallery-item {
+    background: #0d3a47;
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+
+    &:hover {
+      border-color: rgba(158, 196, 206, 0.55);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  .image-card,
+  .thumb {
+    background: #1a3f4a;
+  }
+
+  .image-card.is-failed {
+    background: #243f48;
+  }
+
+  .empty-state .empty-mark {
+    border-color: rgba(255, 255, 255, 0.28);
+    color: rgba(255, 255, 255, 0.65);
+  }
+}
+
+/* —— Custom lightbox (attached to document.body) —— */
+.ms-lightbox {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 10000;
+  display: grid;
+  grid-template-rows: 56px minmax(0, 1fr) 118px;
+  background: #111;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.ms-lightbox-toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.75rem;
+  height: 56px;
+  padding: 0 0.85rem;
+  box-sizing: border-box;
+  background: #2c2c2c;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 2;
+}
+
+.ms-lightbox-counter {
+  justify-self: start;
+  font-family: 'Source Sans 3 Variable', 'Source Sans 3', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+.ms-zoom-controls {
+  justify-self: center;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.ms-zoom-btn,
+.ms-zoom-label {
+  appearance: none;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  min-height: 2.25rem;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  font-family: 'Source Sans 3 Variable', 'Source Sans 3', sans-serif;
+
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
 }
 
-/* Apply hover effect to zoom and translate images slightly */
-.img-responsive:hover {
-  transform: scale(1.05) translateX(-2%);
+.ms-zoom-btn {
+  width: 2.5rem;
+  font-size: 1.35rem;
+  line-height: 1;
+  font-weight: 500;
 }
 
-.lg-inline .lg-backdrop, .lg-inline .lg-outer {
-  position: fixed;
+.ms-zoom-label {
+  min-width: 3.8rem;
+  padding: 0 0.45rem;
+  font-size: 0.85rem;
+  border-inline: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-.lg-outer {
+.ms-lightbox-close {
+  justify-self: end;
+  appearance: none;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.6rem;
+  line-height: 1;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.16);
+  }
+}
+
+.ms-lightbox-viewer {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 3rem 1fr 3rem;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 0.35rem;
+  box-sizing: border-box;
+  background: #000;
+}
+
+.ms-lightbox-main {
+  min-width: 0;
+  min-height: 0;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
 }
 
-.lg-toolbar {
-  height: 40px;
+.ms-lightbox-viewport {
+  position: relative;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  background: #000;
+
+  &.is-loading::after {
+    content: 'Loading facsimile…';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Source Sans 3 Variable', 'Source Sans 3', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.55);
+    pointer-events: none;
+  }
+
+  &.is-zoomed {
+    cursor: grab;
+    touch-action: none;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}
+
+.ms-lightbox-image {
   position: absolute;
-  background-color: black;
+  inset: 0;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  opacity: 0;
+  background: #111;
+  transform-origin: center center;
+  transition:
+    opacity 0.15s ease,
+    transform 0.12s ease-out;
+  will-change: transform;
+
+  &.is-ready {
+    opacity: 1;
+  }
 }
 
-.lg-outer .lg-item, .lg-outer .lg-img-wrap {
-  height: calc(100% - 80px);
-  padding-top: 3%;
-  padding-bottom: 0%;
+.ms-lightbox-viewport.is-zoomed .ms-lightbox-image {
+  transition: none;
 }
 
-/*.lg-outer .lg-item.lg-complete.lg-zoomable .lg-image,
- .lg-outer .lg-item.lg-complete.lg-zoomable .lg-dummy-img {
-   transform: scale3d(1.02, 1.02, 1);
-   transition: transform 0.5s ease-in-out, opacity 0.15s !important;
- }*/
+.ms-lightbox-missing {
+  margin: 0;
+  font-family: 'Source Sans 3 Variable', 'Source Sans 3', sans-serif;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+}
 
+.ms-lightbox-page {
+  flex: 0 0 auto;
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.95);
+  text-align: center;
+}
 
+.ms-nav {
+  appearance: none;
+  margin: 0;
+  border: 0;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 2px;
+  justify-self: center;
+  font-size: 1.8rem;
+  line-height: 1;
 
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.18);
+  }
 
-//////
-.lg-custom-thumbnails {
-  &.lg-outer {
-    width: auto;
-    // Set space for the container to occupy thumbnails
-    right: 225px;
+  &:disabled {
+    opacity: 0.25;
+    cursor: default;
+  }
+}
 
-    // Add some spacing on the left to match with the right hand side spacing
-    left: 10px;
+.ms-lightbox-strip {
+  height: 118px;
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr) 2.4rem;
+  align-items: stretch;
+  background: #1a1a1a;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
 
-    .lg-thumb-outer {
-      // Set the position of the thumbnails
-      left: auto;
-      top: 0;
-      width: 225px;
-      bottom: 0;
-      position: fixed;
-      right: 0;
+.ms-strip-roll {
+  appearance: none;
+  margin: 0;
+  border: 0;
+  border-inline-end: 1px solid rgba(255, 255, 255, 0.1);
+  background: #222;
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
 
-      // Reset max height
-      max-height: none;
+  &:hover:not(:disabled) {
+    background: #333;
+  }
 
-      // Customize the layout (Optional)
-      background-color: #999;
-      padding-left: 5px;
-      padding-right: 5px;
-      margin: 0 -10px;
-      overflow-y: auto;
+  &:disabled {
+    opacity: 0.25;
+    cursor: default;
+  }
 
-      // Update transition values
-      // By default thumbnails animates from bottom to top
-      // Change that from right to left.
-      // Also, add a tiny opacity transition to look better
-      transform: translate3d(30%, 0, 0);
-      opacity: 0;
-      will-change: transform opacity;
-      transition: transform 0.15s cubic-bezier(0, 0, 0.25, 1) 0s, cubic-bezier(
-          0,
-          0,
-          0.25,
-          1
-      ) 0.15s;
-    }
+  &.ms-strip-roll-next {
+    border-inline-end: 0;
+    border-inline-start: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
 
-    &.lg-thumb-open {
-      .lg-thumb-outer {
-        transform: translate3d(0, 0, 0);
-        opacity: 1;
-      }
-    }
+.ms-lightbox-thumbs {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: 0;
+  background: #1a1a1a;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-color: rgba(255, 255, 255, 0.45) rgba(0, 0, 0, 0.35);
+  scrollbar-width: thin;
+  /* dir=rtl/ltr is set in the template for Arabic vs other MSS */
 
-    // Add hove effect (Optional)
-    .lg-thumb-item {
-      filter: grayscale(100%);
-      will-change: filter;
-      transition: filter 0.12s ease-in, border-color 0.12s ease;
-      &:hover,
-      &.active {
-        filter: grayscale(0);
-        border-color: #545454;
-      }
-    }
+  &::-webkit-scrollbar {
+    height: 10px;
+  }
 
-    .lg-thumb {
-      padding: 5px 0;
-    }
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 5px;
+  }
+}
+
+.ms-lightbox-thumb {
+  appearance: none;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+  border: 2px solid transparent;
+  background: #2a2a2a;
+  width: 72px;
+  height: 96px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    pointer-events: none;
+    background: #1a1a1a;
+  }
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.45);
+  }
+
+  &.active {
+    border-color: #a90707;
+  }
+}
+
+.ms-lightbox-thumb-label {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 0.35rem 0.2rem 0.3rem;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.88));
+  color: #fff;
+  font-family: 'Source Sans 3 Variable', 'Source Sans 3', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+
+.ms-lightbox-thumb:hover .ms-lightbox-thumb-label,
+.ms-lightbox-thumb:focus-visible .ms-lightbox-thumb-label {
+  opacity: 1;
+}
+
+@media screen and (max-width: 896px) {
+  .gallery-viewer {
+    padding: 0.65rem 0.55rem 1.25rem;
+  }
+
+  .gallery-header {
+    padding: 0.7rem 0.75rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 0.55rem;
+  }
+
+  .heading {
+    font-size: 1.15rem;
+  }
+
+  .ms-lightbox {
+    grid-template-rows: 52px minmax(0, 1fr) 100px;
+  }
+
+  .ms-lightbox-strip {
+    height: 100px;
+  }
+
+  .ms-strip-roll {
+    font-size: 1.35rem;
+  }
+
+  .ms-lightbox-toolbar {
+    height: 52px;
+    padding: 0 0.55rem;
+    gap: 0.45rem;
+  }
+
+  .ms-lightbox-counter {
+    font-size: 0.9rem;
+  }
+
+  .ms-lightbox-viewer {
+    grid-template-columns: 2.4rem 1fr 2.4rem;
+    padding: 0.35rem 0.15rem;
+  }
+
+  .ms-nav {
+    width: 2.15rem;
+    height: 2.15rem;
+    font-size: 1.5rem;
+  }
+
+  .ms-lightbox-thumb {
+    width: 60px;
+    height: 80px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0.9rem;
   }
 }

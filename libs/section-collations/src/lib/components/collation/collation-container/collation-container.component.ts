@@ -41,12 +41,15 @@ import {
     >
       <kd-collation-row
         *cdkVirtualFor="let item of rowData; index as rowIndex"
+        [attr.data-unit-id]="units[rowIndex]?.id"
         [unit]="units[rowIndex]"
+        [unitArrayIndex]="rowIndex"
         [sigla]="sigla"
         [rowData]="item"
         [searchResult]="highlightedRows()?.includes(rowIndex) || false"
         [chapterSiglum]="chapterSiglum"
         [currentResult]="activeHighlightedRow() === rowIndex"
+        [mapFocused]="focusedUnitIndex === rowIndex"
         [ngStyle]="{
         'width.px': columns.length * ((cellWidth$ | async) ?? 75) + 2 * columns.length * cellPadding,
       }"
@@ -78,6 +81,8 @@ export class CollationContainerComponent implements AfterViewInit, OnDestroy {
 
   @Input() sigla: string[] = [];
   @Input() chapterSiglum = '';
+  /** Unit index focused from the map (hover or click) */
+  @Input() focusedUnitIndex: number | null = null;
 
   cellWidth$ = this.settingsService.cellWidth$;
   fontSize$ = this.settingsService.fontSize$;

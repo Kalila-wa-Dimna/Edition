@@ -3,26 +3,32 @@ import {
   OnInit,
   OnDestroy,
   ViewChild,
-  AfterViewInit,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy,
   ElementRef,
   Renderer2,
   Output, EventEmitter,
 
 } from '@angular/core';
 import { Router,NavigationExtras,ActivatedRoute, NavigationEnd } from '@angular/router';
-import { FacsimileService } from "./../../services/manuscript-data.service";
 import { FontSizeService } from "./../../services/font-size.service";
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, debounceTime,  filter } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
-import {Observable, combineLatest, Subscription,Subject} from 'rxjs';
+import {Observable, Subscription,Subject} from 'rxjs';
 import { MatMenuTrigger } from '@angular/material/menu';
-import {IChapterInfo, IManuscriptInfo} from "../../models/manuscript-summary.model";
+import {IChapterInfo} from "../../models/manuscript-summary.model";
 import { ManuscriptPageService } from "./../../services/manuscript-page.resolver";
 import {ManuscriptChapterPageService} from "./../../services/manuscript-chapter-page.service";
-import {ManuscriptSetPageDataService} from"./../../services/manuscript-set-page-data.service"
+import {
+  ManuscriptViewMode,
+  ManuscriptViewModeService,
+} from '../../services/manuscript-view-mode.service';
+import {
+  ManuscriptContentMode,
+  ManuscriptContentModeService,
+} from '../../services/manuscript-content-mode.service';
+import { FacsimileService } from '../../services/manuscript-data.service';
+import { ManuscriptDownloadsService } from '../../services/manuscript-downloads.service';
+import { IPageData } from '../../models/page-data-model';
 
 @Component({
     selector: 'kalila-edition-manuscript-page-command-bar',
@@ -35,8 +41,6 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
   @ViewChild(MatSidenav) sideNavRef!: MatSidenav;
   items!: any[];
   isSmallScreen!: boolean;
-  fontSize=15;
-  facsimileSize=65;
   manuscriptID='';
   chapter='';
   pageNumber='';
@@ -47,7 +51,7 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
   combinedData$!: Observable<any>;
   sub?: Subscription;
   allChaptersData:IChapterInfo[]=[];
-  manuscriptChapters:any;
+  manuscriptChapters: any[] = [];
   pageData:any;
   pageEnglishData:any;
   unitsData:any;
@@ -57,10 +61,39 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
   private destroy$ = new Subject<void>();
   private navigationInProgress = false;
   currentPageIndex=0;
+  facsimileVisible = true;
+  downloadBusy = false;
+  private facsimileSub?: Subscription;
+  private contentSub?: Subscription;
   @Output() closeClicked = new EventEmitter();
-  constructor( private manuscriptChapterPageService:ManuscriptChapterPageService, private el: ElementRef,private renderer: Renderer2, private manuscriptPageService: ManuscriptPageService, private cdr: ChangeDetectorRef, public route: ActivatedRoute,private router: Router, private facsimileService: FacsimileService, private fontSizeService:FontSizeService,private breakpointObserver: BreakpointObserver  ) {
-  this.fontSizeService.setFontSize('15px');
+  constructor(
+    private manuscriptChapterPageService: ManuscriptChapterPageService,
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private manuscriptPageService: ManuscriptPageService,
+    public route: ActivatedRoute,
+    private router: Router,
+    private fontSizeService: FontSizeService,
+    private breakpointObserver: BreakpointObserver,
+    private viewModeService: ManuscriptViewModeService,
+    private contentModeService: ManuscriptContentModeService,
+    private facsimileService: FacsimileService,
+    private downloads: ManuscriptDownloadsService
+  ) {
+    this.fontSizeService.setFontSize('15px');
     this.subscribeToRouterEvents();
+  }
+
+  get viewMode(): ManuscriptViewMode {
+    return this.viewModeService.mode;
+  }
+
+  get contentMode(): ManuscriptContentMode {
+    return this.contentModeService.mode;
+  }
+
+  setContentMode(mode: ManuscriptContentMode): void {
+    this.contentModeService.setMode(mode);
   }
 
   private subscribeToRouterEvents() {
@@ -83,14 +116,247 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
     } = data;
     // Now you can access each resolved data object
     this.pageData = pageData;
-    this.manuscriptChapters = manuscriptChaptersData;
+    this.manuscriptChapters = Array.isArray(manuscriptChaptersData)
+      ? manuscriptChaptersData
+      : [];
     this.allPagesData = allPagesData;
-    this.allEnglishPagesData=allEnglishPagesData;
-    this.currentPageIndex = this.allPagesData[0].index;
+    this.allEnglishPagesData = this.resolveEnglishPages(
+      allEnglishPagesData,
+      allPagesData,
+      this.manuscriptID || this.route.snapshot.params['id']
+    );
+    this.currentPageIndex = this.allPagesData?.[0]?.index ?? 0;
     if(this.chapter=='McEnglish')
       this.englishMod=true;
     else this.englishMod=false;
-    //this.manuscriptSetPageDataService.setManuscriptPageData(this.pageData);
+  }
+
+  /** Prefer allEnglishPages.json; if empty, rebuild from Mc-tagged allPages. */
+  private resolveEnglishPages(
+    englishPages: any,
+    allPages: any,
+    manuscriptId: string
+  ): any[] {
+    if (Array.isArray(englishPages) && englishPages.length) {
+      return englishPages;
+    }
+    if (!Array.isArray(allPages) || !manuscriptId) {
+      return [];
+    }
+    const byNumber = new Map<number, any>();
+    for (const page of allPages) {
+      const tags: string[] = page?.tags || [];
+      if (!tags.includes('Mc')) {
+        continue;
+      }
+      const pageNumber = Number(page.page_number ?? page.number);
+      if (!Number.isFinite(pageNumber)) {
+        continue;
+      }
+      byNumber.set(pageNumber, {
+        index: pageNumber,
+        page_number: pageNumber,
+        page_link: `/manuscripts/${manuscriptId}/McEnglish/${pageNumber}`,
+      });
+    }
+    return [...byNumber.values()].sort(
+      (a, b) => Number(a.page_number) - Number(b.page_number)
+    );
+  }
+
+  get chapters(): any[] {
+    const chapters = [...(this.manuscriptChapters ?? [])];
+    // Order by manuscript page range, not raw JSON order
+    // (e.g. Lv p.7–29 comes before Im p.29–43).
+    return chapters.sort((a, b) => {
+      const aStart = this.chapterStartPage(a);
+      const bStart = this.chapterStartPage(b);
+      if (aStart !== bStart) {
+        return aStart - bStart;
+      }
+      return this.chapterEndPage(a) - this.chapterEndPage(b);
+    });
+  }
+
+  private chapterStartPage(chapterItem: any): number {
+    const pages = chapterItem?.pages ?? [];
+    if (!pages.length) {
+      return Number.MAX_SAFE_INTEGER;
+    }
+    return Math.min(
+      ...pages.map((page: { page_number?: number }) =>
+        Number(page.page_number ?? Number.MAX_SAFE_INTEGER)
+      )
+    );
+  }
+
+  private chapterEndPage(chapterItem: any): number {
+    const pages = chapterItem?.pages ?? [];
+    if (!pages.length) {
+      return Number.MAX_SAFE_INTEGER;
+    }
+    return Math.max(
+      ...pages.map((page: { page_number?: number }) =>
+        Number(page.page_number ?? Number.MIN_SAFE_INTEGER)
+      )
+    );
+  }
+
+  isCurrentChapter(chapterCode: string): boolean {
+    const current = (this.chapter || '').replace('English', '');
+    return current === chapterCode;
+  }
+
+  chapterTooltip(chapterItem: any): string {
+    const pages = chapterItem?.pages ?? [];
+    if (!pages.length) {
+      return `Chapter ${chapterItem.chapter}`;
+    }
+    const first = pages[0].page_number;
+    const last = pages[pages.length - 1].page_number;
+    return `${chapterItem.chapter}: p. ${first}–${last}`;
+  }
+
+  navigateToChapter(chapterItem: any): void {
+    const pages = chapterItem?.pages ?? [];
+    if (!pages.length) {
+      return;
+    }
+    const target =
+      pages.find(
+        (page: { page_number: number }) =>
+          String(page.page_number) === String(this.pageNumber)
+      ) ?? pages[0];
+    this.router.navigateByUrl(this.normalizeLink(target.page_link), {
+      relativeTo: this.route.parent,
+    } as NavigationExtras);
+  }
+
+  private normalizeLink(link: string): string {
+    if (!link) {
+      return '/';
+    }
+    return link.startsWith('/') ? link : `/${link}`;
+  }
+
+  private syncRouteParams(): void {
+    const { id, chapter, pageNumber } = this.route.snapshot.params;
+    this.manuscriptID = id ?? this.manuscriptID;
+    this.chapter = chapter ?? this.chapter;
+    this.pageNumber = pageNumber ?? this.pageNumber;
+    this.syncLanguageFromRoute();
+  }
+
+  private syncLanguageFromRoute(): void {
+    if (!this.isEnglishClickable()) {
+      this.viewModeService.setMode('source');
+      this.englishMod = false;
+      return;
+    }
+    if (this.viewModeService.mode === 'both') {
+      this.englishMod = false;
+      return;
+    }
+    this.englishMod = this.chapter === 'McEnglish';
+    this.viewModeService.setMode(this.englishMod ? 'english' : 'source');
+  }
+
+  private sourceChapter(): string {
+    return (this.chapter || '').replace('English', '') || 'Mc';
+  }
+
+  private currentPageLink(): string {
+    return this.normalizeLink(
+      `/manuscripts/${this.manuscriptID}/${this.chapter}/${this.pageNumber}`
+    );
+  }
+
+  private findPageIndex(
+    pages: Array<{ page_number: number; page_link: string }>
+  ): number {
+    if (!pages?.length) {
+      return -1;
+    }
+
+    const currentLink = this.currentPageLink();
+    const byLink = pages.findIndex(
+      (page) => this.normalizeLink(page.page_link) === currentLink
+    );
+    if (byLink !== -1) {
+      return byLink;
+    }
+
+    // Boundary pages can appear twice with the same page_number but different
+    // chapter links (e.g. Lv/29 and Im/29). Match chapter as well.
+    const pageNumber = Number(this.pageNumber);
+    const chapter = this.chapter || '';
+    return pages.findIndex((page) => {
+      const link = this.normalizeLink(page.page_link);
+      return (
+        Number(page.page_number) === pageNumber &&
+        link.includes(`/${chapter}/`)
+      );
+    });
+  }
+
+  /** Step to the next/previous manuscript page by page number, not raw JSON order. */
+  private navigateRelativePage(direction: 1 | -1): void {
+    this.syncRouteParams();
+    const both = this.viewMode === 'both';
+    const pages =
+      this.englishMod && !both ? this.allEnglishPagesData : this.allPagesData;
+    if (!pages?.length || !this.pageNumber) {
+      return;
+    }
+
+    // In Both mode navigate the Arabic Mc route; companion English is loaded in the text pane.
+    const chapter = both ? this.sourceChapter() : this.chapter || '';
+    if (both && this.chapter !== chapter) {
+      this.chapter = chapter;
+    }
+
+    const currentIndex = this.findPageIndex(pages);
+    if (currentIndex === -1) {
+      return;
+    }
+
+    const currentNumber = Number(pages[currentIndex].page_number);
+    let candidates = pages.filter((page: { page_number: number }) =>
+      direction === 1
+        ? Number(page.page_number) > currentNumber
+        : Number(page.page_number) < currentNumber
+    );
+
+    if (!candidates.length) {
+      return;
+    }
+
+    const targetNumber =
+      direction === 1
+        ? Math.min(
+            ...candidates.map((page: { page_number: number }) =>
+              Number(page.page_number)
+            )
+          )
+        : Math.max(
+            ...candidates.map((page: { page_number: number }) =>
+              Number(page.page_number)
+            )
+          );
+
+    candidates = candidates.filter(
+      (page: { page_number: number }) =>
+        Number(page.page_number) === targetNumber
+    );
+
+    const preferred =
+      candidates.find((page: { page_link: string }) =>
+        this.normalizeLink(page.page_link).includes(`/${chapter}/`)
+      ) ?? candidates[0];
+
+    this.router.navigateByUrl(this.normalizeLink(preferred.page_link), {
+      relativeTo: this.route.parent,
+    } as NavigationExtras);
   }
   callLinkData() {
     this.router.events.pipe(debounceTime(50)).subscribe(() => {
@@ -100,9 +366,7 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
       this.pageNumber = pageNumber;
       this.manuscriptID = id;
       this.chapter = chapter;
-      if(chapter=='McEnglish')
-        this.englishMod=true;
-      else this.englishMod=false;
+      this.syncLanguageFromRoute();
       this.callData(); // Call data initialization
       // Rest of your code here
     });
@@ -114,86 +378,42 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
     });
   }
   ngOnInit() {
+    const { id, chapter, pageNumber } = this.route.snapshot.params;
+    this.manuscriptID = id ?? '';
+    this.chapter = chapter ?? '';
+    this.pageNumber = pageNumber ?? '';
+    if (this.viewMode !== 'both') {
+      this.englishMod = this.chapter === 'McEnglish';
+      this.viewModeService.setMode(this.englishMod ? 'english' : 'source');
+    } else {
+      this.englishMod = false;
+    }
+    this.data = this.route.snapshot.data;
+    this.initializeData(this.data);
     this.callLinkData();
-    this.data=this.route.snapshot.data;
-      this.items =   [
-        {
-          label: 'Language ',
-          icon: 'book',
-          styleClass: 'menucus',
-          items: [
-            { label: 'Arabic', icon: 'book', command: () => this.changeToArabic()
-            },
-            { label: 'English', icon: 'book',command: () => {
-                if (this.chapter === 'Mc' || this.chapter === 'McEnglish') {
-                  this.changeToEnglish();
-                }
-              },
-            }
-          ]
-        },
-      {
-        /*label: 'Select MS',
-        icon: 'book',
-        styleClass: 'menucus',
-        items: [
-          { label: 'Pococke 400', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P400'),this.ngOnDestroy()}},
-          { label: 'Parker 578', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('CCCP578')}},
-          { label: 'Paris 5881', icon: 'book',command: () =>{ this.navigateToTheSelectedManuscript('P5881'),this.ngOnDestroy()} },
-          { label: 'Paris 3465', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3465')} },
-          { label: 'Paris 3466', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3466')}},
-          { label: 'Ayasofya 4095', icon: 'book' ,command: () => {this.navigateToTheSelectedManuscript('A4095')}},
-          { label: 'Paris 3471', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3471')}},
-          { label: 'Paris 3475', icon: 'book',command: () => {this.navigateToTheSelectedManuscript('P3475')} },
-          { label: 'Paris 3473', icon: 'book',command: () =>{ this.navigateToTheSelectedManuscript('P3473')} },
-        ]
-      },
-      {
-        label: 'Select page',
-        icon: 'description',
-        styleClass: 'menucus',
-        command:() => this.openNavbar(),
-      }, {*/
-
-       label: '',  icon:'arrow_back_ios_new' ,command:()=> {this.navigateToThePreviousPage(), this.ngOnDestroy()}},
-      { label: ' ',  icon:' '},
-
-      { label: '',  icon: 'arrow_forward_ios', command:()=> {this.navigateToTheNextPage(), this.ngOnDestroy()}},
-
-        {
-          label: 'Resize',
-          icon: 'format_size',
-          styleClass: 'menucus',
-          items: [
-            { label: 'Font size', icon: 'add', command: () => this.increaseFontSize()
-            },
-            { label: 'Font size', icon: 'remove',command:() => this.decreaseFontSize()
-            },
-            {label:'Facsimile size',icon:'add',command:()=>  this.increaseFacsimileSize()
-            },
-            { label: 'Facsimile size', icon: 'remove',command:()=> this.decreaseFacsimileSize() },
-
-          ]
-        },
-
-      /*{ label: 'Gallery', styleClass: 'menucus', icon: 'photo_library',command:()=> {this.openGallery(), this.ngOnDestroy()} },
-      /* { label: 'New Window', icon: 'info', styleClass: 'menucus'  },
-      /* { label: 'MS Description', icon: 'info', styleClass: 'menucus' ,command:()=> this.openNewWindow()},*/
-    /*  { label: 'Fullscreen', styleClass: 'menucus', icon: 'fullscreen' }*/
-  ];
-
+    this.facsimileVisible = this.facsimileService.visible;
+    this.facsimileSub = this.facsimileService.visible$.subscribe((visible) => {
+      this.facsimileVisible = visible;
+    });
 
     this.breakpointObserver
-      .observe([Breakpoints.Small, Breakpoints.XSmall]) // Define the breakpoints for small screens
+      .observe([Breakpoints.Small, Breakpoints.XSmall])
       .pipe(map((result) => result.matches))
       .subscribe((matches) => {
-        this.isSmallScreen = matches; // Set the value of 'isSmallScreen' based on the screen size
+        this.isSmallScreen = matches;
       });
-
   }
 
   isEnglishClickable(): boolean {
     return this.chapter === 'Mc' || this.chapter === 'McEnglish';
+  }
+
+  get isHebrewManuscript(): boolean {
+    return /hebrew/i.test(this.manuscriptID || '');
+  }
+
+  get sourceLanguageLabel(): string {
+    return this.isHebrewManuscript ? 'Hebrew' : 'Arabic';
   }
   shouldDisableButton(item: any): boolean {
     // Add your condition here
@@ -247,51 +467,19 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
 
 
   navigateToTheNextPage(): void {
-
-    if (this.allPagesData && this.pageNumber && this.englishMod==false) {
-      const pageNumber = parseInt(this.pageNumber,10);
-      const currentIndex = this.allPagesData.findIndex(
-        (page: { page_number: number }) => page.page_number === pageNumber)
-      if (currentIndex !== -1 && currentIndex < this.allPagesData.length - 1) {
-        const nextIndex = currentIndex + 1;
-        const nextPageLink = this.allPagesData[nextIndex].page_link;
-        this.router.navigateByUrl(
-          nextPageLink,
-          {relativeTo: this.route.parent} as NavigationExtras
-        );
-      }
-    }
-    if (this.chapter !== 'Mc' && this.chapter !== 'McEnglish') {
-      this.englishMod = false;
-    }
-//English next page
-    if (this.allPagesData && this.pageNumber && this.englishMod ) {
-      const pageNumber = parseInt(this.pageNumber,10);
-      const currentIndex = this.allEnglishPagesData.findIndex(
-        (page: { page_number: number }) => page.page_number === pageNumber)
-      if (currentIndex !== -1 && currentIndex < this.allEnglishPagesData.length - 1) {
-        const nextIndex = currentIndex + 1;
-        const nextPageLink = this.allEnglishPagesData[nextIndex].page_link;
-        this.router.navigateByUrl(
-          nextPageLink,
-          {relativeTo: this.route.parent} as NavigationExtras
-        );
-      }
-    }
+    this.navigateRelativePage(1);
   }
 
 
   changeToEnglish() {
-    // this.manuscriptSetPageDataService.setManuscriptPageData(this.pageEnglishData);
+    if (!this.isEnglishClickable()) {
+      return;
+    }
+    this.viewModeService.setMode('english');
     this.englishMod = true;
 
-    // Check if this.chapter ends with "English"
-    if (this.chapter.endsWith("English")) {
-      // If it ends with "English," remove it
-      this.chapter = this.chapter;
-    } else {
-      // If it doesn't end with "English," add "English" to it
-      this.chapter = this.chapter + "English";
+    if (!this.chapter.endsWith('English')) {
+      this.chapter = this.chapter + 'English';
     }
 
     this.manuscriptChapterPageService.setManuscriptChapterPage(
@@ -305,57 +493,60 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
       { relativeTo: this.route.parent } as NavigationExtras
     );
   }
-  changeToArabic(){
-    // this.manuscriptSetPageDataService.setManuscriptPageData(this.pageData);
+
+  changeToBoth() {
+    if (!this.isEnglishClickable()) {
+      return;
+    }
+    this.viewModeService.setMode('both');
     this.englishMod = false;
 
-    // Remove the "english" part from this.chapter
-    this.chapter = this.chapter.replace("English", "");
+    const chapter = this.sourceChapter();
+    if (this.chapter === chapter) {
+      return;
+    }
+
+    this.chapter = chapter;
+    this.manuscriptChapterPageService.setManuscriptChapterPage(
+      this.manuscriptID,
+      this.chapter,
+      this.pageNumber
+    );
+    this.router.navigateByUrl(
+      `/manuscripts/${this.manuscriptID}/${this.chapter}/${this.pageNumber}`,
+      { relativeTo: this.route.parent } as NavigationExtras
+    );
+  }
+
+  changeToSourceLanguage() {
+    this.changeToArabic();
+  }
+
+  changeToArabic() {
+    // Returns to the manuscript source language (Arabic or Hebrew).
+    this.viewModeService.setMode('source');
+    this.englishMod = false;
+
+    this.chapter = this.chapter.replace('English', '');
 
     this.manuscriptChapterPageService.setManuscriptChapterPage(
       this.manuscriptID,
-      this.chapter, // Now it's "Mc" instead of "Mc-english"
+      this.chapter,
       this.pageNumber
     );
 
     this.router.navigateByUrl(
       `/manuscripts/${this.manuscriptID}/${this.chapter}/${this.pageNumber}`,
       { relativeTo: this.route.parent } as NavigationExtras
-    );  }
+    );
+  }
 
-  navigateToThePreviousPage() {
+  navigateToThePreviousPage(): void {
+    this.navigateRelativePage(-1);
+  }
 
-    if (this.allPagesData && this.pageNumber && this.englishMod==false) {
-      const pageNumber = parseInt(this.pageNumber, 10);
-      const currentIndex = this.allPagesData.findIndex(
-        (page: { page_number: number }) => page.page_number === pageNumber)
-
-      if (currentIndex !== -1 && currentIndex > 0) {
-        const previousIndex = currentIndex - 1;
-        const previousPageLink = this.allPagesData[previousIndex].page_link;
-        this.router.navigateByUrl(
-          previousPageLink,
-          {relativeTo: this.route.parent} as NavigationExtras
-        );
-      }
-    }
-    if (this.chapter !== 'Mc' && this.chapter !== 'McEnglish') {
-      this.englishMod = false;
-    }
-    if (this.allPagesData && this.pageNumber && this.englishMod) {
-      const pageNumber = parseInt(this.pageNumber, 10);
-      const currentIndex = this.allEnglishPagesData.findIndex(
-        (page: { page_number: number }) => page.page_number === pageNumber)
-
-      if (currentIndex !== -1 && currentIndex > 0) {
-        const previousIndex = currentIndex - 1;
-        const previousPageLink = this.allEnglishPagesData[previousIndex].page_link;
-        this.router.navigateByUrl(
-          previousPageLink,
-          {relativeTo: this.route.parent} as NavigationExtras
-        );
-      }
-    }
+  toggleFacsimile(): void {
+    this.facsimileService.toggle();
   }
 
   openGallery() {
@@ -365,27 +556,88 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
       `/manuscripts/${this.manuscriptID}/gallery`,
       { relativeTo: this.route.parent } as NavigationExtras );
   }
+
+  async downloadCurrentXml(): Promise<void> {
+    this.syncRouteParams();
+    const page = this.pageData as IPageData;
+    if (!page?.lines) {
+      return;
+    }
+    await this.downloads.downloadCurrentPageXml(
+      page,
+      this.manuscriptID,
+      this.sourceChapter()
+    );
+  }
+
+  async downloadCurrentJson(): Promise<void> {
+    this.syncRouteParams();
+    const page = this.pageData as IPageData;
+    if (!page) {
+      return;
+    }
+    await this.downloads.downloadCurrentPageJson(page, this.manuscriptID);
+  }
+
+  async downloadAllText(): Promise<void> {
+    await this.runBulkDownload(() =>
+      this.downloads.downloadAllPagesAsText(
+        this.manuscriptID,
+        this.allPagesData ?? []
+      )
+    );
+  }
+
+  async downloadAllImages(): Promise<void> {
+    await this.runBulkDownload(() =>
+      this.downloads.downloadAllPagesAsImages(
+        this.manuscriptID,
+        this.allPagesData ?? []
+      )
+    );
+  }
+
+  async downloadAllXml(): Promise<void> {
+    await this.runBulkDownload(() =>
+      this.downloads.downloadAllPagesAsXml(
+        this.manuscriptID,
+        this.allPagesData ?? []
+      )
+    );
+  }
+
+  async downloadAllJson(): Promise<void> {
+    await this.runBulkDownload(() =>
+      this.downloads.downloadAllPagesAsJson(
+        this.manuscriptID,
+        this.allPagesData ?? []
+      )
+    );
+  }
+
+  private async runBulkDownload(task: () => Promise<void>): Promise<void> {
+    if (this.downloadBusy) {
+      return;
+    }
+    this.syncRouteParams();
+    if (!this.manuscriptID || !this.allPagesData?.length) {
+      return;
+    }
+    this.downloadBusy = true;
+    try {
+      await task();
+    } catch (err) {
+      console.error('Download failed', err);
+      const message =
+        err instanceof Error ? err.message : 'Download failed. Please try again.';
+      window.alert(message);
+    } finally {
+      this.downloadBusy = false;
+    }
+  }
+
   hasSubItems(item: any): boolean {
     return item && item.items && item.items.length > 0;
-  }
-
-  increaseFacsimileSize() {
-   this.facsimileSize=this.facsimileSize+5; // Replace with the desired size
-    this.facsimileService.changeFacsimileSize(this.facsimileSize.toString()+'%');
-  }
-  decreaseFacsimileSize(){
-    this.facsimileSize=this.facsimileSize-5; // Replace with the desired size
-    this.facsimileService.changeFacsimileSize(this.facsimileSize.toString()+'%');
-  }
-  increaseFontSize(): void {
-    this.fontSize=this.fontSize+2;
-    this.fontSizeService.setFontSize(this.fontSize.toString()+'px');
-
-  }
-  decreaseFontSize(){
-    this.fontSize=this.fontSize-2;
-    this.fontSizeService.setFontSize(this.fontSize.toString()+'px');
-
   }
 
   toggleSubMenu(item: any): void {
@@ -427,6 +679,8 @@ export class ManuscriptPageCommandBarComponent implements OnInit, OnDestroy{
     if (this.sub) {
       this.sub.unsubscribe();
     }
+    this.facsimileSub?.unsubscribe();
+    this.contentSub?.unsubscribe();
   }
 }
 

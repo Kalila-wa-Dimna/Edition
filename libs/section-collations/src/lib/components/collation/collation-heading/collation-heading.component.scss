@@ -13,6 +13,8 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  flex-shrink: 0;
   & > :last-child {
     margin-top: 2px;
   }
@@ -20,14 +22,18 @@
 :host-context(.light-theme) {
   :host {
     border-bottom: 3px solid $light-foreground;
+    background-color: transparent;
+    gap: 0;
   }
 
   .header-cell {
-    &:nth-child(even) {
-      background-color: $light-background;
-    }
+    color: #1a1a1a;
+
     &:nth-child(odd) {
-      background-color: $light-background-alt;
+      background-color: #ffffff;
+    }
+    &:nth-child(even) {
+      background-color: #edece8;
     }
   }
 }
@@ -35,14 +41,16 @@
 :host-context(.dark-theme) {
   :host {
     border-bottom: 3px solid $dark-foreground;
+    background-color: transparent;
+    gap: 0;
   }
 
   .header-cell {
     &:nth-child(even) {
-      background-color: $dark-background;
+      background-color: #0d3a47;
     }
     &:nth-child(odd) {
-      background-color: $dark-background-alt;
+      background-color: #0a303a;
     }
   }
 }

@@ -1,35 +1,172 @@
-<mat-toolbar class="tool original-toolbar">
-  <ng-container *ngFor="let item of items">
-    <ng-container *ngIf="!hasSubItems(item); else subMenu">
-      <ng-container>
-        <!-- Display the page number as text when the label is ' ' -->
-        <ng-container *ngIf="item.label === ' '">
-          <span [ngClass]="item.styleClass" class="mat-lable">{{ pageNumber }}</span>
-        </ng-container>
-        <!-- Display other items as buttons -->
-        <ng-container *ngIf="item.label !== ' '">
-          <button mat-stroked-button class="mat-button" (click)="item.command?.()" ngSkipHydration>
-            <mat-icon>{{ item.icon }}</mat-icon>
-            <span [ngClass]="item.styleClass">{{ item.label }}</span>
-          </button>
-        </ng-container>
-      </ng-container>
-    </ng-container>
-    <ng-template #subMenu>
-      <button mat-stroked-button class="mat-button" [matMenuTriggerFor]="itemMenu" *ngIf="hasSubItems(item)" ngSkipHydration>
-        <mat-icon>{{ item.icon }}</mat-icon>
-        <span [ngClass]="item.styleClass">{{ item.label }}</span>
-        <mat-icon>keyboard_arrow_down</mat-icon>
+<div class="command-bar">
+  <div class="bar-section language-section">
+    <span class="section-label">Language</span>
+    <div class="segmented" role="group" aria-label="Language">
+      <button
+        type="button"
+        class="segment"
+        [class.active]="viewMode === 'source'"
+        (click)="changeToSourceLanguage()"
+      >
+        {{ sourceLanguageLabel }}
       </button>
-      <mat-menu #itemMenu="matMenu">
-        <button mat-menu-item class="sub-item-container" *ngFor="let subItem of item.items"
-                [disabled]="subItem.label === 'English' && shouldDisableButton(subItem)"
-                [style.color]="subItem.label === 'English' && shouldDisableButton(subItem) ? 'gray' : 'inherit'"
-                (click)="subItem.command?.()" ngSkipHydration>
-          <mat-icon class="sub-item-icon">{{ subItem.icon }}</mat-icon>
-          <span [ngClass]="subItem.styleClass" class="sub-item-label">{{ subItem.label }}</span>
+      <button
+        type="button"
+        class="segment"
+        [class.active]="viewMode === 'english'"
+        [disabled]="!isEnglishClickable()"
+        [matTooltip]="
+          isEnglishClickable()
+            ? 'English translation'
+            : 'English available for Mc only'
+        "
+        (click)="changeToEnglish()"
+      >
+        English
+      </button>
+      <button
+        type="button"
+        class="segment"
+        [class.active]="viewMode === 'both'"
+        [disabled]="!isEnglishClickable()"
+        [matTooltip]="
+          isEnglishClickable()
+            ? 'Arabic and English side by side'
+            : 'Side-by-side available for Mc only'
+        "
+        (click)="changeToBoth()"
+      >
+        Both
+      </button>
+    </div>
+  </div>
+
+  <div class="bar-section language-section">
+    <span class="section-label">Text</span>
+    <div class="segmented" role="group" aria-label="Text view">
+      <button
+        type="button"
+        class="segment"
+        [class.active]="contentMode === 'transcription'"
+        matTooltip="Transcription beside facsimile"
+        (click)="setContentMode('transcription')"
+      >
+        Transcription
+      </button>
+      <button
+        type="button"
+        class="segment"
+        [class.active]="contentMode === 'xml'"
+        matTooltip="TEI XML beside facsimile"
+        (click)="setContentMode('xml')"
+      >
+        XML
+      </button>
+      <button
+        type="button"
+        class="segment"
+        [class.active]="contentMode === 'both'"
+        matTooltip="Transcription and XML side by side"
+        (click)="setContentMode('both')"
+      >
+        Both
+      </button>
+    </div>
+  </div>
+
+  <div class="bar-section nav-section">
+    <div class="page-nav">
+      <button
+        type="button"
+        class="icon-btn"
+        aria-label="Previous page"
+        matTooltip="Previous page"
+        (click)="navigateToThePreviousPage()"
+      >
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <span class="page-badge">p. {{ pageNumber }}</span>
+      <button
+        type="button"
+        class="icon-btn"
+        aria-label="Next page"
+        matTooltip="Next page"
+        (click)="navigateToTheNextPage()"
+      >
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+
+    <button
+      type="button"
+      class="action-btn"
+      [class.active]="facsimileVisible"
+      aria-label="Toggle facsimile"
+      [matTooltip]="facsimileVisible ? 'Hide facsimile' : 'Show facsimile'"
+      (click)="toggleFacsimile()"
+    >
+      <mat-icon>image</mat-icon>
+      <span>Facsimile</span>
+    </button>
+
+    <button
+      type="button"
+      class="action-btn"
+      aria-label="Open page gallery"
+      matTooltip="Open page gallery"
+      (click)="openGallery()"
+    >
+      <mat-icon>photo_library</mat-icon>
+      <span>Gallery</span>
+    </button>
+
+    <button
+      type="button"
+      class="action-btn"
+      aria-label="Downloads"
+      matTooltip="Download pages"
+      [matMenuTriggerFor]="downloadsMenu"
+      [disabled]="downloadBusy"
+    >
+      <mat-icon>download</mat-icon>
+      <span>{{ downloadBusy ? 'Preparing…' : 'Downloads' }}</span>
+    </button>
+    <mat-menu #downloadsMenu="matMenu">
+      <button mat-menu-item (click)="downloadAllText()" [disabled]="downloadBusy">
+        All pages as text (.zip)
+      </button>
+      <button mat-menu-item (click)="downloadAllImages()" [disabled]="downloadBusy">
+        All pages as images (.zip)
+      </button>
+      <button mat-menu-item (click)="downloadAllXml()" [disabled]="downloadBusy">
+        All pages as XML (.zip)
+      </button>
+      <button mat-menu-item (click)="downloadAllJson()" [disabled]="downloadBusy">
+        All pages as JSON (.zip)
+      </button>
+      <button mat-menu-item (click)="downloadCurrentXml()" [disabled]="downloadBusy">
+        Current page as XML
+      </button>
+      <button mat-menu-item (click)="downloadCurrentJson()" [disabled]="downloadBusy">
+        Current page as JSON
+      </button>
+    </mat-menu>
+  </div>
+
+  <div class="bar-section chapters-section">
+    <span class="section-label">Chapters</span>
+    <div class="chapters-nav" role="navigation" aria-label="Chapters">
+      @for (chapterItem of chapters; track chapterItem.chapter) {
+        <button
+          type="button"
+          class="chapter-chip"
+          [class.active]="isCurrentChapter(chapterItem.chapter)"
+          [matTooltip]="chapterTooltip(chapterItem)"
+          (click)="navigateToChapter(chapterItem)"
+        >
+          {{ chapterItem.chapter }}
         </button>
-      </mat-menu>
-    </ng-template>
-  </ng-container>
-</mat-toolbar>
+      }
+    </div>
+  </div>
+</div>

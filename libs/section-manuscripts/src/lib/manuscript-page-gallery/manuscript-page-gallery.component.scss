@@ -1,16 +1,44 @@
 @import 'sass/page.scss';
 
-main {
-  margin-top: 5px;
-  flex-direction: column;
-  align-items: center;
+:host {
+  align-items: stretch;
 }
 
-.gallery{
-  height: calc(100vh - 50px - 5px - 64px - 5px);
-  margin-top: 5px;
+main {
+  margin-top: 0;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
   width: 100%;
-  justify-content: center;
-  align-items: flex-start;
-  overflow-y: scroll;
+  max-width: 100%;
+  /* Avoid space-around from page.scss pulling the bar into the toolbar */
+  justify-content: flex-start !important;
+}
+
+.title-meta {
+  margin-inline-start: 0.45rem;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 0.85em;
+  opacity: 0.55;
+}
+
+.gallery-shell {
+  width: 100%;
+  min-height: calc(100vh - 50px - 5px - 72px);
+  background: #f2f2f2;
+  box-sizing: border-box;
+
+  @media screen and (min-width: 1440px) {
+    padding-inline: 0.5rem;
+  }
+}
+
+:host-context(.dark-theme) {
+  .gallery-shell {
+    background: #002a36;
+  }
+
+  .title-meta {
+    opacity: 0.65;
+  }
 }

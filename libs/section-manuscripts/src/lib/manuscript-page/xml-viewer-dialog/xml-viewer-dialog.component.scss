@@ -1,0 +1,36 @@
+:host {
+  display: block;
+}
+
+.xml-viewer-content {
+  max-height: min(70vh, 640px);
+  min-width: min(90vw, 720px);
+}
+
+.xml-pre {
+  margin: 0;
+  padding: 1rem;
+  background: #f7f7f5;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow: auto;
+  max-height: min(60vh, 560px);
+  color: #1a1a1a;
+}
+
+.xml-viewer-actions {
+  gap: 0.5rem;
+}
+
+:host-context(.dark-theme) {
+  .xml-pre {
+    background: #0f2a33;
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #e8eef0;
+  }
+}

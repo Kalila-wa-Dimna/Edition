@@ -19,7 +19,8 @@ interface CrossAnalysisRequest {
   providedIn: 'root',
 })
 export class CollationAnalysisService {
-  private url = 'https://mc48petk74.execute-api.eu-central-1.amazonaws.com/';
+  // Lambda Function URL (API Gateway times out at 30s; analysis often needs longer)
+  private url = 'https://aeruohct3uyoz6daswbg4orwp40nyxfb.lambda-url.eu-central-1.on.aws/';
 
   // Konfigurierbare Optionen
   private readonly TIMEOUT_MS = 120000; // 2 Minuten für große Analysen

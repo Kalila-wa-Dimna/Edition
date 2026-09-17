@@ -1,24 +1,211 @@
-<div class="container" *ngIf="isBrowser">
-  <lightgallery
-    [settings]="settings"
-    [onInit]="onInit"
-    id="customize-thumbnails-gallery"
+<div class="gallery-viewer" *ngIf="isBrowser">
+  <header class="gallery-header">
+    <div>
+      <p class="eyebrow">Manuscript gallery</p>
+      <h1 class="heading">{{ pageCount }} pages</h1>
+    </div>
+    <p class="hint">Click a page to open the facsimile</p>
+  </header>
+
+  <div
+    class="gallery-grid"
+    [class.is-rtl]="isRtlManuscript"
+    [attr.dir]="isRtlManuscript ? 'rtl' : 'ltr'"
   >
-    <a
-      *ngFor="let item of data; let i = index"
-      class="gallery-item"
-      [attr.href]="item.src.replace('.jpg', '.webp').replace('.jpeg', '.webp')"
-      [attr.data-thumb]="item.thumb"
-      [attr.data-sub-html]="item.caption"
-    >
-      <span class="image-container">
-        <img
-          class="img-responsive"
-          [src]="item.src.replace('.jpg', '.webp').replace('.jpeg', '.webp')"
-          alt=""
-        />
-        <span class="caption">{{ item.caption }}</span>
-      </span>
-    </a>
-  </lightgallery>
+    @for (item of data; track item.src; let i = $index) {
+      <button
+        type="button"
+        class="gallery-item"
+        [attr.title]="item.caption || 'p. ' + (i + 1)"
+        (click)="openLightbox(i)"
+      >
+        <span class="image-card" [class.is-failed]="item.thumbFailed">
+          @if (!item.thumbFailed) {
+            <img
+              class="thumb"
+              [src]="item.thumb"
+              [alt]="item.caption || 'Manuscript page'"
+              loading="lazy"
+              decoding="async"
+              (error)="onThumbError(item)"
+              (load)="onThumbLoad(item)"
+            />
+          } @else {
+            <span class="thumb-fallback">No image</span>
+          }
+          <span class="caption">{{ item.caption || 'p. ' + (i + 1) }}</span>
+        </span>
+      </button>
+    }
+  </div>
+
+  @if (!data.length) {
+    <div class="empty-state">
+      <span class="empty-mark">Gallery</span>
+      <p>No gallery images available</p>
+    </div>
+  }
 </div>
+
+@if (lightboxOpen && activeItem) {
+  <div
+    #lightboxRoot
+    class="ms-lightbox"
+    [class.is-rtl]="isRtlManuscript"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="activeItem.caption || 'Manuscript facsimile'"
+  >
+    <div class="ms-lightbox-toolbar">
+      <span class="ms-lightbox-counter">
+        {{ activeIndex + 1 }} / {{ pageCount }}
+      </span>
+
+      <div class="ms-zoom-controls" role="group" aria-label="Zoom">
+        <button
+          type="button"
+          class="ms-zoom-btn"
+          aria-label="Zoom out"
+          title="Zoom out"
+          [disabled]="!canZoomOut"
+          (click)="zoomOut($event)"
+        >
+          −
+        </button>
+        <button
+          type="button"
+          class="ms-zoom-label"
+          aria-label="Reset zoom"
+          title="Reset zoom"
+          (click)="resetZoom($event)"
+        >
+          {{ zoomPercent }}%
+        </button>
+        <button
+          type="button"
+          class="ms-zoom-btn"
+          aria-label="Zoom in"
+          title="Zoom in"
+          [disabled]="!canZoomIn"
+          (click)="zoomIn($event)"
+        >
+          +
+        </button>
+      </div>
+
+      <button
+        type="button"
+        class="ms-lightbox-close"
+        aria-label="Close"
+        title="Close"
+        (click)="closeLightbox()"
+      >
+        ×
+      </button>
+    </div>
+
+    <div class="ms-lightbox-viewer">
+      <button
+        type="button"
+        class="ms-nav ms-nav-prev"
+        aria-label="Previous page"
+        [disabled]="activeIndex === 0"
+        (click)="prevPage($event)"
+      >
+        ‹
+      </button>
+
+      <div class="ms-lightbox-main">
+        <div
+          class="ms-lightbox-viewport"
+          [class.is-zoomed]="zoom > 1"
+          [class.is-loading]="!mainImageLoaded && !mainImageFailed"
+          (pointerdown)="onPanStart($event)"
+          (pointermove)="onPanMove($event)"
+          (pointerup)="onPanEnd($event)"
+          (pointercancel)="onPanEnd($event)"
+        >
+          @if (!mainImageFailed) {
+            <img
+              class="ms-lightbox-image"
+              [class.is-ready]="mainImageLoaded"
+              [src]="activeItem.src"
+              [alt]="activeItem.caption || 'Manuscript page'"
+              [style.transform]="imageTransform"
+              draggable="false"
+              (load)="onMainImageLoad()"
+              (error)="onMainImageError()"
+            />
+          } @else {
+            <p class="ms-lightbox-missing">Facsimile could not be loaded</p>
+          }
+        </div>
+        <p class="ms-lightbox-page">{{ activeItem.caption }}</p>
+      </div>
+
+      <button
+        type="button"
+        class="ms-nav ms-nav-next"
+        aria-label="Next page"
+        [disabled]="activeIndex >= data.length - 1"
+        (click)="nextPage($event)"
+      >
+        ›
+      </button>
+    </div>
+
+    <div class="ms-lightbox-strip">
+      <button
+        type="button"
+        class="ms-strip-roll ms-strip-roll-prev"
+        aria-label="Previous thumbnails"
+        [disabled]="!canScrollStripPrev"
+        (click)="scrollStripPage(-1, $event)"
+      >
+        ‹
+      </button>
+      <div
+        #thumbStrip
+        class="ms-lightbox-thumbs"
+        [attr.dir]="isRtlManuscript ? 'rtl' : 'ltr'"
+        (wheel)="onThumbStripWheel($event)"
+        (scroll)="onThumbStripScroll()"
+      >
+        @for (item of data; track item.src; let i = $index) {
+          <button
+            type="button"
+            class="ms-lightbox-thumb"
+            [attr.data-index]="i"
+            [class.active]="i === activeIndex"
+            [attr.title]="item.caption || 'p. ' + (i + 1)"
+            [attr.aria-label]="item.caption || 'Page ' + (i + 1)"
+            [attr.aria-current]="i === activeIndex ? 'true' : null"
+            (click)="selectThumb(i)"
+          >
+            @if (shouldLoadStripThumb(i)) {
+              <img
+                [src]="item.thumb"
+                [alt]="item.caption || ''"
+                loading="lazy"
+                decoding="async"
+                (error)="onThumbError(item)"
+              />
+            }
+            <span class="ms-lightbox-thumb-label">{{
+              item.caption || 'p. ' + (i + 1)
+            }}</span>
+          </button>
+        }
+      </div>
+      <button
+        type="button"
+        class="ms-strip-roll ms-strip-roll-next"
+        aria-label="Next thumbnails"
+        [disabled]="!canScrollStripNext"
+        (click)="scrollStripPage(1, $event)"
+      >
+        ›
+      </button>
+    </div>
+  </div>
+}

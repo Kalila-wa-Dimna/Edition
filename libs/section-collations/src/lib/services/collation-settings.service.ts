@@ -3,10 +3,13 @@ import { ICollationViewSettings } from '../models/collation-view-settings.model'
 import { StorageService } from '@kalila-edition/common-ui';
 import { isPlatformBrowser } from '@angular/common';
 import { BehaviorSubject, ReplaySubject, filter, map } from 'rxjs';
-import { SIZE_MAP } from '../constants/size.constants';
+import {
+  SIZE_MAP,
+  recommendedSizeForColumns,
+} from '../constants/size.constants';
 
 const DEFAULT: ICollationViewSettings = {
-  size: 'md',
+  size: 'lg',
   facsimilePreviw: 'permanent',
   map: 'bottom',
   fullWidth: false,
@@ -64,6 +67,22 @@ export class CollationSettingsService {
         );
       }
     }
+  }
+
+  /**
+   * When the number of manuscripts changes, pick a fitting size
+   * (e.g. 4 columns → LG). Manual settings overrides still work via apply().
+   */
+  async syncSizeToColumnCount(columnCount: number) {
+    if (columnCount < 1) {
+      return;
+    }
+    const recommended = recommendedSizeForColumns(columnCount);
+    const current = this.state$.getValue();
+    if (current.size === recommended) {
+      return;
+    }
+    await this.apply({ ...current, size: recommended });
   }
 
   async apply(newSettings: ICollationViewSettings) {

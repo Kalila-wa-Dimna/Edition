@@ -2,36 +2,95 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-}
-
-.G-button{
   width: 100%;
-
-
 }
 
-.G-button:hover{
+.ms-selected-panel {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-sizing: border-box;
+  padding: 0.75rem 0 1rem;
+  gap: 0;
+}
+
+.gallery-link {
+  align-self: stretch;
+  margin: 0.5rem 0.5rem 0;
+  padding: 0.7rem 0.9rem !important;
+  text-align: center;
+  font-weight: 650 !important;
+  letter-spacing: 0.02em;
+  color: #f7fafb !important;
+  background: #004659 !important;
+  border: 1px solid #004659 !important;
+}
+
+.ms-chapters {
+  margin-top: 1.35rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 70, 89, 0.14);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+:host-context(.dark-theme) {
+  .gallery-link.hell-background,
+  .gallery-link.mat-flat-button {
+    background: #4c7d8a !important;
+    border-color: #4c7d8a !important;
+    color: #fff !important;
+  }
+
+  .ms-chapters {
+    border-top-color: rgba(255, 255, 255, 0.14);
+  }
+}
+
+.ms-status {
+  margin: 0.75rem 0.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.ms-error {
+  color: #a90707;
+  opacity: 1;
+}
+
+.page-links {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.G-button {
+  width: 100%;
+}
+
+.G-button:hover {
   background-color: white;
 }
 
 :host-context(.light-theme) {
-  .mat-flat-button {
+  .mat-flat-button:not(.gallery-link) {
     background-color: #edece8 !important;
   }
 
-  .hell-background {
+  .hell-background:not(.gallery-link) {
     background-color: #edece8 !important;
   }
-
 
   ::ng-deep mat-form-field {
-
     background-color: #edece8 !important;
   }
 
   /* Set background color for the buttons */
-  .mat-flat-button,
+  .mat-flat-button:not(.gallery-link),
   .mat-expansion-panel {
     background-color: #edece8 !important;
   }
@@ -41,7 +100,7 @@
     background-color: #edece8 !important;
   }
 
-  ::ng-deep.mdc-text-field--filled:not(.mdc-text-field--disabled){
+  ::ng-deep.mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: #edece8 !important;
   }
 }

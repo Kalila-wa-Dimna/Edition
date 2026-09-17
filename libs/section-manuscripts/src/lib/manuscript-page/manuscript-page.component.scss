@@ -2,37 +2,86 @@
 main {
   margin-top: 5px;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0;
+  width: 100%;
+  max-width: 100%;
+
+  @media screen and (max-width: 896px) {
+    margin-top: 0;
+  }
 }
 
 .page-and-text {
   // - top bar - margin - command bar - margin
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  overflow: scroll;
-  @media screen and (min-width: 40px) and (max-width: 896px) {
+  align-items: stretch;
+  overflow: hidden;
+
+  @media screen and (max-width: 896px) {
     width: 100%;
-    margin-top: 1px;
-    align-items: flex-start;
-    height: calc(
-      150vh - 50px - 5px - 64px - 5px
-    ); // Apply the width only for the specified screen range
+    margin-top: 0;
     flex-direction: column;
-    // Add any other styles you want for medium screens
+    align-items: stretch;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    gap: 0.35rem;
+    padding-bottom: 0.5rem;
   }
+
   @media screen and (min-width: 897px) {
     width: 100%;
     margin-top: 5px;
-    height: calc(100vh - 50px - 5px - 64px - 5px) !important;
+    height: calc(100vh - 50px - 5px - 64px - 5px);
   }
+
+  @media screen and (min-width: 1440px) {
+    width: min(100%, 1400px);
+    margin-inline: auto;
+  }
+
   @media screen and (min-width: 1800px) {
-    width: 70% !important;
-    margin-top: 5px;
-    height: calc(90vh - 50px - 5px - 64px - 5px) !important;
+    width: min(86%, 1680px);
+    height: calc(100vh - 50px - 5px - 64px - 5px - 12px);
   }
+
+  @media screen and (min-width: 2200px) {
+    width: min(80%, 1960px);
+  }
+
+  &.both-mode {
+    @media screen and (min-width: 897px) {
+      width: min(100%, 1680px);
+      margin-inline: auto;
+    }
+
+    @media screen and (min-width: 1440px) {
+      width: min(100%, 1760px);
+    }
+
+    @media screen and (min-width: 1800px) {
+      width: min(94%, 1960px);
+    }
+
+    @media screen and (min-width: 2200px) {
+      width: min(90%, 2200px);
+    }
+  }
+}
+
+:host ::ng-deep .page-title,
+:host ::ng-deep .path {
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .version-number {
   font-size: 12px;
+  font-family: 'Times New Roman', Times, serif;
+
+  @media screen and (max-width: 896px) {
+    display: none;
+  }
 }

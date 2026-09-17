@@ -2,6 +2,10 @@ import { Component, Input } from '@angular/core';
 import { ICellData } from '../../../../models/collation-row-data.model';
 import { CollationSettingsService } from '../../../../services/collation-settings.service';
 import { FacsimilePanelService } from '../../../../services/facsimile-panel.service';
+import {
+  CollationDataService,
+  SequenceArrow,
+} from '../../../../services/collation-data.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RobotService } from '../../../../services/robot.service';
 
@@ -15,6 +19,8 @@ export class CollationCellComponent {
   @Input() siglum = '';
   @Input() orderDisplay = '';
   @Input() unitIndex = 0;
+  /** 0-based index in segment_data / units array. */
+  @Input() unitArrayIndex = 0;
   @Input() mediumIndex = 0;
   @Input() chapterSiglum = '';
 
@@ -33,8 +39,28 @@ export class CollationCellComponent {
   constructor(
     private settingsSerive: CollationSettingsService,
     private facsimilePanelService: FacsimilePanelService,
-    private robotService: RobotService
+    private robotService: RobotService,
+    private dataService: CollationDataService
   ) {}
+
+  /** Manuscript order position shown next to the page link (1-based). */
+  orderInMsDisplay(): number | null {
+    if (this.pageData?.orderInMs == null) {
+      return null;
+    }
+    return this.pageData.orderInMs + 1;
+  }
+
+  /**
+   * Arrow only when this MS truly reorders units vs the collation.
+   * (Old check used adjustedOrder vs unit.order and false-fired on Lo-h.)
+   */
+  sequenceArrow(): SequenceArrow | null {
+    if (!this.pageData || this.pageData.lacuna) {
+      return null;
+    }
+    return this.dataService.sequenceArrow(this.siglum, this.unitArrayIndex);
+  }
 
   facsimilePanelIcon(): string {
     if (!this.pageData) {
@@ -85,12 +111,13 @@ export class CollationCellComponent {
   }
 
   updateChapterSiglum(chapterSiglum: string): string {
-    if (chapterSiglum === 'Di_s') {
-      return 'Di';
-    } else if (chapterSiglum === 'ToC') {
+    // Collation ids can be chapter variants (Lo-h, Di-4-1, Di_s).
+    // Manuscript routes always use the base chapter code (Lo, Di, …).
+    if (chapterSiglum === 'ToC') {
       return 'toc';
     }
-    return chapterSiglum;
+    const baseChapter = chapterSiglum.match(/^[A-Za-z]{2}/)?.[0];
+    return baseChapter ?? chapterSiglum;
   }
 
   get formattedChapterSiglum(): string {

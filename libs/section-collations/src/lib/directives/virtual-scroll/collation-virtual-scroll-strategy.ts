@@ -78,6 +78,7 @@ export class CollationVirtualScrollStrategy implements VirtualScrollStrategy {
    */
   updateUnits(units: ICollationUnit[]) {
     this._units = units;
+    this._heightCache.clear();
 
     if (this._viewport) {
       this._viewport.checkViewportSize();
@@ -223,36 +224,64 @@ export class CollationVirtualScrollStrategy implements VirtualScrollStrategy {
 
   /**
    * Update the height cache with the actual height
-   * of the rendered message components.
-   *
-   * @returns
+   * of the rendered collation row components.
+   * Compensates scroll when heights above the viewport change (stops jump on scroll-up).
    */
   private _updateHeightCache() {
     if (!this._wrapper || !this._viewport) {
       return;
     }
 
+    const scrollOffsetBefore = this._viewport.measureScrollOffset();
+    const scrollIdx = this._getUnitIdxByOffset(scrollOffsetBefore);
+    const heightAboveBefore = this._getOffsetByUnitIdx(scrollIdx);
+
     const nodes = this._wrapper.childNodes;
     let cacheUpdated = false;
 
     for (let i = 0; i < nodes.length; i++) {
       const node = nodes[i] as HTMLElement;
-
-      if (node && node.nodeName === 'APP-HERO-MESSAGE') {
-        const id = node.getAttribute('data-hm-id') as string;
-        const cachedHeight = this._heightCache.get(id);
-
-        if (!cachedHeight || cachedHeight.source !== 'actual') {
-          const height = node.clientHeight;
-
-          this._heightCache.set(id, { value: height, source: 'actual' });
-          cacheUpdated = true;
-        }
+      if (!node || node.nodeType !== 1) {
+        continue;
+      }
+      // Actual host is kd-collation-row (legacy code looked for APP-HERO-MESSAGE)
+      if (node.tagName !== 'KD-COLLATION-ROW') {
+        continue;
+      }
+      const id = node.getAttribute('data-unit-id');
+      if (!id) {
+        continue;
+      }
+      const height = node.getBoundingClientRect().height;
+      if (height <= 0) {
+        continue;
+      }
+      const cachedHeight = this._heightCache.get(id);
+      if (
+        !cachedHeight ||
+        cachedHeight.source !== 'actual' ||
+        Math.abs(cachedHeight.value - height) > 1
+      ) {
+        this._heightCache.set(id, { value: height, source: 'actual' });
+        cacheUpdated = true;
       }
     }
 
-    if (cacheUpdated) {
-      this._viewport.setTotalContentSize(this._getTotalHeight());
+    if (!cacheUpdated) {
+      return;
     }
+
+    this._viewport.setTotalContentSize(this._getTotalHeight());
+
+    const heightAboveAfter = this._getOffsetByUnitIdx(scrollIdx);
+    const delta = heightAboveAfter - heightAboveBefore;
+    if (Math.abs(delta) > 0.5) {
+      this._viewport.scrollToOffset(scrollOffsetBefore + delta, 'auto');
+    }
+
+    const renderedRange = this._viewport.getRenderedRange();
+    this._viewport.setRenderedContentOffset(
+      this._getOffsetByUnitIdx(renderedRange.start)
+    );
   }
 }

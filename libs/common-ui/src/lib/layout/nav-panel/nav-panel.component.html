@@ -1,167 +1,191 @@
-<div class="panel-top">
-  <button (click)="closeClicked.emit()" mat-icon-button>
-    <mat-icon>close</mat-icon>
-  </button>
-  <mat-divider></mat-divider>
-  <a mat-button style="width: 100%" [routerLink]="['/']">Home</a>
-  <mat-divider></mat-divider>
-</div>
-
-<div class="panel-content">
-  <a mat-button style="width: 100%" [routerLink]="['/about']"
-    >About the Project</a
-  >
-  <mat-divider></mat-divider>
-
-  <mat-accordion>
-
-    <mat-expansion-panel
-      [expanded]="expanded.manuscriptDescriptionPanelOpen"
-      (opened)="expanded.manuscriptDescriptionPanelOpen = true"
-      (closed)="expanded.manuscriptDescriptionPanelOpen = false"
+<div class="nav-shell">
+  <header class="nav-header">
+    <div class="nav-brand">
+      <img
+        class="nav-brand-logo"
+        src="/assets/icons/KD-Edition-Logo.png"
+        alt="Kalīla wa-Dimna Edition"
+        width="140"
+        height="140"
+      />
+    </div>
+    <button
+      type="button"
+      class="nav-close"
+      (click)="closeClicked.emit()"
+      aria-label="Close menu"
     >
-      <mat-expansion-panel-header>
-        <mat-panel-title><span class="panel-title"><span>Manuscript Descriptions</span></span>
-        </mat-panel-title>
+      <mat-icon>close</mat-icon>
+    </button>
+  </header>
 
-
-      </mat-expansion-panel-header>
-      <a mat-button  [routerLink]="['/description']"
-      >Survey</a
-      >
-   <mat-divider></mat-divider>
-      <a mat-button  [routerLink]="['/description/graph']"
-      >graph</a
-      >
-      <mat-divider></mat-divider>
-      <kd-manuscript-descrition-panel
-        *ngIf="expanded.manuscriptDescriptionPanelOpen"
-      ></kd-manuscript-descrition-panel>
-
-    </mat-expansion-panel>
-
-    <mat-divider></mat-divider>
-    <mat-expansion-panel
-      [expanded]="expanded.manuscriptPanelOpen"
-      (opened)="expanded.manuscriptPanelOpen = true"
-      (closed)="expanded.manuscriptPanelOpen = false"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title
-          ><span class="panel-title"><span>Manuscript Library</span></span>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a mat-button [routerLink]="['/manuscripts']">Manuscript library</a>
-      <kd-manuscripts-panel
-        *ngIf="expanded.manuscriptPanelOpen"
-      ></kd-manuscripts-panel>
-      <mat-divider></mat-divider>
-    </mat-expansion-panel>
-    <mat-divider></mat-divider>
-
-    <mat-expansion-panel
-      [expanded]="expanded.collationPanelOpen"
-      (opened)="expanded.collationPanelOpen = true"
-      (closed)="expanded.collationPanelOpen = false"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title
-          ><span class="panel-title"><span>Collations</span></span>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <a mat-button [routerLink]="['/collations']">Overview</a>
-
-      <mat-divider></mat-divider>
-      <kd-collations-panel
-        *ngIf="expanded.collationPanelOpen"
-      ></kd-collations-panel>
-    </mat-expansion-panel>
-    <mat-divider></mat-divider>
-
-    <!-- adding the English collations-->
-
-    <mat-expansion-panel
-      [expanded]="expanded.englishCollationPanelOpen"
-      (opened)="expanded.englishCollationPanelOpen = true"
-      (closed)="expanded.englishCollationPanelOpen = false"
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title
-          ><span class="panel-title"><span>English Translation</span></span>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-divider></mat-divider>
-      <a mat-button style="ont-weight: bold" [routerLink]="['/mceng']"
-      >Mc English Edition</a
-      >
-      <kd-english-collation-panel
-        *ngIf="expanded.englishCollationPanelOpen"
-      ></kd-english-collation-panel>
-
-      <mat-divider></mat-divider>
-    </mat-expansion-panel>
-    <mat-divider></mat-divider>
-
-    <mat-expansion-panel
-      [expanded]="expanded.guidesPanelOpen"
-      (opened)="expanded.guidesPanelOpen = true"
-      (closed)="expanded.guidesPanelOpen = false"
-      disabled
-    >
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <span class="panel-title"><span>Guides [in development]</span></span>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a mat-button [routerLink]="['/guides']">Overview</a>
-      <mat-divider></mat-divider>
-      <a mat-button [routerLink]="['/guides/glossary']">Glossary</a>
-      <mat-divider></mat-divider>
-      <a mat-button [routerLink]="['/guides/editing-workflow']"
-        >Editing Workflow</a
-      >
-      <mat-divider></mat-divider>
-      <a mat-button [routerLink]="['/guides/transcription-guidelines']"
-        >Transcription Guidelines</a
-      >
-      <mat-divider></mat-divider>
+  <nav class="nav-body" aria-label="Edition navigation">
+    <div class="nav-section">
+      <p class="nav-section-label">Explore</p>
       <a
-        mat-button
-        [routerLink]="['/guides/segmentation-and-collation-principles']"
-        >Segmentation and Collation Principles</a
+        class="nav-link"
+        [routerLink]="['/']"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="closeClicked.emit()"
+        >Home</a
       >
-      <mat-divider></mat-divider>
-      <a mat-button [routerLink]="['/guides/middle-arabic-features']"
-        >Middle Arabic Features</a
-      >
-      <mat-divider></mat-divider>
-      <a mat-button [routerLink]="['/', 'guides', 'dissemination-history']"
-        >Kalila wa-Dimna Dissemination History</a
-      >
-      <mat-divider></mat-divider>
+    </div>
+
+    <div class="nav-section">
+      <p class="nav-section-label">Collections</p>
+
+      <mat-accordion class="nav-accordion" displayMode="flat">
+        <mat-expansion-panel
+          class="nav-panel"
+          [expanded]="expanded.manuscriptDescriptionPanelOpen"
+          (opened)="expanded.manuscriptDescriptionPanelOpen = true"
+          (closed)="expanded.manuscriptDescriptionPanelOpen = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>Manuscript Descriptions</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="nav-panel-body">
+            <a class="nav-sublink" [routerLink]="['/description']" (click)="closeClicked.emit()"
+              >Survey</a
+            >
+            <a
+              class="nav-sublink"
+              [routerLink]="['/description/graph']"
+              (click)="closeClicked.emit()"
+              >Graph</a
+            >
+            <kd-manuscript-descrition-panel
+              *ngIf="expanded.manuscriptDescriptionPanelOpen"
+            ></kd-manuscript-descrition-panel>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          class="nav-panel"
+          [expanded]="expanded.manuscriptPanelOpen"
+          (opened)="expanded.manuscriptPanelOpen = true"
+          (closed)="expanded.manuscriptPanelOpen = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>Manuscript Library</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="nav-panel-body">
+            <a
+              class="nav-cta"
+              [routerLink]="['/manuscripts']"
+              (click)="closeClicked.emit()"
+              >Manuscript library</a
+            >
+            <kd-manuscripts-panel
+              *ngIf="expanded.manuscriptPanelOpen"
+            ></kd-manuscripts-panel>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          class="nav-panel"
+          [expanded]="expanded.collationPanelOpen"
+          (opened)="expanded.collationPanelOpen = true"
+          (closed)="expanded.collationPanelOpen = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>Collations</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="nav-panel-body">
+            <a class="nav-sublink" [routerLink]="['/collations']" (click)="closeClicked.emit()"
+              >Overview</a
+            >
+            <kd-collations-panel
+              *ngIf="expanded.collationPanelOpen"
+            ></kd-collations-panel>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          class="nav-panel"
+          [expanded]="expanded.englishCollationPanelOpen"
+          (opened)="expanded.englishCollationPanelOpen = true"
+          (closed)="expanded.englishCollationPanelOpen = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>English Translation</mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="nav-panel-body">
+            <a class="nav-sublink" [routerLink]="['/mceng']" (click)="closeClicked.emit()"
+              >Mc English Edition</a
+            >
+            <kd-english-collation-panel
+              *ngIf="expanded.englishCollationPanelOpen"
+            ></kd-english-collation-panel>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel
+          class="nav-panel"
+          [expanded]="expanded.guidesPanelOpen"
+          (opened)="expanded.guidesPanelOpen = true"
+          (closed)="expanded.guidesPanelOpen = false"
+          disabled
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>Guides <span class="nav-soon">soon</span></mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="nav-panel-body">
+            <a class="nav-sublink" [routerLink]="['/guides']">Overview</a>
+            <a class="nav-sublink" [routerLink]="['/guides/glossary']">Glossary</a>
+            <a class="nav-sublink" [routerLink]="['/guides/editing-workflow']"
+              >Editing Workflow</a
+            >
+            <a
+              class="nav-sublink"
+              [routerLink]="['/guides/transcription-guidelines']"
+              >Transcription Guidelines</a
+            >
+            <a
+              class="nav-sublink"
+              [routerLink]="['/guides/segmentation-and-collation-principles']"
+              >Segmentation and Collation Principles</a
+            >
+            <a
+              class="nav-sublink"
+              [routerLink]="['/guides/middle-arabic-features']"
+              >Middle Arabic Features</a
+            >
+            <a
+              class="nav-sublink"
+              [routerLink]="['/', 'guides', 'dissemination-history']"
+              >Kalila wa-Dimna Dissemination History</a
+            >
+            <a
+              class="nav-sublink"
+              [routerLink]="['/guides/kalila-wa-dimna-research-and-publications']"
+              >Kalila wa-Dimna Research and Publications</a
+            >
+            <a class="nav-sublink" [routerLink]="['/guides/technical-aspects']"
+              >Technical Aspects</a
+            >
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <div class="nav-section">
+      <p class="nav-section-label">More</p>
       <a
-        mat-button
-        [routerLink]="['/guides/kalila-wa-dimna-research-and-publications']"
-        >Kalila wa-Dimna Research and Publications</a
+        class="nav-link"
+        [routerLink]="['/manuscripts/illustrations']"
+        routerLinkActive="active"
+        (click)="closeClicked.emit()"
+        >Illustrations</a
       >
-      <mat-divider></mat-divider>
-      <a mat-button [routerLink]="['/guides/technical-aspects']"
-        >Technical Aspects</a
+      <a
+        class="nav-link"
+        [routerLink]="['/imprint']"
+        routerLinkActive="active"
+        (click)="closeClicked.emit()"
+        >Imprint</a
       >
-      <mat-divider></mat-divider>
-    </mat-expansion-panel>
-  </mat-accordion>
-  <mat-divider></mat-divider>
-  <a
-    mat-button
-    style="width: 100%"
-    [routerLink]="['/manuscripts/illustrations']"
-    >Illustrations</a
-  >
-
-
-  <mat-divider></mat-divider>
-  <a mat-button style="width: 100%" [routerLink]="['/imprint']">Imprint</a>
-  <mat-divider></mat-divider>
+    </div>
+  </nav>
 </div>

@@ -22,7 +22,6 @@ import { ManuscriptPageGalleryViewerComponent } from './manuscript-page-gallery/
 import { ManuscriptPageGalleryCommandBarComponent } from './manuscript-page-gallery/manuscript-page-gallery-command-bar/manuscript-page-gallery-command-bar.component';
 import { ManuscriptPageService } from './services/manuscript-page.resolver';
 import { FormsModule } from '@angular/forms';
-import { LightgalleryModule } from 'lightgallery/angular';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion'; // Import MatExpansionModule
 import { MatSliderModule } from '@angular/material/slider';
@@ -31,6 +30,7 @@ import { IllustrationsGalleryComponent } from './illustrations-gallery/illustrat
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { IllustrationModalComponent } from './illustrations-gallery/illustration-modal.component';
+import { XmlViewerDialogComponent } from './manuscript-page/xml-viewer-dialog/xml-viewer-dialog.component';
 
 @NgModule({
   imports: [
@@ -45,7 +45,6 @@ import { IllustrationModalComponent } from './illustrations-gallery/illustration
     MatMenuModule,
     MatDividerModule,
     FormsModule,
-    LightgalleryModule,
     MatSidenavModule,
     MatSliderModule,
     MatExpansionModule,
@@ -70,6 +69,7 @@ import { IllustrationModalComponent } from './illustrations-gallery/illustration
     ManuscriptPageGalleryCommandBarComponent,
     IllustrationModalComponent,
     IllustrationsGalleryComponent,
+    XmlViewerDialogComponent,
   ],
 })
 export class SectionManuscriptsModule {}

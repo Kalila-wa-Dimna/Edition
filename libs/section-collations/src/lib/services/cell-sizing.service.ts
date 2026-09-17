@@ -59,7 +59,8 @@ export class CellSizingService {
     phantom.className = `collation-cell rtl font-noto-naskh`;
     phantom.style.fontSize = `${SIZE_MAP[size].font}px`;
     // Set the width of the container
-    phantom.style.width = `${SIZE_MAP[size].cell}px`;
+    phantom.style.width = `${SIZE_MAP[size].cell + 2 * CELL_PADDING}px`;
+    phantom.style.boxSizing = 'border-box';
 
     // Ensure the element is not visible and does not affect the layout
     phantom.style.position = 'absolute';

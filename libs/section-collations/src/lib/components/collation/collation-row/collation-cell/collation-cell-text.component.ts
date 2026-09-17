@@ -61,9 +61,15 @@ interface MergedSegment {
     `
       p {
         margin: 0;
-        padding: 0;
+        padding: 0.1rem 0 0.2rem;
         font-size: inherit;
         line-height: 1.8;
+        text-align: justify;
+        text-align-last: auto;
+        box-sizing: border-box;
+        white-space: normal;
+        overflow-wrap: break-word;
+        hyphens: auto;
       }
       .order-in-ms {
         font-weight: bold;

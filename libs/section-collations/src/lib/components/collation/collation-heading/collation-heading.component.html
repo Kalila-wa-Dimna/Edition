@@ -2,8 +2,10 @@
   *ngFor="let col of columns; index as i"
   class="header-cell"
   [ngStyle]="{
-    'width.px': cellWidth$ | async,
-    'padding.px': cellPadding,
+    'width.px': ((cellWidth$ | async) ?? 0) + 2 * cellPadding,
+    'min-width.px': ((cellWidth$ | async) ?? 0) + 2 * cellPadding,
+    padding: cellPadding + 'px',
+    'box-sizing': 'border-box',
     'font-size.px': fontSize$ | async,
     'background-color': highlightedColumn() === i ? '#f0b275' : undefined,
     'color': highlightedColumn() === i ? 'black' : undefined,

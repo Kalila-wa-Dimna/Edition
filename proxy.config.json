@@ -1,1 +1,8 @@
-{}
+{
+  "/edition_data": {
+    "target": "https://d6p1tcxn3fqqp.cloudfront.net",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "info"
+  }
+}

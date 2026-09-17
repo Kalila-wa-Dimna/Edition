@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   Component,
+  HostListener,
   Inject,
   LOCALE_ID,
   OnDestroy,
@@ -152,6 +153,8 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
   );
 
   showTitlePreview = signal<number | null>(null);
+  /** Unit content highlight — set by clicking a map segment; click again to clear */
+  selectedUnitIndex = signal<number | null>(null);
 
   @ViewChild(CollationContainerComponent)
   collationContainer?: CollationContainerComponent;
@@ -211,21 +214,65 @@ export class CollationComponent implements OnInit, AfterViewInit, OnDestroy {
     this.versionSummary = data['pageData']['versionSummary'];
     this.columns = data['pageData']['columns'];
     this.numberOfColumns$.next(this.columns.length);
+    void this.settingsService.syncSizeToColumnCount(this.columns.length);
     this.facsimilePanelService.columns = this.columns;
     this.sigla = this.columns.map((c) => c.siglum);
     this.units = data['pageData']['units'];
     this.unitsService.setUnits(this.units);
     this.titles.set(this.units.map((u) => u.title));
-    this.summary = data['pageData']['summary'];
-    this.rowDataReciever.set(data['pageData']['segmentData']);
-    this.dataService.cache = data['pageData']['segmentData'];
+    const summary = data['pageData']['summary'];
+    this.summary = {
+      ...summary,
+      key: summary.key || summary.siglum,
+    };
+    this.rowDataReciever.set(
+      this.dataService.setAlignedSegmentData(
+        this.units,
+        data['pageData']['segmentData']
+      )
+    );
     this.searchService.reset();
+    this.selectedUnitIndex.set(null);
+    this.showTitlePreview.set(null);
     this.searchWorkerService.initCollation(this.summary.key);
     this.downloadsService.init(this.summary.key);
   }
 
   onGoToRow(index: number) {
     this.collationContainer?.scrollSubject.next(index);
+  }
+
+  /** Click map segment: highlight content (toggle off if same segment). */
+  onMapUnitClicked(index: number) {
+    if (this.selectedUnitIndex() === index) {
+      this.selectedUnitIndex.set(null);
+      return;
+    }
+    this.selectedUnitIndex.set(index);
+    this.collationContainer?.scrollSubject.next(index);
+  }
+
+  onMapUnitHovered(index: number | null) {
+    this.showTitlePreview.set(index);
+  }
+
+  clearMapUnitHighlight(): void {
+    if (this.selectedUnitIndex() !== null) {
+      this.selectedUnitIndex.set(null);
+    }
+  }
+
+  /** Clear highlight when clicking text or anywhere outside the map. */
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (this.selectedUnitIndex() === null) {
+      return;
+    }
+    const target = event.target as HTMLElement | null;
+    if (target?.closest?.('kd-map-panel')) {
+      return;
+    }
+    this.clearMapUnitHighlight();
   }
 
   getTitelPreview() {
